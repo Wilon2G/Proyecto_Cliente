@@ -9,9 +9,10 @@ Súper amigo italiano,
 Mario kart,
 Cookie cliker,
 Trivia,
-Piedra Papel Tijeras
-ant smasher
-
+Piedra Papel Tijeras,
+ant smasher,
+Flappy bird,
+noodle jump
 ## Lista de consolas:
 Nintendo: nes, snes, n64, gamecube
 Playstation: psx.
