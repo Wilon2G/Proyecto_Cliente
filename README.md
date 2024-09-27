@@ -8,7 +8,8 @@ Cuatro en raya,
 Súper amigo italiano,
 Mario kart,
 Cookie cliker,
-Trivia
+Trivia,
+Piedra Papel Tijeras
 
 
 
