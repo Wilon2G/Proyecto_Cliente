@@ -11,6 +11,10 @@ Cookie cliker,
 Trivia,
 Piedra Papel Tijeras
 
+## Lista de consolas:
+Nintendo: nes, snes, n64, gamecube
+Playstation: psx.
+Sega: Megadrive.
 
 
 #Clicker ->https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
