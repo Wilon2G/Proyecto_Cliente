@@ -5,3 +5,7 @@ Tic-tac-toe
 Tetris
 Space invaders
 Cuatro en raya
+
+
+
+##Paleta --> https://lospec.com/palette-list/jehkoba64
