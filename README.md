@@ -1,6 +1,6 @@
-#Idea: Pagina web de compra de videojuegos retro
+# Idea: Pagina web de compra de videojuegos retro
 
-##Lista de juegos: 
+## Lista de juegos: 
 Tic-tac-toe,
 Tetris,
 Space invaders,
