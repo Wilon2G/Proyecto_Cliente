@@ -13,5 +13,5 @@ Piedra Papel Tijeras
 
 
 
-
+#Clicker ->https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
 ##Paleta --> https://lospec.com/palette-list/jehkoba64
