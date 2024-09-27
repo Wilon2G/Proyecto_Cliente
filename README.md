@@ -6,7 +6,8 @@ Tetris,
 Space invaders,
 Cuatro en raya,
 Súper amigo italiano,
-Mario kart
+Mario kart,
+Cookie cliker
 
 
 
