@@ -7,7 +7,8 @@ Space invaders,
 Cuatro en raya,
 Súper amigo italiano,
 Mario kart,
-Cookie cliker
+Cookie cliker,
+Trivia
 
 
 
