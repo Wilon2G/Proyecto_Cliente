@@ -17,5 +17,5 @@ Playstation: psx.
 Sega: Megadrive.
 
 
-#Clicker ->https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
+# Clicker ->https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
 ##Paleta --> https://lospec.com/palette-list/jehkoba64
