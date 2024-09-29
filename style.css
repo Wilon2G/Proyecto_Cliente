@@ -1,0 +1,50 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+header {
+    background-color: lightcoral;
+    width: 100%;
+    height: 20%;
+
+    position: absolute;
+    top: 0;
+}
+
+main {
+    background-color: lightblue;
+    width: 80%;
+    height: 60%;
+
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+nav {
+    background-color: lightgreen;
+    width: 20%;
+    height: 60%;
+
+    position: absolute;
+    top: 20%;
+    left: 0;
+}
+
+footer {
+    background-color: lightsalmon;
+    width: 100%;
+    height: 20%;
+
+    position: absolute;
+    top: 80%;
+}
