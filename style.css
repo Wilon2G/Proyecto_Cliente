@@ -98,6 +98,13 @@ nav {
     font-family: 'VT323', monospace; 
     font-size: 1.5rem;
 }
+img.portada{
+    width: 270px; 
+    height: auto;
+    margin-left: 10px;
+    vertical-align: middle;
+    border-radius: 20px;
+}
 
 footer {
     background-color: rgba(64, 2, 92, 0.808);
