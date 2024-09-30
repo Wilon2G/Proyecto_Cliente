@@ -74,11 +74,11 @@ header img.logo {
 .infoUsuario li a:hover {
     color: hsl(281, 100%, 70%);
 }
-
-main {
-    background-color: #24b9eb54;
+/*==================================================ESTILOS DEL MAIN=====================*/
+.catalog {
+    background-color: #fc040454;
     width: 70%;
-    height: 75%;
+    
     position: absolute;
     top: 25%;
     left: 27%;
@@ -87,7 +87,54 @@ main {
     font-family: 'Exo 2', monospace;
     font-size: 1.2rem;
     color: antiquewhite;
+    
 }
+
+.catalog__genre{
+    /* background-color: aqua; */
+    padding: 20px;
+    margin-bottom: 40px; 
+}
+
+.catalog-title--main {
+    background-color: #4FAF44; /* esto por si en el futuro puedo hacer un fondo que cambie de colorines*/
+    -webkit-background-clip: text;
+    font-size: 3rem;
+    color: transparent;
+    width: 70%;
+    text-align: center;
+    margin: 2rem auto 2rem; /* Centradito y uno poquito de margen inferior y superior */
+}
+
+.catalog-title--sub {
+    margin: 10px 0; /* margen pa los nombres de los juegos y demas cosillas */
+}
+
+.games-conteiner {
+    text-align: center; /* Contenedor que sólo existe porque no podemos usar flex >:( */
+    width: 100%; /* Ancho del contenedor  */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+.game {
+    display: inline-block; /* Para que los juegos se coloquen en línea uno detras del otro */
+    width: 23%; /* Ancho de cada juego para que quepan 4 en una fila */
+    margin: 5%; /* Margen para separación entre juegos */
+    vertical-align: top; /* Alineación vertical */
+    box-sizing: border-box; 
+    /* background-color: #F6EB14; */
+}
+
+
+/* img.portada {
+    width: 270px;
+    height: auto;
+    margin-left: 10px;
+    vertical-align: middle;
+    border-radius: 20px;
+}  */
+
+/*================================================================================*/
 
 nav {
     background-color: #147e1480;
@@ -104,13 +151,7 @@ nav {
     font-size: 1.5rem;
 }
 
-img.portada {
-    width: 270px;
-    height: auto;
-    margin-left: 10px;
-    vertical-align: middle;
-    border-radius: 20px;
-}
+
 
 footer {
     background-color: rgba(64, 2, 92, 0.808);
