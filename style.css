@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
+
 *,
 *::after,
 *::before {
@@ -5,7 +7,8 @@
     margin: 0;
     padding: 0;
 }
-html{
+
+html {
     background-image: url("media/background_HD.png");
     background-size: cover;
 }
@@ -13,7 +16,7 @@ html{
 .container {
     position: relative;
     height: 100vh;
-    
+
 }
 
 header {
@@ -29,24 +32,26 @@ header nav {
     padding: 0 2%;
     width: 95%;
     height: 75%;
-    
+
 }
 
 header h1 {
-    float: left; 
+    float: left;
     padding: 0;
     margin: 0;
     color: white;
     line-height: 60px;
     font-family: 'Exo 2', sans-serif;
 }
+
 header img.logo {
-    width: 170px; 
+    width: 170px;
     height: auto;
     margin-left: 10px;
     vertical-align: middle;
-    
+
 }
+
 .infoUsuario {
     float: right;
     list-style: none;
@@ -79,7 +84,7 @@ main {
     left: 27%;
     border-radius: 20px;
     box-shadow: 0px 0px 40px 40px #24b9eb54;
-    font-family: 'Exo 2', monospace; 
+    font-family: 'Exo 2', monospace;
     font-size: 1.2rem;
     color: antiquewhite;
 }
@@ -95,11 +100,12 @@ nav {
     border-radius: 30px;
     color: white;
     box-shadow: 0 0 5px 5px #147e1480;
-    font-family: 'VT323', monospace; 
+    font-family: 'VT323', monospace;
     font-size: 1.5rem;
 }
-img.portada{
-    width: 270px; 
+
+img.portada {
+    width: 270px;
     height: auto;
     margin-left: 10px;
     vertical-align: middle;
@@ -115,6 +121,62 @@ footer {
     position: absolute;
     bottom: 0;
 }
-footer p{
-    float:right;
+
+footer p {
+    float: right;
 }
+
+/***********************************Estilos navegador**********************************************/
+.navegator {
+    width: 20%;
+    height: 70%;
+    font-family: 'Press Start 2P';
+    font-size: small;
+    background-color: #221;
+    text-transform: uppercase;
+
+
+}
+
+.navegator li {
+    color: #4FAF44;
+}
+
+.category {
+    position: relative;
+    display: block;
+    color: #F6EB14;
+    /*Indica color flecha tambien*/
+
+    text-decoration: none;
+    color: #fff090;
+
+
+    & i {
+        display: none;
+    }
+}
+
+.category:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+
+
+}
+
+.category:hover i {
+    /*Cuando esta hover aparece la flecha/i(icono)*/
+    display: block;
+    position: absolute;
+    /*Respecto al enlace */
+    top: 0.25rem;
+    left: -6rem;
+}
+
+.material-icons {
+    /*Tamaño flecha*/
+    font-size: large;
+    font-weight: bolder;
+}
+
+/*********************************************************************************/
