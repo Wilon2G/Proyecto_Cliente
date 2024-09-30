@@ -128,18 +128,26 @@ footer p {
 
 /***********************************Estilos navegador**********************************************/
 .navegator {
+    position: absolute;
     width: 20%;
     height: 70%;
+
+    background-color: #221;
+    border: 2px solid #4FAF44;
+    padding: 1rem 4rem 0 4rem;
+
     font-family: 'Press Start 2P';
     font-size: small;
-    background-color: #221;
     text-transform: uppercase;
 
-
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .navegator li {
     color: #4FAF44;
+    padding: .5rem 0;
+    /*Separacion entre categorias*/
 }
 
 .category {
@@ -148,10 +156,6 @@ footer p {
     color: #F6EB14;
     /*Indica color flecha tambien*/
 
-    text-decoration: none;
-    color: #fff090;
-
-
     & i {
         display: none;
     }
@@ -159,9 +163,7 @@ footer p {
 
 .category:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-
-
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .category:hover i {
@@ -169,8 +171,8 @@ footer p {
     display: block;
     position: absolute;
     /*Respecto al enlace */
-    top: 0.25rem;
-    left: -6rem;
+    top: -0.15rem;
+    left: -4rem;
 }
 
 .material-icons {
