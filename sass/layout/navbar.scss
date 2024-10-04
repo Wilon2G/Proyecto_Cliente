@@ -1,0 +1,52 @@
+@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
+
+.nav {
+    position: absolute;
+    width: 20%;
+    height: 70%;
+
+    background-color: $color-black-light;
+    border: 2px solid $color-teal;
+
+    font-family: 'Press Start 2P';
+    font-size: small;
+    text-transform: uppercase;
+
+    &__container {
+        padding: 1rem 4rem 0 6.5rem;
+    }
+
+    & li {
+        color: $color-teal;
+        padding: .5rem 0;
+        /*Separacion entre categorias*/
+    }
+
+    &__category {
+        position: relative;
+        display: block;
+        color: $color-yellow-light;
+        /*Indica color flecha tambien*/
+
+        & i {
+            display: none;
+            /*Tamaño flecha*/
+            font-size: medium;
+            font-weight: bolder;
+        }
+    }
+
+    &__category:hover {
+        cursor: pointer;
+        background-color: rgba(52, 57, 64, 0.4);
+
+        & i {
+            /*Cuando esta hover aparece la flecha/i(icono)*/
+            display: block;
+            position: absolute;
+            /*Respecto al enlace */
+            top: -0.15rem;
+            left: -6rem;
+        }
+    }
+}
