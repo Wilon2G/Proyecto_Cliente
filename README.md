@@ -23,3 +23,6 @@ Sega: Megadrive.
 https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
 ## Paleta  
 https://lospec.com/palette-list/jehkoba64
+
+===================
+https://wilon2g.github.io/Proyecto_Cliente/
