@@ -1,3 +1,16 @@
+html {
+  font-size: 62.5%;
+}
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*::befor,
+*::after {
+  box-sizing: inherit;
+}
 
 /*# sourceMappingURL=style.css.map */
