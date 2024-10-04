@@ -4,8 +4,19 @@
     margin: 0;
 }
 
-
 *::befor,
 *::after {
     box-sizing: inherit;
+}
+.header{
+    background-color: red;
+}
+.nav{
+    background-color: green;
+}
+.main{
+    background-color: yellow;
+}
+.footer{
+    background-color: blue;
 }
