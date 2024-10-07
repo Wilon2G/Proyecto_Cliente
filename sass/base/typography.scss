@@ -1,3 +1,17 @@
+@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
+
 html {
     font-size: 62.5%;
+    font-family: 'Press Start 2P';
 }
+
+.section__title{
+    font-size: 3rem;
+    margin: 2rem auto 2rem;
+    &--game{
+        
+    }
+}
+
+
+

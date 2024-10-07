@@ -2,6 +2,12 @@
 @import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
 html {
   font-size: 62.5%;
+  font-family: "Press Start 2P";
+}
+
+.section__title {
+  font-size: 3rem;
+  margin: 2rem auto 2rem;
 }
 
 * {
@@ -63,7 +69,6 @@ html {
   height: 70%;
   background-color: #050e1a;
   border: 2px solid #179c43;
-  font-family: "Press Start 2P";
   font-size: small;
   text-transform: uppercase;
 }
@@ -98,6 +103,16 @@ html {
   /*Respecto al enlace */
   top: -0.15rem;
   left: -6rem;
+}
+
+.main__section {
+  background-color: aquamarine;
+  text-align: center;
+}
+
+.section__games {
+  background-color: brown;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

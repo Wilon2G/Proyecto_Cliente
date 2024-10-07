@@ -14,8 +14,18 @@
 @import "components/button.scss";
 
 
+.main__section{
+background-color: aquamarine;
+text-align: center;
 
+}
 
-
+.section__games{
+    background-color: brown;
+    width: 100%;
+    &__game{
+        
+    }
+}
 
 
