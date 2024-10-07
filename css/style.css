@@ -113,5 +113,56 @@ html {
   background-color: brown;
   width: 100%;
 }
+.section__games__game {
+  display: inline-block;
+  width: 20%; /* Ancho de cada juego para que quepan 4 en una fila */
+  margin: 5%; /* Margen para separación entre juegos */
+  vertical-align: top; /* Alineación vertical */
+  box-sizing: border-box;
+}
+
+.scene {
+  -webkit-perspective: 70rem;
+  width: 40rem;
+  height: 20rem;
+  margin: auto;
+  z-index: 999;
+}
+
+.scene:hover .box {
+  -webkit-transform: rotateY(-180deg);
+}
+
+.box {
+  width: 18rem;
+  height: 18rem;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all 5s ease-out;
+  margin: 30px auto;
+}
+
+.box__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+}
+
+.box__face--front {
+  background: #d9d9d9;
+  -webkit-transform: rotateY(0deg) translateZ(1.5rem);
+}
+
+.box__face--right {
+  background: #9dcc78;
+  width: 3rem;
+  -webkit-transform: rotateY(90deg) translateZ(16.5rem);
+}
+
+.box__face--back {
+  background: #eb9595;
+  -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+}
 
 /*# sourceMappingURL=style.css.map */
