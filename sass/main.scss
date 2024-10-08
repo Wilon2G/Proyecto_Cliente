@@ -121,7 +121,7 @@
   }
   
   .box__face--right {
-    background: #9dcc78;  //Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :)
+    background: #9dcc78;  /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
     width: 3rem;
     -webkit-transform: rotateY(90deg) translateZ(16.5rem);
   }
