@@ -1,3 +1,5 @@
+@import "../abstracts/variables.scss";
+
 .main__section {
     background-color: aquamarine;
     text-align: center;
@@ -13,6 +15,11 @@
       vertical-align: top; /* Alineación vertical */
       box-sizing: border-box;
     }
+    
+  }
+
+  .section__games__game{
+    position: relative;
   }
   
   // .scene {
@@ -73,8 +80,8 @@
   
   
   .scene {
-      -webkit-perspective: 70rem;
-      width: 40rem;
+      -webkit-perspective: 70rem ;
+      width: 100%;
       height: 20rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
       margin: auto;
       z-index: 999;
@@ -90,10 +97,22 @@
       position: relative;
       -webkit-transform-style: preserve-3d;
       -webkit-transition: all .5s ease-out;
-      margin: 30px auto;
-      box-shadow:  0px 29px 32px -15px rgba(0,0,0,0.75);
+      margin: 3rem auto;
+      
+      position: relative;
     }
-    
+    // .shadow{
+    //   width: 183.94px;                    De momento no se me ocurre que hacer
+    //   height: 183.94px;
+    //   box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49);
+    //   position: absolute;
+    //   top: 4rem;
+    //   left: 1.5rem;
+    //   z-index: -1;
+    // }
+
+    //box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49);
+
     .box__face {
       position: absolute;
       width: 100%;
@@ -103,7 +122,25 @@
     
     .box__face--front {
       background: #d9d9d9;
+      
+      
       -webkit-transform: rotateY(0deg) translateZ(1.5rem);
+      &--pkmon{
+        background-image: url(../../media/front_pokemon.jpeg);
+        background-size: contain;
+      }
+      &--kart{
+        background-image: url(../../media/front_kart.jpeg);
+        background-size: contain;
+      }
+      &--zlda{
+        background-image: url(../../media/front_zelda.jpeg);
+        background-size: contain;
+      }
+      &--mario{
+        background-image: url(../../media/SupAmIta.jpeg);
+        background-size: contain;
+      }
     }
     
     .box__face--right {
@@ -114,6 +151,7 @@
     
     .box__face--back {
       background: #eb9595;
-      -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+      
+      -webkit-transform: rotateY(180deg) translateZ(1.5rem );
     }
     

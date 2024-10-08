@@ -9,12 +9,15 @@
     box-sizing: inherit;
 }
 
+
+
 .container {
     width: 100%;
     height: 100vh;
     /*Ponerlo luego al 100%*/
     background-color: grey;
     position: relative;
+    
 }
 
 .header {
@@ -41,7 +44,7 @@
     background-color: lightgoldenrodyellow;
     width: 80%;
     height: 70%;
-
+    
     position: absolute;
     top: 20%;
     right: 0;
