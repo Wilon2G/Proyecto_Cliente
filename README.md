@@ -13,7 +13,8 @@ Piedra Papel Tijeras,
 ant smasher,
 Flappy bird,
 noodle jump,
-minecraft
+minecraft,
+dokey-kong
 ## Lista de consolas:
 Nintendo: nes, snes, n64, gamecube
 Playstation: psx.
