@@ -123,6 +123,7 @@ html {
 
 .section__games__game {
   position: relative;
+  scale: 110%;
 }
 
 .scene {
@@ -136,6 +137,7 @@ html {
 
 .scene:hover .box {
   -webkit-transform: rotateY(-180deg);
+  scale: 130%;
 }
 
 .box {
