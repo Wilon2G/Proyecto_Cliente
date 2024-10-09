@@ -100,7 +100,6 @@
     .box {
       width: 18rem;
       height: 18rem;
-      position: relative;
       -webkit-transform-style: preserve-3d;
       -webkit-transition: all .5s ease-out;
       margin: 3rem auto;
@@ -153,21 +152,47 @@
         background-image: url(../../media/SupAmIta.jpeg);
         background-size: contain;
       }
+      &--kong{
+        background-image: url(../../media/front_kong.jpeg);
+        background-size: contain;
+      }
+      &--starby{
+        background-image: url(../../media/front_starby.png);
+        background-size: contain;
+      }
     }
     
     .box__face--right {
-      background: rgb(1, 158, 113);  /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
+      background: rgb(199, 233, 223);  /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
       width: 3rem;
       -webkit-transform: rotateY(90deg) translateZ(16.5rem);
       border:  2px solid black;
       overflow: hidden;
+
+      &--pkmon{
+        background: rgb(7, 160, 117);
+      }
+      &--kart{
+        background-color: #fd3d4a;
+      }
     }
     
     .box__face--back {
-      background: rgb(7, 160, 117);
+      background: rgb(0, 0, 0);
       border:  2px solid black;
       overflow: hidden;
       -webkit-transform: rotateY(180deg) translateZ(1.5rem );
+
+      &--pkmon{
+        background: rgb(7, 160, 117);
+      }
+      &--kart{
+        background-color: #fd3d4a;
+      }
+      &--zlda{
+        background-color: #adac9e;
+      }
+      
     }
     
    
