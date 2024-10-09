@@ -138,6 +138,7 @@ html {
 .scene:hover .box {
   -webkit-transform: rotateY(-180deg);
   scale: 130%;
+  margin-top: 5rem;
 }
 
 .box {
@@ -169,14 +170,13 @@ html {
 
 .box__face--front {
   background: #d9d9d9;
-  border: 1.5px solid black;
+  border: 2px solid black;
   overflow: hidden;
   -webkit-transform: rotateY(0deg) translateZ(1.5rem);
 }
 .box__face--front--pkmon {
   background-image: url(../../media/front_pokemon.jpeg);
   background-size: contain;
-  overflow: hidden;
 }
 .box__face--front--kart {
   background-image: url(../../media/front_kart.jpeg);
@@ -195,13 +195,13 @@ html {
   background: rgb(1, 158, 113); /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
   width: 3rem;
   -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-  border: 1.5px solid black;
+  border: 2px solid black;
   overflow: hidden;
 }
 
 .box__face--back {
   background: rgb(7, 160, 117);
-  border: 1.5px solid black;
+  border: 2px solid black;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
 }
