@@ -12,7 +12,8 @@ Trivia,
 Piedra Papel Tijeras,
 ant smasher,
 Flappy bird,
-noodle jump
+noodle jump,
+minecraft
 ## Lista de consolas:
 Nintendo: nes, snes, n64, gamecube
 Playstation: psx.
