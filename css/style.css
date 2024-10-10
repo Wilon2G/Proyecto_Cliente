@@ -283,6 +283,18 @@ html {
 .box__face--right--kart {
   background-color: #fd3d4a;
 }
+.box__face--right--zlda {
+  background-color: #adac9e;
+}
+.box__face--right--mario {
+  background-color: #12b0bb;
+}
+.box__face--right--kong {
+  background-color: #fbc701;
+}
+.box__face--right--starby {
+  background-color: #8e5d98;
+}
 
 .box__face--back {
   background: rgb(0, 0, 0);
@@ -298,6 +310,15 @@ html {
 }
 .box__face--back--zlda {
   background-color: #adac9e;
+}
+.box__face--back--mario {
+  background-color: #12b0bb;
+}
+.box__face--back--kong {
+  background-color: #fbc701;
+}
+.box__face--back--starby {
+  background-color: #8e5d98;
 }
 
 /*# sourceMappingURL=style.css.map */
