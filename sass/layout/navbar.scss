@@ -12,7 +12,7 @@
         left: 2.5rem;
 
         background-color: $color-black-dark;
-        border: 2px solid $color-black-light;
+        border: 3px solid $color-black-light;
 
         z-index: 2500;
         box-shadow: 0 1rem 3rem rgba(black, .1);
@@ -43,7 +43,7 @@
 
         z-index: 2000;
         background-color: $color-black-dark;
-        border: 2px solid $color-black-light;
+        border: 3px solid $color-black-light;
         opacity: 0;
         width: 0;
         transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -109,7 +109,7 @@
         &::after {
             width: 3rem;
             height: 2px;
-            background-color: grey;
+            background-color: $color-yellow-light;
             display: inline-block;
         }
 

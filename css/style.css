@@ -73,7 +73,7 @@ html {
   top: 2.5rem;
   left: 2.5rem;
   background-color: #0d2140;
-  border: 2px solid #050e1a;
+  border: 3px solid #050e1a;
   z-index: 2500;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -97,7 +97,7 @@ html {
   left: 0;
   z-index: 2000;
   background-color: #0d2140;
-  border: 2px solid #050e1a;
+  border: 3px solid #050e1a;
   opacity: 0;
   width: 0;
   transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -143,7 +143,7 @@ html {
 .navigation__icon, .navigation__icon::before, .navigation__icon::after {
   width: 3rem;
   height: 2px;
-  background-color: grey;
+  background-color: #fad937;
   display: inline-block;
 }
 .navigation__icon::before, .navigation__icon::after {
