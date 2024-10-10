@@ -269,6 +269,10 @@ html {
   background-image: url(../../media/front_starby.png);
   background-size: contain;
 }
+.box__face--front--bird {
+  background-image: url(../../media/front_bird.jpeg);
+  background-size: contain;
+}
 
 .box__face--right {
   background: rgb(199, 233, 223); /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
