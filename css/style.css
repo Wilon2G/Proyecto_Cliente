@@ -63,46 +63,117 @@ html {
     position: absolute;
     bottom: 0;
 }*/
-.nav {
-  position: absolute;
-  width: 20%;
-  height: 70%;
-  background-color: #050e1a;
-  border: 2px solid #179c43;
-  font-size: small;
-  text-transform: uppercase;
-}
-.nav__container {
-  padding: 1rem 4rem 0 6.5rem;
-}
-.nav li {
-  color: #179c43;
-  padding: 0.5rem 0;
-  /*Separacion entre categorias*/
-}
-.nav__category {
-  position: relative;
-  display: block;
-  color: #fad937;
-  /*Indica color flecha tambien*/
-}
-.nav__category i {
+.navigation__checkbox {
   display: none;
-  /*Tamaño flecha*/
-  font-size: medium;
-  font-weight: bolder;
 }
-.nav__category:hover {
+.navigation__button {
+  height: 8rem;
+  width: 8rem;
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  background-color: #0d2140;
+  border: 2px solid #050e1a;
+  z-index: 2500;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  text-align: center;
   cursor: pointer;
-  background-color: rgba(52, 57, 64, 0.4);
 }
-.nav__category:hover i {
-  /*Cuando esta hover aparece la flecha/i(icono)*/
-  display: block;
+.navigation__background {
+  height: 8rem;
+  width: 8rem;
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  background-color: rgba(204, 203, 203, 0.452);
+  z-index: 1000;
+  transition: transform 0.1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.navigation__nav {
+  height: 100vh;
+  width: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: #0d2140;
+  border: 2px solid #050e1a;
+  opacity: 0;
+  width: 0;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.navigation__list {
   position: absolute;
-  /*Respecto al enlace */
-  top: -0.15rem;
-  left: -6rem;
+  top: 20%;
+  left: 1.5%;
+  list-style: none;
+  text-align: left;
+  width: 100%;
+}
+.navigation__item {
+  margin: 1rem;
+}
+.navigation__link:link, .navigation__link:visited {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #fad937;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+  background-size: 220%;
+  transition: all 0.4s;
+}
+.navigation__link:hover, .navigation__link:active {
+  background-position: 100%;
+  color: blue;
+  transform: translateX(1rem);
+}
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(80);
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  width: 20%;
+}
+.navigation__icon {
+  position: relative;
+  margin-top: 3.5rem;
+}
+.navigation__icon, .navigation__icon::before, .navigation__icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: grey;
+  display: inline-block;
+}
+.navigation__icon::before, .navigation__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+}
+.navigation__icon::before {
+  top: -0.8rem;
+}
+.navigation__icon::after {
+  top: 0.8rem;
+}
+.navigation__button:hover .navigation__icon::before {
+  top: -1rem;
+}
+.navigation__button:hover .navigation__icon::after {
+  top: 1rem;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  top: 0;
+  transform: rotate(-135deg);
 }
 
 .main__section {
