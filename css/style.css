@@ -112,6 +112,10 @@ html {
 }
 .navigation__item {
   margin: 1rem 0;
+  padding: 1.5rem 2.5rem;
+}
+.navigation__link {
+  padding: 0.5rem;
 }
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
@@ -124,13 +128,18 @@ html {
   background-size: 220%;
   transition: all 0.4s;
 }
-.navigation__link:hover, .navigation__link:active {
+.navigation__link:hover, .navigation__link:active, .navigation__link:focus {
   background-position: 100%;
   transform: translateX(1rem);
 }
+.navigation__link:hover > i, .navigation__link:active > i, .navigation__link:focus > i {
+  display: block;
+  position: absolute;
+  top: -0.2rem;
+  left: -3.5rem;
+}
 .navigation__link > i {
-  padding: 1rem;
-  font-size: initial;
+  display: none;
 }
 .navigation__checkbox:checked ~ .navigation__background {
   transform: scale(80);

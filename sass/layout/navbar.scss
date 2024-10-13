@@ -63,9 +63,11 @@
 
     &__item {
         margin: 1rem 0;
+        padding: 1.5rem 2.5rem;
     }
 
     &__link {
+        padding: 0.5rem;
 
         &:link,
         &:visited {
@@ -82,14 +84,21 @@
         }
 
         &:hover,
-        &:active {
+        &:active,
+        &:focus {
             background-position: 100%;
             transform: translateX(1rem);
+
+            &>i {
+                display: block;
+                position: absolute;
+                top: -.2rem;
+                left: -3.5rem;
+            }
         }
 
         &>i {
-            padding: 1rem;
-            font-size: initial;
+            display: none;
         }
 
     }
