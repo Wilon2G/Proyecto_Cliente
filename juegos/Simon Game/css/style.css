@@ -1,44 +1,44 @@
 body {
   background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png);
-  background-color: #dad6d7;
 }
 
+/************Estilos gameboy*******************/
 
 .container-gameboy {
   width: 70vh;
-  height: 80vh;
+  height: 60vh;
   background-color: #9ca04c;
   border: 20px solid #717286;
-  border-radius: 5% 5% 0 0;
+  border-radius: 2.5% 2.5% 15% 2.55%;
 
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .buttons-gameboy {
-  width: 70vh;
-  height: 10vh;
-  background-color: #717286;
-  border-top: 20px solid #717286;
-
-  position: fixed;
-  bottom: 8%;
+  width: 85vh;
+  height: 95vh;
+  background-color: rgb(218, 214, 215);
+  border-radius: 2.5% 2.5% 15% 2.55%;
+  border-right: 15px solid rgb(190, 187, 188);
+  ;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
 .up-down-directions,
 .right-left-directions {
-  width: 4rem;
-  height: 1.5rem;
+  width: 8rem;
+  height: 2.5rem;
   background-color: #010105;
-
   position: fixed;
-  bottom: 45%;
-  left: 10%;
+  bottom: 12%;
+  left: 13%;
 }
 
 .up-down-directions {
@@ -47,22 +47,25 @@ body {
 
 .button-action-1,
 .button-action-2 {
-  width: 3rem;
-  height: 3rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
   background-color: #ad1035;
 }
 
 .button-action-1 {
   position: fixed;
-  right: 5%;
+  right: 28%;
+  bottom: 10%;
 }
 
 .button-action-2 {
   position: fixed;
   right: 15%;
-  bottom: 9%;
+  bottom: 15%;
 }
+
+/**********Estilos juego (Importante posicionarlo dentro de la pantalla)***********/
 
 .toggle {
   margin-left: 20px;
@@ -128,7 +131,10 @@ body {
   border-radius: 50%;
   height: 500px;
   width: 500px;
+
   position: relative;
+  top: -8%;
+
   border-style: solid;
   border-width: 10px;
   margin: auto;
