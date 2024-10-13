@@ -1,5 +1,67 @@
 body {
-  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png)
+  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png);
+  background-color: #dad6d7;
+}
+
+
+.container-gameboy {
+  width: 70vh;
+  height: 80vh;
+  background-color: #9ca04c;
+  border: 20px solid #717286;
+  border-radius: 5% 5% 0 0;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttons-gameboy {
+  width: 70vh;
+  height: 10vh;
+  background-color: #717286;
+  border-top: 20px solid #717286;
+
+  position: fixed;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.up-down-directions,
+.right-left-directions {
+  width: 4rem;
+  height: 1.5rem;
+  background-color: #010105;
+
+  position: fixed;
+  bottom: 45%;
+  left: 10%;
+}
+
+.up-down-directions {
+  transform: rotate(1.25turn);
+}
+
+.button-action-1,
+.button-action-2 {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #ad1035;
+}
+
+.button-action-1 {
+  position: fixed;
+  right: 5%;
+}
+
+.button-action-2 {
+  position: fixed;
+  right: 15%;
+  bottom: 9%;
 }
 
 .toggle {
