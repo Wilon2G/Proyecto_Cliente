@@ -111,7 +111,7 @@ html {
   width: 100%;
 }
 .navigation__item {
-  margin: 1rem;
+  margin: 1rem 0;
 }
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
@@ -120,14 +120,17 @@ html {
   color: #fad937;
   text-decoration: none;
   text-transform: uppercase;
-  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #243966 50%);
   background-size: 220%;
   transition: all 0.4s;
 }
 .navigation__link:hover, .navigation__link:active {
   background-position: 100%;
-  color: blue;
   transform: translateX(1rem);
+}
+.navigation__link > i {
+  padding: 1rem;
+  font-size: initial;
 }
 .navigation__checkbox:checked ~ .navigation__background {
   transform: scale(80);
