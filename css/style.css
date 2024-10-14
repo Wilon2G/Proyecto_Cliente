@@ -85,9 +85,8 @@ html {
   position: fixed;
   top: 2.5rem;
   left: 2.5rem;
-  background-color: rgba(204, 203, 203, 0.452);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  transition: transform 0.1s cubic-bezier(0.86, 0, 0.07, 1);
 }
 .navigation__nav {
   height: 100vh;
@@ -100,7 +99,7 @@ html {
   border: 3px solid #050e1a;
   opacity: 0;
   width: 0;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .navigation__list {
   position: absolute;
