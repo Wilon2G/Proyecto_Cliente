@@ -13,21 +13,14 @@
 
 .container {
     width: 100%;
-    height: 100vh;
-    /*Ponerlo luego al 100%*/
-    background-color: grey;
+    height: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+   
     position: relative;
     
 }
 
-.header {
-    background-color: red;
-    width: 100%;
-    height: 20%;
-
-    position: absolute;
-    top: 0;
-}
 
 .nav {
     background-color: green;
@@ -41,13 +34,13 @@
 }
 
 .main {
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(255, 255, 255);
     width: 80%;
-    height: 70%;
+    height: 100%;
     
     position: absolute;
-    top: 20%;
-    right: 0;
+    top: 120%;
+    right: 10%;
 
 }
 
