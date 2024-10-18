@@ -1,6 +1,7 @@
 {
     "users": [
         {
+            "idUser": "",
             "userName": "",
             "password": "",
             "name": "",
