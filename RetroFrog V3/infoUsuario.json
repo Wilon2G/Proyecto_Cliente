@@ -1,0 +1,15 @@
+{
+    "users": [
+        {
+            "userName": "",
+            "password": "",
+            "name": "",
+            "email": "",
+            "puntuacion": "",
+            "personalInfo": {
+                "games": "",
+                "More": ""
+            }
+        }
+    ]
+}
