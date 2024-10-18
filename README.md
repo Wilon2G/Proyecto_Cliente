@@ -33,13 +33,13 @@ https://lospec.com/palette-list/jehkoba64
 3º Una vez explicado o si has iniciado antes dar la opcion de 3 primeros juegos
 4º Cada juego por niveles o hasta puntacion limite, que cuando lo consigues te recompensan con monedas para desbloquear mas juegos y/o personalizar pagina
 
-//Componentes/Layouts
+##Componentes/Layouts
 -Pagina inicio de sesion (+Comprobacion usuario y ver si existe y login)
 -Pagina inicio (Biblioteca de juegos con puntuacion actual y monedas)
 -Area personal (De cambio de contraseña cerrar sesion...etc)
 -Cada pantalla de juego
 
-//JSON de usuarios
+##JSON de usuarios
 Usuario:
 -Nombre de usuario
 -Contraseña
