@@ -81,74 +81,38 @@ const SignupPage: React.FC = () => {
     };
 
     return (
-        <div>
-            <div className="offset-lg-3 col-lg-6">
-                <form className="container" onSubmit={handleSubmit}>
-                    <div className="card">
-                        <div className="card-header">
-                            <h1>User Registeration</h1>
-                        </div>
-                        <div className="card-body">
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>User Name <span className="errmsg">*</span></label>
-                                        <input value={userName} onChange={e => userNameChange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Password <span className="errmsg">*</span></label>
-                                        <input value={password} onChange={e => passwordChange(e.target.value)} type="password" className="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Full Name <span className="errmsg">*</span></label>
-                                        <input value={name} onChange={e => nameChange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Email <span className="errmsg">*</span></label>
-                                        <input value={email} onChange={e => emailChange(e.target.value)} type="email" className="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Gender</label>
-                                        <input type="radio" checked={gender === 'male'} onChange={e => genderChange(e.target.value)} name="gender" value="male" className="form-control"></input>
-                                        <label>Male</label>
-                                        <input type="radio" checked={gender === 'female'} onChange={e => genderChange(e.target.value)} name="gender" value="female" className="form-control"></input>
-                                        <label>Female</label>
-                                        <input type="radio" checked={gender === 'other'} onChange={e => genderChange(e.target.value)} name="gender" value="other" className="form-control"></input>
-                                        <label>Other</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Register</button>
-                            <a className="btn btn-danger">Back</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div >
+        <div className="signup__wrapper">
+            <form className="signup__form" onSubmit={handleSubmit}>
+                <h2>User Registeration</h2>
+                <div className="signup__form--input-field">
+                    <input value={userName} onChange={e => userNameChange(e.target.value)} required></input>
+                    <label>Enter your username </label>
+                </div>
+                <div className="signup__form--input-field">
+                    <input value={password} onChange={e => passwordChange(e.target.value)} type='password' required></input>
+                    <label>Enter your password </label>
+                </div>
+                <div className="signup__form--input-field">
+                    <input value={name} onChange={e => nameChange(e.target.value)} required></input>
+                    <label>Enter your full name </label>
+                </div>
+                <div className="signup__form--input-field">
+                    <input value={email} onChange={e => emailChange(e.target.value)} type="email" required></input>
+                    <label>Enter your email </label>
+                </div>
+                <div className="signup__form--input-field">
+                    <p>Gender</p>
+                    <input type="radio" checked={gender === 'male'} onChange={e => genderChange(e.target.value)} name="gender" value="male" className="form-control"></input>
+                    <label htmlFor='gender'>Male</label>
+                    <input type="radio" checked={gender === 'female'} onChange={e => genderChange(e.target.value)} name="gender" value="female" className="form-control"></input>
+                    <label htmlFor='gender'>Female</label>
+                    <input type="radio" checked={gender === 'other'} onChange={e => genderChange(e.target.value)} name="gender" value="other" className="form-control"></input>
+                    <label htmlFor='gender'>Other</label>
+                </div>
+                <button type="submit">Register</button>
+                <a className="signup__form--back">Back</a>
+            </form>
+        </div>
     );
 };
 
