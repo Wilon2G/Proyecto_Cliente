@@ -16,6 +16,18 @@ body {
     padding: 0 10px;
 }
 
+.App{
+    width: 100%;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+}
+
+#root{
+    width: 100%;
+    
+}
+
 // body::before {
 //     content: "";
 //     position: absolute;

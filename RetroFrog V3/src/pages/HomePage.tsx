@@ -14,14 +14,14 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <>
             <div className="header">
                 <Link to={'/'}>Home</Link>
                 <Link to={'/Login'}>Logout</Link>
             </div>
             <h1>Welcome to RetroFrog</h1>
             <Inicio />
-        </div>
+        </>
     );
 }
 
