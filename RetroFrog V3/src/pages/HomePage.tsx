@@ -5,7 +5,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        let userName = sessionStorage.getItem('username'); //sessionStorage es otro hook, para mantener la sesion de usuario abierta
+        const userName = sessionStorage.getItem('username'); //sessionStorage es otro hook, para mantener la sesion de usuario abierta
 
         if (userName == '' || userName === null) {
             navigate('/Login');
