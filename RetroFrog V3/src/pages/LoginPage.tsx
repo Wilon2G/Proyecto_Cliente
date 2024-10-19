@@ -1,3 +1,4 @@
+import '../index.css';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -87,32 +88,27 @@ const LoginPage: React.FC = () => {
     }
 
     return (
-        <div className="row">
-            <div className="offset-lg-3 col-lg-6">
-                <form onSubmit={proceedLogin} className="container">
-                    <div className="card">
-                        <div className="card-header">
-                            <h2>User Login</h2>
-                        </div>
-                        <div className="card-body">
-
-                            <div className="form-group">
-                                <label>User Name <span className="errmsg">*</span></label>
-                                <input value={userName} onChange={e => userNameUpdate(e.target.value)} className="form-control"></input>
-                            </div>
-                            <div className="form-group">
-                                <label>Password <span className="errmsg">*</span></label>
-                                <input value={password} onChange={e => passwordUpdate(e.target.value)} type="password" className="form-control"></input>
-                            </div>
-
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Login</button>
-                            <Link className="btn btn-success" to={'/register'}>New User</Link>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div className="login__wrapper">
+            <form onSubmit={proceedLogin} className="login__form">
+                <h2>Login</h2>
+                <div className="login__form--input-field">
+                    <input value={userName} onChange={e => userNameUpdate(e.target.value)} required></input>
+                    <label>Enter your username </label>
+                </div>
+                <div className="login__form--input-field">
+                    <input value={password} onChange={e => passwordUpdate(e.target.value)} type="password" required></input>
+                    <label>Enter your password</label>
+                </div>
+                <div className="login__form--forget">
+                    <label htmlFor="login__form--remember">
+                        <input type="checkbox" className="login__form--remember"></input>
+                        <p>Remember me</p>
+                    </label>
+                    <a href="#">Forgor password?</a>
+                </div>
+                <button type="submit">Login</button>
+                <Link className="login__form--register" to={'/register'}>New User</Link>
+            </form>
         </div>
     );
 }

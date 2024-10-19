@@ -7,9 +7,11 @@
 @use "base/typography.scss";
 @use "base/utilities.scss";
 
+@use "components/button.scss";
+
 @use "layout/general.scss";
 @use "layout/header.scss";
 @use "layout/navbar.scss";
-
-@use "components/button.scss";
-@use "layout/catalog.scss"
+@use "layout/catalog.scss";
+@use "layout/signupPage.scss";
+@use "layout/loginPage.scss";
