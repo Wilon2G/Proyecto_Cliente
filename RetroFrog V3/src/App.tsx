@@ -1,4 +1,4 @@
-import { Inicio } from './inicio/inicio'
+import { Main } from './principal/principal'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,7 +7,7 @@ function App() {
   
 
   return (
-    <Inicio />
+    <Main />
   )
 }
 
