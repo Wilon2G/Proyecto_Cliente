@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/HomePage'; //En home se hace la app, solo que antes te redirige al login y Register si hace falta
 import Login from './pages/LoginPage';
 import Register from './pages/SignupPage';
