@@ -1,26 +1,30 @@
+@use "../abstracts/variables.scss" as *;
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Press Start 2P', cursive;  
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
     width: 100%;
-    padding: 0 10px;
+    min-height: 100vh; 
+    margin: 0;  
+    background-color: $color-dark-purple; 
+    display: flex; 
+    flex-direction: column;
 }
 
-.App{
-    width: 100%;
-    background-color: lightblue;
+.App { 
     display: flex;
-    justify-content: center;
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;  
+    background-color: lightblue;               
+    
 }
 
 #root{

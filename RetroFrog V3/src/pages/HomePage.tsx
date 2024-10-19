@@ -16,10 +16,13 @@ const Home = () => {
     return (
         <>
             <div className="header">
-                <Link to={'/'}>Home</Link>
-                <Link to={'/Login'}>Logout</Link>
+                <h1 className="header__title">Welcome to RetroFrog</h1>
+                <nav className="header__nav">
+                    <Link className="header__link" to={'/'}>Home</Link>
+                    <Link className="header__link" to={'/Login'}>Logout</Link>
+                </nav>
             </div>
-            <h1>Welcome to RetroFrog</h1>
+            
             <Inicio />
         </>
     );
