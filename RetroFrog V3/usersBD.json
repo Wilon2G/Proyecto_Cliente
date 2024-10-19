@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "idUser": "",
+      "userName": "",
+      "password": "",
+      "name": "",
+      "email": "",
+      "puntuacion": "",
+      "personalInfo": {
+        "games": "",
+        "More": ""
+      },
+      "id": "4ab4"
+    },
+    {
+      "id": "465b",
+      "userName": "Prueba",
+      "password": "prueba",
+      "name": "Prueba p",
+      "email": "prueba@gmail.com",
+      "gender": "female",
+      "score": 0,
+      "userInfo": {
+        "gamesPlayed": null,
+        "gamesWinned": null,
+        "gamesUnlocked": null,
+        "gamesLocked": null,
+        "theme": "dark"
+      }
+    }
+  ]
+}
