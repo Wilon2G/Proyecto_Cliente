@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { Inicio } from "./MainPage";
 const Home = () => {
     const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ const Home = () => {
                 <Link to={'/Login'}>Logout</Link>
             </div>
             <h1>Welcome to RetroFrog</h1>
+            <Inicio />
         </div>
     );
 }

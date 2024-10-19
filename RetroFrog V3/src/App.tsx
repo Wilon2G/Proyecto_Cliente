@@ -15,6 +15,7 @@ import Register from './pages/SignupPage';
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
