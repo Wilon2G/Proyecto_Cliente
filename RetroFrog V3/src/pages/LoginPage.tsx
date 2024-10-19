@@ -104,7 +104,7 @@ const LoginPage: React.FC = () => {
                         <input type="checkbox" className="login__form--remember"></input>
                         <p>Remember me</p>
                     </label>
-                    <a href="#">Forgor password?</a>
+                    <a href="#">Forgot password?</a>
                 </div>
                 <button type="submit">Login</button>
                 <Link className="login__form--register" to={'/register'}>New User</Link>
