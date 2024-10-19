@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/HomePage'; //En home se hace la app, solo que antes te redirige al login y Register si hace falta
 import Login from './pages/LoginPage';
@@ -29,6 +28,7 @@ export default App
 
 
 /** Guille
+ * 
  * import { Inicio } from './inicio/inicio'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
