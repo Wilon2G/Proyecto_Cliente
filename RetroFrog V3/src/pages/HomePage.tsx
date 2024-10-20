@@ -19,6 +19,7 @@ const Home = () => {
                 <h1 className="header__title">Welcome to RetroFrog</h1>
                 <nav className="header__nav">
                     <Link className="header__link" to={'/'}>Home</Link>
+                    {/*<Link className="header__link" to={'/User'}>User</Link>*/}
                     <Link className="header__link" to={'/Login'}>Logout</Link>
                 </nav>
             </div>

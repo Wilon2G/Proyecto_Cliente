@@ -1,19 +1,6 @@
 {
   "users": [
     {
-      "idUser": "",
-      "userName": "",
-      "password": "",
-      "name": "",
-      "email": "",
-      "puntuacion": "",
-      "personalInfo": {
-        "games": "",
-        "More": ""
-      },
-      "id": "4ab4"
-    },
-    {
       "id": "465b",
       "userName": "Prueba",
       "password": "prueba",
