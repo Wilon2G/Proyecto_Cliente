@@ -11,7 +11,7 @@ body {
   width: 100%;
   min-height: 100vh;
   margin: 0;
-  background-color: #4e278c;
+  background-image: url("../../media/bg-photo2.jpg");
   display: flex;
   flex-direction: column;
 }
@@ -78,7 +78,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background-color: #773bbf;
+  background-color: rgba(48, 0, 80, 0.5960784314);
 }
 .signup__wrapper a {
   margin: 20px;
@@ -105,6 +105,9 @@ main {
   color: #fff;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
+}
+.signup__wrapper p {
+  color: #fff;
 }
 .signup__form {
   display: flex;
@@ -166,7 +169,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background-color: #773bbf;
+  background-color: rgba(48, 0, 80, 0.5960784314);
 }
 .login__wrapper a {
   color: #efefef;
