@@ -30,10 +30,10 @@ No-entiendo: GameScript
 4º Cada juego por niveles o hasta puntacion limite, que cuando lo consigues te recompensan con monedas para desbloquear mas juegos y/o personalizar pagina  
 
 ## Componentes/Layouts  
-- Pagina inicio de sesion (+Comprobacion usuario y ver si existe y login)  
-- Pagina inicio (Biblioteca de juegos con puntuacion actual y monedas)  
-- Area personal (De cambio de contraseña cerrar sesion...etc)  
-- Cada pantalla de juego  
+- Pagina inicio de sesion (+Comprobacion usuario y ver si existe y login)  Gonzalo
+- Pagina inicio (Biblioteca de juegos con puntuacion actual y monedas)  Guille
+- Area personal (De cambio de contraseña cerrar sesion...etc)  Favio
+- Cada pantalla de juego  Todos
 
 ## JSON de usuarios  
 Usuario:  
