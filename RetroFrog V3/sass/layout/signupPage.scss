@@ -15,7 +15,7 @@
         border: 1px solid rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        background-color: $color-purple-dark;
+        background-color: #30005098;
 
         a {
             margin: 20px;
@@ -45,6 +45,9 @@
             color: #fff;
             border-color: #fff;
             background: rgba(255, 255, 255, 0.15);
+        }
+        p{
+            color: #fff;
         }
     }
 
