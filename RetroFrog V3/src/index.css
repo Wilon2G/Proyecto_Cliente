@@ -69,6 +69,10 @@ main {
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
+  background-color: rgba(48, 0, 80, 0.5960784314);
+  width: 80%;
+  border: aliceblue 0.1rem solid;
+  border-radius: 2rem;
 }
 
 .game {
