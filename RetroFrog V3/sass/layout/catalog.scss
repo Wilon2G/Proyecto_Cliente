@@ -4,3 +4,12 @@ main{
     height: 100%;
     background-color: rgb(238, 206, 206);
 }
+.catalog{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.game{
+    margin: 2rem;
+}

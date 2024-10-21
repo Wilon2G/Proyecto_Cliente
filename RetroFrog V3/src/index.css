@@ -64,6 +64,17 @@ main {
   background-color: rgb(238, 206, 206);
 }
 
+.catalog {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.game {
+  margin: 2rem;
+}
+
 .signup__wrapper {
   display: flex;
   justify-content: center;
