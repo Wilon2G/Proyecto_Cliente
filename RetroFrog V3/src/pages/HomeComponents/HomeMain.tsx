@@ -8,6 +8,7 @@ export type Game = {
 
 const games: Game[] = [
   { title: "Super Mario", route: "./../../media/SuperMario.jpeg", color: "rgb(18, 176, 187)" },
+  { title: "Super Mario", route: "./../../media/SuperMario.jpeg", color: "rgb(18, 176, 187)" },
 ];
 
 export const HomeMain = () => {
