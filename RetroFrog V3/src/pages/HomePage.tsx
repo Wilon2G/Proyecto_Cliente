@@ -1,5 +1,5 @@
 
-import { HomeInicio } from "./HomeComponents/MainPage";
+import { HomeMain } from "./HomeComponents/HomeMain";
 import  HomeHeader from "./HomeComponents/HomeHeader"
 import HomeNavBar from "./HomeComponents/HomeNavBar";
 
@@ -12,7 +12,7 @@ const Home = () => {
 
         <HomeNavBar />
             
-        <HomeInicio />
+        <HomeMain />
 
         </>
     );

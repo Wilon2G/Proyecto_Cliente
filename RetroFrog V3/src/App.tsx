@@ -12,6 +12,7 @@ import User from './pages/UserPage';
 //npm install react-router-dom @types/react-router-dom
 //npm install -g json-server (json-server --watch documento json de usuarios), si no se indica puerto, esta en el 3000
 
+//npm install sass
 
 //Chiquis para ejecutar todos los scripts de una hacemos un npm install -D concurrently y luego hacemos npm run super 
 // <3
