@@ -1,6 +1,26 @@
+import { Game } from "./HomeMain";
 
-
-
-export default function Game(){
- return <div className="game"><h1>Game</h1></div>
+type GameBoxProps={
+    game:Game;
 }
+
+
+
+export default function GameBox({game}:GameBoxProps) {
+    const urlgame=`url(${game.route})`;
+  return (
+    <div className="game">
+      <div className="scene">
+      <div className="box">
+                <div className="shadow"></div>
+                <div className="box__face " style={{backgroundImage: urlgame}}></div>
+                <div className="box__face " style={{backgroundColor: game.color }}>{game.title}</div>
+                <div className="box__face " style={{backgroundColor: game.color }}>right</div>
+                
+              </div>
+      </div>
+    </div>
+  );
+}
+
+// style={{backgroundImage: urlgame}}
