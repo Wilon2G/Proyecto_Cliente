@@ -4,22 +4,14 @@ import { useNavigate } from "react-router-dom";
 const UserPage: React.FC = () => {
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState({
-        id: "",
         userName: "",
-        password: "",
-        name: "",
         email: "",
+        name: "",
         gender: "male",
-        score: 0,
-        userInfo: {
-            gamesPlayed: null,
-            gamesWinned: null,
-            gamesUnlocked: null,
-            gamesLocked: null,
-            theme: "dark",
-        },
+        password:""
     });
 
+    // Obtener el nombre de usuario del sessionStorage para cargar los detalles
     useEffect(() => {
         const userName = sessionStorage.getItem('username');
         if (!userName) {
@@ -45,8 +37,16 @@ const UserPage: React.FC = () => {
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Prevenir que se actualice la página al hacer click en el botón
-
+        e.preventDefault();
+        const updatedUserDetails = {
+            userName: userDetails.userName,
+            password: userDetails.password,
+            name: userDetails.name,
+            email: userDetails.email,
+            gender: userDetails.gender,
+            
+        };
+    
         fetch(`http://localhost:3000/users/${userDetails.id}`, {
             method: "PUT",
             headers: {
@@ -66,7 +66,7 @@ const UserPage: React.FC = () => {
 
     return (
         <div className="user__wrapper">
-            <h2>Update User Information</h2>
+            <h2>User:  {sessionStorage.getItem('username')} </h2>
             <form className="user__form" onSubmit={handleSubmit}>
                 <div className="user__form--input-field">
                     <input
@@ -77,16 +77,6 @@ const UserPage: React.FC = () => {
                         required
                     />
                     <label>Username</label>
-                </div>
-                <div className="user__form--input-field">
-                    <input
-                        type="password"
-                        name="password"
-                        value={userDetails.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Password</label>
                 </div>
                 <div className="user__form--input-field">
                     <input
@@ -107,6 +97,16 @@ const UserPage: React.FC = () => {
                         required
                     />
                     <label>Email</label>
+                </div>
+                <div className="user__form--input-field">
+                    <input
+                        type="password"
+                        name="password"
+                        value={userDetails.password}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label>Password</label>
                 </div>
                 <div className="user__form--input-field">
                     <p>Gender</p>
