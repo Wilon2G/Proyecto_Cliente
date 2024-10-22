@@ -1,4 +1,4 @@
-# Idea: Pagina web de compra de videojuegos retro
+# Idea: Pagina web de arcade de videojuegos retro
 
 ## Lista de juegos: 
 - Simon dice (Gon)
