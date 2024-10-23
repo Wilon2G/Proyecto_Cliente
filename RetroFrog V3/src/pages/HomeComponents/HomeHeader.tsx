@@ -18,8 +18,12 @@ export default function  HomeHeader  (){
 
     return(
         <div className="header">
+            <div className="header__section"> 
+            </div>
             <div className="header__section">
-                <h1 className="header__title">Welcome to RetroFrog</h1>
+            <img src="../../../media/FroggoLoggo.png" alt="LOGO" />
+                <h1 className="header__title">RetroFrog</h1>
+                <h3 className="header__subtitle">Welcome to RetroFrog</h3>
             </div>
             <div className="header__section">
                 <nav className="header__nav">
