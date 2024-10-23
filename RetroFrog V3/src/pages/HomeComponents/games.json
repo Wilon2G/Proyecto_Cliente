@@ -1,0 +1,15 @@
+[
+    {
+      "title": "Mario Kart",
+      "route": "./../../media/MarioKart.jpeg",
+      "color": "#fd3d4a",
+      "description": ""
+    },
+    {
+      "title": "Super Mario",
+      "route": "./../../media/SuperMario.jpeg",
+      "color": "rgb(18, 176, 187)",
+      "description": ""
+    }
+  ]
+  

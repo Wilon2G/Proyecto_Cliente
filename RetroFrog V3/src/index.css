@@ -278,6 +278,7 @@ main {
   border-radius: 0.4rem;
   padding: 0.1rem;
   color: navy;
+  border: #000000 solid 0.1rem;
 }
 
 .box__face--back {
