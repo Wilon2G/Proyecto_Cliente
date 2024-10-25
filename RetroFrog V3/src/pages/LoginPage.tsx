@@ -44,13 +44,14 @@ const LoginPage: React.FC = () => {
                     return res.json();  // Convertimos la respuesta en JSON
                 })
                 .then((resp) => {
+                    console.log(resp);
                     const user = resp.find((u: User) => u.userName === userName);
 
                     if (!user) {
                         console.log("Please Enter valid username");
                     } else {
                         if (user.password === password) {
-                            console.log("Success");
+                            //console.log("Success");
                             sessionStorage.setItem('username', userName)
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {

@@ -14,10 +14,10 @@ const SignupPage: React.FC = () => {
     //Caracteristicas del usuario que se rellenaran mas tarde
     const score = 0;
     const userInfo = {
-        "gamesPlayed": null,
-        "gamesWinned": null,
-        "gamesUnlocked": null,
-        "gamesLocked": null,
+        "gamesPlayed": [],
+        "gamesWinned": [],
+        "gamesUnlocked": ["b97bf75d-5764-46b5-be5e-fe4df0d0af4a"],
+        "gamesLocked": [],
         "theme": "dark"
     };
 
