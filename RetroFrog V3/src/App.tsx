@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/HomePage'; //En home se hace la app, solo que antes te redirige al login y Register si hace falta
 import Login from './pages/LoginPage';
 import Register from './pages/SignupPage';
-import User from './pages/UserPage';
+import Modify from './pages/PersonalPage';
 
 //npm run dev -> Iniciar projecto
 //json-server --watch usersBD.json -> Iniciar conexion y login con json
@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<Login />}></Route>
-          <Route path='/user' element={<User />}></Route>
+          <Route path='/modify' element={<Modify />}></Route>
           <Route path='/register' element={<Register />}></Route>
         </Routes>
       </BrowserRouter>

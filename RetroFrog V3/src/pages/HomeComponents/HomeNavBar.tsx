@@ -1,7 +1,3 @@
-
-
-
-
 export default function HomeNavBar(){
 return <div className="navigation">
 <input type="checkbox" className="navigation__checkbox" id="navi-toggle" />

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-
+import UserProfile from "./User";
 
 
 export default function  HomeHeader  (){
@@ -26,12 +25,12 @@ export default function  HomeHeader  (){
                 <h3 className="header__subtitle">Welcome to RetroFrog</h3>
             </div>
             <div className="header__section">
-                <nav className="header__nav">
-                    <Link className="header__link" to={'/'}>Home</Link>
-                    {/*<Link className="header__link" to={'/User'}>User</Link>*/}
-                    <Link className="header__link" to={'/Login'}>Logout</Link>
-                </nav>
-            </div>        
+                <div className="header__user">
+                        <UserProfile></UserProfile>
+                </div>
+            </div>    
+                
+            
         </div>
     )
 }

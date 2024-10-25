@@ -14,7 +14,9 @@ body {
     min-height: 100vh; 
     margin: 0;  
     padding: 0;
-    background-image: url("../../media/bg-photo2.jpg");
+    background-image: url("../../media/BG3.png");
+    background-position: center;
+    background-size: cover;
     display: flex; 
     flex-direction: column;
 }

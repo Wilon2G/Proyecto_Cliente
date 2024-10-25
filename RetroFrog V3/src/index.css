@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +14,9 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url("../../media/bg-photo2.jpg");
+  background-image: url("../../media/BG3.png");
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
 }
@@ -45,7 +49,8 @@ body {
   font-size: 2rem;
   margin: 0;
   text-shadow: 0 0 10px rgb(0, 39, 12), 0 0 10px;
-  margin-top: -0.5rem;
+  margin-top: -2.5rem;
+  z-index: 1;
 }
 .header__subtitle {
   position: relative;
@@ -61,11 +66,15 @@ body {
   flex-direction: column;
   text-align: center;
   flex: 1;
+  height: 100%;
 }
 .header__section img {
   position: relative;
-  max-width: 35%;
+  max-height: 20vh;
   opacity: 0.8;
+}
+.header__section__user {
+  height: 100%;
 }
 .header__nav {
   display: flex;
@@ -337,12 +346,11 @@ main {
   text-decoration: underline;
 }
 .signup__wrapper button {
-  margin: 20px;
   background: #fff;
   color: #000;
   font-weight: 600;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 0vw;
   cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
@@ -409,7 +417,7 @@ main {
   align-items: center;
   height: 50vh;
   width: 100%;
-  max-width: 70vw;
+  max-width: 40vw;
   margin: 20vh;
   border-radius: 8px;
   padding: 30px;
@@ -431,7 +439,7 @@ main {
   color: #000;
   font-weight: 600;
   border: none;
-  padding: 12px 20vw;
+  padding: 12px 0vw;
   cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
@@ -446,6 +454,7 @@ main {
 .login__form {
   display: flex;
   flex-direction: column;
+  max-width: 30vw;
 }
 .login__form h2 {
   font-size: 2rem;
@@ -503,6 +512,113 @@ main {
   text-align: center;
   margin-top: 30px;
   color: #fff;
+}
+
+.profile-card {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+  color: #f8f8f2;
+}
+.profile-card .cover {
+  background-image: url("https://source.unsplash.com/WLUHO9A_xik/1600x900"), linear-gradient(135deg, rgba(49, 145, 4, 0.2), rgba(65, 255, 97, 0.4));
+  background-position: center;
+  background-size: cover;
+  width: 16rem;
+  height: 8rem;
+  border-radius: 0.5rem;
+  margin-bottom: -7.5rem;
+  transition: transform 500ms ease, opacity 350ms;
+  opacity: 0;
+  box-shadow: 0 0.2rem #41ff61, 0 0 1rem #319104;
+  z-index: 1;
+}
+.profile-card .pic {
+  opacity: 100;
+  background-image: url("../../media/pfp.png");
+  background-position: center;
+  background-size: cover;
+  border: 5px solid #319104;
+  box-shadow: 0 1rem 1.5rem -1rem rgba(65, 255, 97, 0.4);
+}
+.profile-card .profile {
+  position: relative;
+  width: 100%;
+}
+.profile-card .name {
+  background-color: rgba(12, 106, 0, 0.6117647059);
+  margin: 0px -20px 5px;
+  padding: 5px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d7ff5f; /* Verde lima retro */
+  text-transform: uppercase;
+  letter-spacing: 0.45rem;
+  text-shadow: 2px 2px 0 #333, 5px 5px 0 #0d6a00, 8px 8px 15px rgba(0, 0, 0, 0.5); /* Varias capas para un efecto 3D */
+  padding: 0.3rem 0.7rem;
+}
+.profile-card .about {
+  background-color: rgba(12, 106, 0, 0.8352941176);
+  border-radius: 1rem;
+  margin: 20px -10px 5px;
+  padding: 5px;
+}
+.profile-card .row_stats {
+  margin: 20px -20px 5px;
+  padding: 20px 0 20px;
+  border-top: 1px solid rgba(12, 106, 0, 0.8352941176);
+  border-bottom: 1px solid rgba(12, 106, 0, 0.8352941176);
+  width: 16rem;
+  background-color: rgba(12, 106, 0, 0.2549019608);
+}
+.profile-card .below-fold {
+  border-radius: 0.5rem;
+  position: absolute;
+  width: 16rem;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 500ms ease, opacity 350ms;
+  box-shadow: 0 0.2rem #41ff61, 0 0 1rem #319104;
+  z-index: 1000;
+  padding: 20px;
+  background-image: url("https://source.unsplash.com/WLUHO9A_xik/1600x900"), linear-gradient(135deg, rgba(49, 145, 4, 0.9), rgba(65, 255, 97, 0.9));
+}
+.profile-card.expand .cover {
+  opacity: 0.5;
+  transform: translateY(0);
+}
+.profile-card.expand .below-fold {
+  opacity: 1;
+  transform: translateY(0.5rem);
+}
+.profile-card .row {
+  display: flex;
+  justify-content: center;
+}
+.profile-card .button {
+  width: 6rem;
+  height: 2.5rem;
+  margin: 1rem 0.5rem 0rem;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f5f5f5;
+  border: 2px solid #f5f5f5;
+  border-radius: 0.5rem;
+  transition: background 200ms ease, color 200ms ease;
+}
+.profile-card .button:hover {
+  background: #f5f5f5;
+  color: black;
+  border-color: #1e1d29;
+}
+.profile-card #expand-button {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 200ms ease, transform 500ms;
 }
 
 /*# sourceMappingURL=index.css.map */
