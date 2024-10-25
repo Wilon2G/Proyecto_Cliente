@@ -44,26 +44,22 @@ const LoginPage: React.FC = () => {
                     return res.json();  // Convertimos la respuesta en JSON
                 })
                 .then((resp) => {
+                    console.log(resp);
                     const user = resp.find((u: User) => u.userName === userName);
 
                     if (!user) {
-                        //Mensaje
-                        //toast.error("Please Enter valid username");
+                        console.log("Please Enter valid username");
                     } else {
                         if (user.password === password) {
-                            //Mensaje
-                            //toast.success("Success");
+                            //console.log("Success");
                             sessionStorage.setItem('username', userName)
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {
-                            //Mensaje
-                            //toast.error("Please Enter valid credentials");
+                            console.log("Please Enter valid credentials");
                         }
                     }
                 })
                 .catch((err) => {
-                    // Mostramos el error exacto
-                    //toast.error("Login Failed due to: " + err.message);
                     console.error("Error:", err.message);
                 });
         }

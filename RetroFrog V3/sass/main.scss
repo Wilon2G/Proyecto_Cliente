@@ -16,4 +16,6 @@
 @use "layout/signupPage.scss";
 @use "layout/loginPage.scss";
 @use "layout/user.scss";
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@use "./components/game-SimonSays.scss"
+

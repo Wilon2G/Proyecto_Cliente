@@ -1,5 +1,6 @@
 import '../index.css';
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const SignupPage: React.FC = () => {
@@ -13,10 +14,10 @@ const SignupPage: React.FC = () => {
     //Caracteristicas del usuario que se rellenaran mas tarde
     const score = 0;
     const userInfo = {
-        "gamesPlayed": null,
-        "gamesWinned": null,
-        "gamesUnlocked": null,
-        "gamesLocked": null,
+        "gamesPlayed": [],
+        "gamesWinned": [],
+        "gamesUnlocked": ["b97bf75d-5764-46b5-be5e-fe4df0d0af4a"],
+        "gamesLocked": [],
         "theme": "dark"
     };
 
@@ -69,12 +70,10 @@ const SignupPage: React.FC = () => {
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(userObj)
             }).then(() => {
-                //Mostrar mensaje 
-                //toast.success('Registered successfully.');
+                console.log('Registered successfully.');
                 navigate('/login'); //Depues de registrarte te manda al login
             }).catch((err) => {
-                //Mostrar mensaje
-                //toast.error('Error: ' + err.message);
+                console.log('Error: ' + err.message);
             })
         }
 
@@ -84,33 +83,46 @@ const SignupPage: React.FC = () => {
         <div className="signup__wrapper">
             <form className="signup__form" onSubmit={handleSubmit}>
                 <h2>User Registeration</h2>
+
                 <div className="signup__form--input-field">
                     <input value={userName} onChange={e => userNameChange(e.target.value)} required></input>
                     <label>Enter your username </label>
                 </div>
+
                 <div className="signup__form--input-field">
                     <input value={password} onChange={e => passwordChange(e.target.value)} type='password' required></input>
                     <label>Enter your password </label>
                 </div>
+
                 <div className="signup__form--input-field">
                     <input value={name} onChange={e => nameChange(e.target.value)} required></input>
                     <label>Enter your full name </label>
                 </div>
+
                 <div className="signup__form--input-field">
                     <input value={email} onChange={e => emailChange(e.target.value)} type="email" required></input>
                     <label>Enter your email </label>
                 </div>
+
                 <div className="signup__form--input-field">
-                    <p>Gender</p>
-                    <input type="radio" checked={gender === 'male'} onChange={e => genderChange(e.target.value)} name="gender" value="male" className="form-control"></input>
-                    <label htmlFor='gender'>Male</label>
-                    <input type="radio" checked={gender === 'female'} onChange={e => genderChange(e.target.value)} name="gender" value="female" className="form-control"></input>
-                    <label htmlFor='gender'>Female</label>
-                    <input type="radio" checked={gender === 'other'} onChange={e => genderChange(e.target.value)} name="gender" value="other" className="form-control"></input>
-                    <label htmlFor='gender'>Other</label>
+                    <p><b>Gender</b></p>
+                    <div className='signup__form--input-field--gender'>
+
+                        <input type="radio" checked={gender === 'male'} onChange={e => genderChange(e.target.value)} name="gender" value="male" className="form-control"></input>
+                        <label htmlFor='gender'>Male</label>
+
+                        <input type="radio" checked={gender === 'female'} onChange={e => genderChange(e.target.value)} name="gender" value="female" className="form-control"></input>
+                        <label htmlFor='gender'>Female</label>
+
+                        <input type="radio" checked={gender === 'other'} onChange={e => genderChange(e.target.value)} name="gender" value="other" className="form-control"></input>
+                        <label htmlFor='gender'>Other</label>
+
+                    </div>
+
                 </div>
+
                 <button type="submit">Register</button>
-                <a className="signup__form--back">Back</a>
+                <Link className="signup__form--back" to={'/login'}>Back</Link>
             </form>
         </div>
     );

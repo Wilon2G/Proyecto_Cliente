@@ -5,6 +5,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         height: 50vh;
         width: 100%;
         max-width: 40vw;
@@ -16,7 +17,7 @@
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         background-color: #30005098;
-        
+
         a {
             color: #efefef;
             text-decoration: none;
@@ -76,9 +77,11 @@
             input {
                 width: 100%;
                 height: 40px;
+
                 background: transparent;
                 border: none;
                 outline: none;
+
                 font-size: 16px;
                 color: #fff;
             }
@@ -95,6 +98,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             margin: 25px 0 35px 0;
             color: #fff;
 
