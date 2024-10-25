@@ -11,7 +11,7 @@
       "userInfo": {
         "gamesPlayed": null,
         "gamesWinned": null,
-        "gamesUnlocked": null,
+        "gamesUnlocked": ["b97bf75d-5764-46b5-be5e-fe4df0d0af4a"],
         "gamesLocked": null,
         "theme": "dark"
       }
