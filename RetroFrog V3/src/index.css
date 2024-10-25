@@ -403,131 +403,8 @@ main {
   animation-play-state: paused;
 }
 
+.login__wrapper,
 .signup__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  max-width: 70vw;
-  min-width: 50vw;
-  margin: 10vh;
-  border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background-color: rgba(48, 0, 80, 0.5960784314);
-}
-.signup__wrapper a {
-  margin: 20px;
-  color: #efefef;
-  text-decoration: none;
-}
-.signup__wrapper a:hover {
-  text-decoration: underline;
-}
-.signup__wrapper button {
-  margin: 20px;
-  background: #fff;
-  color: #000;
-  font-weight: 600;
-  border: none;
-  padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 16px;
-  border: 2px solid transparent;
-  transition: 0.3s ease;
-}
-.signup__wrapper button:hover {
-  color: #fff;
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.15);
-}
-.signup__wrapper p {
-  color: #fff;
-  margin: 1rem 0 1.5rem 0;
-}
-.signup__form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.signup__form h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
-.signup__form--input-field:not(:last-of-type) {
-  position: relative;
-  border-bottom: 2px solid #ccc;
-  margin: 15px 0;
-}
-.signup__form--input-field:not(:last-of-type) label {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  color: #fff;
-  font-size: 16px;
-  pointer-events: none;
-  transition: 0.15s ease;
-}
-.signup__form--input-field:not(:last-of-type) input {
-  width: 100%;
-  height: 40px;
-  padding: 8px 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-}
-.signup__form--input-field:not(:last-of-type) input:focus ~ label,
-.signup__form--input-field:not(:last-of-type) input:valid ~ label {
-  font-size: 0.8rem;
-  top: 10px;
-  transform: translateY(-120%);
-}
-.signup__form--input-field--gender {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 50%;
-  margin: 0 auto;
-  padding: 0.5rem 0;
-  color: #fff;
-}
-.signup__form--input-field--gender input {
-  width: 1.5rem;
-}
-.signup__form--forget {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0 35px 0;
-  color: #fff;
-}
-.signup__form--forget label {
-  display: flex;
-  align-items: center;
-}
-.signup__form--remember {
-  accent-color: #fff;
-}
-.signup__form--register {
-  text-align: center;
-  margin-top: 30px;
-  color: #fff;
-}
-.signup--back {
-  text-align: center;
-  margin-top: 30px;
-  color: #fff;
-}
-
-.login__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -542,14 +419,17 @@ main {
   -webkit-backdrop-filter: blur(8px);
   background-color: rgba(48, 0, 80, 0.5960784314);
 }
-.login__wrapper a {
+.login__wrapper a,
+.signup__wrapper a {
   color: #efefef;
   text-decoration: none;
 }
-.login__wrapper a:hover {
+.login__wrapper a:hover,
+.signup__wrapper a:hover {
   text-decoration: underline;
 }
-.login__wrapper button {
+.login__wrapper button,
+.signup__wrapper button {
   background: #fff;
   color: #000;
   font-weight: 600;
@@ -561,26 +441,35 @@ main {
   border: 2px solid transparent;
   transition: 0.3s ease;
 }
-.login__wrapper button:hover {
+.login__wrapper button:hover,
+.signup__wrapper button:hover {
   color: #fff;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
 }
-.login__form {
+.login__form,
+.signup__form {
   display: flex;
   flex-direction: column;
 }
-.login__form h2 {
+.login__form h2,
+.signup__form h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #fff;
 }
-.login__form--input-field {
+.login__form p,
+.signup__form p {
+  color: #fff;
+}
+.login__form--input-field,
+.signup__form--input-field {
   position: relative;
   border-bottom: 2px solid #ccc;
   margin: 15px 0;
 }
-.login__form--input-field label {
+.login__form--input-field label,
+.signup__form--input-field label {
   position: absolute;
   top: 50%;
   left: 0;
@@ -590,7 +479,8 @@ main {
   pointer-events: none;
   transition: 0.15s ease;
 }
-.login__form--input-field input {
+.login__form--input-field input,
+.signup__form--input-field input {
   width: 100%;
   height: 40px;
   background: transparent;
@@ -600,40 +490,76 @@ main {
   color: #fff;
 }
 .login__form--input-field input:focus ~ label,
-.login__form--input-field input:valid ~ label {
+.login__form--input-field input:valid ~ label,
+.signup__form--input-field input:focus ~ label,
+.signup__form--input-field input:valid ~ label {
   font-size: 0.8rem;
   top: 10px;
   transform: translateY(-120%);
 }
-.login__form--input-field .password-eye {
+.login__form--input-field .password-eye,
+.signup__form--input-field .password-eye {
   position: absolute;
   top: 50%;
-  left: 0;
+  right: 0;
   transform: translateY(-50%);
   font-size: x-large;
   color: #fff;
 }
-.login__form--forget {
+.login__form--gender,
+.signup__form--gender {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  color: #fff;
+}
+.login__form--gender input,
+.signup__form--gender input {
+  width: 1.5rem;
+}
+.login__form--back,
+.signup__form--back {
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+}
+.login__form--forget,
+.signup__form--forget {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
   color: #fff;
 }
-.login__form--forget label {
+.login__form--forget label,
+.signup__form--forget label {
   display: flex;
   align-items: center;
 }
-.login__form--forget label p {
+.login__form--forget label p,
+.signup__form--forget label p {
   margin: 0 50px 0 10px;
 }
-.login__form--remember {
+.login__form--remember,
+.signup__form--remember {
   accent-color: #fff;
 }
-.login__form--register {
+.login__form--register,
+.signup__form--register {
   text-align: center;
   margin-top: 30px;
   color: #fff;
+}
+
+.signup__wrapper {
+  height: 70vh;
+  margin: 10vh;
+}
+.signup__wrapper button {
+  margin: 20px;
 }
 
 .simonSays {

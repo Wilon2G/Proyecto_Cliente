@@ -104,22 +104,20 @@ const SignupPage: React.FC = () => {
                     <label>Enter your email </label>
                 </div>
 
-                <div className="signup__form--input-field">
-                    <p><b>Gender</b></p>
-                    <div className='signup__form--input-field--gender'>
+                <p><b>Gender</b></p>
+                <div className="signup__form--gender">
 
-                        <input type="radio" checked={gender === 'male'} onChange={e => setGender(e.target.value)} name="gender" value="male" className="form-control"></input>
-                        <label htmlFor='gender'>Male</label>
+                    <input type="radio" checked={gender === 'male'} onChange={e => setGender(e.target.value)} name="gender" value="male" className="form-control"></input>
+                    <label htmlFor='gender'>Male</label>
 
-                        <input type="radio" checked={gender === 'female'} onChange={e => setGender(e.target.value)} name="gender" value="female" className="form-control"></input>
-                        <label htmlFor='gender'>Female</label>
+                    <input type="radio" checked={gender === 'female'} onChange={e => setGender(e.target.value)} name="gender" value="female" className="form-control"></input>
+                    <label htmlFor='gender'>Female</label>
 
-                        <input type="radio" checked={gender === 'other'} onChange={e => setGender(e.target.value)} name="gender" value="other" className="form-control"></input>
-                        <label htmlFor='gender'>Other</label>
-
-                    </div>
+                    <input type="radio" checked={gender === 'other'} onChange={e => setGender(e.target.value)} name="gender" value="other" className="form-control"></input>
+                    <label htmlFor='gender'>Other</label>
 
                 </div>
+
 
                 <button type="submit">Register</button>
                 <Link className="signup__form--back" to={'/login'}>Back</Link>
