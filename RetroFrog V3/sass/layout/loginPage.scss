@@ -1,5 +1,6 @@
 @use "../abstracts/variables.scss" as *;
 
+
 .login {
     &__wrapper {
         display: flex;
@@ -90,6 +91,16 @@
                 font-size: 0.8rem;
                 top: 10px;
                 transform: translateY(-120%);
+            }
+
+            .password-eye {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+
+                font-size: x-large;
+                color: #fff;
             }
         }
 

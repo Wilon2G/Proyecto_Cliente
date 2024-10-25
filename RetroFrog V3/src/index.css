@@ -605,6 +605,14 @@ main {
   top: 10px;
   transform: translateY(-120%);
 }
+.login__form--input-field .password-eye {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: x-large;
+  color: #fff;
+}
 .login__form--forget {
   display: flex;
   align-items: center;
