@@ -3,6 +3,7 @@ import GameBox from "./Game";
 import games from "./games.json"
 import { SimonSays } from "./SimonSays/SimonSays";
 
+
 export type Game = {
   title: string;
   route: string;
@@ -27,9 +28,16 @@ export const HomeMain = () => {
     return (
       <>
         <div className="catalog">
-          {games.map((game:Game) => (
+          <div className="catalog__unlock">
+            <h1>Tus Juegos</h1>
+            {games.map((game:Game) => (
             <GameBox key={game.title} game={game} setOnPlay={setOnPlay} />
           ))}
+          </div >
+          <div className="catalog__lock">
+            <h1>Tienda</h1>
+            
+          </div>
           
         </div>
         
