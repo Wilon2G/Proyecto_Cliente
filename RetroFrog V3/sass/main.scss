@@ -8,6 +8,7 @@
 @use "base/utilities.scss";
 
 @use "components/button.scss";
+@use "components/game-SimonSays.scss";
 
 @use "layout/general.scss";
 @use "layout/header.scss";
@@ -16,4 +17,4 @@
 @use "layout/signupPage.scss";
 @use "layout/loginPage.scss";
 
-@use "./components/game-SimonSays.scss"
+
