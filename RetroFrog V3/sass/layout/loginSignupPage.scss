@@ -1,6 +1,5 @@
 @use "../abstracts/variables.scss" as *;
 
-
 .login,
 .signup {
     &__wrapper {
@@ -161,6 +160,7 @@
     }
 }
 
+//Diferencias para signup
 .signup {
     &__wrapper {
         height: 70vh;
