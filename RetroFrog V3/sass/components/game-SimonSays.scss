@@ -1,5 +1,6 @@
 .simonSays{
     position: relative;
+    margin-top: 3rem;
 }
 .container-gameboy {
     width: 70vh;
@@ -8,23 +9,26 @@
     border: 20px solid #717286;
     border-radius: 2.5% 2.5% 15% 2.55%;
   
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    // top: 40%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
   }
   
   .buttons-gameboy {
-    width: 85vh;
-    height: 95vh;
+    // width: 85vh;
+    // height: 95vh;
     background-color: rgb(218, 214, 215);
     border-radius: 2.5% 2.5% 15% 2.55%;
     border-right: 15px solid rgb(190, 187, 188);
-    ;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    
+    // position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
     z-index: -1;
   }
   
@@ -33,7 +37,7 @@
     width: 8rem;
     height: 2.5rem;
     background-color: #010105;
-    position: fixed;
+    position: absolute;
     bottom: 12%;
     left: 13%;
   }
@@ -51,13 +55,13 @@
   }
   
   .button-action-1 {
-    position: fixed;
+    position: absolute;
     right: 28%;
     bottom: 10%;
   }
   
   .button-action-2 {
-    position: fixed;
+    position: absolute;
     right: 15%;
     bottom: 15%;
   }

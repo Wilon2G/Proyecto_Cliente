@@ -46,7 +46,8 @@ export const HomeMain = () => {
   }
   else{
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    return <SimonSays/>;
+    
+    return <div className="GameConteiner"><SimonSays/></div>;
   }
   
 };
