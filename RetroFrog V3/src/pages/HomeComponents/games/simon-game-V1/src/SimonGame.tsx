@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import ColorCard from './components/ColorCard';
 import delay from './utils/util';
-import './SimonGame.scss';
 
 function SimonGame() {
   const [isOn, setIsOn] = useState(false);
@@ -108,9 +107,9 @@ function SimonGame() {
   }
 
   return (
-    <div className='app'>
-      <header className='app-header'>
-        <div className='cardWrapper'>
+    <div className='simon-game__container'>
+      <header className='simon-game__header'>
+        <div className='simon-game__cardWrapper'>
           {colorList.map((color, i) => (
             <ColorCard
               key={i}
@@ -122,18 +121,18 @@ function SimonGame() {
         </div>
 
         {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
-          <div className='lostGame'>
+          <div className='simon-game__lostGame'>
             <p>Final Score: {play.score}</p>
             <button onClick={handleClose}>Close</button>
           </div>
         )}
 
         {!isOn && play.score === 0 && (
-          <button onClick={startHandle} className='startButton'>Start</button>
+          <button onClick={startHandle} className='simon-game__startButton'>Start</button>
         )}
 
         {isOn && (play.isDisplay || play.userPlay) && (
-          <div className='score'>Score: {play.score}</div>
+          <div className='simon-game__score'>Score: {play.score}</div>
         )}
       </header>
     </div>

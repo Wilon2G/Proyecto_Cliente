@@ -8,12 +8,12 @@
 @use "base/utilities.scss";
 
 @use "components/button.scss";
-@use "components/game-SimonSays.scss";
+//@use "components/game-SimonSays.scss";
+
+@use "games/simonSays.scss";
 
 @use "layout/general.scss";
 @use "layout/header.scss";
 @use "layout/navbar.scss";
 @use "layout/catalog.scss";
 @use "layout/loginSignupPage.scss";
-
-
