@@ -120,15 +120,18 @@ function SimonGame() {
             />
           ))}
         </div>
+
         {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
           <div className='lostGame'>
             <p>Final Score: {play.score}</p>
             <button onClick={handleClose}>Close</button>
           </div>
         )}
+
         {!isOn && play.score === 0 && (
           <button onClick={startHandle} className='startButton'>Start</button>
         )}
+
         {isOn && (play.isDisplay || play.userPlay) && (
           <div className='score'>Score: {play.score}</div>
         )}

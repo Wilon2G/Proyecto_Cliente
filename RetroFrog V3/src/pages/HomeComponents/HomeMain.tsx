@@ -1,14 +1,14 @@
 import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
-import { SimonSays } from "./SimonSays/SimonSays";
+import SimonGame from "./games/simon-game-V1/src/SimonGame";
 
 
 export type Game = {
   title: string;
   route: string;
   color: string;
-  description:string;
+  description: string;
 };
 
 
@@ -20,7 +20,7 @@ export type Game = {
 
 export const HomeMain = () => {
 
-  const [onPlay, setOnPlay]=useState<boolean>(false);
+  const [onPlay, setOnPlay] = useState<boolean>(false);
 
   // console.log("onPlay:", onPlay);
 
@@ -30,24 +30,24 @@ export const HomeMain = () => {
         <div className="catalog">
           <div className="catalog__unlock">
             <h1>Tus Juegos</h1>
-            {games.map((game:Game) => (
-            <GameBox key={game.title} game={game} setOnPlay={setOnPlay} />
-          ))}
+            {games.map((game: Game) => (
+              <GameBox key={game.title} game={game} setOnPlay={setOnPlay} />
+            ))}
           </div >
           <div className="catalog__lock">
             <h1>Tienda</h1>
-            
+
           </div>
-          
+
         </div>
-        
+
       </>
     );
   }
-  else{
+  else {
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    
-    return <div className="GameConteiner"><SimonSays/></div>;
+
+    return <div className="GameConteiner"><SimonGame /></div>;
   }
-  
+
 };
