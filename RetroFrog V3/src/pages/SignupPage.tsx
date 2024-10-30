@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const SignupPage: React.FC = () => {
 
-    const [userName, userNameChange] = useState("");
-    const [password, passwordChange] = useState("");
-    const [name, nameChange] = useState("");
-    const [email, emailChange] = useState("");
-    const [gender, genderChange] = useState("male"); //Se puede poner por defecto para que se marque el check
+    const [userName, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("male"); //Se puede poner por defecto para que se marque el check
 
     //Caracteristicas del usuario que se rellenaran mas tarde
     const score = 0;
@@ -85,41 +85,39 @@ const SignupPage: React.FC = () => {
                 <h2>User Registeration</h2>
 
                 <div className="signup__form--input-field">
-                    <input value={userName} onChange={e => userNameChange(e.target.value)} required></input>
+                    <input value={userName} onChange={e => setUsername(e.target.value)} required></input>
                     <label>Enter your username </label>
                 </div>
 
                 <div className="signup__form--input-field">
-                    <input value={password} onChange={e => passwordChange(e.target.value)} type='password' required></input>
+                    <input value={password} onChange={e => setPassword(e.target.value)} type='password' required></input>
                     <label>Enter your password </label>
                 </div>
 
                 <div className="signup__form--input-field">
-                    <input value={name} onChange={e => nameChange(e.target.value)} required></input>
+                    <input value={name} onChange={e => setName(e.target.value)} required></input>
                     <label>Enter your full name </label>
                 </div>
 
                 <div className="signup__form--input-field">
-                    <input value={email} onChange={e => emailChange(e.target.value)} type="email" required></input>
+                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" required></input>
                     <label>Enter your email </label>
                 </div>
 
-                <div className="signup__form--input-field">
-                    <p><b>Gender</b></p>
-                    <div className='signup__form--input-field--gender'>
+                <p><b>Gender</b></p>
+                <div className="signup__form--gender">
 
-                        <input type="radio" checked={gender === 'male'} onChange={e => genderChange(e.target.value)} name="gender" value="male" className="form-control"></input>
-                        <label htmlFor='gender'>Male</label>
+                    <input type="radio" checked={gender === 'male'} onChange={e => setGender(e.target.value)} name="gender" value="male" className="form-control"></input>
+                    <label htmlFor='gender'>Male</label>
 
-                        <input type="radio" checked={gender === 'female'} onChange={e => genderChange(e.target.value)} name="gender" value="female" className="form-control"></input>
-                        <label htmlFor='gender'>Female</label>
+                    <input type="radio" checked={gender === 'female'} onChange={e => setGender(e.target.value)} name="gender" value="female" className="form-control"></input>
+                    <label htmlFor='gender'>Female</label>
 
-                        <input type="radio" checked={gender === 'other'} onChange={e => genderChange(e.target.value)} name="gender" value="other" className="form-control"></input>
-                        <label htmlFor='gender'>Other</label>
-
-                    </div>
+                    <input type="radio" checked={gender === 'other'} onChange={e => setGender(e.target.value)} name="gender" value="other" className="form-control"></input>
+                    <label htmlFor='gender'>Other</label>
 
                 </div>
+
 
                 <button type="submit">Register</button>
                 <Link className="signup__form--back" to={'/login'}>Back</Link>

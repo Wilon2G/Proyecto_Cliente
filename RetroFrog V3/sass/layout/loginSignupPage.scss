@@ -1,13 +1,14 @@
 @use "../abstracts/variables.scss" as *;
 
-.login {
+.login,
+.signup {
     &__wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
 
         height: 50vh;
-        max-width: 70vw;
+        max-width: 100vw;
 
         margin: 20vh;
         border-radius: 8px;
@@ -53,7 +54,11 @@
 
         h2 {
             font-size: 2rem;
-            margin-bottom: 20px;
+            margin-bottom: 2.5rem;
+            color: #fff;
+        }
+
+        p {
             color: #fff;
         }
 
@@ -91,6 +96,38 @@
                 top: 10px;
                 transform: translateY(-120%);
             }
+
+            .password-eye {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+
+                font-size: x-large;
+                color: #fff;
+            }
+        }
+
+        &--gender {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            width: 50%;
+            margin: 0 auto;
+            padding: .5rem 0;
+            color: #fff;
+
+            input {
+                width: 1.5rem;
+            }
+
+        }
+
+        &--back {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
         }
 
         &--forget {
@@ -120,5 +157,18 @@
             margin-top: 30px;
             color: #fff;
         }
+    }
+}
+
+//Diferencias para signup
+.signup {
+    &__wrapper {
+        height: 70vh;
+        margin: 10vh;
+
+        button {
+            margin: 20px;
+        }
+
     }
 }

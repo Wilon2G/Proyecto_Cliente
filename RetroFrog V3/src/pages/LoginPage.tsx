@@ -1,5 +1,6 @@
 import '../index.css';
 import { useEffect, useState } from "react";
+import { VscEye } from 'react-icons/vsc';
 import { Link, useNavigate } from "react-router-dom";
 
 //Tipado para los datos del JSON
@@ -20,8 +21,12 @@ type User = {
 
 
 const LoginPage: React.FC = () => {
-    const [userName, userNameUpdate] = useState('');
-    const [password, passwordUpdate] = useState('');
+    const [userName, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    //Para ocultar y mostrar contrseña
+    const [shown, setShown] = useState(false);
+    const switchShown = () => setShown(!shown); //Cambia estado
 
     const navigate = useNavigate();
 
@@ -88,12 +93,13 @@ const LoginPage: React.FC = () => {
             <form onSubmit={proceedLogin} className="login__form">
                 <h2>Login</h2>
                 <div className="login__form--input-field">
-                    <input value={userName} onChange={e => userNameUpdate(e.target.value)} required></input>
+                    <input value={userName} onChange={e => setUsername(e.target.value)} required></input>
                     <label>Enter your username </label>
                 </div>
                 <div className="login__form--input-field">
-                    <input value={password} onChange={e => passwordUpdate(e.target.value)} type="password" required></input>
+                    <input value={password} onChange={e => setPassword(e.target.value)} type={shown ? "text" : "password"} required></input>
                     <label>Enter your password</label>
+                    <VscEye className='password-eye' onClick={switchShown} /> {/**Icono mostrar contraseña */}
                 </div>
                 <div className="login__form--forget">
                     <label htmlFor="login__form--remember">
