@@ -1,6 +1,5 @@
 import '../index.css';
 import { useEffect, useState } from "react";
-import { VscEye } from 'react-icons/vsc';
 import { Link, useNavigate } from "react-router-dom";
 
 //Tipado para los datos del JSON
@@ -21,12 +20,8 @@ type User = {
 
 
 const LoginPage: React.FC = () => {
-    const [userName, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    //Para ocultar y mostrar contrseña
-    const [shown, setShown] = useState(false);
-    const switchShown = () => setShown(!shown); //Cambia estado
+    const [userName, userNameUpdate] = useState('');
+    const [password, passwordUpdate] = useState('');
 
     const navigate = useNavigate();
 
@@ -49,22 +44,26 @@ const LoginPage: React.FC = () => {
                     return res.json();  // Convertimos la respuesta en JSON
                 })
                 .then((resp) => {
-                    console.log(resp);
                     const user = resp.find((u: User) => u.userName === userName);
 
                     if (!user) {
-                        console.log("Please Enter valid username");
+                        //Mensaje
+                        //toast.error("Please Enter valid username");
                     } else {
                         if (user.password === password) {
-                            //console.log("Success");
+                            //Mensaje
+                            //toast.success("Success");
                             sessionStorage.setItem('username', userName)
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {
-                            console.log("Please Enter valid credentials");
+                            //Mensaje
+                            //toast.error("Please Enter valid credentials");
                         }
                     }
                 })
                 .catch((err) => {
+                    // Mostramos el error exacto
+                    //toast.error("Login Failed due to: " + err.message);
                     console.error("Error:", err.message);
                 });
         }
@@ -93,13 +92,12 @@ const LoginPage: React.FC = () => {
             <form onSubmit={proceedLogin} className="login__form">
                 <h2>Login</h2>
                 <div className="login__form--input-field">
-                    <input value={userName} onChange={e => setUsername(e.target.value)} required></input>
+                    <input value={userName} onChange={e => userNameUpdate(e.target.value)} required></input>
                     <label>Enter your username </label>
                 </div>
                 <div className="login__form--input-field">
-                    <input value={password} onChange={e => setPassword(e.target.value)} type={shown ? "text" : "password"} required></input>
+                    <input value={password} onChange={e => passwordUpdate(e.target.value)} type="password" required></input>
                     <label>Enter your password</label>
-                    <VscEye className='password-eye' onClick={switchShown} /> {/**Icono mostrar contraseña */}
                 </div>
                 <div className="login__form--forget">
                     <label htmlFor="login__form--remember">

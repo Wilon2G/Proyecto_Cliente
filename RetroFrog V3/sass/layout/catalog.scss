@@ -7,63 +7,12 @@ main{
 .catalog{
     display: flex;
     width: 100%;
-    // align-items: center;
-    margin-top: 1rem;
-   
+    align-items: center;
+    justify-content: space-evenly;
     background-color: rgba(48, 0, 80, 0.5960784314);
     width: 80%;
     border: aliceblue .1rem solid;
     border-radius: 2rem;
-    flex-direction: column;
-
-
-  &__unlock{
-    display: flex;
-    width: 100%;
-    // align-items: center;
-    justify-content: space-evenly;
-    
-    width: 100%;
-    
-    border-radius: 2rem;
-    flex-wrap: wrap;
-
-    h1{
-      align-self: center;
-      width: 100%;
-      text-align: center;
-      color: aliceblue;
-    }
-
-  }
-  &__lock{
-    display: flex;
-    width: 100%;
-    // align-items: center;
-    justify-content: space-evenly;
-    
-    width: 100%;
-    
-    border-radius: 2rem;
-    flex-wrap: wrap;
-
-    h1{
-      align-self: center;
-      width: 100%;
-      text-align: center;
-      color: aliceblue;
-    }
-
-  }
-
-
-  .GameConteiner{
-    margin-top: 200px;
-    position: relative;
-
-  }
-
-
 }
 .game{
     margin: 2rem;
@@ -99,7 +48,7 @@ main{
     width: 18rem;
     height: 18rem;
     -webkit-transform-style: preserve-3d;
-    -webkit-transition: all 1s ease-out;
+    -webkit-transition: all .5s ease-out;
     margin: 3rem auto;
     
     position: relative;
@@ -143,24 +92,6 @@ main{
     -webkit-transform: rotateY(90deg) translateZ(16.5rem);
     border:  2px solid black;
     overflow: hidden;
-    writing-mode: vertical-rl;
-    font-weight: 1000;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    align-items: center;
-    
-    
-    div{
-      letter-spacing: .4rem;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(255,255,255,1) 14%, rgba(110,110,110,1) 65%);
-      border-radius: .4rem;
-      padding: .1rem;
-      color: navy;
-      border: #000000 solid .1rem;
-      
-    }
   }
   
   .box__face--back {
@@ -168,127 +99,5 @@ main{
     border:  2px solid black;
     overflow: hidden;
     -webkit-transform: rotateY(180deg) translateZ(1.5rem );
-    display: flex;
-    align-items:center;
-    flex-flow: column;
-    justify-content: space-between;
-    h3{
-      padding: .5rem;
-      font-size: 2.5rem;
-      
-    }
     
-    //===========================
-    button{
-      margin-bottom: 2rem;
-      width:200px;
-      height:70px;
-      background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
-      border-style: none;
-      color:#fff;
-      font-size: 23px;
-      letter-spacing: 3px;
-      // font-family: 'Lato';
-      font-weight: 600;
-      outline: none;
-      cursor: pointer;
-      position: relative;
-      padding: 0px;
-      overflow: hidden;
-      transition: all .5s;
-      box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-  }
-  button span{
-      position: absolute;
-      display: block;
-  }
-  button span:nth-child(1){
-      height: 3px;
-      width:200px;
-      top:0px;
-      left:-200px;
-      background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
-      border-top-right-radius: 1px;
-      border-bottom-right-radius: 1px;
-      animation: span1 2s linear infinite;
-      animation-delay: 1s;
-  }
-  
-  @keyframes span1{
-      0%{
-          left:-200px
-      }
-      100%{
-          left:200px;
-      }
-  }
-  button span:nth-child(2){
-      height: 70px;
-      width: 3px;
-      top:-70px;
-      right:0px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
-      border-bottom-left-radius: 1px;
-      border-bottom-right-radius: 1px;
-      animation: span2 2s linear infinite;
-      animation-delay: 2s;
-  }
-  @keyframes span2{
-      0%{
-          top:-70px;
-      }
-      100%{
-          top:70px;
-      }
-  }
-  button span:nth-child(3){
-      height:3px;
-      width:200px;
-      right:-200px;
-      bottom: 0px;
-      background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
-      border-top-left-radius: 1px;
-      border-bottom-left-radius: 1px;
-      animation: span3 2s linear infinite;
-      animation-delay: 3s;
-  }
-  @keyframes span3{
-      0%{
-          right:-200px;
-      }
-      100%{
-          right: 200px;
-      }
-  }
-  
-  button span:nth-child(4){
-      height:70px;
-      width:3px;
-      bottom:-70px;
-      left:0px;
-      background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
-      border-top-right-radius: 1px;
-      border-top-left-radius: 1px;
-      animation: span4 2s linear infinite;
-      animation-delay: 4s;
-  }
-  @keyframes span4{
-      0%{
-          bottom: -70px;
-      }
-      100%{
-          bottom:70px;
-      }
-  }
-  
-  button:hover{
-      transition: all .5s;
-      transform:  scale(1.1);
-      box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-  }
-  //rotate(-3deg)
-  button:hover span{
-      animation-play-state: paused;
-  }
-//=================================================  
   }

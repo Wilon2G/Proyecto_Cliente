@@ -1,20 +1,34 @@
 {
   "users": [
     {
-      "id": "4ed1",
+      "id": "465b",
       "userName": "Prueba",
       "password": "prueba",
-      "name": "Prueba pepito",
-      "email": "pruebaPepito@gmail.com",
+      "name": "Prueba p",
+      "email": "prueba@gmail.com",
+      "gender": "female",
+      "score": 0,
+      "userInfo": {
+        "gamesPlayed": null,
+        "gamesWinned": null,
+        "gamesUnlocked": null,
+        "gamesLocked": null,
+        "theme": "dark"
+      }
+    },
+    {
+      "id": "8370",
+      "userName": "Favio",
+      "password": "138",
+      "name": "Favio Cesar",
+      "email": "faviocesarcastro@gmail.com",
       "gender": "male",
       "score": 0,
       "userInfo": {
-        "gamesPlayed": [],
-        "gamesWinned": [],
-        "gamesUnlocked": [
-          "b97bf75d-5764-46b5-be5e-fe4df0d0af4a"
-        ],
-        "gamesLocked": [],
+        "gamesPlayed": null,
+        "gamesWinned": null,
+        "gamesUnlocked": null,
+        "gamesLocked": null,
         "theme": "dark"
       }
     }
