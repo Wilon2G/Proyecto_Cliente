@@ -1,6 +1,6 @@
 import '../index.css';
 import { useEffect, useState } from "react";
-import { VscEye } from 'react-icons/vsc';
+// import { VscEye } from 'react-icons/vsc';
 import { Link, useNavigate } from "react-router-dom";
 
 //Tipado para los datos del JSON
@@ -99,7 +99,7 @@ const LoginPage: React.FC = () => {
                 <div className="login__form--input-field">
                     <input value={password} onChange={e => setPassword(e.target.value)} type={shown ? "text" : "password"} required></input>
                     <label>Enter your password</label>
-                    <VscEye className='password-eye' onClick={switchShown} /> {/**Icono mostrar contraseña */}
+                    {/**<VscEye className='password-eye' onClick={switchShown} />*/} {/**Icono mostrar contraseña */}
                 </div>
                 <div className="login__form--forget">
                     <label htmlFor="login__form--remember">
