@@ -108,8 +108,8 @@ $border-color: #41ff61;
     font-size: 1rem;
     font-weight: 500;
     color: $button-bg;
-    border: 2px solid $button-bg;
-    border-radius: 0.5rem;
+    border: 1px solid $button-bg;
+    border-radius: 0.8rem;
     transition: background 200ms ease, color 200ms ease;
 
     &:hover {

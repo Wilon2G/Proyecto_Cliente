@@ -904,8 +904,8 @@ main {
   font-size: 1rem;
   font-weight: 500;
   color: #f5f5f5;
-  border: 2px solid #f5f5f5;
-  border-radius: 0.5rem;
+  border: 1px solid #f5f5f5;
+  border-radius: 0.8rem;
   transition: background 200ms ease, color 200ms ease;
 }
 .profile-card .button:hover {
@@ -986,7 +986,7 @@ main {
 }
 
 .button {
-  border-radius: 50% !important;
+  border-radius: 50%;
   font-size: 1.5em;
   background-color: lightgray;
 }

@@ -15,7 +15,7 @@ const UserProfile = () => {
         <div className="profile">
           <img src="../../media/pfp.png" alt="pfp" className='pic'id="expand-button" onClick={toggleExpand}/>
           <div className="below-fold">
-            <div className="name">Favio138</div>
+            <div className="name">{sessionStorage.getItem('username')}</div>
             <div className="about">
               <h3>Sobre el jugador</h3>
               <p>Un experto en mariano hermanos</p>
