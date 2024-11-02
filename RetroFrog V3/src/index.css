@@ -1,6 +1,84 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+.simon-game__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  width: 100vw;
+  height: 100vh;
+}
+.simon-game__cardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+}
+.simon-game__cardWrapper--colorCard {
+  height: 200px;
+  width: 200px;
+}
+.simon-game__cardWrapper--colorCard .flash {
+  border: 3px solid white;
+  border-radius: 5px;
+}
+.simon-game__cardWrapper--colorCard .red {
+  background-color: rgb(158, 1, 1);
+}
+.simon-game__cardWrapper--colorCard .red.flash {
+  background-color: lightcoral;
+}
+.simon-game__cardWrapper--colorCard .blue {
+  background-color: rgb(1, 1, 173);
+}
+.simon-game__cardWrapper--colorCard .blue.flash {
+  background-color: lightblue;
+}
+.simon-game__cardWrapper--colorCard .green {
+  background-color: rgb(0, 145, 0);
+}
+.simon-game__cardWrapper--colorCard .green.flash {
+  background-color: lightgreen;
+}
+.simon-game__cardWrapper--colorCard .yellow {
+  background-color: rgb(231, 175, 33);
+}
+.simon-game__cardWrapper--colorCard .yellow.flash {
+  background-color: lightyellow;
+}
+.simon-game__startButton, .simon-game__score, .simon-game__lostGame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  padding: 20px 0;
+}
+.simon-game__score {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  color: #fff;
+  border-radius: 50%;
+  line-height: 100px;
+  font-size: 50px;
+  text-align: center;
+}
+.simon-game__lostGame {
+  width: 400px;
+  height: 400px;
+  background-color: black;
+  color: #fff;
+  border-radius: 50%;
+  line-height: 100px;
+  font-size: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -223,12 +301,45 @@ main {
 .catalog {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  margin-top: 1rem;
   background-color: rgba(48, 0, 80, 0.5960784314);
   width: 80%;
   border: aliceblue 0.1rem solid;
+  border-radius: 2rem;
+  flex-direction: column;
+}
+.catalog__unlock {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  width: 100%;
+  border-radius: 2rem;
+  flex-wrap: wrap;
+}
+.catalog__unlock h1 {
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  color: aliceblue;
+}
+.catalog__lock {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  width: 100%;
+  border-radius: 2rem;
   border-radius: 1rem;
   flex-wrap: wrap;
+}
+.catalog__lock h1 {
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  color: aliceblue;
+}
+.catalog .GameConteiner {
+  margin-top: 200px;
+  position: relative;
 }
 
 .game {
@@ -429,20 +540,19 @@ main {
 }
 .box__face--back button:hover {
   transition: all 0.5s;
-  transform: rotate(-3deg) scale(1.1);
+  transform: scale(1.1);
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 .box__face--back button:hover span {
   animation-play-state: paused;
 }
 
+.login__wrapper,
 .signup__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  max-width: 70vw;
-  min-width: 50vw;
+  max-width: 100%;
   margin: 10vh;
   border-radius: 8px;
   padding: 30px;
@@ -452,51 +562,57 @@ main {
   -webkit-backdrop-filter: blur(8px);
   background-color: rgba(48, 0, 80, 0.5960784314);
 }
+.login__wrapper a,
 .signup__wrapper a {
-  margin: 20px;
   color: #efefef;
   text-decoration: none;
 }
+.login__wrapper a:hover,
 .signup__wrapper a:hover {
   text-decoration: underline;
 }
+.login__wrapper button,
 .signup__wrapper button {
   background: #fff;
   color: #000;
   font-weight: 600;
   border: none;
-  padding: 12px 0vw;
+  padding: 12px 20vw;
   cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
   border: 2px solid transparent;
   transition: 0.3s ease;
 }
+.login__wrapper button:hover,
 .signup__wrapper button:hover {
   color: #fff;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
 }
-.signup__wrapper p {
-  color: #fff;
-  margin: 1rem 0 1.5rem 0;
-}
+.login__form,
 .signup__form {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
+.login__form h2,
 .signup__form h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
   color: #fff;
 }
-.signup__form--input-field:not(:last-of-type) {
+.login__form p,
+.signup__form p {
+  color: #fff;
+}
+.login__form--input-field,
+.signup__form--input-field {
   position: relative;
   border-bottom: 2px solid #ccc;
   margin: 15px 0;
 }
-.signup__form--input-field:not(:last-of-type) label {
+.login__form--input-field label,
+.signup__form--input-field label {
   position: absolute;
   top: 50%;
   left: 0;
@@ -506,23 +622,35 @@ main {
   pointer-events: none;
   transition: 0.15s ease;
 }
-.signup__form--input-field:not(:last-of-type) input {
+.login__form--input-field input,
+.signup__form--input-field input {
   width: 100%;
   height: 40px;
-  padding: 8px 0;
   background: transparent;
   border: none;
   outline: none;
   font-size: 16px;
   color: #fff;
 }
-.signup__form--input-field:not(:last-of-type) input:focus ~ label,
-.signup__form--input-field:not(:last-of-type) input:valid ~ label {
+.login__form--input-field input:focus ~ label,
+.login__form--input-field input:valid ~ label,
+.signup__form--input-field input:focus ~ label,
+.signup__form--input-field input:valid ~ label {
   font-size: 0.8rem;
   top: 10px;
   transform: translateY(-120%);
 }
-.signup__form--input-field--gender {
+.login__form--input-field .password-eye,
+.signup__form--input-field .password-eye {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: x-large;
+  color: #fff;
+}
+.login__form--gender,
+.signup__form--gender {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -531,9 +659,17 @@ main {
   padding: 0.5rem 0;
   color: #fff;
 }
-.signup__form--input-field--gender input {
+.login__form--gender input,
+.signup__form--gender input {
   width: 1.5rem;
 }
+.login__form--back,
+.signup__form--back {
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+}
+.login__form--forget,
 .signup__form--forget {
   display: flex;
   align-items: center;
@@ -541,22 +677,38 @@ main {
   margin: 25px 0 35px 0;
   color: #fff;
 }
+.login__form--forget label,
 .signup__form--forget label {
   display: flex;
   align-items: center;
 }
+.login__form--forget label p,
+.signup__form--forget label p {
+  margin: 0 50px 0 10px;
+}
+.login__form--remember,
 .signup__form--remember {
   accent-color: #fff;
 }
+.login__form--register,
 .signup__form--register {
   text-align: center;
   margin-top: 30px;
   color: #fff;
 }
-.signup--back {
-  text-align: center;
-  margin-top: 30px;
-  color: #fff;
+
+.signup__wrapper {
+  margin: 5vh;
+  height: 90vh;
+}
+.signup__wrapper button {
+  margin: 0.5rem;
+}
+.signup__wrapper a {
+  margin-top: 0;
+}
+.signup__form h2 {
+  margin-bottom: 0;
 }
 
 .login__wrapper {
@@ -771,6 +923,7 @@ main {
 
 .simonSays {
   position: relative;
+  margin-top: 3rem;
 }
 
 .container-gameboy {
@@ -779,22 +932,16 @@ main {
   background-color: #9ca04c;
   border: 20px solid #717286;
   border-radius: 2.5% 2.5% 15% 2.55%;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 }
 
 .buttons-gameboy {
-  width: 85vh;
-  height: 95vh;
   background-color: rgb(218, 214, 215);
   border-radius: 2.5% 2.5% 15% 2.55%;
   border-right: 15px solid rgb(190, 187, 188);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
   z-index: -1;
 }
 
@@ -803,7 +950,7 @@ main {
   width: 8rem;
   height: 2.5rem;
   background-color: #010105;
-  position: fixed;
+  position: absolute;
   bottom: 12%;
   left: 13%;
 }
@@ -821,13 +968,13 @@ main {
 }
 
 .button-action-1 {
-  position: fixed;
+  position: absolute;
   right: 28%;
   bottom: 10%;
 }
 
 .button-action-2 {
-  position: fixed;
+  position: absolute;
   right: 15%;
   bottom: 15%;
 }
