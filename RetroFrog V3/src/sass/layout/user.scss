@@ -13,7 +13,7 @@ $border-color: #41ff61;
   text-align: center;
   color: $text-color;
   .cover {
-    background-image: url('https://source.unsplash.com/WLUHO9A_xik/1600x900'), linear-gradient(135deg, rgba($highlight-color, 0.2), rgba($border-color, 0.4));
+    background-image: linear-gradient(135deg, rgba($highlight-color, 0.2), rgba($border-color, 0.4));
     background-position: center;
     background-size: cover;
     width: 16rem;
@@ -28,7 +28,7 @@ $border-color: #41ff61;
 
   .pic {
     opacity: 100;
-    background-image: url('../../media/pfp.png');
+    background-image: url('~/assets/icons/UserIcon/pfp.png');
     background-position: center;
     background-size: cover;
     border: 5px solid $highlight-color;
@@ -76,7 +76,7 @@ $border-color: #41ff61;
     box-shadow: 0  0.2rem $border-color, 0 0 1rem $highlight-color;
     z-index: 1000;
     padding: 20px;
-    background-image: url('https://source.unsplash.com/WLUHO9A_xik/1600x900'), linear-gradient(135deg, rgba($highlight-color, 0.9), rgba($border-color, 0.9));
+    background-image:linear-gradient(135deg, rgba($highlight-color, 0.9), rgba($border-color, 0.9));
   }
 
   &.expand {

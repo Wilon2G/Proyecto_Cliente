@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "compile:sass": "sass --watch sass/main.scss src/index.css",
+    "compile:sass": "sass --watch src/sass/main.scss src/index.css",
     "json": "json-server --watch usersBD.json",
     "super": "concurrently \"npm run dev\" \"npm run compile:sass\" \"npm run json\""
   },
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/node": "^22.8.7",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",

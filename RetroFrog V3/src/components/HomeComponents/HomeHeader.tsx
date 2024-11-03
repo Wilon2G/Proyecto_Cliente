@@ -20,7 +20,7 @@ export default function  HomeHeader  (){
             <div className="header__section"> 
             </div>
             <div className="header__section">
-            <img src="../../../media/FroggoLoggo.png" alt="LOGO" />
+            <img src="src/assets/logos/FroggoLoggo.png" alt="LOGO" />
                 <h1 className="header__title">RetroFrog</h1>
                 <h3 className="header__subtitle">Welcome to RetroFrog</h3>
             </div>

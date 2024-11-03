@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../sass/layout/user.scss';
+import '../../sass/layout/user.scss';
 import { Link, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
@@ -13,7 +13,7 @@ const UserProfile = () => {
       <div className={`profile-card ${expanded ? 'expand' : ''}`}>
         <div className="cover"></div>
         <div className="profile">
-          <img src="../../media/pfp.png" alt="pfp" className='pic'id="expand-button" onClick={toggleExpand}/>
+          <img className='pic'id="expand-button" onClick={toggleExpand}/>
           <div className="below-fold">
             <div className="name">{sessionStorage.getItem('username')}</div>
             <div className="about">

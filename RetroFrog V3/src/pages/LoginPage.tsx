@@ -58,6 +58,7 @@ const LoginPage: React.FC = () => {
                         if (user.password === password) {
                             //console.log("Success");
                             sessionStorage.setItem('username', userName)
+                            
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {
                             console.log("Please Enter valid credentials");

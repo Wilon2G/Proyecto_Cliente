@@ -1,7 +1,7 @@
 
-import { HomeMain } from "./HomeComponents/HomeMain";
-import  HomeHeader from "./HomeComponents/HomeHeader"
-import HomeNavBar from "./HomeComponents/HomeNavBar";
+import { HomeMain } from "~/components/HomeComponents/HomeMain";
+import  HomeHeader from "~/components/HomeComponents/HomeHeader";
+import HomeNavBar from "~/components/HomeComponents/HomeNavBar";
 
 
 const Home = () => {
@@ -14,9 +14,6 @@ const Home = () => {
         <HomeNavBar />
             
         <HomeMain />
-        
-        
-        
 
         </>
     );
