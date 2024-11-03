@@ -42,7 +42,7 @@ function SimonGame() {
 
   useEffect(() => {
     if (isOn && play.isDisplay) {
-      let newColor = colorList[Math.floor(Math.random() * colorList.length)];
+      const newColor = colorList[Math.floor(Math.random() * colorList.length)];
       const updatedColors = [...play.colors, newColor];
       setPlay((prevPlay) => ({ ...prevPlay, colors: updatedColors }));
     }
@@ -107,9 +107,8 @@ function SimonGame() {
   }
 
   return (
-    <div className='simon-game__container'>
-      <header className='simon-game__header'>
-        <div className='simon-game__cardWrapper'>
+    <div className='simon-game'>
+        <div className='cardWrapper'>
           {colorList.map((color, i) => (
             <ColorCard
               key={i}
@@ -121,20 +120,21 @@ function SimonGame() {
         </div>
 
         {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
-          <div className='simon-game__lostGame'>
+          <div className='lostGame'>
             <p>Final Score: {play.score}</p>
             <button onClick={handleClose}>Close</button>
           </div>
         )}
 
         {!isOn && play.score === 0 && (
-          <button onClick={startHandle} className='simon-game__startButton'>Start</button>
+          <button onClick={startHandle} className='startButton'>Start</button>
         )}
 
         {isOn && (play.isDisplay || play.userPlay) && (
-          <div className='simon-game__score'>Score: {play.score}</div>
+          <div className='score'>
+            <p>Score: {play.score}</p>
+          </div>
         )}
-      </header>
     </div>
   );
 }

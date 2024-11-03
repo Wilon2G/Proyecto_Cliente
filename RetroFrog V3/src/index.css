@@ -1,81 +1,94 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
-.simon-game__container {
+.simon-game {
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  flex-wrap: wrap;
 }
-.simon-game__cardWrapper {
+.simon-game .cardWrapper {
+  width: 60%;
+  height: 60%;
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
 }
-.simon-game__cardWrapper--colorCard {
-  height: 200px;
-  width: 200px;
+.simon-game .cardWrapper__red, .simon-game .cardWrapper__blue, .simon-game .cardWrapper__green, .simon-game .cardWrapper__yellow {
+  flex: 0 0 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
 }
-.simon-game__cardWrapper--colorCard--flash {
+.simon-game .cardWrapper__red--flash, .simon-game .cardWrapper__blue--flash, .simon-game .cardWrapper__green--flash, .simon-game .cardWrapper__yellow--flash {
+  flex: 0 0 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 3px solid white;
-  border-radius: 5px;
 }
-.simon-game__cardWrapper--colorCard--red {
-  background-color: rgb(158, 1, 1);
-}
-.simon-game__cardWrapper--colorCard--red--flash {
-  background-color: lightcoral;
-}
-.simon-game__cardWrapper--colorCard--blue {
-  background-color: rgb(1, 1, 173);
-}
-.simon-game__cardWrapper--colorCard--blue--flash {
-  background-color: lightblue;
-}
-.simon-game__cardWrapper--colorCard--green {
+.simon-game .cardWrapper__green {
   background-color: rgb(0, 145, 0);
+  border-top-left-radius: 90%;
 }
-.simon-game__cardWrapper--colorCard--green--flash {
+.simon-game .cardWrapper__green--flash {
   background-color: lightgreen;
+  border-top-left-radius: 90%;
 }
-.simon-game__cardWrapper--colorCard--yellow {
+.simon-game .cardWrapper__red {
+  background-color: rgb(158, 1, 1);
+  border-top-right-radius: 90%;
+}
+.simon-game .cardWrapper__red--flash {
+  background-color: lightcoral;
+  border-top-right-radius: 90%;
+}
+.simon-game .cardWrapper__blue {
+  background-color: rgb(1, 1, 173);
+  border-bottom-right-radius: 90%;
+}
+.simon-game .cardWrapper__blue--flash {
+  background-color: lightblue;
+  border-bottom-right-radius: 90%;
+}
+.simon-game .cardWrapper__yellow {
   background-color: rgb(231, 175, 33);
+  border-bottom-left-radius: 90%;
 }
-.simon-game__cardWrapper--colorCard--yellow--flash {
+.simon-game .cardWrapper__yellow--flash {
   background-color: lightyellow;
+  border-bottom-left-radius: 90%;
 }
-.simon-game__startButton, .simon-game__score, .simon-game__lostGame {
+.simon-game .startButton {
+  width: 10vw;
+  height: 5vw;
+  background-color: grey;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  padding: 20px 0;
+  border-radius: 20%;
 }
-.simon-game__score {
-  width: 100px;
-  height: 100px;
-  background-color: black;
-  color: #fff;
+.simon-game .score, .simon-game .lostGame {
+  width: 10vw;
+  height: 10vw;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 50%;
-  line-height: 100px;
-  font-size: 50px;
-  text-align: center;
-}
-.simon-game__lostGame {
-  width: 400px;
-  height: 400px;
   background-color: black;
-  color: #fff;
-  border-radius: 50%;
-  line-height: 100px;
-  font-size: 50px;
+  position: absolute;
+  font-size: 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+.simon-game .score p, .simon-game .lostGame p {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -338,8 +351,14 @@ main {
 }
 
 .GameContainer {
-  margin-top: 200px;
   position: relative;
+  border: 4px solid gray;
+  width: 70%;
+  height: 70vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .game {

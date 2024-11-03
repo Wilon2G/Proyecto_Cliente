@@ -59,11 +59,17 @@ main{
 
 }
 
-.GameContainer{
-    margin-top: 200px;
-    position: relative;
+.GameContainer {
+  position: relative;
+  border: 4px solid gray;
+  width: 70%;
+  height: 70vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  }
 .game{
     margin: 2rem;
 }
