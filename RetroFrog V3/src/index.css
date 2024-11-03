@@ -336,7 +336,8 @@ main {
   text-align: center;
   color: aliceblue;
 }
-.catalog .GameConteiner {
+
+.GameContainer {
   margin-top: 200px;
   position: relative;
 }
