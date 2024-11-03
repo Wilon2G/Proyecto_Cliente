@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
-import SimonGame from "./games/simon-game-V1/src/SimonGame";
+import SimonGame from "./games/SimonGame/src/SimonGame";
 
 
 export type Game = {
