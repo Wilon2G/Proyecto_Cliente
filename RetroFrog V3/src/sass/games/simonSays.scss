@@ -3,7 +3,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: grey;
 
         width: 100vw;
         height: 100vh;
@@ -20,39 +19,39 @@
             height: 200px;
             width: 200px;
 
-            .flash {
+            &--flash {
                 border: 3px solid white;
                 border-radius: 5px;
             }
 
-            .red {
+            &--red {
                 background-color: rgb(158, 1, 1);
 
-                &.flash {
+                &--flash {
                     background-color: lightcoral;
                 }
             }
 
-            .blue {
+            &--blue {
                 background-color: rgb(1, 1, 173);
 
-                &.flash {
+                &--flash {
                     background-color: lightblue;
                 }
             }
 
-            .green {
+            &--green {
                 background-color: rgb(0, 145, 0);
 
-                &.flash {
+                &--flash {
                     background-color: lightgreen;
                 }
             }
 
-            .yellow {
+            &--yellow {
                 background-color: rgb(231, 175, 33);
 
-                &.flash {
+                &--flash {
                     background-color: lightyellow;
                 }
             }

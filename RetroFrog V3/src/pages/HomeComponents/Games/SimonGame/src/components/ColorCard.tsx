@@ -8,7 +8,7 @@ type ColorCardProps = {
 export default function ColorCard({ color, onClick, flash }: ColorCardProps) {
     return (
         <div
-            className={`simon-game__cardWrapper--colorCard ${color} ${flash ? "flash" : ""}`}
+            className={`simon-game__cardWrapper--colorCard--${color} ${flash ? "--flash" : ""}`}
             onClick={() => onClick(color)}
         ></div>
     );

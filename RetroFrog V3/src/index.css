@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: grey;
   width: 100vw;
   height: 100vh;
 }
@@ -18,32 +17,32 @@
   height: 200px;
   width: 200px;
 }
-.simon-game__cardWrapper--colorCard .flash {
+.simon-game__cardWrapper--colorCard--flash {
   border: 3px solid white;
   border-radius: 5px;
 }
-.simon-game__cardWrapper--colorCard .red {
+.simon-game__cardWrapper--colorCard--red {
   background-color: rgb(158, 1, 1);
 }
-.simon-game__cardWrapper--colorCard .red.flash {
+.simon-game__cardWrapper--colorCard--red--flash {
   background-color: lightcoral;
 }
-.simon-game__cardWrapper--colorCard .blue {
+.simon-game__cardWrapper--colorCard--blue {
   background-color: rgb(1, 1, 173);
 }
-.simon-game__cardWrapper--colorCard .blue.flash {
+.simon-game__cardWrapper--colorCard--blue--flash {
   background-color: lightblue;
 }
-.simon-game__cardWrapper--colorCard .green {
+.simon-game__cardWrapper--colorCard--green {
   background-color: rgb(0, 145, 0);
 }
-.simon-game__cardWrapper--colorCard .green.flash {
+.simon-game__cardWrapper--colorCard--green--flash {
   background-color: lightgreen;
 }
-.simon-game__cardWrapper--colorCard .yellow {
+.simon-game__cardWrapper--colorCard--yellow {
   background-color: rgb(231, 175, 33);
 }
-.simon-game__cardWrapper--colorCard .yellow.flash {
+.simon-game__cardWrapper--colorCard--yellow--flash {
   background-color: lightyellow;
 }
 .simon-game__startButton, .simon-game__score, .simon-game__lostGame {
