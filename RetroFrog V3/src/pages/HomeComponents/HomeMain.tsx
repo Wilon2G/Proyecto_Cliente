@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
-import SimonGame from "./games/SimonGame/src/SimonGame";
+import SimonGame from "./Games/SimonGame/src/SimonGame";
 
 
 export type Game = {
@@ -48,6 +48,8 @@ export const HomeMain = () => {
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
     return <div className="GameConteiner"><SimonGame /></div>;
+
+    
   }
 
 };
