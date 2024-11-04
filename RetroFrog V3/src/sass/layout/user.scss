@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
 
 $bg-color: #1e1d29;
-$highlight-color: #319104;
+$highlight-color: rgb(70, 2, 97);
 $button-bg: #f5f5f5;
 
 $text-color: #f8f8f2;
-$border-color: #41ff61;
+$border-color: rgba(59, 1, 82, 0.788);
 
 .profile-card {
   position: relative;
   font-family: 'Ubuntu', sans-serif;
   text-align: center;
   color: $text-color;
+
   .cover {
     background-image: linear-gradient(135deg, rgba($highlight-color, 0.2), rgba($border-color, 0.4));
     background-position: center;
@@ -39,33 +40,37 @@ $border-color: #41ff61;
     position: relative;
     width: 100%;
   }
+
   .name {
-  background-color: #0c6a009c;
+  background-color: #6d008fd5;
   margin: 0px -20px 5px;
   padding: 5px;
   font-size: 2rem;
   font-weight: bold;
-  color: #d7ff5f; /* Verde lima retro */
+  color: #b25fff; /* Verde lima retro */
   text-transform: uppercase;
   letter-spacing: 0.45rem;
-  text-shadow: 2px 2px 0 #333, 5px 5px 0 #0d6a00, 8px 8px 15px rgba(0, 0, 0, 0.5); /* Varias capas para un efecto 3D */
+  text-shadow: 2px 2px 0 #333, 5px 5px 0 #40006a, 8px 8px 15px rgba(0, 0, 0, 0.5); /* Varias capas para un efecto 3D */
   padding: 0.3rem 0.7rem; 
   }
+
   .about{
-    background-color: #0c6a00d5;
+    background-color: #6d008fd5;
     border-radius: 1rem;
     margin: 20px -10px 5px;
     padding: 5px;
   }
+
   .row_stats{
     margin: 20px -20px 5px;
     padding: 20px 0 20px;
-    border-top: 1px solid #0c6a00d5;
-    border-bottom: 1px solid #0c6a00d5;
+    border-top: 1px solid #6d008fd5;
+    border-bottom: 1px solid #6d008fd5;
     width: 16rem;
     
-    background-color: #0c6a0041;
+    background-color: #3a006a41;
   }
+  
   .below-fold {
     border-radius: 0.5rem;
     position: absolute;
