@@ -2,6 +2,7 @@
   {
     "title": "Mario Kart",
     "route": "src/assets/games/MarioKart.jpeg",
+    "backroute": "/home",
     "color": "#fd3d4a",
     "description": "yupi, carreras",
     "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e"
@@ -9,6 +10,7 @@
   {
     "title": "Super Mario",
     "route": "src/assets/games/SuperMario.jpeg",
+    "backroute": "/home",
     "color": "rgb(18, 176, 187)",
     "description": "",
     "id": "fa5ce516-1c26-4018-9d98-9225068ccc18"
@@ -16,8 +18,49 @@
   {
     "title": "Simon says",
     "route": "src/assets/games/SimonSays.png",
+    "backroute": "/home",
     "color": "#b6b6b6",
     "description": "",
     "id": "b97bf75d-5764-46b5-be5e-fe4df0d0af4a"
+  },
+  {
+    "title": "Super Bomberman",
+    "route": "src/assets/games/SuperBombermanCover.jpg",
+    "backroute": "src/assets/games/SuperBombermanBack.gif",
+    "color": "#ff7f27",
+    "description": "Explosiones y estrategia en modo multijugador",
+    "id": "5aabf3c9-8d7d-4f6a-902a-478d8f0e3f2c"
+  },
+  {
+    "title": "Donkey Kong Country",
+    "route": "src/assets/games/DkCountryCover.jpg",
+    "backroute": "src/assets/games/DkCountryCoverBack.gif",
+    "color": "#004a19",
+    "description": "Aventura clásica en la jungla",
+    "id": "3ed4a416-12c4-4a0e-98e6-48fa7b6e7d3e"
+  },
+  {
+    "title": "The Legend of Zelda: A Link to the Past",
+    "route": "src/assets/games/LegendOfZeldaCover.png",
+    "backroute": "src/assets/games/LegendofZeldaBack.gif",
+    "color": "#b29a4e",
+    "description": "Un viaje épico en el mundo de Hyrule",
+    "id": "ae9f3e17-39f9-48e6-bf22-06e4b19f4b1d"
+  },
+  {
+    "title": "Street Fighter II",
+    "route": "src/assets/games/StreetFighterCover.png",
+    "backroute": "src/assets/games/StreetFighterBack.gif",
+    "color": "black",
+    "description": "El clásico de peleas que hizo historia",
+    "id": "d3f0c920-8343-4e3e-99ea-b12f4e8f6c29"
+  },
+  {
+    "title": "F-Zero",
+    "route": "src/assets/games/FZeroCover.png",
+    "backroute": "src/assets/games/FZeroBack.gif",
+    "color": "#4a90e2",
+    "description": "Carreras futuristas a toda velocidad",
+    "id": "71e4d5c1-9e7c-4fd2-9cf6-52c245d7e392"
   }
 ]

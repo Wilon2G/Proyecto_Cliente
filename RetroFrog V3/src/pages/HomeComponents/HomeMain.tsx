@@ -2,13 +2,17 @@ import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
 import SimonGame from "./Games/SimonGame/src/SimonGame";
+import usersData from "/src/pages/usersBD.json";
+import RetroGame from "./Games/RetroGame";
 
 
 export type Game = {
   title: string;
   route: string;
+  backroute:string;
   color: string;
   description: string;
+  id: string;
 };
 
 
@@ -21,8 +25,21 @@ export type Game = {
 export const HomeMain = () => {
 
   const [onPlay, setOnPlay] = useState<boolean>(false);
-
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
+
+  const currentUser = usersData.users[0];
+  const unlockedGames = currentUser.userInfo.gamesUnlocked;
+  const unlockedGamesList = games.filter((game: Game) => 
+    unlockedGames.includes(game.id)
+  );
+  const lockedGamesList = games.filter((game: Game) => 
+    !unlockedGames.includes(game.id)
+  );
+  const handleGameSelect = (game: Game) => {
+    setSelectedGame(game); // Actualiza el juego seleccionado
+    setOnPlay(true); // Cambia el estado para iniciar el juego
+  };
 
   if (!onPlay) {
     return (
@@ -30,13 +47,15 @@ export const HomeMain = () => {
         <div className="catalog">
           <div className="catalog__unlock">
             <h1>Tus Juegos</h1>
-            {games.map((game: Game) => (
-              <GameBox key={game.title} game={game} setOnPlay={setOnPlay} />
+            {unlockedGamesList.map((game: Game) => (
+              <GameBox key={game.title} game={game} setOnPlay={() => handleGameSelect(game)} />
             ))}
           </div >
           <div className="catalog__lock">
             <h1>Tienda</h1>
-
+            {lockedGamesList.map((game: Game) => (
+              <GameBox key={game.title} game={game} setOnPlay={() => handleGameSelect(game)} />
+            ))}
           </div>
 
         </div>
@@ -47,7 +66,11 @@ export const HomeMain = () => {
   else {
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-    return <div className="GameConteiner"><SimonGame /></div>;
+    return (
+    <div className="GameContainer">
+      <RetroGame gameId={selectedGame.id} />
+    </div>
+    );
 
     
   }
