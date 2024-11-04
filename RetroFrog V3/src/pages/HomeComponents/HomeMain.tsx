@@ -1,10 +1,8 @@
 import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
-
 import usersData from "/src/pages/usersBD.json";
-import RetroGame from "./Games/RetroGame";
-import { Link, useNavigate } from "react-router-dom";
+import SimonGame from "./Games/SimonGame/src/SimonGame";
 
 export type Game = {
   title: string;
@@ -13,6 +11,7 @@ export type Game = {
   color: string;
   description: string;
   id: string;
+  url:string;
 };
 
 
@@ -68,13 +67,21 @@ export const HomeMain = () => {
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
     return (
-    <div className="GameContainer">
-      <RetroGame gameId={selectedGame.id} />
-      <button className="button" onClick={() => setOnPlay(false)}>Salir</button>
-    </div>
+      <div className="GameContainer">
+        {selectedGame?.title === "Simon Game" ? (
+          <SimonGame />
+        )  : (
+          <iframe
+            src={selectedGame?.url}
+            width="1200"
+            height="800"
+            allowFullScreen
+          />
+        )}
+        <button className="button" onClick={() => setOnPlay(false)}>
+          Salir
+        </button>
+      </div>
     );
-
-    
   }
-
 };
