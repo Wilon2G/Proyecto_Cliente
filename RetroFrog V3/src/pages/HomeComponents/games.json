@@ -2,7 +2,7 @@
   {
     "title": "Mario Kart",
     "route": "src/assets/games/MarioKart.jpeg",
-    "backroute": "/home",
+    "backroute": "",
     "color": "#fd3d4a",
     "description": "yupi, carreras",
     "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e"
@@ -10,7 +10,7 @@
   {
     "title": "Super Mario",
     "route": "src/assets/games/SuperMario.jpeg",
-    "backroute": "/home",
+    "backroute": "",
     "color": "rgb(18, 176, 187)",
     "description": "",
     "id": "fa5ce516-1c26-4018-9d98-9225068ccc18"
@@ -18,7 +18,7 @@
   {
     "title": "Simon says",
     "route": "src/assets/games/SimonSays.png",
-    "backroute": "/home",
+    "backroute": "",
     "color": "#b6b6b6",
     "description": "",
     "id": "b97bf75d-5764-46b5-be5e-fe4df0d0af4a"
