@@ -58,16 +58,38 @@ main{
   }
 
 }
-
 .GameContainer {
-  position: relative;
-  border: 4px solid gray;
-  width: 70%;
-  height: 70vh;
-  background-color: black;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 70rem;
+  padding: 2rem;
+  position: fixed;
+  background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 5000;
+}
+.button{
+  margin: 10px auto;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  max-width: 50%;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+.button:hover{
+  background-color: #5c5c5c;
+  color: red;
+}
+.button:active{
+  transform: translateY(10px);
 }
 
 .game{
@@ -169,7 +191,7 @@ main{
   }
   
   .box__face--back {
-    background: rgb(0, 0, 0);
+    background-color: rgb(141, 141, 141);
     border:  2px solid black;
     overflow: hidden;
     -webkit-transform: rotateY(180deg) translateZ(1.5rem );
@@ -177,21 +199,32 @@ main{
     align-items:center;
     flex-flow: column;
     justify-content: space-between;
+    background-size: cover;
     h3{
+      margin-top: 20px;
       padding: .5rem;
-      font-size: 2.5rem;
-      
+      font-size: 1.5rem;
+      background-color: #ffffffbe;
+      border-radius: 0.5rem;
+      max-width: 90%;
+    }
+    p{
+      margin-top: 20px;
+      padding: .5rem;
+      max-width: 80%;
+      background-color: #ffffffbe;
+      border-radius: 0.5rem;
     }
 
     button{
-      margin-bottom: 2rem;
-      width:200px;
-      height:70px;
-      background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+      margin: 10px auto;
+      width:130px;
+      height:50px;
+      background: linear-gradient(to left top, #ffa754 50%, #ff9900 50%);
       border-style: none;
       color:#fff;
       font-size: 23px;
-      letter-spacing: 3px;
+      letter-spacing: 1px;
       // font-family: 'Lato';
       font-weight: 600;
       outline: none;
@@ -201,6 +234,7 @@ main{
       overflow: hidden;
       transition: all .5s;
       box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+      border-radius: 0.5rem;
   }
   button span{
       position: absolute;
@@ -287,12 +321,8 @@ main{
   
   button:hover{
       transition: all .5s;
-      transform:  scale(1.1);
+      transform:  scale(1.05);
       box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-  }
-  //rotate(-3deg)
-  button:hover span{
-      animation-play-state: paused;
   }
 
   }

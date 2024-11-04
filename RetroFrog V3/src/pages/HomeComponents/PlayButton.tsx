@@ -10,7 +10,7 @@ export const PlayButton=  ({setOnPlay}:PlayButtonProps)=>{
     setOnPlay(true);
     // console.log("Clickado");
     }}>
-    Jugar! 
+    ¡Jugar! 
     <span></span>
     <span></span>
     <span></span>

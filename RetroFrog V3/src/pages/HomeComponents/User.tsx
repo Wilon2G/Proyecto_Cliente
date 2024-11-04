@@ -17,13 +17,13 @@ const UserProfile = () => {
           <div className="below-fold">
             <div className="name">{sessionStorage.getItem('username')}</div>
             <div className="about">
-              <h3>Sobre el jugador</h3>
-              <p>Un experto en mariano hermanos</p>
+              <h3>Juego</h3>
+              <p>descripcion juego</p>
             </div>
             <div className="row_stats">
               <div className="stat">
                 <label>Puntos</label>
-                <div className="num">999</div>
+                <div className="num">{sessionStorage.getItem('score')}</div>
               </div>
             </div>
             <div className="row">

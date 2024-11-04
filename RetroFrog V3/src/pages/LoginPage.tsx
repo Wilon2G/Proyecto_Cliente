@@ -10,13 +10,19 @@ type PersonalInfo = {
 };
 
 type User = {
-    idUser: string;
+    id: string;
     userName: string;
     password: string;
     name: string;
     email: string;
-    puntuacion: string;
-    personalInfo: PersonalInfo;
+    score: number;
+    userInfo: {
+        gamesPlayed: string[];
+        gamesWinned: string[];
+        gamesUnlocked: string[];
+        gamesLocked: string[];
+        theme: string;
+    };
 };
 
 
@@ -60,7 +66,9 @@ const LoginPage: React.FC = () => {
                             //console.log("Success");
                             sessionStorage.setItem('username', userName);
                             sessionStorage.setItem('id', user.id);
-                            
+                            sessionStorage.setItem('score', user.score.toString());
+                            console.log('Score to store:', user.score); // Verifica el valor antes de almacenarlo
+
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {
                             console.log("Please Enter valid credentials");
