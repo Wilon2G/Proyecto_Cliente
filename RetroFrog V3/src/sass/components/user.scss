@@ -59,7 +59,8 @@ $border-color: #78ee8c;
     overflow: hidden;
     opacity: 0;
     margin: auto;
-    transition: transform 500ms ease, opacity 350ms;
+    transform: scaleY(0.2);
+    transition: transform 200ms ease, opacity 350ms,;
     box-shadow: 0  0.2rem $border-color, 0 0 1rem $highlight-color;
     z-index: 1000;
     padding: 20px;
@@ -73,6 +74,7 @@ $border-color: #78ee8c;
     }
     .below-fold {
       opacity: 1;
+      transform: scaleY(1);
       transform: translateY(0.5rem);
       transform: translate(-50%, 0%);
     }
@@ -97,7 +99,7 @@ $border-color: #78ee8c;
     border: 1px solid $button-bg;
     border-radius: 0.8rem;
     transition: background 200ms ease, color 200ms ease;
-
+    
     &:hover {
       background: $button-bg;
       color: black;
@@ -111,5 +113,6 @@ $border-color: #78ee8c;
     border-radius: 50%;
     cursor: pointer;
     transition: background 200ms ease, transform 500ms;
+    
   }
 }

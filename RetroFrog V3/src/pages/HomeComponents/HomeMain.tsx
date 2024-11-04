@@ -73,8 +73,6 @@ export const HomeMain = () => {
         )  : (
           <iframe
             src={selectedGame?.url}
-            width="1200"
-            height="800"
             allowFullScreen
           />
         )}
