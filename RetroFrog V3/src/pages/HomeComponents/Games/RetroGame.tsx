@@ -19,7 +19,7 @@ const RetroGame: React.FC<RetroGameProps> = ({ gameId }) => {
   return (
         <iframe
           src={gameUrl}
-          width="900" height="600" 
+          width="1200" height="800" 
           frameborder="yes" 
           allowfullscreen="true" 
           webkitallowfullscreen="true" 

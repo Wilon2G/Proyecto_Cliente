@@ -1,10 +1,10 @@
 import { useState } from "react";
 import GameBox from "./Game";
 import games from "./games.json"
-import SimonGame from "./Games/SimonGame/src/SimonGame";
+
 import usersData from "/src/pages/usersBD.json";
 import RetroGame from "./Games/RetroGame";
-
+import { Link, useNavigate } from "react-router-dom";
 
 export type Game = {
   title: string;
@@ -14,6 +14,7 @@ export type Game = {
   description: string;
   id: string;
 };
+
 
 
 
@@ -69,6 +70,7 @@ export const HomeMain = () => {
     return (
     <div className="GameContainer">
       <RetroGame gameId={selectedGame.id} />
+      <button className="button" onClick={() => setOnPlay(false)}>Salir</button>
     </div>
     );
 
