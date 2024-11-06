@@ -1,11 +1,13 @@
 @use "abstracts/variables.scss";
+
 @use "base/typography.scss";
-@use "components/button.scss";
+
+@use "components/user.scss";
+
 @use "games/simonSays.scss";
+
 @use "layout/general.scss";
 @use "layout/header.scss";
 @use "layout/navbar.scss";
 @use "layout/catalog.scss";
 @use "layout/loginSignupPage.scss";
-@use "components/user.scss";
-
