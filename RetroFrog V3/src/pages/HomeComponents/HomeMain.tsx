@@ -11,7 +11,7 @@ export type Game = {
   color: string;
   description: string;
   id: string;
-  url:string;
+  component:string;
 };
 export type GameState ={
   gameOn: boolean;
@@ -68,7 +68,7 @@ export const HomeMain = () => {
 
     return (
       <div className="GameContainer">
-        <SelectedGame id={gameState.id} />
+        <SelectedGame id={gameState.id} setGameState={setGameState}/>
 
 {/*         
         {selectedGame?.title === "Simon Game" ? (

@@ -6,7 +6,7 @@
     "color": "#fd3d4a",
     "description": "yupi, carreras",
     "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e",
-    "url":""
+    "component":""
   },
   {
     "title": "Super Mario",
@@ -15,7 +15,8 @@
     "color": "rgb(18, 176, 187)",
     "description": "",
     "id": "fa5ce516-1c26-4018-9d98-9225068ccc18",
-    "url":""
+    "component":""
+    
   },
   {
     "title": "Simon Game",
@@ -24,7 +25,7 @@
     "color": "#b6b6b6",
     "description": "",
     "id": "b97bf75d-5764-46b5-be5e-fe4df0d0af4a",
-    "url":""
+    "component":"SimonGame"
   },
   {
     "title": "Super Bomberman",
@@ -33,7 +34,7 @@
     "color": "#ff7f27",
     "description": "Explosiones y estrategia en modo multijugador",
     "id": "5aabf3c9-8d7d-4f6a-902a-478d8f0e3f2c",
-    "url":"https://www.retrogames.cc/embed/17398-super-bomberman-usa.html"
+    "component":"BomberMan"
   },
   {
     "title": "Donkey Kong Country",
@@ -42,7 +43,7 @@
     "color": "#004a19",
     "description": "Aventura clásica en la jungla",
     "id": "3ed4a416-12c4-4a0e-98e6-48fa7b6e7d3e",
-    "url":"https://www.retrogames.cc/embed/23005-donkey-kong-country-usa.html"
+    "component":"DonkeyKong"
   },
   {
     "title": "The Legend of Zelda: A Link to the Past",
@@ -51,7 +52,7 @@
     "color": "#b29a4e",
     "description": "Un viaje épico en el mundo de Hyrule",
     "id": "ae9f3e17-39f9-48e6-bf22-06e4b19f4b1d",
-    "url":"https://www.retrogames.cc/embed/44785-the-legend-of-zelda-a-link-to-the-past-title-skip-and-full-hearts.html"
+    "component":"Zelda"
   },
   {
     "title": "Street Fighter II",
@@ -60,7 +61,7 @@
     "color": "black",
     "description": "El clásico de peleas que hizo historia",
     "id": "d3f0c920-8343-4e3e-99ea-b12f4e8f6c29",
-    "url":"https://www.retrogames.cc/embed/23550-super-street-fighter-ii-the-new-challengers-usa.html"
+    "component":"StreetFighter"
   },
   {
     "title": "F-Zero",
@@ -69,6 +70,6 @@
     "color": "#4a90e2",
     "description": "Carreras futuristas a toda velocidad",
     "id": "71e4d5c1-9e7c-4fd2-9cf6-52c245d7e392",
-    "url":"https://www.retrogames.cc/embed/20082-f-zero-usa.html"
+    "component":"FZero"
   }
 ]
