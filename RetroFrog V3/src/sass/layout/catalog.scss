@@ -6,28 +6,19 @@ main{
 }
 
 .catalog{
-    display: flex;
-    width: 100%;
-    // align-items: center;
-    padding: 20px;
-    margin: 20px;
-    background-color: #05011cec;
-    width: 80%;
-    border: rgb(1, 45, 21) .1rem solid;
-    border-radius: 1rem;
-    flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
 
+&__unlock, &__lock{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 
-  &__unlock{
-    display: flex;
-    width: 100%;
-    // align-items: center;
-    justify-content: space-evenly;
-    
-    width: 100%;
-    
-    border-radius: 2rem;
-    flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: rgba(145, 129, 149, 0.17);
+  width: 80%;
+  border-radius: 1rem;
+  
 
   h1{
     align-self: center;
@@ -52,21 +43,14 @@ main{
 }
 
 .GameContainer {
-  position: relative;
-  border: 4px solid gray;
-  width: 70%;
-  height: 70vh;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  button{
-    position: absolute;
-    bottom: 5%;
-    width: 5rem;
-    font-size: larger;
-  }
+position: relative;
+border: 4px solid gray;
+width: 70%;
+height: 70vh;
+background-color: black;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .game{
@@ -81,50 +65,49 @@ main{
   background-image: url(./../../src/assets/SuperMario.jpeg);
 }
 
-  
-  .scene {
-    -webkit-perspective: 70rem;
-    width: 27rem;
-    height: 35rem;  
-    margin: -5rem auto;
-    position: relative;
-    z-index: 9;
-    overflow: hidden; /* Evita que el contenido se salga del contenedor */
+
+.scene {
+  -webkit-perspective: 70rem ;
+  width: 100%;
+  height: 20rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
+  margin: auto;
+  position: relative;
+  z-index: 9;
 }
 
+
+
+.scene:hover .box {
+  -webkit-transform: rotateY(-180deg); //Rotación del contenedor
+  scale: 130%;
+  margin-top: 5rem;
+}
+
+.box {
+  width: 18rem;
+  height: 18rem;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all 1s ease-out;
+  margin: 3rem auto;
   
+  position: relative;
+}
+.shadow{
+  background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);
   
-  .scene:hover .box {
-    -webkit-transform: rotateY(-180deg); //Rotación del contenedor
-    scale: 140%;
-    
-  }
-  
-  .box {
-    width: 18rem;
-    height: 18rem;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: all 1s ease-out;
-    margin: 5rem auto;
-    
-    position: relative;
-  }
-  .shadow{
-    background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);
-    
-    -webkit-transform: rotateX(-90deg);
-    width: 19.4rem;                    //De momento no se me ocurre que hacer
-    height: 18.4rem;
-    // box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49);
-    position: absolute;
-    // // background-color: #9dcc78;
-    top: 10rem;
-    left: .1rem;
-    // z-index: 1;
-  }
-  //background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);   OPCION A
-  //background: radial-gradient(ellipse at 50% 50%, #000000E0 0%, #FFFFFF00 69%);  OPCION B
-  //box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49); Obsoleto!!!!!!!!!!!!!!!!!!!!!!!!!!
+  -webkit-transform: rotateX(-90deg);
+  width: 19.4rem;                    //De momento no se me ocurre que hacer
+  height: 18.4rem;
+  // box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49);
+  position: absolute;
+  // // background-color: #9dcc78;
+  top: 10rem;
+  left: .1rem;
+  // z-index: 1;
+}
+//background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);   OPCION A
+//background: radial-gradient(ellipse at 50% 50%, #000000E0 0%, #FFFFFF00 69%);  OPCION B
+//box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49); Obsoleto!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .box__face {
   position: absolute;
