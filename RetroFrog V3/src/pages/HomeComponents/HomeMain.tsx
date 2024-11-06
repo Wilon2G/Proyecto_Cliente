@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GameBox from "./Game";
+import GameBox from "./GameBox";
 import games from "./games.json"
 import usersData from "/src/pages/usersBD.json";
 import SimonGame from "./Games/SimonGame/src/SimonGame";
