@@ -100,6 +100,11 @@ const LoginPage: React.FC = () => {
     }
 
     return (
+    <>
+        <div className="logo">
+            <img src="src/assets/logos/RetroFrogLogo.png" alt="LOGO" />
+        </div>
+
         <div className="login__wrapper">
             <form onSubmit={proceedLogin} className="login__form">
                 <h2>Login</h2>
@@ -122,7 +127,9 @@ const LoginPage: React.FC = () => {
                 <button type="submit">Login</button>
                 <Link className="login__form--register" to={'/register'}>New User</Link>
             </form>
+
         </div>
+        </>
     );
 }
 
