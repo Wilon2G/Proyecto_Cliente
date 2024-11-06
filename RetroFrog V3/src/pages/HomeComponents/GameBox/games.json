@@ -2,11 +2,11 @@
   {
     "title": "Mario Kart",
     "route": "src/assets/games/MarioKart.jpeg",
-    "backroute": "",
+    "backroute": "src/assets/games/MarioKartBack.gif",
     "color": "#fd3d4a",
     "description": "yupi, carreras",
     "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e",
-    "component":""
+    "component":"MarioKart"
   },
   {
     "title": "Super Mario",
@@ -15,7 +15,7 @@
     "color": "rgb(18, 176, 187)",
     "description": "",
     "id": "fa5ce516-1c26-4018-9d98-9225068ccc18",
-    "component":""
+    "component":"SuperMario"
     
   },
   {

@@ -17,7 +17,7 @@ const UserProfile = () => {
             {expanded && (<>
               <div className="name">{sessionStorage.getItem('username')}</div>
               <div className="about">
-                <h3>Juego</h3>
+                <h3>game.title</h3>
                 <p>descripcion juego</p>
               </div>
               <div className="row_stats">
@@ -28,10 +28,10 @@ const UserProfile = () => {
               </div>
               <div className="row">
                 <Link className='header__link' to={'/Modify'}>
-                  <button className="button">Modificar</button>
+                  <button className="button--user">Modificar</button>
                 </Link>
                 <Link className="header__link" to={'/Login'}>
-                  <button className="button">Salir</button>
+                  <button className="button--user">Salir</button>
                 </Link>
               </div>
               </>

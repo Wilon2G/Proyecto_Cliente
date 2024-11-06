@@ -1,158 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
 
 $bg-color: #1e1d29;
-$highlight-color: rgb(70, 2, 97);
+$burn-color: #2b025ae0;
 $button-bg: #f5f5f5;
 
 $text-color: #f8f8f2;
-$border-color: rgba(59, 1, 82, 0.788);
-
-.profile-card {
-  position: relative;
-  font-family: 'Ubuntu', sans-serif;
-  text-align: center;
-  color: $text-color;
-
-  .cover {
-    background-image: linear-gradient(135deg, rgba($highlight-color, 0.2), rgba($border-color, 0.4));
-    background-position: center;
-    background-size: cover;
-    width: 16rem;
-    height: 8rem;
-    border-radius: 0.5rem;
-    margin-bottom: -7.5rem;
-    transition: transform 500ms ease, opacity 350ms;
-    opacity: 0;
-    box-shadow: 0  0.2rem $border-color, 0 0 1rem $highlight-color;
-    z-index: 1;
-  }
-
-  .pic {
-    opacity: 100;
-    background-image: url('~/assets/icons/UserIcon/pfp.png');
-    background-position: center;
-    background-size: cover;
-    border: 5px solid $highlight-color;
-    box-shadow: 0 1rem 1.5rem -1rem rgba($border-color, 0.4);
-  }
-
-  .profile {
-    position: relative;
-    width: 100%;
-  }
-
-  .name {
-  background-color: #6d008fd5;
-  margin: 0px -20px 5px;
-  padding: 5px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #b25fff; /* Verde lima retro */
-  text-transform: uppercase;
-  letter-spacing: 0.45rem;
-  text-shadow: 2px 2px 0 #333, 5px 5px 0 #40006a, 8px 8px 15px rgba(0, 0, 0, 0.5); /* Varias capas para un efecto 3D */
-  padding: 0.3rem 0.7rem; 
-  }
-
-  .about{
-    background-color: #6d008fd5;
-    border-radius: 1rem;
-    margin: 20px -10px 5px;
-    padding: 5px;
-  }
-
-  .row_stats{
-    margin: 20px -20px 5px;
-    padding: 20px 0 20px;
-    border-top: 1px solid #6d008fd5;
-    border-bottom: 1px solid #6d008fd5;
-    width: 16rem;
-    
-    background-color: #3a006a41;
-  }
-  
-  .below-fold {
-    border-radius: 0.5rem;
-    position: absolute;
-    width: 16rem;
-    overflow: hidden;
-    opacity: 0;
-    transition: transform 500ms ease, opacity 350ms;
-    box-shadow: 0  0.2rem $border-color, 0 0 1rem $highlight-color;
-    z-index: 1000;
-    padding: 20px;
-    background-image:linear-gradient(135deg, rgba($highlight-color, 0.9), rgba($border-color, 0.9));
-  }
-
-  &.expand {
-    .cover {
-      opacity: 0.5;
-      transform: translateY(0);
-      
-    }
-
-    .below-fold {
-      
-      opacity: 1;
-      transform: translateY(0.5rem);
-      
-    }
-  }
-
-  .row {
-    display: flex;
-    justify-content: center;
-
-    .header__link {
-      color: #f5f6fa;
-      text-decoration: none;
-      
-      font-size: 1.1rem;  
-      transition: color 0.3s;  
-
-      &:hover {
-          color: #31fb74;  
-      }
-  }
-  }
-
-  .button {
-    width: 6rem;
-    height: 2.5rem;
-    margin: 1rem 0.5rem 0rem;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    color: $button-bg;
-    border: 1px solid $button-bg;
-    border-radius: 0.8rem;
-    transition: background 200ms ease, color 200ms ease;
-
-    &:hover {
-      background: $button-bg;
-      color: black;
-      border-color: #1e1d29;
-    }
-  }
-
-  #expand-button {
-    height: 7rem;
-    width: 7rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 200ms ease, transform 500ms;
-  }
-}
-
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
-
-$bg-color: #1e1d29;
-$highlight-color: #319104;
-$button-bg: #f5f5f5;
-
-$text-color: #f8f8f2;
-$border-color: #78ee8c;
+$light-color: #8d4cd6e0;
 
 .profile-card {
   position: relative;
@@ -165,26 +18,25 @@ $border-color: #78ee8c;
     background-image: url('~/assets/icons/UserIcon/pfp.png');
     background-position: center;
     background-size: cover;
-    border: 2px solid $highlight-color;
-    box-shadow: 0 1rem 1.5rem -1rem rgba($border-color, 0.4);
+    border: 2px solid $burn-color;
+    box-shadow: 0 1rem 1.5rem -1rem rgba($light-color, 0.4);
     transform: translateX(-50%);
   }
 
   
   .name {
-  background-color: #0c6a009c;
+  background-color: #2b025ae0;
   margin: 0px -20px 5px;
   padding: 5px;
   font-size: 2rem;
   font-weight: bold;
-  color: #b1d34d; /* Verde lima retro */
+  color: #ffffff; 
   text-transform: uppercase;
-  letter-spacing: 0.45rem;
-  text-shadow: 2px 2px 0 #333, 5px 5px 0 #0d6a00, 8px 8px 15px rgba(0, 0, 0, 0.5); /* Varias capas para un efecto 3D */
+  text-shadow: 2px 2px 0 #333, 6px 2px 0 #000000 ; 
   padding: 0.3rem 0.7rem; 
   }
   .about{
-    background-color: #1d5a15d5;
+    background-color: $burn-color;
     border-radius: 1rem;
     margin: 20px -10px 5px;
     padding: 5px;
@@ -196,7 +48,7 @@ $border-color: #78ee8c;
     border-bottom: 1px solid #1a5d11d5;
     width: 16rem;
     
-    background-color: #0c6a0041;
+    background-color: $burn-color;
   }
   .below-fold {
     border-radius: 0.5rem;
@@ -207,10 +59,10 @@ $border-color: #78ee8c;
     opacity: 0;
     margin: auto;
     transition: transform 200ms ease, opacity 350ms; /* Corregido: eliminada la coma */
-    box-shadow: 0 0.2rem $border-color, 0 0 1rem $highlight-color;
+    box-shadow: 0 0.2rem $light-color, 0 0 1rem $burn-color;
     z-index: 1000;
     padding: 20px;
-    background-image: linear-gradient(135deg, rgba($highlight-color, 0.9), rgba($border-color, 0.9));
+    background-image: linear-gradient(135deg, rgba($burn-color, 0.9), rgba($light-color, 0.9));
   }
 
   &.expand {
@@ -233,23 +85,23 @@ $border-color: #78ee8c;
   }
 
   .button {
-    width: 10rem;
-    height: 2.5rem;
-    margin: 1rem 0rem 0rem;
-    background: transparent;
-    padding: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    color: $button-bg;
-    border: 1px solid $button-bg;
-    border-radius: 0.8rem;
-    transition: background 200ms ease, color 200ms ease;
     
-    &:hover {
-      background: $button-bg;
-      color: black;
-      border-color: #1e1d29;
+    &--user{
+      width: 6rem;
+      height: 2.5rem;
+      margin: 1rem 0.5rem 0rem;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      color: $button-bg;
+      border: 1px solid $button-bg;
+      border-radius: 0.8rem;
+      transition: background 200ms ease, color 200ms ease;
+      &:hover {
+        background: $button-bg;
+        background-color: $burn-color;
+      }
     }
   }
 

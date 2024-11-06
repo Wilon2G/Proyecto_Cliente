@@ -20,7 +20,6 @@ export default function SelectedGame({ id, setGameState }: GameProps) {
 
   return (
     <>
-      
       <Suspense fallback={<div>Loading...</div>}>
         <Component />
       </Suspense>

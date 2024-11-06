@@ -1,17 +1,823 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 5 | @use "components/user.scss";
- *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   src\sass\main.scss 5:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 5 \2502  @use \"components/user.scss\";\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src\\sass\\main.scss 5:1  root stylesheet";
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Quicksand:wght@300..700&display=swap");
+.profile-card {
+  position: relative;
+  text-align: center;
+  color: #f8f8f2;
+  align-items: center;
 }
+.profile-card .pic {
+  opacity: 100;
+  background-image: url("~/assets/icons/UserIcon/pfp.png");
+  background-position: center;
+  background-size: cover;
+  border: 2px solid rgba(43, 2, 90, 0.8784313725);
+  box-shadow: 0 1rem 1.5rem -1rem rgba(141, 76, 214, 0.4);
+  transform: translateX(-50%);
+}
+.profile-card .name {
+  background-color: rgba(43, 2, 90, 0.8784313725);
+  margin: 0px -20px 5px;
+  padding: 5px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #333, 6px 2px 0 #000000;
+  padding: 0.3rem 0.7rem;
+}
+.profile-card .about {
+  background-color: rgba(43, 2, 90, 0.8784313725);
+  border-radius: 1rem;
+  margin: 20px -10px 5px;
+  padding: 5px;
+}
+.profile-card .row_stats {
+  margin: 20px -20px 5px;
+  padding: 20px 0 20px;
+  border-top: 1px solid rgba(21, 93, 12, 0.8352941176);
+  border-bottom: 1px solid rgba(26, 93, 17, 0.8352941176);
+  width: 16rem;
+  background-color: rgba(43, 2, 90, 0.8784313725);
+}
+.profile-card .below-fold {
+  border-radius: 0.5rem;
+  position: absolute;
+  width: 16rem;
+  transform: scaleY(0.2) translate(-50%, 0%);
+  overflow: hidden;
+  opacity: 0;
+  margin: auto;
+  transition: transform 200ms ease, opacity 350ms; /* Corregido: eliminada la coma */
+  box-shadow: 0 0.2rem rgba(141, 76, 214, 0.8784313725), 0 0 1rem rgba(43, 2, 90, 0.8784313725);
+  z-index: 1000;
+  padding: 20px;
+  background-image: linear-gradient(135deg, rgba(43, 2, 90, 0.9), rgba(141, 76, 214, 0.9));
+}
+.profile-card.expand .cover {
+  opacity: 0.5;
+  transform: translateY(0);
+}
+.profile-card.expand .below-fold {
+  opacity: 1;
+  transform: scaleY(1);
+  transform: translateY(0.5rem);
+  transform: translate(-50%, 0%);
+}
+.profile-card .row {
+  display: flex;
+  justify-content: center;
+}
+.profile-card .button--user {
+  width: 6rem;
+  height: 2.5rem;
+  margin: 1rem 0.5rem 0rem;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 0.8rem;
+  transition: background 200ms ease, color 200ms ease;
+}
+.profile-card .button--user:hover {
+  background: #f5f5f5;
+  background-color: rgba(43, 2, 90, 0.8784313725);
+}
+.profile-card #expand-button {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 200ms ease, transform 500ms;
+}
+
+.simon-game {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.simon-game .cardWrapper {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.simon-game .cardWrapper__red, .simon-game .cardWrapper__blue, .simon-game .cardWrapper__green, .simon-game .cardWrapper__yellow {
+  flex: 0 0 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+}
+.simon-game .cardWrapper__red--flash, .simon-game .cardWrapper__blue--flash, .simon-game .cardWrapper__green--flash, .simon-game .cardWrapper__yellow--flash {
+  flex: 0 0 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+}
+.simon-game .cardWrapper__green {
+  background-color: rgb(0, 145, 0);
+  border-top-left-radius: 90%;
+}
+.simon-game .cardWrapper__green--flash {
+  background-color: lightgreen;
+  border-top-left-radius: 90%;
+}
+.simon-game .cardWrapper__red {
+  background-color: rgb(158, 1, 1);
+  border-top-right-radius: 90%;
+}
+.simon-game .cardWrapper__red--flash {
+  background-color: lightcoral;
+  border-top-right-radius: 90%;
+}
+.simon-game .cardWrapper__blue {
+  background-color: rgb(1, 1, 173);
+  border-bottom-right-radius: 90%;
+}
+.simon-game .cardWrapper__blue--flash {
+  background-color: lightblue;
+  border-bottom-right-radius: 90%;
+}
+.simon-game .cardWrapper__yellow {
+  background-color: rgb(231, 175, 33);
+  border-bottom-left-radius: 90%;
+}
+.simon-game .cardWrapper__yellow--flash {
+  background-color: lightyellow;
+  border-bottom-left-radius: 90%;
+}
+.simon-game .startButton {
+  width: 10vw;
+  height: 5vw;
+  background-color: grey;
+  position: absolute;
+  border-radius: 20%;
+}
+.simon-game .score, .simon-game .lostGame {
+  width: 10vw;
+  height: 10vw;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.simon-game .score p, .simon-game .lostGame p {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans";
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url("~/assets/backgrounds/bg-ppal.jpg");
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(5, 1, 28, 0.9254901961);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #043316;
+  width: 100%;
+  min-height: 18vh;
+  background-color: rgba(10, 10, 11, 0.71);
+  padding: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  gap: 1vw;
+  width: 100%;
+}
+.header__title {
+  color: rgb(124, 0, 174);
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 0 0 10px rgb(0, 39, 12), 0 0 10px;
+  margin-top: -2.5rem;
+  z-index: 1;
+}
+.header__subtitle {
+  position: relative;
+  color: #f9fffa;
+  font-size: 1rem;
+  margin: 0;
+  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 10px;
+}
+.header__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  flex: 1;
+  height: 100%;
+}
+.header__section img {
+  position: relative;
+  max-height: 20vh;
+  opacity: 0.8;
+}
+.header__section__user {
+  height: 100%;
+}
+.header__nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navigation__checkbox {
+  display: none;
+}
+.navigation__button {
+  height: 6rem;
+  width: 6rem;
+  position: fixed;
+  top: 5rem;
+  left: 2.5rem;
+  background-color: rgba(10, 10, 11, 0.71);
+  z-index: 2500;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+}
+.navigation__background {
+  height: 6rem;
+  width: 6rem;
+  position: fixed;
+  top: 5rem;
+  left: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.navigation__nav {
+  height: 100vh;
+  max-width: 16rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: black;
+  opacity: 0;
+  width: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.navigation__list {
+  position: absolute;
+  top: 20%;
+  left: 1.5%;
+  list-style: none;
+  text-align: left;
+  width: 100%;
+}
+.navigation__item {
+  margin: 1rem 0;
+  padding: 1.5rem 2.5rem;
+}
+.navigation__link {
+  padding: 0.5rem;
+}
+.navigation__link:link, .navigation__link:visited {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #c1c1c1;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
+  background-size: 230%;
+  transition: all 0.4s;
+}
+.navigation__link:hover, .navigation__link:active, .navigation__link:focus {
+  background-position: 100%;
+  transform: translateX(1rem);
+}
+.navigation__link:hover > i, .navigation__link:active > i, .navigation__link:focus > i {
+  display: block;
+  position: absolute;
+  top: 0.4rem;
+  left: -3rem;
+}
+.navigation__link > i {
+  display: none;
+}
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(80);
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  width: 20%;
+}
+.navigation__icon {
+  position: relative;
+  margin-top: 2.75rem;
+}
+.navigation__icon, .navigation__icon::before, .navigation__icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: #c1c1c1;
+  display: inline-block;
+}
+.navigation__icon::before, .navigation__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+}
+.navigation__icon::before {
+  top: -0.8rem;
+}
+.navigation__icon::after {
+  top: 0.8rem;
+}
+.navigation__button:hover .navigation__icon::before {
+  top: -1rem;
+}
+.navigation__button:hover .navigation__icon::after {
+  top: 1rem;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  top: 0;
+  transform: rotate(-135deg);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(238, 206, 206);
+}
+
+.catalog {
+  width: 100%;
+  margin-top: 1rem;
+}
+.catalog__unlock, .catalog__lock {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: rgba(145, 129, 149, 0.17);
+  width: 80%;
+  border-radius: 1rem;
+}
+.catalog__unlock h1, .catalog__lock h1 {
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding-top: 1rem;
+}
+.catalog__lock {
+  margin-top: 2.5rem;
+  background-color: rgba(145, 129, 149, 0.4);
+}
+.catalog__lock h1 {
+  color: #d9d9d9;
+}
+
+.GameContainer {
+  position: relative;
+  border: 4px solid gray;
+  width: 70%;
+  height: 70vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  margin: 2rem;
+}
+
+.box__face--front {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(./../../src/assets/SuperMario.jpeg);
+}
+
+.scene {
+  -webkit-perspective: 70rem;
+  width: 100%;
+  height: 20rem;
+  margin: auto;
+  position: relative;
+  z-index: 9;
+  position: relative;
+}
+
+.scene:hover .box {
+  -webkit-transform: rotateY(-180deg);
+  scale: 130%;
+  margin-top: 5rem;
+}
+
+.box {
+  width: 18rem;
+  height: 18rem;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all 1s ease-out;
+  margin: 3rem auto;
+  position: relative;
+}
+
+.shadow {
+  background: radial-gradient(ellipse at 50% 50%, #000000 0%, rgba(255, 255, 255, 0) 69%);
+  -webkit-transform: rotateX(-90deg);
+  width: 19.4rem;
+  height: 18.4rem;
+  position: absolute;
+  top: 10rem;
+  left: 0.1rem;
+}
+
+.box__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+}
+
+.box__face--front {
+  background: #d9d9d9;
+  border: 2px solid black;
+  overflow: hidden;
+  background-size: cover;
+  -webkit-transform: rotateY(0deg) translateZ(1.5rem);
+}
+
+.box__face--right {
+  background: rgb(199, 233, 223); /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
+  width: 3rem;
+  -webkit-transform: rotateY(90deg) translateZ(16.5rem);
+  border: 2px solid black;
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  font-weight: 1000;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+}
+.box__face--right div {
+  letter-spacing: 0.4rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgb(255, 255, 255) 14%, rgb(110, 110, 110) 65%);
+  border-radius: 0.4rem;
+  padding: 0.1rem;
+  color: navy;
+  border: #000000 solid 0.1rem;
+}
+
+.box__face--back {
+  background: rgb(0, 0, 0);
+  border: 2px solid black;
+  overflow: hidden;
+  -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.box__face--back h3 {
+  padding: 0.5rem;
+  font-size: 2.5rem;
+}
+.box__face--back button {
+  margin-bottom: 2rem;
+  width: 200px;
+  height: 70px;
+  background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+  border-style: none;
+  color: #fff;
+  font-size: 23px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0px;
+  overflow: hidden;
+  transition: all 0.5s;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.box__face--back button span {
+  position: absolute;
+  display: block;
+}
+.box__face--back button span:nth-child(1) {
+  height: 3px;
+  width: 200px;
+  top: 0px;
+  left: -200px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  animation: span1 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes span1 {
+  0% {
+    left: -200px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+.box__face--back button span:nth-child(2) {
+  height: 70px;
+  width: 3px;
+  top: -70px;
+  right: 0px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #f6e58d);
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  animation: span2 2s linear infinite;
+  animation-delay: 2s;
+}
+@keyframes span2 {
+  0% {
+    top: -70px;
+  }
+  100% {
+    top: 70px;
+  }
+}
+.box__face--back button span:nth-child(3) {
+  height: 3px;
+  width: 200px;
+  right: -200px;
+  bottom: 0px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+  animation: span3 2s linear infinite;
+  animation-delay: 3s;
+}
+@keyframes span3 {
+  0% {
+    right: -200px;
+  }
+  100% {
+    right: 200px;
+  }
+}
+.box__face--back button span:nth-child(4) {
+  height: 70px;
+  width: 3px;
+  bottom: -70px;
+  left: 0px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-right-radius: 1px;
+  border-top-left-radius: 1px;
+  animation: span4 2s linear infinite;
+  animation-delay: 4s;
+}
+@keyframes span4 {
+  0% {
+    bottom: -70px;
+  }
+  100% {
+    bottom: 70px;
+  }
+}
+.box__face--back button:hover {
+  transition: all 0.5s;
+  transform: scale(1.1);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.box__face--back button:hover span {
+  animation-play-state: paused;
+}
+
+.logo {
+  position: absolute;
+  margin: 0 auto;
+  top: 2%;
+}
+.logo img {
+  width: 10rem;
+}
+
+.login__wrapper,
+.signup__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(51, 45, 55, 0.4);
+}
+.login__wrapper a,
+.signup__wrapper a {
+  color: #efefef;
+  text-decoration: none;
+}
+.login__wrapper a:hover,
+.signup__wrapper a:hover {
+  text-decoration: underline;
+}
+.login__wrapper button,
+.signup__wrapper button {
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20vw;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+.login__wrapper button:hover,
+.signup__wrapper button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+.login__form,
+.signup__form {
+  display: flex;
+  flex-direction: column;
+}
+.login__form h2,
+.signup__form h2 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #fff;
+}
+.login__form p,
+.signup__form p {
+  color: #fff;
+}
+.login__form--input-field,
+.signup__form--input-field {
+  position: relative;
+  border-bottom: 2px solid #ccc;
+  margin: 15px 0;
+}
+.login__form--input-field label,
+.signup__form--input-field label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.15s ease;
+}
+.login__form--input-field input,
+.signup__form--input-field input {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+.login__form--input-field input:focus ~ label,
+.login__form--input-field input:valid ~ label,
+.signup__form--input-field input:focus ~ label,
+.signup__form--input-field input:valid ~ label {
+  font-size: 0.8rem;
+  top: 10px;
+  transform: translateY(-120%);
+}
+.login__form--input-field .password-eye,
+.signup__form--input-field .password-eye {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: x-large;
+  color: #fff;
+}
+.login__form--gender,
+.signup__form--gender {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1vw;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  color: #fff;
+}
+.login__form--gender input,
+.signup__form--gender input {
+  width: 1.5rem;
+}
+.login__form--back,
+.signup__form--back {
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+}
+.login__form--forget,
+.signup__form--forget {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 25px 0 35px 0;
+  color: #fff;
+}
+.login__form--forget label,
+.signup__form--forget label {
+  display: flex;
+  align-items: center;
+}
+.login__form--forget label p,
+.signup__form--forget label p {
+  margin: 0 50px 0 10px;
+}
+.login__form--remember,
+.signup__form--remember {
+  accent-color: #fff;
+}
+.login__form--register,
+.signup__form--register {
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+}
+
+.signup__wrapper {
+  height: 70vh;
+}
+.signup__wrapper button {
+  margin: 1.5rem;
+}
+.signup__wrapper a {
+  margin-top: 10px;
+}
+.signup__form h2 {
+  margin-bottom: 0;
+}
+.signup__form p {
+  padding-bottom: 0 1rem;
+}
+
+/*# sourceMappingURL=index.css.map */
