@@ -1,7 +1,7 @@
 
 export default function HomeFooter(){
     return <footer>
-        <h1>¡Gracias por visitar RetrFrog!</h1>
+        <h1>¡Gracias por visitar RetroFrog!</h1>
         <div>
             <h3>Contacta con nosotros</h3>
             <ul>
