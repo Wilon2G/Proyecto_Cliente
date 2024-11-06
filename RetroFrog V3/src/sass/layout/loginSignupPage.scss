@@ -1,5 +1,18 @@
 @use "../abstracts/variables.scss" as *;
 
+.logo{
+    position: absolute;
+    margin: 0 auto;
+    top: 2%;
+
+    img{
+        width: 10rem;
+
+    }
+
+
+}
+
 .login,
 .signup {
     &__wrapper {

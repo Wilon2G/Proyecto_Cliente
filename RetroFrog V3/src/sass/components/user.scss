@@ -102,6 +102,18 @@ $border-color: rgba(59, 1, 82, 0.788);
   .row {
     display: flex;
     justify-content: center;
+
+    .header__link {
+      color: #f5f6fa;
+      text-decoration: none;
+      
+      font-size: 1.1rem;  
+      transition: color 0.3s;  
+
+      &:hover {
+          color: #31fb74;  
+      }
+  }
   }
 
   .button {

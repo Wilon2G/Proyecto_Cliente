@@ -84,6 +84,15 @@
   display: flex;
   justify-content: center;
 }
+.profile-card .row .header__link {
+  color: #f5f6fa;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+.profile-card .row .header__link:hover {
+  color: #31fb74;
+}
 .profile-card .button {
   width: 6rem;
   height: 2.5rem;
@@ -216,8 +225,8 @@
   flex-wrap: wrap;
 }
 .simon-game .cardWrapper {
-  width: 60%;
-  height: 60%;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -377,15 +386,6 @@ body {
 .header__nav {
   display: flex;
   gap: 20px;
-}
-.header__link {
-  color: #f5f6fa;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-}
-.header__link:hover {
-  color: #31fb74;
 }
 
 .navigation__checkbox {
@@ -559,6 +559,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.GameContainer button {
+  position: absolute;
+  bottom: 5%;
+  width: 5rem;
+  font-size: larger;
 }
 
 .game {
@@ -764,6 +770,15 @@ main {
 }
 .box__face--back button:hover span {
   animation-play-state: paused;
+}
+
+.logo {
+  position: absolute;
+  margin: 0 auto;
+  top: 2%;
+}
+.logo img {
+  width: 10rem;
 }
 
 .login__wrapper,
