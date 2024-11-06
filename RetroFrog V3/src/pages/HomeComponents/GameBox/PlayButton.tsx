@@ -1,13 +1,16 @@
+import { GameState } from "../HomeMain";
+
 type PlayButtonProps={
-    setOnPlay:(value:boolean)=>void;
+    setOnPlay:(value:GameState)=>void;
+    id:string;
 }
 
-export const PlayButton=  ({setOnPlay}:PlayButtonProps)=>{
+export const PlayButton=  ({setOnPlay,id}:PlayButtonProps)=>{
 
     return(
         <div className="playBtn">
   <button onClick={()=>{
-    setOnPlay(true);
+    setOnPlay({gameOn:true,id:id});
     // console.log("Clickado");
     }}>
     ¡Jugar! 

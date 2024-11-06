@@ -1,8 +1,8 @@
 import { useState } from "react";
 import GameBox from "./GameBox/GameBox";
-import games from "./GameBox/games.json"
+import games from "./GameBox/games.json";
 import usersData from "/src/pages/usersBD.json";
-import SimonGame from "./GameBox/games/SimonGame/src/SimonGame";
+import SelectedGame from "./GameBox/SelectedGame.tsx";
 
 export type Game = {
   title: string;
@@ -28,8 +28,8 @@ export type GameState ={
 
 export const HomeMain = () => {
 
-  const [gameState, setGameState] = useState<GameState>({gameOn.false},);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [gameState, setGameState] = useState<GameState>({gameOn:false,id:""});
+  //const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
 
   const currentUser = usersData.users[0];
@@ -40,25 +40,21 @@ export const HomeMain = () => {
   const lockedGamesList = games.filter((game: Game) => 
     !unlockedGames.includes(game.id)
   );
-  const handleGameSelect = (game: Game) => {
-    setSelectedGame(game); // Actualiza el juego seleccionado
-    setOnPlay(true); // Cambia el estado para iniciar el juego
-  };
-
-  if (!onPlay) {
+  
+  if (!gameState.gameOn) {
     return (
       <>
         <div className="catalog">
           <div className="catalog__unlock">
             <h1>Tus Juegos</h1>
             {unlockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setOnPlay={() => handleGameSelect(game)} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} />
             ))}
           </div >
           <div className="catalog__lock">
             <h1>Tienda</h1>
             {lockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setOnPlay={() => handleGameSelect(game)} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} />
             ))}
           </div>
 
@@ -72,7 +68,9 @@ export const HomeMain = () => {
 
     return (
       <div className="GameContainer">
-        
+        <SelectedGame id={gameState.id} />
+
+{/*         
         {selectedGame?.title === "Simon Game" ? (
           <SimonGame />
         )  : (
@@ -81,9 +79,9 @@ export const HomeMain = () => {
             allowFullScreen
           />
         )}
-        <button className="button" onClick={() => setOnPlay(false)}>
+        <button className="button" onClick={() => setGameState}>
           Salir
-        </button>
+        </button> */}
       </div>
     );
   }
