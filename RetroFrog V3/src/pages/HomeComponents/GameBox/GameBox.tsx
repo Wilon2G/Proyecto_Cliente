@@ -1,4 +1,4 @@
-import { Game } from "./HomeMain";
+import { Game } from "../HomeMain";
 import {PlayButton} from "./PlayButton";
 type GameBoxProps={
     game:Game;

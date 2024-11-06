@@ -1,8 +1,8 @@
 import { useState } from "react";
-import GameBox from "./Game";
-import games from "./games.json"
+import GameBox from "./GameBox/GameBox";
+import games from "./GameBox/games.json"
 import usersData from "/src/pages/usersBD.json";
-import SimonGame from "./Games/SimonGame/src/SimonGame";
+import SimonGame from "./GameBox/games/SimonGame/src/SimonGame";
 
 export type Game = {
   title: string;
@@ -13,6 +13,10 @@ export type Game = {
   id: string;
   url:string;
 };
+export type GameState ={
+  gameOn: boolean;
+  id: string;
+}
 
 
 
@@ -24,7 +28,7 @@ export type Game = {
 
 export const HomeMain = () => {
 
-  const [onPlay, setOnPlay] = useState<boolean>(false);
+  const [gameState, setGameState] = useState<GameState>({gameOn.false},);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
 
@@ -68,6 +72,7 @@ export const HomeMain = () => {
 
     return (
       <div className="GameContainer">
+        
         {selectedGame?.title === "Simon Game" ? (
           <SimonGame />
         )  : (
