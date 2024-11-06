@@ -2,58 +2,59 @@
     display: flex;
     justify-content: space-between;  
     align-items: center;
-    background-color: #05011cec; 
-    padding: 1rem;  
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  
-    border-bottom: 3px solid #043316;  
-    width: 100%;
-    min-height: 18vh;
 
-    &__section{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        flex: 1;
-        &--logo{
-            flex-direction: column;
-            align-items: center;
-        }
-        &--user{
-            justify-content: flex-end;
-            margin-right: 3rem;
-        }
-        img{
-            position: relative;
-            max-height: 12rem;
-            opacity: 0.9;
-            
-        }
-    
-    }
-    &__logo {
-        max-height: 8rem;
-        opacity: 0.9;
-    }
+    background-color: rgba(10, 10, 11, 0.71);
+    padding: 15px;  
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  
+
+    width: 100vw;
+    gap: 1vw;  
+    width: 100%;
+
     &__title {
-        color: #31f05a;
+        color: rgb(124, 0, 174);
         font-size: 2rem;  
         margin: 0;
-        margin-top: -4rem;
         text-shadow: 0 0 10px rgb(0, 39, 12), 0 0 10px;
-        z-index: 1000;
+        margin-top: -2.5rem;
+        z-index: 1;
+        
     }
     &__subtitle {
+        position: relative;
         color: #f9fffa;
         font-size: 1rem;  
         margin: 0;
         text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 10px;
-        z-index: 1000;
+    }
+    &__section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        flex: 1;
+        height: 100%;
+        img{
+            position: relative;
+            max-height: 20vh;
+            opacity: 0.8;
+        }
+    &__user{
+        height: 100%;
+    }
+        
+    }
+    &__nav {
+        display: flex;
+        gap: 20px;  
     }
 
     &__link {
         color: #f5f6fa;
         text-decoration: none;
+        
         font-size: 1.1rem;  
         transition: color 0.3s;  
 
