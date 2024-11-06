@@ -1,7 +1,7 @@
 // SimonGame.tsx
 import { useEffect, useState } from 'react';
-import ColorCard from './components/ColorCard';
-import delay from './utils/util';
+import ColorCard from './src/components/ColorCard';
+import delay from './src/utils/util';
 
 function SimonGame() {
   const [isOn, setIsOn] = useState(false);

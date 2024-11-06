@@ -1,23 +1,35 @@
+import { Game, GameState } from "../HomeMain";
 import games from "./games.json";
-export type GameProps={
-    id:string
-}
-export type Game = {
-    title: string;
-    route: string;
-    backroute:string;
-    color: string;
-    description: string;
-    id: string;
-    url:string;
-  };
+import React, { Suspense } from "react";
 
-let juego:Game;
-export default function SelectedGame ({id}:(GameProps)) {
+const importGame = (component: string) => {
+  console.log(`./games/${component}/${component}.tsx`);
+  return React.lazy(() => import(`./games/${component}/${component}.tsx`));
+};
 
-    juego = games.filter((v:Game)=>v.id===id)[0];
+export type GameProps = {
+  id: string;
+  setGameState: (value: GameState) => void;
+};
 
-    return <>
-        {juego.title}
+let juego: Game;
+export default function SelectedGame({ id, setGameState }: GameProps) {
+  juego = games.filter((v: Game) => v.id === id)[0];
+
+  const Component = importGame(juego.component);
+
+  return (
+    <>
+      
+      <Suspense fallback={<div>Loading...</div>}>
+        <Component />
+      </Suspense>
+      <button
+        className="button"
+        onClick={() => setGameState({ gameOn: false, id: "" })}
+      >
+        Salir
+      </button>
     </>
-} 
+  );
+}
