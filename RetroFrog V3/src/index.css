@@ -348,7 +348,7 @@ body {
 }
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
-  width: 20%;
+  width: 50vw;
 }
 .navigation__icon {
   position: relative;
@@ -449,12 +449,12 @@ main {
 
 .scene {
   -webkit-perspective: 70rem;
-  width: 100%;
-  height: 20rem;
-  margin: auto;
+  width: 25rem;
+  height: 35rem;
+  margin: -3rem auto -7rem auto;
   position: relative;
   z-index: 9;
-  position: relative;
+  overflow: hidden;
 }
 
 .scene:hover .box {
@@ -522,6 +522,7 @@ main {
 
 .box__face--back {
   background: rgb(0, 0, 0);
+  background-size: cover;
   border: 2px solid black;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
@@ -532,13 +533,25 @@ main {
 }
 .box__face--back h3 {
   padding: 0.5rem;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+  background-color: rgba(43, 1, 39, 0.7411764706);
+  border-radius: 0.2rem;
+  margin: 1rem;
+  color: white;
+}
+.box__face--back p {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: rgba(150, 40, 139, 0.8078431373);
+  border-radius: 0.2rem;
+  margin: 1rem;
+  color: white;
 }
 .box__face--back button {
   margin-bottom: 2rem;
-  width: 200px;
-  height: 70px;
-  background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+  width: 150px;
+  height: 60px;
+  background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
   border-style: none;
   color: #fff;
   font-size: 23px;
@@ -549,8 +562,18 @@ main {
   position: relative;
   padding: 0px;
   overflow: hidden;
-  transition: all 0.5s;
+  transition: all 0.5s ease, background 0.5s ease;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+}
+.box__face--back button:hover {
+  transition: all 0.5s;
+  transform: scale(1.1);
+  background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.box__face--back button:hover span {
+  animation-play-state: paused;
 }
 .box__face--back button span {
   position: absolute;
@@ -631,14 +654,6 @@ main {
   100% {
     bottom: 70px;
   }
-}
-.box__face--back button:hover {
-  transition: all 0.5s;
-  transform: scale(1.1);
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
-}
-.box__face--back button:hover span {
-  animation-play-state: paused;
 }
 
 .logo {

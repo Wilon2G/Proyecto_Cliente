@@ -65,7 +65,7 @@
 
     &__link {
         padding: 0.5rem;
-
+        
         &:link,
         &:visited {
             display: inline-block;
@@ -107,7 +107,7 @@
 
     &__checkbox:checked~&__nav {
         opacity: 1;
-        width: 20%;
+        width: 50vw;
     }
 
     &__icon {

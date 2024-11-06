@@ -12,7 +12,7 @@ return (
   <nav className="navigation__nav">
     <ol className="navigation__list">
       <li className="navigation__item">
-        <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Desbloqueadoss</a>
+        <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Desbloqueados</a>
       </li>
       <li className="navigation__item">
         <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Tienda</a>
