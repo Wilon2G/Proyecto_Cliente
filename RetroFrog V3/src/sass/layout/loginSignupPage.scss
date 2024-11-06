@@ -3,20 +3,24 @@
 .login,
 .signup {
     &__wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
         display: flex;
         justify-content: center;
         align-items: center;
 
         max-width: 100%;
 
-        margin: 10vh;
         border-radius: 8px;
-        padding: 30px;
+        padding: 3rem;
         text-align: center;
         border: 1px solid rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        background-color: #30005098;
+        background-color: rgba(51, 45, 55, 0.4);
 
         a {
             color: #efefef;
@@ -162,8 +166,7 @@
 //Diferencias para signup
 .signup {
     &__wrapper {
-        margin: 5vh;
-        height: 80vh;
+        height: 70vh;
 
         button {
             margin: 1.5rem;
@@ -178,6 +181,10 @@
     &__form {
         h2 {
             margin-bottom: 0;
+        }
+
+        p{
+            padding-bottom: 0 1rem;
         }
     }
 }

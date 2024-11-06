@@ -4,15 +4,14 @@
     }
 
     &__button {
-        height: 8rem;
-        width: 8rem;
+        height: 6rem;
+        width: 6rem;
 
         position: fixed;
-        top: 2.5rem;
+        top: 5rem;
         left: 2.5rem;
 
-        background-color: black;
-        border: 3px solid grey;
+        background-color: rgba(10, 10, 11, 0.71);
 
         z-index: 2500;
         box-shadow: 0 1rem 3rem rgba(black, .1);
@@ -21,11 +20,11 @@
     }
 
     &__background {
-        height: 8rem;
-        width: 8rem;
+        height: 6rem;
+        width: 6rem;
 
         position: fixed;
-        top: 2.5rem;
+        top: 5rem;
         left: 2.5rem;
 
         background-color: rgba(0, 0, 0, 0.5);
@@ -34,7 +33,7 @@
 
     &__nav {
         height: 100vh;
-        width: 20%;
+        max-width: 16rem;
 
         position: fixed;
         top: 0;
@@ -42,7 +41,6 @@
 
         z-index: 2000;
         background-color: black;
-        border: 3px solid yellow;
         opacity: 0;
         width: 0;
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -73,12 +71,12 @@
             display: inline-block;
             font-size: 1rem;
             font-weight: 300;
-            color: yellow;
+            color: #c1c1c1;
             text-decoration: none;
             text-transform: uppercase;
 
-            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, darkblue 50%);
-            background-size: 220%;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
+            background-size: 230%;
             transition: all 0.4s;
         }
 
@@ -91,8 +89,8 @@
             &>i {
                 display: block;
                 position: absolute;
-                top: -.2rem;
-                left: -3.5rem;
+                top: .4rem;
+                left: -3rem;
             }
         }
 
@@ -114,14 +112,14 @@
 
     &__icon {
         position: relative;
-        margin-top: 3.5rem;
+        margin-top: 2.75rem;
 
         &,
         &::before,
         &::after {
             width: 3rem;
             height: 2px;
-            background-color: yellow;
+            background-color: #c1c1c1;
             display: inline-block;
         }
 
