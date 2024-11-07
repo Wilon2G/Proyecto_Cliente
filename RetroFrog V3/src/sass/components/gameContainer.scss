@@ -3,10 +3,10 @@
     margin: 1rem;
     border-radius: 0.5rem;
     position: relative;
-    border: 4px solid gray;
+    border: 1px solid rgb(88, 88, 88);
     width: 70%;
     height: 85vh;
-    background-color: rgba(0, 0, 0, 0.562);
+    background-color: rgba(114, 114, 114, 0.336);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,9 +15,35 @@
         margin: 2rem;
       }    
     iframe{
+        margin: 1rem;
         border-radius: 0.8rem;
         max-width: 100vh ;
         max-height: 100vh;
+    }
+    button{
+        margin: 10px auto;
+        width:150px;
+        height:60px;
+        background: linear-gradient(to right top, #663636 50%, #805555 50%);
+        border-style: none;
+        color:#fff;
+        font-size: 23px;
+        letter-spacing: 3px;
+        // font-family: 'Lato';
+        font-weight: 600;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        padding: 0px;
+        overflow: hidden;
+        transition: all .5s ease, background 0.5s ease;
+        box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+        border-radius: 0.2rem;}
+    button:hover{
+        transition: all .5s;
+        transform:  scale(1.1);
+        background: linear-gradient(to right top, #b62c2c 50%, #ee3030 50%);
+        box-shadow: 0px 3px 5px rgba(0,0,0,.4);
     }
 }
     

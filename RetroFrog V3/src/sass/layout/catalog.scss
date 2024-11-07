@@ -24,9 +24,9 @@ main{
     align-self: center;
     width: 100%;
     text-align: center;
-    color: #ddcfdc;
+    color: #ffffff;
     padding: 1rem;
-    background-color: #503148;
+    background-color: #341453c2;
     border-radius: 0.5rem;
   }
 
@@ -34,22 +34,15 @@ main{
 
 &__lock{
   margin-top: 2.5rem;
-  background-color: rgba(145, 129, 149, 0.4);
+  background-color: rgba(141, 117, 38, 0.267);
 
   h1{
-    color: #d9d9d9;
+    background-color: #f0b028b0;
+    color: #ffffff;
   }
 
 }
 
-}
-
-.box__face--front {
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(./../../src/assets/SuperMario.jpeg);
 }
 
 

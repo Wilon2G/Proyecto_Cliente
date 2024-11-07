@@ -99,10 +99,10 @@
   margin: 1rem;
   border-radius: 0.5rem;
   position: relative;
-  border: 4px solid gray;
+  border: 1px solid rgb(88, 88, 88);
   width: 70%;
   height: 85vh;
-  background-color: rgba(0, 0, 0, 0.562);
+  background-color: rgba(114, 114, 114, 0.336);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,9 +112,35 @@
   margin: 2rem;
 }
 .GameContainer iframe {
+  margin: 1rem;
   border-radius: 0.8rem;
   max-width: 100vh;
   max-height: 100vh;
+}
+.GameContainer button {
+  margin: 10px auto;
+  width: 150px;
+  height: 60px;
+  background: linear-gradient(to right top, #663636 50%, #805555 50%);
+  border-style: none;
+  color: #fff;
+  font-size: 23px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0px;
+  overflow: hidden;
+  transition: all 0.5s ease, background 0.5s ease;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+}
+.GameContainer button:hover {
+  transition: all 0.5s;
+  transform: scale(1.1);
+  background: linear-gradient(to right top, #b62c2c 50%, #ee3030 50%);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 .simon-game {
@@ -488,25 +514,18 @@ main {
   align-self: center;
   width: 100%;
   text-align: center;
-  color: #ddcfdc;
+  color: #ffffff;
   padding: 1rem;
-  background-color: #503148;
+  background-color: rgba(52, 20, 83, 0.7607843137);
   border-radius: 0.5rem;
 }
 .catalog__lock {
   margin-top: 2.5rem;
-  background-color: rgba(145, 129, 149, 0.4);
+  background-color: rgba(141, 117, 38, 0.267);
 }
 .catalog__lock h1 {
-  color: #d9d9d9;
-}
-
-.box__face--front {
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(./../../src/assets/SuperMario.jpeg);
+  background-color: rgba(240, 176, 40, 0.6901960784);
+  color: #ffffff;
 }
 
 .scene {
@@ -719,9 +738,9 @@ main {
 }
 
 .logo {
-  position: absolute;
   margin: 0 auto;
-  top: 2%;
+  position: absolute;
+  top: 10vh;
 }
 .logo img {
   width: 10rem;
@@ -738,7 +757,7 @@ main {
   align-items: center;
   max-width: 100%;
   border-radius: 8px;
-  padding: 3rem;
+  padding: 4rem;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
@@ -760,7 +779,7 @@ main {
   color: #000;
   font-weight: 600;
   border: none;
-  padding: 12px 20vw;
+  padding: 12px 0vw;
   cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
@@ -777,6 +796,10 @@ main {
 .signup__form {
   display: flex;
   flex-direction: column;
+}
+.login__form ::placeholder,
+.signup__form ::placeholder {
+  color: transparent;
 }
 .login__form h2,
 .signup__form h2 {
@@ -814,6 +837,10 @@ main {
   outline: none;
   font-size: 16px;
   color: #fff;
+}
+.login__form--input-field input:focus::placeholder,
+.signup__form--input-field input:focus::placeholder {
+  color: #999;
 }
 .login__form--input-field input:focus ~ label,
 .login__form--input-field input:valid ~ label,

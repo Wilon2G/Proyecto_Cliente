@@ -1,9 +1,10 @@
 @use "../abstracts/variables.scss" as *;
 
 .logo{
-    margin: 0 auto;
     position: absolute;
-    top: 10vh;
+    margin: 0 auto;
+    top: 2%;
+
     img{
         width: 10rem;
 
@@ -15,7 +16,6 @@
 .login,
 .signup {
     &__wrapper {
-        
         position: absolute;
         top: 50%;
         left: 50%;
@@ -26,9 +26,9 @@
         align-items: center;
 
         max-width: 100%;
-        
+
         border-radius: 8px;
-        padding: 4rem;
+        padding: 3rem;
         text-align: center;
         border: 1px solid rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(8px);
@@ -49,7 +49,7 @@
             color: #000;
             font-weight: 600;
             border: none;
-            padding: 12px 0vw;
+            padding: 12px 20vw;
             cursor: pointer;
             border-radius: 3px;
             font-size: 16px;
@@ -63,16 +63,11 @@
             background: rgba(255, 255, 255, 0.15);
         }
     }
-    
 
     &__form {
         display: flex;
         flex-direction: column;
-        ::placeholder { 
-            color: transparent;
-        }
-        
-         
+
         h2 {
             font-size: 2rem;
             margin-bottom: 2.5rem;
@@ -87,7 +82,7 @@
             position: relative;
             border-bottom: 2px solid #ccc;
             margin: 15px 0;
-            
+
             label {
                 position: absolute;
                 top: 50%;
@@ -97,7 +92,6 @@
                 font-size: 16px;
                 pointer-events: none;
                 transition: 0.15s ease;
-                
             }
 
             input {
@@ -110,10 +104,6 @@
 
                 font-size: 16px;
                 color: #fff;
-                
-            }
-            input:focus::placeholder {
-                color: #999;
             }
 
             input:focus~label,
@@ -121,7 +111,6 @@
                 font-size: 0.8rem;
                 top: 10px;
                 transform: translateY(-120%);
-                
             }
 
             .password-eye {

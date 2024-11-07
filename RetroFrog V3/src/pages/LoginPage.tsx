@@ -29,6 +29,7 @@ type User = {
 const LoginPage: React.FC = () => {
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
 
     //Para ocultar y mostrar contrseña
     const [shown, setShown] = useState(false);
@@ -66,7 +67,10 @@ const LoginPage: React.FC = () => {
                             //console.log("Success");
                             sessionStorage.setItem('username', userName);
                             sessionStorage.setItem('id', user.id);
+                            sessionStorage.setItem('name', user.name);
+                            sessionStorage.setItem('email', user.email);
                             sessionStorage.setItem('score', user.score.toString());
+                            
                             console.log('Score to store:', user.score); // Verifica el valor antes de almacenarlo
 
                             navigate('/'); // Te redirige a home si está todo correcto
@@ -102,7 +106,7 @@ const LoginPage: React.FC = () => {
     return (
     <>
         <div className="logo">
-            <img src="src/assets/logos/RetroFrogLogo.png" alt="LOGO" />
+            <img src="src/assets/logos/Logo.png" alt="LOGO" />
         </div>
 
         <div className="login__wrapper">
