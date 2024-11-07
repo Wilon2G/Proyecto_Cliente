@@ -1,0 +1,25 @@
+
+.GameContainer {
+    margin: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    border: 4px solid gray;
+    width: 70%;
+    height: 85vh;
+    background-color: rgba(0, 0, 0, 0.562);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .game{
+        margin: 2rem;
+      }    
+    iframe{
+        border-radius: 0.8rem;
+        max-width: 100vh ;
+        max-height: 100vh;
+    }
+}
+    
+    
+

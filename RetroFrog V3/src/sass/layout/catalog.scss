@@ -15,17 +15,19 @@ main{
   flex-wrap: wrap;
 
   margin: 0 auto;
-  background-color: rgba(145, 129, 149, 0.17);
+  background-color: rgba(38, 34, 46, 0.534);
   width: 80%;
   border-radius: 1rem;
-  
+  box-shadow:0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 
   h1{
     align-self: center;
     width: 100%;
     text-align: center;
-    color: #fff;
-    padding-top: 1rem;
+    color: #ddcfdc;
+    padding: 1rem;
+    background-color: #503148;
+    border-radius: 0.5rem;
   }
 
 }
@@ -42,21 +44,6 @@ main{
 
 }
 
-.GameContainer {
-position: relative;
-border: 4px solid gray;
-width: 70%;
-height: 70vh;
-background-color: black;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.game{
-  margin: 2rem;
-}
-
 .box__face--front {
   width: 200px;
   height: 200px;
@@ -70,7 +57,7 @@ justify-content: center;
   -webkit-perspective: 70rem ;
   width: 25rem;
   height: 35rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
-  margin: -3rem auto -7rem auto;
+  margin: 0rem auto -4rem auto;
   position: relative;
   z-index: 9;
   overflow: hidden;
@@ -163,19 +150,20 @@ justify-content: center;
   flex-flow: column;
   justify-content: space-between;
   h3{
+    margin: 10px;
     padding: .5rem;
     font-size: 1.5rem;
-    background-color: #2b0127bd;
+    background-color: #00000080;
     border-radius: 0.2rem;
-    margin: 1rem;
     color: white;
   }
   p{
+    margin: 10px;
     padding: .5rem;
     font-size: 1rem;
-    background-color: #96288bce;
+    background-color: #1f1f1fa2;
     border-radius: 0.2rem;
-    margin: 1rem;
+
     color: white;
   }
 

@@ -17,15 +17,23 @@ export default function  HomeHeader  (){
     }, []);
 
     return(
-        <div className="header">
-            <div className="header__section header__section--logo">
-            <img src="src/assets/logos/FroggoLoggo.png" alt="LOGO" />
-                <h1 className="header__title">RetroFrog</h1>
-                <h3 className="header__subtitle">Welcome to RetroFrog</h3>
+        <header className="header">
+            <div className="header__logo">
+                <img src="src/assets/logos/Logo.png" alt="LOGO" />
+                <h3>RetroFrog</h3>
             </div>
+            <form action="#" className="search">
+                    <input type="text" className="search__input" placeholder="Buscar Juegazos" />
+                    <button className="search__button">
+                        <svg className="search__icon">
+                            <use xlinkHref="/src/assets/icons/sprite.svg#icon-magnifying-glass"></use>
+                        </svg>
+                    </button>
+            </form>
+            
             <div className="header__section header__section--user">
                 <UserProfile />
             </div>    
-        </div>
+        </header>
     )
 }
