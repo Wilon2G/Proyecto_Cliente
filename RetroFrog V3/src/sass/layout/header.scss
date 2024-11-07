@@ -6,11 +6,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    @media only screen and (max-width: 400px) {
-        flex-wrap: wrap;
-        align-content: space-around;
-        height: 11rem;
+    gap: 30px;
+    
+    @media only screen and (max-width: 780px) {
+        flex-direction: column;
+        gap: 0px;
+        height: 12rem;
+        
     }
 
     &__logo{
@@ -38,10 +40,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 25%;
         text-align: center;
         flex: 1;
         height: 100%;
+        margin: 0 20%;
         
         &--user{
             margin-top: 1vh;
@@ -61,7 +65,8 @@
     
     // SEARCH
 .search {
-    flex: 0 0 40%;
+    
+    flex: 0 0 35vw;
 
     display: flex;
     align-items: center;
@@ -77,7 +82,7 @@
         padding: .7rem 2rem;
         border-radius: 100px;
 
-        width: 90%;
+        width: 95%;
         transition: all .2s;
 
         margin-right: -3.25rem;
@@ -112,9 +117,9 @@
     }
 
     &__icon {
-        height: 1.5rem;
-        width: 1.5rem;
-        fill: rgba(255, 255, 255, 0.589);
+        height: 1.8rem;
+        width: 1.8rem;
+        fill: rgba(255, 255, 255, 0.781);
     }
 }
 

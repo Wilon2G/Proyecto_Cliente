@@ -12,6 +12,7 @@ export const PlayButton=  ({setOnPlay,id}:PlayButtonProps)=>{
   <button onClick={()=>{
     setOnPlay({gameOn:true,id:id});
     // console.log("Clickado");
+    sessionStorage.setItem('gameId', id);
     }}>
     ¡Jugar! 
     <span></span>

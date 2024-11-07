@@ -22,8 +22,6 @@ $light-color: #8d4cd6e0;
     box-shadow: 0 1rem 1.5rem -1rem rgba($light-color, 0.4);
     transform: translateX(-50%);
   }
-
-  
   .name {
   background-color: #2b025ae0;
   margin: 0px -20px 5px;
@@ -44,8 +42,8 @@ $light-color: #8d4cd6e0;
   .row_stats{
     margin: 20px -20px 5px;
     padding: 20px 0 20px;
-    border-top: 1px solid #155d0cd5;
-    border-bottom: 1px solid #1a5d11d5;
+    border-top: 1px solid #ffffff49;
+    border-bottom: 1px solid #ffffff42;
     width: 16rem;
     
     background-color: $burn-color;
@@ -58,7 +56,7 @@ $light-color: #8d4cd6e0;
     overflow: hidden;
     opacity: 0;
     margin: auto;
-    transition: transform 200ms ease, opacity 350ms; /* Corregido: eliminada la coma */
+    transition: transform 200ms ease, opacity 350ms; 
     box-shadow: 0 0.2rem $light-color, 0 0 1rem $burn-color;
     z-index: 1000;
     padding: 20px;
@@ -66,10 +64,6 @@ $light-color: #8d4cd6e0;
   }
 
   &.expand {
-    .cover {
-      opacity: 0.5;
-      transform: translateY(0); 
-    }
     .below-fold {
       opacity: 1;
       transform: scaleY(1);
