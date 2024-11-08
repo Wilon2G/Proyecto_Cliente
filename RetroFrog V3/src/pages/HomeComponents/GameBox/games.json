@@ -28,6 +28,15 @@
     "component":"SimonGame"
   },
   {
+    "title": "Memory Game",
+    "route": "src/assets/games/SimonSays.png",
+    "backroute": "",
+    "color": "#b6b6b6",
+    "description": "",
+    "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "component":"Memory"
+  },
+  {
     "title": "Super Bomberman",
     "route": "src/assets/games/SuperBombermanCover.jpg",
     "backroute": "src/assets/games/SuperBombermanBack.gif",
