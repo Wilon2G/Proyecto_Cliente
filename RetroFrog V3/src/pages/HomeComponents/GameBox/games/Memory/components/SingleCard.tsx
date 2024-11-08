@@ -1,4 +1,13 @@
-export default function SingleCard({card, handleChoice, flipped, disabled}) {
+import { Card } from "../Memory"
+
+type SingleCardProps={
+    card:Card,
+    handleChoice:(card:Card)=>void,
+    flipped:boolean,
+    disabled:boolean,
+}
+
+export default function SingleCard({card, handleChoice, flipped, disabled}:SingleCardProps) {
     
     const handleClick = () => {
         if (!disabled) {
