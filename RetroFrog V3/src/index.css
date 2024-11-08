@@ -658,7 +658,7 @@ main {
   border-radius: 0.2rem;
   color: white;
 }
-.box__face--back button {
+.box__face--back .playBtn {
   margin-bottom: 2rem;
   width: 150px;
   height: 60px;
@@ -686,11 +686,11 @@ main {
 .box__face--back button:hover span {
   animation-play-state: paused;
 }
-.box__face--back button span {
+.box__face--back .playBtn span {
   position: absolute;
   display: block;
 }
-.box__face--back button span:nth-child(1) {
+.box__face--back .playBtn span:nth-child(1) {
   height: 3px;
   width: 200px;
   top: 0px;
@@ -709,7 +709,7 @@ main {
     left: 200px;
   }
 }
-.box__face--back button span:nth-child(2) {
+.box__face--back .playBtn span:nth-child(2) {
   height: 70px;
   width: 3px;
   top: -70px;
@@ -728,7 +728,7 @@ main {
     top: 70px;
   }
 }
-.box__face--back button span:nth-child(3) {
+.box__face--back .playBtn span:nth-child(3) {
   height: 3px;
   width: 200px;
   right: -200px;
@@ -747,7 +747,7 @@ main {
     right: 200px;
   }
 }
-.box__face--back button span:nth-child(4) {
+.box__face--back .playBtn span:nth-child(4) {
   height: 70px;
   width: 3px;
   bottom: -70px;
@@ -766,6 +766,7 @@ main {
     bottom: 70px;
   }
 }
+
 
 .logo {
   margin: 0 auto;
@@ -953,6 +954,29 @@ main {
 }
 .signup__form p {
   padding-bottom: 0 1rem;
+}
+
+footer {
+  margin-top: 5rem;
+  background-color: rgba(10, 10, 11, 0.71);
+  width: 100%;
+  color: aliceblue;
+  padding: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+footer h1 {
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2%;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li {
+  margin-top: 0.5rem;
 }
 
 /*# sourceMappingURL=index.css.map */

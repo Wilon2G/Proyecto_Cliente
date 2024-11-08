@@ -48,7 +48,7 @@
   {
     "title": "The Legend of Zelda: A Link to the Past",
     "route": "src/assets/games/LegendOfZeldaCover.png",
-    "backroute": "src/assets/games/LegendofZeldaBack.gif",
+    "backroute": "src/assets/games/LegendOfZeldaBack.gif",
     "color": "#b29a4e",
     "description": "Un viaje épico en el mundo de Hyrule",
     "id": "ae9f3e17-39f9-48e6-bf22-06e4b19f4b1d",
