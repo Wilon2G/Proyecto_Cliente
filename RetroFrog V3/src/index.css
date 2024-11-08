@@ -149,6 +149,205 @@
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
+.scene {
+  -webkit-perspective: 70rem;
+  width: 25rem;
+  height: 35rem;
+  margin: 0rem auto -4rem auto;
+  position: relative;
+  z-index: 9;
+  overflow: hidden;
+}
+.scene:hover .box {
+  -webkit-transform: rotateY(-180deg);
+  scale: 130%;
+  margin-top: 5rem;
+}
+.scene .box {
+  width: 18rem;
+  height: 18rem;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all 1s ease-out;
+  margin: 3rem auto;
+  position: relative;
+}
+.scene .box .shadow {
+  background: radial-gradient(ellipse at 50% 50%, #000000 0%, rgba(255, 255, 255, 0) 69%);
+  -webkit-transform: rotateX(-90deg);
+  width: 19.4rem;
+  height: 18.4rem;
+  position: absolute;
+  top: 10rem;
+  left: 0.1rem;
+}
+.scene .box .box__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+}
+.scene .box .box__face--front {
+  background: #d9d9d9;
+  border: 2px solid black;
+  overflow: hidden;
+  background-size: cover;
+  -webkit-transform: rotateY(0deg) translateZ(1.5rem);
+}
+.scene .box .box__face--right {
+  background: rgb(199, 233, 223); /* Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
+  width: 3rem;
+  -webkit-transform: rotateY(90deg) translateZ(16.5rem);
+  border: 2px solid black;
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  font-weight: 1000;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+}
+.scene .box .box__face--right div {
+  letter-spacing: 0.4rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgb(255, 255, 255) 14%, rgb(110, 110, 110) 65%);
+  border-radius: 0.4rem;
+  padding: 0.1rem;
+  color: navy;
+  border: #000000 solid 0.1rem;
+}
+.scene .box .box__face--back {
+  background: rgb(0, 0, 0);
+  background-size: cover;
+  border: 2px solid black;
+  overflow: hidden;
+  -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.scene .box .box__face--back h3 {
+  margin: 10px;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  border-radius: 0.2rem;
+  color: white;
+}
+.scene .box .box__face--back p {
+  margin: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: rgba(31, 31, 31, 0.6352941176);
+  border-radius: 0.2rem;
+  color: white;
+}
+.scene .box .box__face--back button {
+  margin-bottom: 2rem;
+  width: 150px;
+  height: 60px;
+  background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
+  border-style: none;
+  color: #fff;
+  font-size: 23px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0px;
+  overflow: hidden;
+  transition: all 0.5s ease, background 0.5s ease;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+}
+.scene .box .box__face--back button:hover {
+  transition: all 0.5s;
+  transform: scale(1.1);
+  background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.scene .box .box__face--back button span {
+  position: absolute;
+  display: block;
+}
+.scene .box .box__face--back button span:nth-child(1) {
+  height: 3px;
+  width: 200px;
+  top: 0px;
+  left: -200px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  animation: span1 2s linear infinite;
+  animation-delay: 1s;
+}
+.scene .box .box__face--back button span:nth-child(2) {
+  height: 70px;
+  width: 3px;
+  top: -70px;
+  right: 0px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #f6e58d);
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  animation: span2 2s linear infinite;
+  animation-delay: 2s;
+}
+.scene .box .box__face--back button span:nth-child(3) {
+  height: 3px;
+  width: 200px;
+  right: -200px;
+  bottom: 0px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+  animation: span3 2s linear infinite;
+  animation-delay: 3s;
+}
+.scene .box .box__face--back button span:nth-child(4) {
+  height: 70px;
+  width: 3px;
+  bottom: -70px;
+  left: 0px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+  border-top-right-radius: 1px;
+  border-top-left-radius: 1px;
+  animation: span4 2s linear infinite;
+  animation-delay: 4s;
+}
+@keyframes span1 {
+  0% {
+    left: -200px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+@keyframes span2 {
+  0% {
+    top: -70px;
+  }
+  100% {
+    top: 70px;
+  }
+}
+@keyframes span3 {
+  0% {
+    right: -200px;
+  }
+  100% {
+    right: 200px;
+  }
+}
+@keyframes span4 {
+  0% {
+    bottom: -70px;
+  }
+  100% {
+    bottom: 70px;
+  }
+}
+
 .simon-game {
   width: 100%;
   height: 100%;
@@ -556,215 +755,6 @@ main {
 .catalog__lock h1 {
   background-color: rgba(240, 176, 40, 0.6901960784);
   color: #ffffff;
-}
-
-.scene {
-  -webkit-perspective: 70rem;
-  width: 25rem;
-  height: 35rem;
-  margin: 0rem auto -4rem auto;
-  position: relative;
-  z-index: 9;
-  overflow: hidden;
-}
-
-.scene:hover .box {
-  -webkit-transform: rotateY(-180deg);
-  scale: 130%;
-  margin-top: 5rem;
-}
-
-.box {
-  width: 18rem;
-  height: 18rem;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: all 1s ease-out;
-  margin: 3rem auto;
-  position: relative;
-}
-
-.shadow {
-  background: radial-gradient(ellipse at 50% 50%, #000000 0%, rgba(255, 255, 255, 0) 69%);
-  -webkit-transform: rotateX(-90deg);
-  width: 19.4rem;
-  height: 18.4rem;
-  position: absolute;
-  top: 10rem;
-  left: 0.1rem;
-}
-
-.box__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-}
-
-.box__face--front {
-  background: #d9d9d9;
-  border: 2px solid black;
-  overflow: hidden;
-  background-size: cover;
-  -webkit-transform: rotateY(0deg) translateZ(1.5rem);
-}
-
-.box__face--right {
-  background: rgb(199, 233, 223); /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
-  width: 3rem;
-  -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-  border: 2px solid black;
-  overflow: hidden;
-  writing-mode: vertical-rl;
-  font-weight: 1000;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  align-items: center;
-}
-.box__face--right div {
-  letter-spacing: 0.4rem;
-  text-align: center;
-  background: linear-gradient(180deg, rgb(255, 255, 255) 14%, rgb(110, 110, 110) 65%);
-  border-radius: 0.4rem;
-  padding: 0.1rem;
-  color: navy;
-  border: #000000 solid 0.1rem;
-}
-
-.box__face--back {
-  background: rgb(0, 0, 0);
-  background-size: cover;
-  border: 2px solid black;
-  overflow: hidden;
-  -webkit-transform: rotateY(180deg) translateZ(1.5rem);
-  display: flex;
-  align-items: center;
-  flex-flow: column;
-  justify-content: space-between;
-}
-.box__face--back h3 {
-  margin: 10px;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.5019607843);
-  border-radius: 0.2rem;
-  color: white;
-}
-.box__face--back p {
-  margin: 10px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  background-color: rgba(31, 31, 31, 0.6352941176);
-  border-radius: 0.2rem;
-  color: white;
-}
-.box__face--back .playBtn {
-  margin-bottom: 2rem;
-  width: 150px;
-  height: 60px;
-  background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
-  border-style: none;
-  color: #fff;
-  font-size: 23px;
-  letter-spacing: 3px;
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  padding: 0px;
-  overflow: hidden;
-  transition: all 0.5s ease, background 0.5s ease;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  border-radius: 0.2rem;
-}
-.box__face--back button:hover {
-  transition: all 0.5s;
-  transform: scale(1.1);
-  background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
-}
-.box__face--back button:hover span {
-  animation-play-state: paused;
-}
-.box__face--back .playBtn span {
-  position: absolute;
-  display: block;
-}
-.box__face--back .playBtn span:nth-child(1) {
-  height: 3px;
-  width: 200px;
-  top: 0px;
-  left: -200px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), #f6e58d);
-  border-top-right-radius: 1px;
-  border-bottom-right-radius: 1px;
-  animation: span1 2s linear infinite;
-  animation-delay: 1s;
-}
-@keyframes span1 {
-  0% {
-    left: -200px;
-  }
-  100% {
-    left: 200px;
-  }
-}
-.box__face--back .playBtn span:nth-child(2) {
-  height: 70px;
-  width: 3px;
-  top: -70px;
-  right: 0px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #f6e58d);
-  border-bottom-left-radius: 1px;
-  border-bottom-right-radius: 1px;
-  animation: span2 2s linear infinite;
-  animation-delay: 2s;
-}
-@keyframes span2 {
-  0% {
-    top: -70px;
-  }
-  100% {
-    top: 70px;
-  }
-}
-.box__face--back .playBtn span:nth-child(3) {
-  height: 3px;
-  width: 200px;
-  right: -200px;
-  bottom: 0px;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
-  border-top-left-radius: 1px;
-  border-bottom-left-radius: 1px;
-  animation: span3 2s linear infinite;
-  animation-delay: 3s;
-}
-@keyframes span3 {
-  0% {
-    right: -200px;
-  }
-  100% {
-    right: 200px;
-  }
-}
-.box__face--back .playBtn span:nth-child(4) {
-  height: 70px;
-  width: 3px;
-  bottom: -70px;
-  left: 0px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
-  border-top-right-radius: 1px;
-  border-top-left-radius: 1px;
-  animation: span4 2s linear infinite;
-  animation-delay: 4s;
-}
-@keyframes span4 {
-  0% {
-    bottom: -70px;
-  }
-  100% {
-    bottom: 70px;
-  }
 }
 
 
