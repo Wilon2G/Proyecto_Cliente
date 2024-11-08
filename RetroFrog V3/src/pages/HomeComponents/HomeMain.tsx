@@ -32,7 +32,7 @@ export const HomeMain = () => {
   //const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
 
-  const currentUser = usersData.users[0];
+  const currentUser = usersData.users[0];                //PENDIENTE DE CAMBIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const unlockedGames = currentUser.userInfo.gamesUnlocked;
   const unlockedGamesList = games.filter((game: Game) => 
     unlockedGames.includes(game.id)

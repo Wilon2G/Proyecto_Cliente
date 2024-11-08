@@ -13,8 +13,8 @@ let buttonText='¡Jugar!';
   }
 
     return(
-        <div className="playBtn">
-  <button onClick={()=>{
+        
+  <button className="playBtn" onClick={()=>{
     setOnPlay({gameOn:true,id:id});
     // console.log("Clickado");
     }}>
@@ -24,6 +24,6 @@ let buttonText='¡Jugar!';
     <span></span>
     <span></span>
   </button>
-</div>
+
     )
 }

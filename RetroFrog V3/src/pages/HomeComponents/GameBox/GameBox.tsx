@@ -1,6 +1,6 @@
 import { Game, GameState } from "../HomeMain";
 import {PlayButton} from "./PlayButton";
-//import UnlockButton from "./UnlockButton";
+import UnlockButton from "./UnlockButton";
 type GameBoxProps={
     game:Game;
     setGameState:(value:GameState)=>void;
@@ -23,8 +23,13 @@ export default function GameBox({game,setGameState,locked}:GameBoxProps) {
                   style={game.backroute==""?{backgroundColor: game.color}:{backgroundImage: urlbackgame }}>
                   <h3>{game.title}</h3>
                   <p>{game.description}</p>
-                  <PlayButton setOnPlay={setGameState} id={game.id} locked={locked} /></div>
-                  {/*locked?<UnlockButton></UnlockButton>:<></>*/}
+                  {locked?<UnlockButton></UnlockButton>:<></>}
+                  
+                  <PlayButton setOnPlay={setGameState} id={game.id} locked={locked} />
+                  
+                  
+                  </div>
+                  
                   
                 <div className="box__face box__face--right " style={{backgroundColor: game.color }}><div>Game-Poy Color</div></div>
                 

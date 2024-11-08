@@ -166,7 +166,7 @@ justify-content: center;
     
   }
 
-  button{
+  .playBtn{
     margin-bottom: 2rem;
     width:200px;
     height:70px;
@@ -185,11 +185,11 @@ justify-content: center;
     transition: all .5s;
     box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 }
-button span{
+.playBtn span{
     position: absolute;
     display: block;
 }
-button span:nth-child(1){
+.playBtn span:nth-child(1){
     height: 3px;
     width:200px;
     top:0px;
@@ -209,7 +209,7 @@ button span:nth-child(1){
         left:200px;
     }
 }
-button span:nth-child(2){
+.playBtn span:nth-child(2){
     height: 70px;
     width: 3px;
     top:-70px;
@@ -228,7 +228,7 @@ button span:nth-child(2){
         top:70px;
     }
 }
-button span:nth-child(3){
+.playBtn span:nth-child(3){
     height:3px;
     width:200px;
     right:-200px;
@@ -248,7 +248,7 @@ button span:nth-child(3){
     }
 }
 
-button span:nth-child(4){
+.playBtn span:nth-child(4){
     height:70px;
     width:3px;
     bottom:-70px;
@@ -268,13 +268,13 @@ button span:nth-child(4){
     }
 }
 
-button:hover{
+.playBtn:hover{
     transition: all .5s;
     transform:  scale(1.1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.4);
 }
 //rotate(-3deg)
-button:hover span{
+.playBtn:hover span{
     animation-play-state: paused;
 }
 

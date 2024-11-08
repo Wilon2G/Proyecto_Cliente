@@ -9,7 +9,7 @@ type PersonalInfo = {
     More: string;
 };
 
-type User = {
+export type User = {
     id: string;
     userName: string;
     password: string;

@@ -20,6 +20,22 @@
         "gamesLocked": [],
         "theme": "dark"
       }
+    },
+    {
+      "id": "b85e",
+      "userName": "Pepito",
+      "password": "pepito",
+      "name": "pepito prueba",
+      "email": "pepito@gmail.com",
+      "gender": "male",
+      "score": 0,
+      "userInfo": {
+        "gamesPlayed": null,
+        "gamesWinned": null,
+        "gamesUnlocked": null,
+        "gamesLocked": null,
+        "theme": "dark"
+      }
     }
   ]
 }
