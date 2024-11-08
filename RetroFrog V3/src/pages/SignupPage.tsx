@@ -61,7 +61,7 @@ const SignupPage: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (isValidate()) {
             event.preventDefault(); //Prevenir que se actualice la pagina al hacer click en el boton
-            let userObj = { userName, password, name, email, gender, score, userInfo }; //Se crea un objeto con toda esta informacion de usuario
+            const userObj = { userName, password, name, email, gender, score, userInfo }; //Se crea un objeto con toda esta informacion de usuario
             //console.log(userObj);
 
             //Para llamar a la API (JSON) se necesita fetch("APIEndPOint")
