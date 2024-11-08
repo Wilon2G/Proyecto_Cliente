@@ -1,279 +1,41 @@
-
-main{
+main {
   width: 100%;
   height: 100%;
   background-color: rgb(238, 206, 206);
 }
 
-.catalog{
+.catalog {
   width: 100%;
   margin-top: 1rem;
 
-&__unlock, &__lock{
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  &__unlock, &__lock {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    background-color: rgba(38, 34, 46, 0.534);
+    width: 80%;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 
-  margin: 0 auto;
-  background-color: rgba(38, 34, 46, 0.534);
-  width: 80%;
-  border-radius: 1rem;
-  box-shadow:0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
-
-  h1{
-    align-self: center;
-    width: 100%;
-    text-align: center;
-    color: #ffffff;
-    padding: 1rem;
-    background-color: #341453c2;
-    border-radius: 0.5rem;
+    h1 {
+      align-self: center;
+      width: 100%;
+      text-align: center;
+      color: #ffffff;
+      padding: 1rem;
+      background-color: #341453c2;
+      border-radius: 0.5rem;
+    }
   }
 
-}
+  &__lock {
+    margin-top: 2.5rem;
+    background-color: rgba(141, 117, 38, 0.267);
 
-&__lock{
-  margin-top: 2.5rem;
-  background-color: rgba(141, 117, 38, 0.267);
-
-  h1{
-    background-color: #f0b028b0;
-    color: #ffffff;
+    h1 {
+      background-color: #f0b028b0;
+      color: #ffffff;
+    }
   }
-
-}
-
-}
-
-
-.scene {
-  -webkit-perspective: 70rem ;
-  width: 25rem;
-  height: 35rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
-  margin: 0rem auto -4rem auto;
-  position: relative;
-  z-index: 9;
-  overflow: hidden;
-}
-
-
-
-.scene:hover .box {
-  -webkit-transform: rotateY(-180deg); //Rotación del contenedor
-  scale: 130%;
-  margin-top: 5rem;
-}
-
-.box {
-  width: 18rem;
-  height: 18rem;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: all 1s ease-out;
-  margin: 3rem auto;
-  
-  position: relative;
-}
-.shadow{
-  background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);
-  
-  -webkit-transform: rotateX(-90deg);
-  width: 19.4rem;                    //De momento no se me ocurre que hacer
-  height: 18.4rem;
-  // box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49);
-  position: absolute;
-  // // background-color: #9dcc78;
-  top: 10rem;
-  left: .1rem;
-  // z-index: 1;
-}
-//background: radial-gradient(ellipse at 50% 50%, #000000 0%, #FFFFFF00 69%);   OPCION A
-//background: radial-gradient(ellipse at 50% 50%, #000000E0 0%, #FFFFFF00 69%);  OPCION B
-//box-shadow: 0px 31px 19px -12px rgba(0,0,0,0.49); Obsoleto!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-.box__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-}
-
-.box__face--front {
-  background: #d9d9d9;
-  border:  2px solid black;
-  overflow: hidden;
-  background-size: cover;
-  -webkit-transform: rotateY(0deg) translateZ(1.5rem);
-
-}
-
-.box__face--right {
-  background: rgb(199, 233, 223);  /*Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
-  width: 3rem;
-  -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-  border:  2px solid black;
-  overflow: hidden;
-  writing-mode: vertical-rl;
-  font-weight: 1000;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  align-items: center;
-  
-  
-  div{
-    letter-spacing: .4rem;
-    text-align: center;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 14%, rgba(110,110,110,1) 65%);
-    border-radius: .4rem;
-    padding: .1rem;
-    color: navy;
-    border: #000000 solid .1rem;
-    
-  }
-}
-
-.box__face--back {
-  background: rgb(0, 0, 0);
-  background-size: cover;
-  border:  2px solid black;
-  overflow: hidden;
-  -webkit-transform: rotateY(180deg) translateZ(1.5rem );
-  display: flex;
-  align-items:center;
-  flex-flow: column;
-  justify-content: space-between;
-  h3{
-    margin: 10px;
-    padding: .5rem;
-    font-size: 1.5rem;
-    background-color: #00000080;
-    border-radius: 0.2rem;
-    color: white;
-  }
-  p{
-    margin: 10px;
-    padding: .5rem;
-    font-size: 1rem;
-    background-color: #1f1f1fa2;
-    border-radius: 0.2rem;
-
-    color: white;
-  }
-
-  button{
-    margin-bottom: 2rem;
-    width:150px;
-    height:60px;
-    background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
-    border-style: none;
-    color:#fff;
-    font-size: 23px;
-    letter-spacing: 3px;
-    // font-family: 'Lato';
-    font-weight: 600;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    padding: 0px;
-    overflow: hidden;
-    transition: all .5s ease, background 0.5s ease;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-    border-radius: 0.2rem;
-}
-button:hover{
-  transition: all .5s;
-  transform:  scale(1.1);
-  background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
-  box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-}
-//rotate(-3deg)
-button:hover span{
-  animation-play-state: paused;
-  
-}
-
-button span{
-    position: absolute;
-    display: block;
-}
-button span:nth-child(1){
-    height: 3px;
-    width:200px;
-    top:0px;
-    left:-200px;
-    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
-    border-top-right-radius: 1px;
-    border-bottom-right-radius: 1px;
-    animation: span1 2s linear infinite;
-    animation-delay: 1s;
-}
-
-@keyframes span1{
-    0%{
-        left:-200px
-    }
-    100%{
-        left:200px;
-    }
-}
-button span:nth-child(2){
-    height: 70px;
-    width: 3px;
-    top:-70px;
-    right:0px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
-    border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 1px;
-    animation: span2 2s linear infinite;
-    animation-delay: 2s;
-}
-@keyframes span2{
-    0%{
-        top:-70px;
-    }
-    100%{
-        top:70px;
-    }
-}
-button span:nth-child(3){
-    height:3px;
-    width:200px;
-    right:-200px;
-    bottom: 0px;
-    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
-    animation: span3 2s linear infinite;
-    animation-delay: 3s;
-}
-@keyframes span3{
-    0%{
-        right:-200px;
-    }
-    100%{
-        right: 200px;
-    }
-}
-
-button span:nth-child(4){
-    height:70px;
-    width:3px;
-    bottom:-70px;
-    left:0px;
-    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
-    border-top-right-radius: 1px;
-    border-top-left-radius: 1px;
-    animation: span4 2s linear infinite;
-    animation-delay: 4s;
-}
-@keyframes span4{
-    0%{
-        bottom: -70px;
-    }
-    100%{
-        bottom:70px;
-    }
-}
-
-
 }
