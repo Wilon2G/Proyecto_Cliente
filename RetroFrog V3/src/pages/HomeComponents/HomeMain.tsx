@@ -3,6 +3,7 @@ import GameBox from "./GameBox/GameBox";
 import games from "./GameBox/games.json";
 import usersData from "/src/pages/usersBD.json";
 import SelectedGame from "./GameBox/SelectedGame.tsx";
+import { BrowserRouter } from 'react-router-dom';
 
 export type Game = {
   title: string;

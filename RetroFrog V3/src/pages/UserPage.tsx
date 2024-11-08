@@ -8,7 +8,8 @@ const UserPage: React.FC = () => {
         email: "",
         name: "",
         gender: "male",
-        password:""
+        password:"",
+        id:""
     });
 
     // Obtener el nombre de usuario del sessionStorage para cargar los detalles

@@ -17,6 +17,7 @@ let buttonText='¡Jugar!';
   <button className="playBtn" onClick={()=>{
     setOnPlay({gameOn:true,id:id});
     // console.log("Clickado");
+    sessionStorage.setItem('gameId', id);
     }}>
     {buttonText}
     <span></span>

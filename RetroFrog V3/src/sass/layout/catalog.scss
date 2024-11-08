@@ -15,64 +15,45 @@ main{
   flex-wrap: wrap;
 
   margin: 0 auto;
-  background-color: rgba(145, 129, 149, 0.17);
+  background-color: rgba(38, 34, 46, 0.534);
   width: 80%;
   border-radius: 1rem;
-  
+  box-shadow:0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 
   h1{
     align-self: center;
     width: 100%;
     text-align: center;
-    color: #fff;
-    padding-top: 1rem;
+    color: #ffffff;
+    padding: 1rem;
+    background-color: #341453c2;
+    border-radius: 0.5rem;
   }
 
 }
 
 &__lock{
   margin-top: 2.5rem;
-  background-color: rgba(145, 129, 149, 0.4);
+  background-color: rgba(141, 117, 38, 0.267);
 
   h1{
-    color: #d9d9d9;
+    background-color: #f0b028b0;
+    color: #ffffff;
   }
 
 }
 
 }
 
-.GameContainer {
-position: relative;
-border: 4px solid gray;
-width: 70%;
-height: 70vh;
-background-color: black;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.game{
-  margin: 2rem;
-}
-
-.box__face--front {
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(./../../src/assets/SuperMario.jpeg);
-}
-
 
 .scene {
   -webkit-perspective: 70rem ;
-  width: 100%;
-  height: 20rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
-  margin: auto;
+  width: 25rem;
+  height: 35rem;  //Contenedor grande en el que se coloca todo, este es el contenedor que rota
+  margin: 0rem auto -4rem auto;
   position: relative;
   z-index: 9;
+  overflow: hidden;
 }
 
 
@@ -153,6 +134,7 @@ justify-content: center;
 
 .box__face--back {
   background: rgb(0, 0, 0);
+  background-size: cover;
   border:  2px solid black;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem );
@@ -161,16 +143,28 @@ justify-content: center;
   flex-flow: column;
   justify-content: space-between;
   h3{
+    margin: 10px;
     padding: .5rem;
-    font-size: 2.5rem;
-    
+    font-size: 1.5rem;
+    background-color: #00000080;
+    border-radius: 0.2rem;
+    color: white;
+  }
+  p{
+    margin: 10px;
+    padding: .5rem;
+    font-size: 1rem;
+    background-color: #1f1f1fa2;
+    border-radius: 0.2rem;
+
+    color: white;
   }
 
   .playBtn{
     margin-bottom: 2rem;
-    width:200px;
-    height:70px;
-    background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+    width:150px;
+    height:60px;
+    background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
     border-style: none;
     color:#fff;
     font-size: 23px;
@@ -182,10 +176,17 @@ justify-content: center;
     position: relative;
     padding: 0px;
     overflow: hidden;
-    transition: all .5s;
+    transition: all .5s ease, background 0.5s ease;
     box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+    border-radius: 0.2rem;
 }
-.playBtn span{
+button:hover{
+  transition: all .5s;
+  transform:  scale(1.1);
+  background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
+  box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+
     position: absolute;
     display: block;
 }
@@ -268,14 +269,6 @@ justify-content: center;
     }
 }
 
-.playBtn:hover{
-    transition: all .5s;
-    transform:  scale(1.1);
-    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-}
-//rotate(-3deg)
-.playBtn:hover span{
-    animation-play-state: paused;
-}
+
 
 }
