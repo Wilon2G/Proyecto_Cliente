@@ -2,20 +2,20 @@
   {
     "title": "Mario Kart",
     "route": "src/assets/games/MarioKart.jpeg",
-    "backroute": "",
+    "backroute": "src/assets/games/MarioKartBack.gif",
     "color": "#fd3d4a",
-    "description": "yupi, carreras",
+    "description": "El juego más clásico de carreras de Nintendo",
     "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e",
-    "component":""
+    "component":"MarioKart"
   },
   {
     "title": "Super Mario",
     "route": "src/assets/games/SuperMario.jpeg",
     "backroute": "",
     "color": "rgb(18, 176, 187)",
-    "description": "",
+    "description": "La primera aventura del fontanero Italiano.",
     "id": "fa5ce516-1c26-4018-9d98-9225068ccc18",
-    "component":""
+    "component":"SuperMario"
     
   },
   {
@@ -23,7 +23,7 @@
     "route": "src/assets/games/SimonSays.png",
     "backroute": "",
     "color": "#b6b6b6",
-    "description": "",
+    "description": "El juego más tradicional para entrenar tu memoria.",
     "id": "b97bf75d-5764-46b5-be5e-fe4df0d0af4a",
     "component":"SimonGame"
   },
