@@ -42,19 +42,23 @@ export const HomeMain = () => {
   );
   
   if (!gameState.gameOn) {
+
+//const [lockedgame,setLocked]=useState<boolean[]>([]);  Idea de usar estados para definir juegos como bloqueados
+
+
     return (
       <>
         <div className="catalog">
           <div className="catalog__unlock">
             <h1>Tus Juegos</h1>
             {unlockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
             ))}
           </div >
           <div className="catalog__lock">
             <h1>Tienda</h1>
             {lockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
             ))}
           </div>
 
@@ -70,18 +74,6 @@ export const HomeMain = () => {
       <div className="GameContainer">
         <SelectedGame id={gameState.id} setGameState={setGameState}/>
 
-{/*         
-        {selectedGame?.title === "Simon Game" ? (
-          <SimonGame />
-        )  : (
-          <iframe
-            src={selectedGame?.url}
-            allowFullScreen
-          />
-        )}
-        <button className="button" onClick={() => setGameState}>
-          Salir
-        </button> */}
       </div>
     );
   }

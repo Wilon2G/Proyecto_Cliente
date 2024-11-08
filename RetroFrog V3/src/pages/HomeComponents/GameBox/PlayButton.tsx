@@ -3,9 +3,14 @@ import { GameState } from "../HomeMain";
 type PlayButtonProps={
     setOnPlay:(value:GameState)=>void;
     id:string;
+    locked:boolean;
 }
 
-export const PlayButton=  ({setOnPlay,id}:PlayButtonProps)=>{
+export const PlayButton=  ({setOnPlay,id,locked}:PlayButtonProps)=>{
+let buttonText='¡Jugar!';
+  if (locked) {
+    buttonText='Demo';
+  }
 
     return(
         <div className="playBtn">
@@ -13,7 +18,7 @@ export const PlayButton=  ({setOnPlay,id}:PlayButtonProps)=>{
     setOnPlay({gameOn:true,id:id});
     // console.log("Clickado");
     }}>
-    ¡Jugar! 
+    {buttonText}
     <span></span>
     <span></span>
     <span></span>
