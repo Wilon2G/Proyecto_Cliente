@@ -16,7 +16,7 @@ function handleClick(){
     return (
         
   <button className="playBtn" onClick={()=>handleClick()}>
-    Desbloquear 
+    Buy now! 
   </button>
 
     )
