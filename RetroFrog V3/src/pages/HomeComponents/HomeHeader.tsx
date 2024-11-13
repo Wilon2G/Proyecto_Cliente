@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 import UserProfile from "./User";
 
@@ -22,19 +22,19 @@ export default function  HomeHeader  (){
                 <img src="src/assets/logos/Logo.png" alt="LOGO" />
                 <h3>RetroFrog</h3>
             </div>
-            <div className="header__section">
-                <form action="#" className="search">
-                        <input type="text" className="search__input" placeholder="Buscar Juegazos" />
-                        <button className="search__button">
-                            <svg className="search__icon">
+            <div className="header__search">
+                <form action="#" className="header__search--form">
+                        <input type="text" className="input" placeholder="Buscar Juegazos" />
+                        <button className="button">
+                            <svg className="icon">
                                 <use xlinkHref="/src/assets/icons/sprite.svg#icon-magnifying-glass"></use>
                             </svg>
                         </button>
                 </form>
-                <div className="header__section--user">
-                    <UserProfile />
-                </div>
             </div>    
+            <div className="header__user">
+                    <UserProfile />
+            </div>
         </header>
     )
 }

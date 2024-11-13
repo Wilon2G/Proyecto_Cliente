@@ -10,7 +10,6 @@
 }
 .profile-card .pic {
   opacity: 100;
-  background-image: url("~/assets/icons/UserIcon/pfp.png");
   background-position: center;
   background-size: cover;
   border: 2px solid rgba(43, 2, 90, 0.8784313725);
@@ -233,6 +232,7 @@
   background-color: rgba(0, 0, 0, 0.5019607843);
   border-radius: 0.2rem;
   color: white;
+  z-index: 1;
 }
 .scene .box .box__face--back p {
   margin: 10px;
@@ -241,6 +241,7 @@
   background-color: rgba(31, 31, 31, 0.6352941176);
   border-radius: 0.2rem;
   color: white;
+  z-index: 1;
 }
 .scene .box .box__face--back button {
   margin-bottom: 2rem;
@@ -346,6 +347,12 @@
   100% {
     bottom: 70px;
   }
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .simon-game {
@@ -491,11 +498,11 @@ body {
 
 .header {
   font-size: 1rem;
-  height: auto;
-  background-color: #2b2b2b;
+  height: 10rem;
+  background-color: rgba(10, 10, 11, 0.9);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   gap: 30px;
 }
@@ -512,8 +519,6 @@ body {
   justify-content: center;
   flex-direction: row;
   text-align: center;
-  flex: 1;
-  height: 100%;
 }
 .header__logo h3 {
   color: rgb(255, 255, 255);
@@ -526,37 +531,21 @@ body {
   max-width: 10vh;
   opacity: 0.8;
 }
-.header__section {
+.header__search {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 25%;
   text-align: center;
-  flex: 1;
-  height: 100%;
-  margin: 0 20%;
 }
-.header__section--user {
-  margin-top: 1vh;
-}
-.header__section--user img {
-  position: relative;
-  max-height: 7vh;
-  max-width: 7vh;
-  margin: auto;
-}
-.header__nav {
-  display: flex;
-  gap: 20px;
-}
-.header .search {
+.header__search--form {
   flex: 0 0 35vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.header .search__input {
+.header__search--form .input {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -568,32 +557,42 @@ body {
   transition: all 0.2s;
   margin-right: -3.25rem;
 }
-.header .search__input:focus {
+.header__search--form .input:focus {
   width: 100%;
   background-color: grey;
   outline: none;
 }
-.header .search__input::-webkit-input-placeholder {
+.header__search--form .input::-webkit-input-placeholder {
   font-weight: 200;
-  color: rgba(0, 0, 0, 0.5960784314);
+  color: whitesmoke;
 }
-.header .search__input:focus + .header .search__button {
-  background-color: rgb(236, 236, 236);
-}
-.header .search__button {
+.header__search--form .button {
   border: none;
   background-color: rgba(255, 255, 255, 0);
 }
-.header .search__button:focus {
+.header__search--form .button:focus {
   outline: none;
 }
-.header .search__button:active {
+.header__search--form .button:active {
   transform: translateY(2px);
 }
-.header .search__icon {
+.header__search--form .icon {
   height: 1.8rem;
   width: 1.8rem;
   fill: rgba(255, 255, 255, 0.781);
+}
+.header__user {
+  margin-top: 1vh;
+}
+.header__user img {
+  position: relative;
+  max-height: 7vh;
+  max-width: 7vh;
+  margin: auto;
+}
+.header__nav {
+  display: flex;
+  gap: 20px;
 }
 
 .navigation__checkbox {
@@ -603,9 +602,9 @@ body {
   height: 6rem;
   width: 6rem;
   position: fixed;
-  top: 10vh;
+  top: 2.5rem;
   left: 2.5rem;
-  background-color: rgba(10, 10, 11, 0.71);
+  background-color: rgba(10, 10, 11, 0.9);
   z-index: 2500;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -615,7 +614,7 @@ body {
   height: 6rem;
   width: 6rem;
   position: fixed;
-  top: 10vh;
+  top: 2.5rem;
   left: 2.5rem;
   background-color: rgba(148, 147, 147, 0.5);
   z-index: 1000;
@@ -727,7 +726,7 @@ main {
 
 .catalog {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .catalog__unlock, .catalog__lock {
   display: flex;
@@ -747,16 +746,16 @@ main {
   padding: 1rem;
   background-color: rgba(52, 20, 83, 0.7607843137);
   border-radius: 0.5rem;
+  font-size: 3rem;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 .catalog__lock {
-  margin-top: 2.5rem;
-  background-color: rgba(141, 117, 38, 0.267);
+  margin-top: 2rem;
+  background: rgba(46, 43, 34, 0.53);
 }
 .catalog__lock h1 {
-  background-color: rgba(240, 176, 40, 0.6901960784);
-  color: #ffffff;
+  background: rgba(157, 119, 53, 0.76);
 }
-
 
 .logo {
   margin: 0 auto;
@@ -947,7 +946,7 @@ main {
 }
 
 footer {
-  margin-top: 5rem;
+  margin-top: 2rem;
   background-color: rgba(10, 10, 11, 0.71);
   width: 100%;
   color: aliceblue;

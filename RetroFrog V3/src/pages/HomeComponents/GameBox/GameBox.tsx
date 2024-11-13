@@ -16,22 +16,24 @@ export default function GameBox({game,setGameState,locked}:GameBoxProps) {
   return (
     <div className="game">
       <div className="scene">
-      <div className="box">
+      <div className="box" >
                 <div className="shadow"></div>
-                <div className="box__face box__face--front " style={{backgroundImage: urlgame}}></div>
-                <div className="box__face box__face--back " 
-                  style={game.backroute==""?{backgroundColor: game.color}:{backgroundImage: urlbackgame }}>
+                <div className="box__face box__face--front " style={{backgroundImage: urlgame, filter:locked?"grayscale(80%)":""}} ></div>
+                <div className="box__face box__face--back " >
+                    <div className="background" style={game.backroute==""?{backgroundColor: game.color, filter:locked?"grayscale(80%)":""}:{backgroundImage: urlbackgame , filter:locked?"grayscale(80%)":""}}> 
+
+                    </div>
                   <h3>{game.title}</h3>
                   <p>{game.description}</p>
                   {locked?<UnlockButton></UnlockButton>:<></>}
                   
-                  <PlayButton setOnPlay={setGameState} id={game.id} locked={locked} />
+                  <PlayButton setOnPlay={setGameState} id={game.id} locked={locked}  />
                   
                   
                   </div>
                   
                   
-                <div className="box__face box__face--right " style={{backgroundColor: game.color }}><div>Game-Poy Color</div></div>
+                <div className="box__face box__face--right " style={{backgroundColor: game.color , filter:locked?"grayscale(80%)":""}}><div>Game-Poy Color</div></div>
                 
               </div>
       </div>
@@ -39,4 +41,4 @@ export default function GameBox({game,setGameState,locked}:GameBoxProps) {
   );
 }
 
-// style={{backgroundImage: urlgame}}
+// style={{backgroundImage: urlgame}} "grayscale(80%)"}   {game.backroute==""?{backgroundColor: game.color}:{backgroundImage: urlbackgame }}

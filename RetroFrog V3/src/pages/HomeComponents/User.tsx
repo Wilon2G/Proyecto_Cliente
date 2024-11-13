@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../../sass/components/user.scss';
 import { Link } from "react-router-dom";
+import pfp from '../../assets/icons/userIcon/mmmMonke.jpg';
 
 const UserProfile = () => {
   const [expanded, setExpanded] = useState(false);
@@ -13,7 +14,7 @@ const UserProfile = () => {
 
   return (
     <div className={`profile-card ${expanded ? 'expand' : ''}`}>
-      <img className="pic" id="expand-button" onClick={toggleExpand} />
+      <img src={pfp} className="pic" id="expand-button" onClick={toggleExpand} />
       <div className="below-fold">
         {expanded && (
           <>

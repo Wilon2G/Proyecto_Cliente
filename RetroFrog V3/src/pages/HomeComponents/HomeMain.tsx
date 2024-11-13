@@ -51,13 +51,13 @@ export const HomeMain = () => {
       <>
         <div className="catalog">
           <div className="catalog__unlock">
-            <h1>Tus Juegos</h1>
+            <h1 id="titleGames">Tus Juegos</h1>
             {unlockedGamesList.map((game: Game) => (
               <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
             ))}
           </div >
           <div className="catalog__lock">
-            <h1>Tienda</h1>
+            <h1 id="titleStore">Tienda</h1>
             {lockedGamesList.map((game: Game) => (
               <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
             ))}

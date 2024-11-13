@@ -1,6 +1,6 @@
 
 export default function HomeFooter(){
-    return <footer>
+    return <footer id="footer">
         <h1>¡Gracias por visitar RetroFrog!</h1>
         <div>
             <h3>Contacta con nosotros</h3>

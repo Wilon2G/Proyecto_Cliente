@@ -12,13 +12,13 @@ return (
   <nav className="navigation__nav">
     <ol className="navigation__list">
       <li className="navigation__item">
-        <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Desbloqueados</a>
+        <a href="#titleGames" className="navigation__link"><i className="material-icons">arrow_forward</i>Desbloqueados</a>
       </li>
       <li className="navigation__item">
-        <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Tienda</a>
+        <a href="#titleStore" className="navigation__link"><i className="material-icons">arrow_forward</i>Tienda</a>
       </li>
       <li className="navigation__item">
-        <a href="#" className="navigation__link"><i className="material-icons">arrow_forward</i>Sobre Nosotros</a>
+        <a href="#footer" className="navigation__link"><i className="material-icons">arrow_forward</i>Sobre Nosotros</a>
       </li>
     </ol>
   </nav>
