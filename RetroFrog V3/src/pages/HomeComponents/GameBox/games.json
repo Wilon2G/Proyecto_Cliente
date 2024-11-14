@@ -46,7 +46,7 @@
     "component":"DonkeyKong"
   },
   {
-    "title": "The Legend of Zelda: A Link to the Past",
+    "title": "The Legend of Zelda",
     "route": "src/assets/games/LegendOfZeldaCover.png",
     "backroute": "src/assets/games/LegendOfZeldaBack.gif",
     "color": "#b29a4e",

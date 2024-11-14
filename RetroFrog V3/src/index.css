@@ -216,7 +216,6 @@
 }
 .scene .box .box__face--back {
   background: rgb(0, 0, 0);
-  background-size: cover;
   border: 2px solid black;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
@@ -224,6 +223,12 @@
   align-items: center;
   flex-flow: column;
   justify-content: space-between;
+}
+.scene .box .box__face--back .background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
 }
 .scene .box .box__face--back h3 {
   margin: 10px;
@@ -347,12 +352,6 @@
   100% {
     bottom: 70px;
   }
-}
-
-.background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
 }
 
 .simon-game {
@@ -649,7 +648,7 @@ body {
 }
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 300;
   color: #c1c1c1;
   text-decoration: none;
@@ -788,6 +787,7 @@ main {
 .signup__wrapper a {
   color: #efefef;
   text-decoration: none;
+  font-size: 1.5rem;
 }
 .login__wrapper a:hover,
 .signup__wrapper a:hover {
@@ -845,7 +845,7 @@ main {
   left: 0;
   transform: translateY(-50%);
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   pointer-events: none;
   transition: 0.15s ease;
 }
@@ -856,7 +856,7 @@ main {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 1.7rem;
+  font-size: 1.25rem;
   color: #fff;
 }
 .login__form--input-field input:focus::placeholder,
@@ -877,7 +877,7 @@ main {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  font-size: x-large;
+  font-size: 2rem;
   color: #fff;
 }
 .login__form--gender,
@@ -890,6 +890,7 @@ main {
   margin: 0 auto;
   padding: 0.5rem 0;
   color: #fff;
+  font-size: 1.25rem;
 }
 .login__form--gender input,
 .signup__form--gender input {
@@ -917,6 +918,7 @@ main {
 .login__form--forget label p,
 .signup__form--forget label p {
   margin: 0 50px 0 10px;
+  font-size: 1.25rem;
 }
 .login__form--remember,
 .signup__form--remember {
@@ -937,12 +939,14 @@ main {
 }
 .signup__wrapper a {
   margin-top: 10px;
+  font-size: 1.25rem;
 }
 .signup__form h2 {
   margin-bottom: 0;
 }
 .signup__form p {
   padding-bottom: 0 1rem;
+  font-size: 1.75rem;
 }
 
 footer {

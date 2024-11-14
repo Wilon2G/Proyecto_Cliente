@@ -37,6 +37,7 @@
         a {
             color: #efefef;
             text-decoration: none;
+            font-size: 1.5rem;
         }
 
         a:hover {
@@ -95,7 +96,7 @@
                 left: 0;
                 transform: translateY(-50%);
                 color: #fff;
-                font-size: 1.5rem;
+                font-size: 1.25rem;
                 pointer-events: none;
                 transition: 0.15s ease;
                 
@@ -109,7 +110,7 @@
                 border: none;
                 outline: none;
 
-                font-size: 1.7rem;
+                font-size: 1.25rem;
                 color: #fff;
                 
             }
@@ -131,7 +132,7 @@
                 right: 0;
                 transform: translateY(-50%);
 
-                font-size: x-large;
+                font-size: 2rem;
                 color: #fff;
             }
         }
@@ -145,7 +146,7 @@
             margin: 0 auto;
             padding: .5rem 0;
             color: #fff;
-
+            font-size: 1.25rem;
             input {
                 width: 1.5rem;
             }
@@ -172,12 +173,14 @@
 
                 p {
                     margin: 0 50px 0 10px;
+                    font-size: 1.25rem;
                 }
             }
         }
 
         &--remember {
             accent-color: #fff;
+            
         }
 
         &--register {
@@ -199,6 +202,7 @@
 
         a {
             margin-top: 10px;
+            font-size: 1.25rem;
         }
 
     }
@@ -210,6 +214,7 @@
 
         p{
             padding-bottom: 0 1rem;
+            font-size: 1.75rem;
         }
     }
 }
