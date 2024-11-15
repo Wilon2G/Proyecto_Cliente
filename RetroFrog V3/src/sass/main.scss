@@ -3,6 +3,8 @@
 @use "base/typography.scss";
 
 @use "components/user.scss";
+@use "components/gameContainer.scss";
+@use "components/gameBox.scss";
 
 @use "games/simonSays.scss";
 @use "games/memory.scss";
@@ -12,3 +14,4 @@
 @use "layout/navbar.scss";
 @use "layout/catalog.scss";
 @use "layout/loginSignupPage.scss";
+@use "layout/footer.scss";

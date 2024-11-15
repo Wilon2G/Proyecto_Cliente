@@ -122,12 +122,12 @@ function SimonGame() {
         {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
           <div className='lostGame'>
             <p>Final Score: {play.score}</p>
-            <button onClick={handleClose}>Close</button>
+            <button className='button__exit button__exit--small' onClick={handleClose}>Restart</button>
           </div>
         )}
 
         {!isOn && play.score === 0 && (
-          <button onClick={startHandle} className='startButton'>Start</button>
+          <button onClick={startHandle} className='button__start button__start--simon'>Start</button>
         )}
 
         {isOn && (play.isDisplay || play.userPlay) && (

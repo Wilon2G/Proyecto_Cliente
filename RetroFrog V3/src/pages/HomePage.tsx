@@ -2,6 +2,7 @@
 import { HomeMain } from "./HomeComponents/HomeMain";
 import  HomeHeader from "./HomeComponents/HomeHeader";
 import HomeNavBar from "./HomeComponents/HomeNavBar";
+import HomeFooter from "./HomeComponents/HomeFooter";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             
         <HomeMain />
 
+        <HomeFooter />
         </>
     );
 }

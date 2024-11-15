@@ -3,6 +3,7 @@ import GameBox from "./GameBox/GameBox";
 import games from "./GameBox/games.json";
 import usersData from "/src/pages/usersBD.json";
 import SelectedGame from "./GameBox/SelectedGame.tsx";
+import { BrowserRouter } from 'react-router-dom';
 
 export type Game = {
   title: string;
@@ -32,7 +33,7 @@ export const HomeMain = () => {
   //const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
 
-  const currentUser = usersData.users[0];
+  const currentUser = usersData.users[0];                //PENDIENTE DE CAMBIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const unlockedGames = currentUser.userInfo.gamesUnlocked;
   const unlockedGamesList = games.filter((game: Game) => 
     unlockedGames.includes(game.id)
@@ -42,19 +43,23 @@ export const HomeMain = () => {
   );
   
   if (!gameState.gameOn) {
+
+//const [lockedgame,setLocked]=useState<boolean[]>([]);  Idea de usar estados para definir juegos como bloqueados
+
+
     return (
       <>
         <div className="catalog">
           <div className="catalog__unlock">
-            <h1>Tus Juegos</h1>
+            <h1 id="titleGames">Tus Juegos</h1>
             {unlockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
             ))}
           </div >
           <div className="catalog__lock">
-            <h1>Tienda</h1>
+            <h1 id="titleStore">Tienda</h1>
             {lockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} />
+              <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
             ))}
           </div>
 
@@ -70,18 +75,6 @@ export const HomeMain = () => {
       <div className="GameContainer">
         <SelectedGame id={gameState.id} setGameState={setGameState}/>
 
-{/*         
-        {selectedGame?.title === "Simon Game" ? (
-          <SimonGame />
-        )  : (
-          <iframe
-            src={selectedGame?.url}
-            allowFullScreen
-          />
-        )}
-        <button className="button" onClick={() => setGameState}>
-          Salir
-        </button> */}
       </div>
     );
   }
