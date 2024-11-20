@@ -549,6 +549,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 #root {
@@ -819,8 +820,7 @@ main {
 
 .logo {
   margin: 0 auto;
-  position: absolute;
-  top: 10vh;
+  text-align: center;
 }
 .logo img {
   width: 10rem;
@@ -828,10 +828,6 @@ main {
 
 .login__wrapper,
 .signup__wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;

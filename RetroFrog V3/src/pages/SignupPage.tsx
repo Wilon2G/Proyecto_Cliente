@@ -15,7 +15,10 @@ const SignupPage: React.FC = () => {
   const userInfo = {
     gamesPlayed: [],
     gamesWinned: [],
-    gamesUnlocked: ["b97bf75d-5764-46b5-be5e-fe4df0d0af4a"],
+    gamesUnlocked: ["fa5ce516-1c26-4018-9d98-9225068ccc18",
+      "b97bf75d-5764-46b5-be5e-fe4df0d0af4a",
+      "3ed4a416-12c4-4a0e-98e6-48fa7b6e7d3e",
+      "5aabf3c9-8h7d-4f6a-902a-99123f0e3f2c"],
     gamesLocked: [],
     theme: "dark",
   };
@@ -88,7 +91,7 @@ const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="signup__wrapper">
+    <div className="signup__wrapper" style={{marginTop:"6%"}}>
       <form className="signup__form" onSubmit={handleSubmit}>
         <h2>User Registeration</h2>
 

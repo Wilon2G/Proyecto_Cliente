@@ -87,7 +87,7 @@ const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="signup__wrapper">
+    <div className="signup__wrapper" style={{marginTop:"6%"}}>
       <form className="signup__form" onSubmit={handleSubmit}>
         <h2>User Modification</h2>
 

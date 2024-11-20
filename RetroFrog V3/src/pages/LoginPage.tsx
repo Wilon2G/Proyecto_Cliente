@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import { VscEye } from 'react-icons/vsc';
 import { Link, useNavigate } from "react-router-dom";
 
-//Tipado para los datos del JSON
-type PersonalInfo = {
-    games: string;
-    More: string;
-};
+
 
 export type User = {
     id: string;
@@ -70,7 +66,7 @@ const LoginPage: React.FC = () => {
                             sessionStorage.setItem('name', user.name);
                             sessionStorage.setItem('email', user.email);
                             sessionStorage.setItem('score', user.score.toString());
-                            
+                            sessionStorage.setItem('unlockedGames', user.userInfo.gamesUnlocked);
                             console.log('Score to store:', user.score); // Verifica el valor antes de almacenarlo
 
                             navigate('/'); // Te redirige a home si está todo correcto
@@ -105,6 +101,7 @@ const LoginPage: React.FC = () => {
 
     return (
     <>
+    <div style={{marginTop:"6%"}}>
         <div className="logo">
             <img src="src/assets/logos/Logo.png" alt="LOGO" />
         </div>
@@ -132,6 +129,7 @@ const LoginPage: React.FC = () => {
                 <Link className="login__form--register" to={'/register'}>New User</Link>
             </form>
 
+        </div>
         </div>
         </>
     );
