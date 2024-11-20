@@ -1,9 +1,13 @@
+@use "../abstracts/variables.scss" as *;
+
 .scene {
   -webkit-perspective: 70rem;
   width: 25rem;
   height: 35rem; // Contenedor grande en el que se coloca todo, este es el contenedor que rota
+  
   margin: 0rem auto -4rem auto;
   position: relative;
+  
   z-index: 9;
   overflow: hidden;
 
@@ -23,14 +27,12 @@
     position: relative;
 
     .shadow {
-      background: radial-gradient(
-        ellipse at 50% 50%,
-        #000000 0%,
-        #ffffff00 69%
-      );
+      background: radial-gradient(ellipse at 50% 50%,#000000 0%,#ffffff00 69%);
       -webkit-transform: rotateX(-90deg);
+      
       width: 19.4rem; // De momento no se me ocurre qué hacer
       height: 18.4rem;
+      
       position: absolute;
       top: 10rem;
       left: 0.1rem;
@@ -48,25 +50,23 @@
       -webkit-backface-visibility: hidden;
 
       &--front {
-        background: #d9d9d9;
-        border: 2px solid black;
+        background: $ppal-white;
+        border: 2px solid $ppal-black;
         overflow: hidden;
         background-size: cover;
         -webkit-transform: rotateY(0deg) translateZ(1.5rem);
       }
 
       &--right {
-        background: rgb(
-          199,
-          233,
-          223
-        ); /* Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
+        background: $right-side;  // Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :)
         width: 3rem;
         -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-        border: 2px solid black;
+        border: 2px solid $ppal-black;
         overflow: hidden;
+        
         writing-mode: vertical-rl;
         font-weight: 1000;
+        
         display: flex;
         justify-content: center;
         flex-flow: column;
@@ -75,23 +75,21 @@
         div {
           letter-spacing: 0.4rem;
           text-align: center;
-          background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 1) 14%,
-            rgba(110, 110, 110, 1) 65%
-          );
+          background: linear-gradient(180deg,$rigth-etiqueta-init 14%,$rigth-etiqueta-final 65%);
           border-radius: 0.4rem;
           padding: 0.1rem;
-          color: navy;
-          border: #000000 solid 0.1rem;
+          color: $rigth-etiqueta-text;
+          border: $ppal-black solid 0.1rem;
         }
       }
 
       &--back {
-        background: rgb(0, 0, 0);
-        border: 2px solid black;
+        background: $ppal-black;
+        border: 2px solid $ppal-black;
+
         overflow: hidden;
         -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+        
         display: flex;
         align-items: center;
         flex-flow: column;
@@ -108,37 +106,48 @@
         h3 {
           margin: 10px;
           padding: 0.5rem;
-          font-size: 1.5rem;
-          background-color: #00000080;
+
+          font-size: $ppal-font-size;
+          color: $ppal-white;
+
+          background-color:$ppal-black;
           border-radius: 0.2rem;
-          color: white;
+          
           z-index: 1;
         }
 
         p {
           margin: 10px;
           padding: 0.5rem;
-          font-size: 1rem;
-          background-color: #1f1f1fa2;
+
+          font-size: $x-small-font-size;
+          color: $ppal-white;
+
+          background-color: $back-text-bg;
           border-radius: 0.2rem;
-          color: white;
+          
           z-index: 1;
         }
 
         button {
           margin-bottom: 2rem;
+          padding: 0px;
+          position: relative;
+
           width: 150px;
           height: 60px;
-          background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
+
+          background: linear-gradient(to left top,$back-button-init  50%, $back-button-final 50%);
           border-style: none;
-          color: #fff;
-          font-size: 23px;
+
+          color: $ppal-white;
+          font-size: $ppal-font-size;
           letter-spacing: 3px;
           font-weight: 600;
+
           outline: none;
           cursor: pointer;
-          position: relative;
-          padding: 0px;
+
           overflow: hidden;
           transition: all 0.5s ease, background 0.5s ease;
           box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
@@ -147,7 +156,7 @@
           &:hover {
             transition: all 0.5s;
             transform: scale(1.1);
-            background: linear-gradient(to left top, #eeb332 50%, #eedb30 50%);
+            background: linear-gradient(to left top, $back-button-hover-init 50%, $back-button-hover-final 50%);
             box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
           }
 
@@ -155,12 +164,15 @@
             position: absolute;
             display: block;
 
+            //Movimiento de las lineas boton trasero
             &:nth-child(1) {
               height: 3px;
               width: 200px;
+
               top: 0px;
               left: -200px;
-              background: linear-gradient(to right, rgba(0, 0, 0, 0), #f6e58d);
+
+              background: linear-gradient(to right, rgba(0, 0, 0, 0),$back-button-line-move);
               border-top-right-radius: 1px;
               border-bottom-right-radius: 1px;
               animation: span1 2s linear infinite;
@@ -170,9 +182,11 @@
             &:nth-child(2) {
               height: 70px;
               width: 3px;
+
               top: -70px;
               right: 0px;
-              background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #f6e58d);
+
+              background: linear-gradient(to bottom, rgba(0, 0, 0, 0),$back-button-line-move);
               border-bottom-left-radius: 1px;
               border-bottom-right-radius: 1px;
               animation: span2 2s linear infinite;
@@ -182,9 +196,11 @@
             &:nth-child(3) {
               height: 3px;
               width: 200px;
+
               right: -200px;
               bottom: 0px;
-              background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+
+              background: linear-gradient(to left, rgba(0, 0, 0, 0), $back-button-line-move);
               border-top-left-radius: 1px;
               border-bottom-left-radius: 1px;
               animation: span3 2s linear infinite;
@@ -194,9 +210,11 @@
             &:nth-child(4) {
               height: 70px;
               width: 3px;
+
               bottom: -70px;
               left: 0px;
-              background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+
+              background: linear-gradient(to top, rgba(0, 0, 0, 0), $back-button-line-move);
               border-top-right-radius: 1px;
               border-top-left-radius: 1px;
               animation: span4 2s linear infinite;

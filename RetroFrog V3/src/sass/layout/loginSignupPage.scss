@@ -3,18 +3,15 @@
 .logo{
     margin: 0 auto;
     text-align: center;
+
     img{
         width: 10rem;
-
     }
 }
 
 .login,
 .signup {
     &__wrapper {
-        
-        
-        
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,15 +21,15 @@
         border-radius: 8px;
         padding: 5rem;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        border: 1px solid $login-wrapper-border;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        background-color: rgba(51, 45, 55, 0.4);
+        background-color: $login-wrapper-bg;
 
         a {
-            color: #efefef;
+            color:$ppal-white;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: $smaller-font-size;
         }
 
         a:hover {
@@ -40,22 +37,22 @@
         }
 
         button {
-            background: #fff;
-            color: #000;
+            background:$ppal-white;
+            color: $ppal-black;
             font-weight: 600;
             border: none;
             padding: 2px 0vw;
             cursor: pointer;
             border-radius: 3px;
-            font-size: 1.5rem;
+            font-size: $ppal-font-size;
             border: 2px solid transparent;
             transition: 0.3s ease;
         }
 
         button:hover {
-            color: #fff;
-            border-color: #fff;
-            background: rgba(255, 255, 255, 0.15);
+            color: $ppal-white;
+            border-color: $ppal-white;
+            background: $login-btn-hover;
         }
     }
     
@@ -68,21 +65,20 @@
         ::placeholder { 
             color: transparent;
         }
-        
-         
+                 
         h2 {
-            font-size: 3rem;
+            font-size: $h2-font-size;
             margin-bottom: 2.5rem;
-            color: #fff;
+            color:$ppal-white;
         }
 
         p {
-            color: #fff;
+            color: $ppal-white;
         }
 
         &--input-field {
             position: relative;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid $border-input-color;
             margin: 15px 0;
             
             label {
@@ -90,8 +86,9 @@
                 top: 50%;
                 left: 0;
                 transform: translateY(-50%);
-                color: #fff;
-                font-size: 1.25rem;
+
+                color: $ppal-white;
+                font-size: $smaller-font-size;
                 pointer-events: none;
                 transition: 0.15s ease;
                 
@@ -105,12 +102,12 @@
                 border: none;
                 outline: none;
 
-                font-size: 1.25rem;
-                color: #fff;
+                font-size: $smaller-font-size;
+                color: $ppal-white;
                 
             }
             input:focus::placeholder {
-                color: #999;
+                color: $ppal-grey-color;
             }
 
             input:focus~label,
@@ -128,7 +125,7 @@
                 transform: translateY(-50%);
 
                 font-size: 2rem;
-                color: #fff;
+                color: $ppal-white;
             }
         }
 
@@ -140,8 +137,8 @@
             width: 100%;
             margin: 0 auto;
             padding: .5rem 0;
-            color: #fff;
-            font-size: 1.25rem;
+            color:$ppal-white;
+            font-size: $ppal-font-size;
             input {
                 width: 1.5rem;
             }
@@ -151,7 +148,7 @@
         &--back {
             text-align: center;
             margin-top: 30px;
-            color: #fff;
+            color:$ppal-white;
         }
 
         &--forget {
@@ -160,7 +157,7 @@
             justify-content: space-between;
 
             margin: 25px 0 35px 0;
-            color: #fff;
+            color: $ppal-white;
 
             label {
                 display: flex;
@@ -168,20 +165,20 @@
 
                 p {
                     margin: 0 50px 0 10px;
-                    font-size: 1.25rem;
+                    font-size: $smaller-font-size;
                 }
             }
         }
 
         &--remember {
-            accent-color: #fff;
+            accent-color: $ppal-white;
             
         }
 
         &--register {
             text-align: center;
             margin-top: 30px;
-            color: #fff;
+            color: $ppal-white;
         }
     }
 }
@@ -197,7 +194,7 @@
 
         a {
             margin-top: 10px;
-            font-size: 1.25rem;
+            font-size: $ppal-font-size;
         }
 
     }
@@ -209,7 +206,7 @@
 
         p{
             padding-bottom: 0 1rem;
-            font-size: 1.75rem;
+            font-size: $ppal-font-size;
         }
     }
 }

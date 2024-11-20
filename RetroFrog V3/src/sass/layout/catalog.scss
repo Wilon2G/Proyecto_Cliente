@@ -1,30 +1,32 @@
-main {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(238, 206, 206);
-}
+@use "../abstracts/variables.scss" as *;
 
 .catalog {
   width: 100%;
   margin-top: 2rem;
 
   &__unlock, &__lock {
+    width: 80%;
+
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+
     margin: 0 auto;
-    background-color: rgba(38, 34, 46, 0.534);
-    width: 80%;
+
+    background-color:$unlock-bg;
+    
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
+    box-shadow: 0 0 10px $ppal-main-shadow, 0 0 10px;
 
     h1 {
-      align-self: center;
       width: 100%;
+
+      align-self: center;    
       text-align: center;
-      color: #ffffff;
-      padding: 1rem;
-      background-color: #341453c2;
+
+      color: $ppal-white;
+      padding: $h1-font-size;
+      background-color:$unlock-title-bg;
       border-radius: 0.5rem;
       font-size: 3rem;
       text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
@@ -33,12 +35,9 @@ main {
 
   &__lock{
     margin-top: 2rem;
-    background: rgba(46 43 34 / 53%);
+    background: $lock-bg;
     h1{
-      background: rgba(157 119 53 / 76%);
+      background:$lock-title-bg;
     }
-
   }
-
-
 }

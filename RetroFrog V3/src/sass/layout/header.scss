@@ -1,32 +1,35 @@
+@use "../abstracts/variables.scss" as *;
+
 .header {
-    font-size: 1rem;
-    height: 10rem;
-    background-color: rgba(10, 10, 11, 0.9);
     width: 100%;
+    height: 10rem;
+    gap: 30px;
+
+    background-color: $footer-header-bg;
+    font-size: $x-small-font-size;
+
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 30px;
     
     @media only screen and (max-width: 780px) {
         flex-direction: column;
         gap: 0px;
         height: 12rem;
-        
     }
 
     &__logo{
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        flex-direction: row;
+
         text-align: center;
         
-        
         h3 {
-            color: rgb(255, 255, 255);
+            color:$ppal-white;
             font-size: 2rem;  
-            text-shadow: 0 0 10px rgb(88, 0, 110), 0 0 10px;
+            text-shadow: 0 0 10px $purple-shadow-color, 0 0 10px;
         }
         img{
             position: relative;
@@ -38,47 +41,49 @@
    
     &__search{
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        flex-direction: row;
+        
         gap: 25%;
         text-align: center;
 
         &--form {
-    
-            flex: 0 0 35vw;
-        
             display: flex;
             align-items: center;
             justify-content: center;
+            flex: 0 0 35vw;
         
         
             .input {
+                width: 95%;
+
                 font-family: inherit;
                 font-size: inherit;
-                color: whitesmoke;
-                background-color: grey;
-                border: none;
-                padding: .7rem 2rem;
-                border-radius: 100px;
+                color:$ppal-white;
                 font-weight: 700;
-                width: 95%;
-                transition: all .2s;
-        
+
+                background-color: $ppal-grey-color;
+
+                border: none;
+                border-radius: 100px;
+
+                padding: .7rem 2rem;
                 margin-right: -3.25rem;
-        
+                
+                transition: all .2s;
+
                 &:focus {
                     width: 100%;
-                    background-color: grey;
+                    background-color: $ppal-grey-color;
                     outline: none;
                 }
         
                 &::-webkit-input-placeholder {
                     font-weight: 200;
-                    color: whitesmoke;
+                    color:$ppal-white;
                 }
             }
-        
         
             .button {
                 border: none;
@@ -99,9 +104,6 @@
                 fill: rgba(255, 255, 255, 0.781);
             }
         }
-        
-        
-        
           
     }
     &__user{
@@ -111,16 +113,11 @@
             max-height: 7vh;
             max-width: 7vh;
             margin: auto;
-            
         }
     } 
     &__nav {
         display: flex;
         gap: 20px;  
     }
-    
-    // SEARCH
-
-
-    
+ 
 }

@@ -1,17 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Quicksand:wght@300..700&display=swap");
 .profile-card {
   position: relative;
   text-align: center;
-  color: #f8f8f2;
-  align-items: center;
+  color: #efefef;
 }
 .profile-card .pic {
   opacity: 100;
-  background-position: center;
-  background-size: cover;
   border: 2px solid rgba(43, 2, 90, 0.8784313725);
   box-shadow: 0 1rem 1.5rem -1rem rgba(141, 76, 214, 0.4);
   transform: translateX(-50%);
@@ -22,9 +18,9 @@
   padding: 5px;
   font-size: 2rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #efefef;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 #333, 6px 2px 0 #000000;
+  text-shadow: 2px 2px 0 #999, 6px 2px 0 #0E0E10;
   padding: 0.3rem 0.7rem;
 }
 .profile-card .about {
@@ -34,17 +30,16 @@
   padding: 5px;
 }
 .profile-card .row_stats {
+  width: 16rem;
   margin: 20px -20px 5px;
   padding: 20px 0 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2862745098);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2588235294);
-  width: 16rem;
+  border: 1px solid rgba(255, 255, 255, 0.2862745098) 0;
   background-color: rgba(43, 2, 90, 0.8784313725);
 }
 .profile-card .below-fold {
+  width: 16rem;
   border-radius: 0.5rem;
   position: absolute;
-  width: 16rem;
   transform: scaleY(0.2) translate(-50%, 0%);
   overflow: hidden;
   opacity: 0;
@@ -73,13 +68,13 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  color: #efefef;
+  border: 1px solid #efefef;
   border-radius: 0.8rem;
   transition: background 200ms ease, color 200ms ease;
 }
 .profile-card .button--user:hover {
-  background: #f5f5f5;
+  background: #efefef;
   background-color: rgba(43, 2, 90, 0.8784313725);
 }
 .profile-card #expand-button {
@@ -91,13 +86,13 @@
 }
 
 .GameContainer {
+  width: 70%;
   margin: 1rem;
-  border-radius: 0.5rem;
+  padding: 1.75rem;
   position: relative;
   border: 1px solid rgb(88, 88, 88);
-  width: 70%;
-  padding: 1.75rem;
   background-color: rgba(114, 114, 114, 0.336);
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,8 +111,8 @@
   margin: 10px auto;
   background: linear-gradient(to right top, #663636 50%, #805555 50%);
   border-style: none;
-  color: #fff;
-  font-size: 23px;
+  color: #efefef;
+  font-size: 1.5rem;
   letter-spacing: 3px;
   font-weight: 600;
   outline: none;
@@ -173,17 +168,17 @@
   -webkit-backface-visibility: hidden;
 }
 .scene .box .box__face--front {
-  background: #d9d9d9;
-  border: 2px solid black;
+  background: #efefef;
+  border: 2px solid #0E0E10;
   overflow: hidden;
   background-size: cover;
   -webkit-transform: rotateY(0deg) translateZ(1.5rem);
 }
 .scene .box .box__face--right {
-  background: rgb(199, 233, 223); /* Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :) */
+  background: rgb(199, 233, 223);
   width: 3rem;
   -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-  border: 2px solid black;
+  border: 2px solid #0E0E10;
   overflow: hidden;
   writing-mode: vertical-rl;
   font-weight: 1000;
@@ -199,11 +194,11 @@
   border-radius: 0.4rem;
   padding: 0.1rem;
   color: navy;
-  border: #000000 solid 0.1rem;
+  border: #0E0E10 solid 0.1rem;
 }
 .scene .box .box__face--back {
-  background: rgb(0, 0, 0);
-  border: 2px solid black;
+  background: #0E0E10;
+  border: 2px solid #0E0E10;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
   display: flex;
@@ -221,34 +216,34 @@
   margin: 10px;
   padding: 0.5rem;
   font-size: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.5019607843);
+  color: #efefef;
+  background-color: #0E0E10;
   border-radius: 0.2rem;
-  color: white;
   z-index: 1;
 }
 .scene .box .box__face--back p {
   margin: 10px;
   padding: 0.5rem;
   font-size: 1rem;
+  color: #efefef;
   background-color: rgba(31, 31, 31, 0.6352941176);
   border-radius: 0.2rem;
-  color: white;
   z-index: 1;
 }
 .scene .box .box__face--back button {
   margin-bottom: 2rem;
+  padding: 0px;
+  position: relative;
   width: 150px;
   height: 60px;
   background: linear-gradient(to left top, #cab078 50%, #d4ce93 50%);
   border-style: none;
-  color: #fff;
-  font-size: 23px;
+  color: #efefef;
+  font-size: 1.5rem;
   letter-spacing: 3px;
   font-weight: 600;
   outline: none;
   cursor: pointer;
-  position: relative;
-  padding: 0px;
   overflow: hidden;
   transition: all 0.5s ease, background 0.5s ease;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
@@ -362,7 +357,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #000;
+  border: 1px solid #0E0E10;
 }
 .simon-game .cardWrapper__red--flash, .simon-game .cardWrapper__blue--flash, .simon-game .cardWrapper__green--flash, .simon-game .cardWrapper__yellow--flash {
   flex: 0 0 50%;
@@ -370,7 +365,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid white;
+  border: 3px solid #efefef;
 }
 .simon-game .cardWrapper__green {
   background-color: rgb(0, 145, 0);
@@ -406,22 +401,22 @@
 }
 .simon-game .button__start {
   margin: 10px auto;
+  position: absolute;
+  padding: 10px;
   width: 10rem;
   height: 7rem;
-  background: linear-gradient(to right top, #456636 50%, #83cf8d 50%);
+  background: linear-gradient(to right top, #0E0E10 50%, rgba(10, 10, 11, 0.9) 50%);
   border-style: none;
-  color: #fff;
-  font-size: 23px;
+  border-radius: 0.5rem;
+  color: #efefef;
+  font-size: 1.5rem;
   letter-spacing: 3px;
   font-weight: 600;
   outline: none;
   cursor: pointer;
-  position: absolute;
-  padding: 10px;
   overflow: hidden;
   transition: all 0.5s ease, background 0.5s ease;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
 }
 .simon-game .button__start--simon {
   width: 7rem;
@@ -430,7 +425,6 @@
 .simon-game .button__start:hover {
   transition: all 0.5s;
   transform: scale(1.1);
-  background: linear-gradient(to right top, #2ef72e 50%, #30ee49 50%);
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 .simon-game .score, .simon-game .lostGame {
@@ -439,7 +433,7 @@
   max-width: 150px;
   max-height: 150px;
   border-radius: 50%;
-  background-color: black;
+  background-color: #0E0E10;
   position: absolute;
   font-size: 1rem;
   text-align: center;
@@ -449,7 +443,7 @@
   align-items: center;
 }
 .simon-game .score p, .simon-game .lostGame p {
-  color: #fff;
+  color: #efefef;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
@@ -462,21 +456,21 @@
 }
 .MemoryGame > p {
   margin-top: 1.75rem;
-  color: whitesmoke;
+  color: #efefef;
   font-size: 1.75rem;
 }
 .MemoryGame > h1 {
-  color: whitesmoke;
+  color: #efefef;
   font-size: 2.75rem;
   margin-bottom: 1rem;
 }
 
 button {
   background: none;
-  border: 2px solid #fff;
+  border: 2px solid #efefef;
   padding: 6px 12px;
   border-radius: 4px;
-  color: #fff;
+  color: #efefef;
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
@@ -484,7 +478,7 @@ button {
 
 button:hover {
   background: #c23866;
-  color: #fff;
+  color: #efefef;
 }
 
 .card-grid {
@@ -501,7 +495,7 @@ button:hover {
 .card img {
   width: 100%;
   display: block;
-  border: 2px solid #fff;
+  border: 2px solid #efefef;
   border-radius: 6px;
 }
 
@@ -557,14 +551,14 @@ body {
 }
 
 .header {
-  font-size: 1rem;
-  height: 10rem;
-  background-color: rgba(10, 10, 11, 0.9);
   width: 100%;
+  height: 10rem;
+  gap: 30px;
+  background-color: rgba(10, 10, 11, 0.71);
+  font-size: 1rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 30px;
 }
 @media only screen and (max-width: 780px) {
   .header {
@@ -575,13 +569,13 @@ body {
 }
 .header__logo {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   text-align: center;
 }
 .header__logo h3 {
-  color: rgb(255, 255, 255);
+  color: #efefef;
   font-size: 2rem;
   text-shadow: 0 0 10px rgb(88, 0, 110), 0 0 10px;
 }
@@ -593,39 +587,39 @@ body {
 }
 .header__search {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   gap: 25%;
   text-align: center;
 }
 .header__search--form {
-  flex: 0 0 35vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 35vw;
 }
 .header__search--form .input {
+  width: 95%;
   font-family: inherit;
   font-size: inherit;
-  color: whitesmoke;
-  background-color: grey;
-  border: none;
-  padding: 0.7rem 2rem;
-  border-radius: 100px;
+  color: #efefef;
   font-weight: 700;
-  width: 95%;
-  transition: all 0.2s;
+  background-color: #999;
+  border: none;
+  border-radius: 100px;
+  padding: 0.7rem 2rem;
   margin-right: -3.25rem;
+  transition: all 0.2s;
 }
 .header__search--form .input:focus {
   width: 100%;
-  background-color: grey;
+  background-color: #999;
   outline: none;
 }
 .header__search--form .input::-webkit-input-placeholder {
   font-weight: 200;
-  color: whitesmoke;
+  color: #efefef;
 }
 .header__search--form .button {
   border: none;
@@ -688,7 +682,7 @@ body {
   top: 0;
   left: 0;
   z-index: 2000;
-  background-color: black;
+  background-color: #0E0E10;
   opacity: 0;
   width: 0;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -712,7 +706,7 @@ body {
   display: inline-block;
   font-size: 1.25rem;
   font-weight: 300;
-  color: #c1c1c1;
+  color: #efefef;
   text-decoration: none;
   text-transform: uppercase;
   background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
@@ -746,7 +740,7 @@ body {
 .navigation__icon, .navigation__icon::before, .navigation__icon::after {
   width: 3rem;
   height: 2px;
-  background-color: #c1c1c1;
+  background-color: #efefef;
   display: inline-block;
 }
 .navigation__icon::before, .navigation__icon::after {
@@ -779,32 +773,26 @@ body {
   transform: rotate(-135deg);
 }
 
-main {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(238, 206, 206);
-}
-
 .catalog {
   width: 100%;
   margin-top: 2rem;
 }
 .catalog__unlock, .catalog__lock {
+  width: 80%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin: 0 auto;
   background-color: rgba(38, 34, 46, 0.534);
-  width: 80%;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 }
 .catalog__unlock h1, .catalog__lock h1 {
-  align-self: center;
   width: 100%;
+  align-self: center;
   text-align: center;
-  color: #ffffff;
-  padding: 1rem;
+  color: #efefef;
+  padding: 3.5rem;
   background-color: rgba(52, 20, 83, 0.7607843137);
   border-radius: 0.5rem;
   font-size: 3rem;
@@ -844,7 +832,7 @@ main {
 .signup__wrapper a {
   color: #efefef;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .login__wrapper a:hover,
 .signup__wrapper a:hover {
@@ -852,8 +840,8 @@ main {
 }
 .login__wrapper button,
 .signup__wrapper button {
-  background: #fff;
-  color: #000;
+  background: #efefef;
+  color: #0E0E10;
   font-weight: 600;
   border: none;
   padding: 2px 0vw;
@@ -865,8 +853,8 @@ main {
 }
 .login__wrapper button:hover,
 .signup__wrapper button:hover {
-  color: #fff;
-  border-color: #fff;
+  color: #efefef;
+  border-color: #efefef;
   background: rgba(255, 255, 255, 0.15);
 }
 .login__form,
@@ -881,13 +869,13 @@ main {
 }
 .login__form h2,
 .signup__form h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 2.5rem;
-  color: #fff;
+  color: #efefef;
 }
 .login__form p,
 .signup__form p {
-  color: #fff;
+  color: #efefef;
 }
 .login__form--input-field,
 .signup__form--input-field {
@@ -901,7 +889,7 @@ main {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #fff;
+  color: #efefef;
   font-size: 1.25rem;
   pointer-events: none;
   transition: 0.15s ease;
@@ -914,7 +902,7 @@ main {
   border: none;
   outline: none;
   font-size: 1.25rem;
-  color: #fff;
+  color: #efefef;
 }
 .login__form--input-field input:focus::placeholder,
 .signup__form--input-field input:focus::placeholder {
@@ -935,7 +923,7 @@ main {
   right: 0;
   transform: translateY(-50%);
   font-size: 2rem;
-  color: #fff;
+  color: #efefef;
 }
 .login__form--gender,
 .signup__form--gender {
@@ -946,8 +934,8 @@ main {
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 0;
-  color: #fff;
-  font-size: 1.25rem;
+  color: #efefef;
+  font-size: 1.5rem;
 }
 .login__form--gender input,
 .signup__form--gender input {
@@ -957,7 +945,7 @@ main {
 .signup__form--back {
   text-align: center;
   margin-top: 30px;
-  color: #fff;
+  color: #efefef;
 }
 .login__form--forget,
 .signup__form--forget {
@@ -965,7 +953,7 @@ main {
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
-  color: #fff;
+  color: #efefef;
 }
 .login__form--forget label,
 .signup__form--forget label {
@@ -979,13 +967,13 @@ main {
 }
 .login__form--remember,
 .signup__form--remember {
-  accent-color: #fff;
+  accent-color: #efefef;
 }
 .login__form--register,
 .signup__form--register {
   text-align: center;
   margin-top: 30px;
-  color: #fff;
+  color: #efefef;
 }
 
 .signup__wrapper {
@@ -996,21 +984,21 @@ main {
 }
 .signup__wrapper a {
   margin-top: 10px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 .signup__form h2 {
   margin-bottom: 0;
 }
 .signup__form p {
   padding-bottom: 0 1rem;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 footer {
+  width: 100%;
   margin-top: 2rem;
   background-color: rgba(10, 10, 11, 0.71);
-  width: 100%;
-  color: aliceblue;
+  color: #efefef;
   padding: 5rem 0rem;
   display: flex;
   flex-wrap: wrap;
@@ -1041,7 +1029,7 @@ footer .footer--info {
   }
 }
 footer h1 {
-  font-size: 2rem;
+  font-size: 3.5rem;
   width: 100%;
   text-align: center;
   margin-bottom: 2%;

@@ -1,39 +1,35 @@
-//crear variables para 
-$nav-size: 6rem;
-$nav-position: 2.5rem;
-$text-size:1.25rem;
-$nav-btn-bg: rgba(10, 10, 11, 0.9);
-$shadow:rgba(0,0,0, .1);
+@use "../abstracts/variables.scss" as *;
+
 .navigation {
     &__checkbox {
         display: none;
     }
 
     &__button {
-        height: 6rem;
-        width: 6rem;
+        height: $nav-size;
+        width: $nav-size;
 
         position: fixed;
-        top: 2.5rem;
-        left: 2.5rem;
+        top: $nav-position;
+        left: $nav-position;
 
-        background-color: rgba(10, 10, 11, 0.9);
+        background-color: $ppal-black-bg;
 
         z-index: 2500;
-        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1rem 3rem $nav-btn-shadow;
         text-align: center;
         cursor: pointer;
     }
 
     &__background {
-        height: 6rem;
-        width: 6rem;
+        height: $nav-size;
+        width: $nav-size;
 
         position: fixed;
-        top: 2.5rem;
-        left: 2.5rem;
+        top: $nav-position;
+        left: $nav-position;
 
-        background-color: rgba(148, 147, 147, 0.5);
+        background-color: $nav-block-bg;
         z-index: 1000;
         box-shadow:0 0 10px rgba(255, 255, 255, 0.397), 0 0 10px;
     }
@@ -47,7 +43,7 @@ $shadow:rgba(0,0,0, .1);
         left: 0;
 
         z-index: 2000;
-        background-color: black;
+        background-color: $ppal-black;
         opacity: 0;
         width: 0;
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -75,13 +71,13 @@ $shadow:rgba(0,0,0, .1);
         &:link,
         &:visited {
             display: inline-block;
-            font-size: 1.25rem;
+            font-size: $smaller-font-size;
             font-weight: 300;
-            color: #c1c1c1;
+            color:$ppal-white;
             text-decoration: none;
             text-transform: uppercase;
 
-            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $ppal-purple-color 50%);
             background-size: 230%;
             transition: all 0.4s;
         }
@@ -108,7 +104,6 @@ $shadow:rgba(0,0,0, .1);
 
     &__checkbox:checked~&__background {
         transform: scale(80);
-
     }
 
     &__checkbox:checked~&__nav {
@@ -125,7 +120,7 @@ $shadow:rgba(0,0,0, .1);
         &::after {
             width: 3rem;
             height: 2px;
-            background-color: #c1c1c1;
+            background-color: $ppal-white;
             display: inline-block;
         }
 

@@ -1,66 +1,62 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
-
-$bg-color: #1e1d29;
-$burn-color: #2b025ae0;
-$button-bg: #f5f5f5;
-
-$text-color: #f8f8f2;
-$light-color: #8d4cd6e0;
+@use "../abstracts/variables.scss" as *;
+//@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
 
 .profile-card {
   position: relative;
+
   text-align: center;
-  color: $text-color;
-  align-items: center;
+  color: $ppal-white;
+
 
   .pic {
     opacity: 100;
     
-    background-position: center;
-    background-size: cover;
-    border: 2px solid $burn-color;
-    box-shadow: 0 1rem 1.5rem -1rem rgba($light-color, 0.4);
+    //background-position: center;
+    //background-size: cover;
+    border: 2px solid $dark-purple;
+    box-shadow: 0 1rem 1.5rem -1rem rgba($light-purple, 0.4);
     transform: translateX(-50%);
   }
   .name {
-  background-color: #2b025ae0;
+  background-color: $dark-purple;
   margin: 0px -20px 5px;
   padding: 5px;
   font-size: 2rem;
   font-weight: bold;
-  color: #ffffff; 
+  color: $ppal-white; 
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 #333, 6px 2px 0 #000000 ; 
+  text-shadow: 2px 2px 0 $ppal-grey-color, 6px 2px 0 $ppal-black ; 
   padding: 0.3rem 0.7rem; 
   }
   .about{
-    background-color: $burn-color;
+    background-color: $dark-purple;
     border-radius: 1rem;
     margin: 20px -10px 5px;
     padding: 5px;
   }
   .row_stats{
+    width: 16rem;
     margin: 20px -20px 5px;
     padding: 20px 0 20px;
-    border-top: 1px solid #ffffff49;
-    border-bottom: 1px solid #ffffff42;
-    width: 16rem;
+
+    border:$row-status-border 0;
     
-    background-color: $burn-color;
+    background-color: $dark-purple;
   }
   .below-fold {
+    width: 16rem;
     border-radius: 0.5rem;
     position: absolute;
-    width: 16rem;
+    
     transform: scaleY(0.2) translate(-50%, 0%);
     overflow: hidden;
     opacity: 0;
     margin: auto;
     transition: transform 200ms ease, opacity 350ms; 
-    box-shadow: 0 0.2rem $light-color, 0 0 1rem $burn-color;
+    box-shadow: 0 0.2rem $light-purple, 0 0 1rem $dark-purple;
     z-index: 1000;
     padding: 20px;
-    background-image: linear-gradient(135deg, rgba($burn-color, 0.9), rgba($light-color, 0.9));
+    background-image: linear-gradient(135deg, rgba($dark-purple, 0.9), rgba($light-purple, 0.9));
   }
 
   &.expand {
@@ -83,18 +79,23 @@ $light-color: #8d4cd6e0;
     &--user{
       width: 6rem;
       height: 2.5rem;
+
       margin: 1rem 0.5rem 0rem;
+
       background: transparent;
       cursor: pointer;
-      font-size: 1rem;
+
+      font-size: $x-small-font-size;
       font-weight: 500;
-      color: $button-bg;
-      border: 1px solid $button-bg;
+      color: $ppal-white;
+
+      border: 1px solid $ppal-white;
       border-radius: 0.8rem;
+
       transition: background 200ms ease, color 200ms ease;
       &:hover {
-        background: $button-bg;
-        background-color: $burn-color;
+        background: $ppal-white;
+        background-color: $dark-purple;
       }
     }
   }
@@ -102,6 +103,7 @@ $light-color: #8d4cd6e0;
   #expand-button {
     height: 7rem;
     width: 7rem;
+
     border-radius: 50%;
     cursor: pointer;
     transition: background 200ms ease, transform 500ms;
