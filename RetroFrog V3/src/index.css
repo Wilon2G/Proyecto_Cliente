@@ -96,7 +96,7 @@
   position: relative;
   border: 1px solid rgb(88, 88, 88);
   width: 70%;
-  height: 85vh;
+  padding: 1.75rem;
   background-color: rgba(114, 114, 114, 0.336);
   display: flex;
   flex-direction: column;
@@ -114,8 +114,6 @@
 }
 .GameContainer .button__exit {
   margin: 10px auto;
-  width: 20%;
-  height: 5%;
   background: linear-gradient(to right top, #663636 50%, #805555 50%);
   border-style: none;
   color: #fff;
@@ -129,17 +127,6 @@
   transition: all 0.5s ease, background 0.5s ease;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
-}
-.GameContainer .button__exit--small {
-  font-size: 1rem;
-  height: 25%;
-  border-radius: 1rem;
-}
-.GameContainer .button__exit--small:hover {
-  transition: all 0.5s;
-  transform: scale(1.1);
-  background: linear-gradient(to right top, #b62c2c 50%, #ee3030 50%);
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 .GameContainer .button__exit:hover {
   transition: all 0.5s;
@@ -468,7 +455,20 @@
 
 .MemoryGame {
   max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 40px auto;
+}
+.MemoryGame > p {
+  margin-top: 1.75rem;
+  color: whitesmoke;
+  font-size: 1.75rem;
+}
+.MemoryGame > h1 {
+  color: whitesmoke;
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
 }
 
 button {
