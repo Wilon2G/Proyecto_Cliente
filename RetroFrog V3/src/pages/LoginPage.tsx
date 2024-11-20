@@ -1,4 +1,3 @@
-import '../index.css';
 import { useEffect, useState } from "react";
 import { VscEye } from 'react-icons/vsc';
 import { Link, useNavigate } from "react-router-dom";

@@ -1,32 +1,43 @@
 .header {
     font-size: 1rem;
-    height: 10rem;
+    height: fit-content;
     background-color: rgba(10, 10, 11, 0.9);
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 30px;
     
-    @media only screen and (max-width: 780px) {
+    @media only screen and (max-width: 1440px) {
         flex-direction: column;
-        gap: 0px;
-        height: 12rem;
         
     }
-
+    &__container{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        width: 100%;
+        margin: 1.75rem 0rem;
+        justify-content: space-evenly;
+        align-items: center;
+    }
     &__logo{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
         text-align: center;
-        
+        margin: 1.75rem 9rem;
         
         h3 {
-            color: rgb(255, 255, 255);
-            font-size: 2rem;  
-            text-shadow: 0 0 10px rgb(88, 0, 110), 0 0 10px;
+            background-image: linear-gradient(120deg, #69c42d, rgb(2, 88, 50),#69c42d);
+            -webkit-background-clip: text;
+
+            -webkit-text-stroke: 1px #8ad359;
+
+            color: transparent;
+            font-size: 3rem;  
+            
+            text-shadow: 2px 2px 5px rgb(57, 124, 57);
         }
         img{
             position: relative;
@@ -36,22 +47,9 @@
         }
     }           
    
-    &__search{
+    &__search--form{
         display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        gap: 25%;
-        text-align: center;
-
-        &--form {
-    
-            flex: 0 0 35vw;
-        
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        
+        height: fit-content;
         
             .input {
                 font-family: inherit;
@@ -59,14 +57,15 @@
                 color: whitesmoke;
                 background-color: grey;
                 border: none;
-                padding: .7rem 2rem;
+                padding: 0 2.5rem;
                 border-radius: 100px;
-                font-weight: 700;
-                width: 95%;
+                font-weight: 400;
                 transition: all .2s;
-        
                 margin-right: -3.25rem;
-        
+                @media only screen and (max-width: 780px) {
+                    max-width: 40vw;
+                    
+                }
                 &:focus {
                     width: 100%;
                     background-color: grey;
@@ -83,11 +82,10 @@
             .button {
                 border: none;
                 background-color: rgba(255, 255, 255, 0);
-        
-                &:focus {
+                transition: all 200ms ease;
+                &:focus{
                     outline: none;
                 }
-        
                 &:active {
                     transform: translateY(2px);
                 }
@@ -98,29 +96,9 @@
                 width: 1.8rem;
                 fill: rgba(255, 255, 255, 0.781);
             }
-        }
-        
-        
-        
-          
-    }
-    &__user{
-        margin-top: 1vh;
-        img{
-            position: relative;
-            max-height: 7vh;
-            max-width: 7vh;
-            margin: auto;
-            
-        }
-    } 
-    &__nav {
-        display: flex;
-        gap: 20px;  
     }
     
+    
     // SEARCH
-
-
     
 }

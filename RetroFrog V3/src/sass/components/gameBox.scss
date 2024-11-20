@@ -1,17 +1,19 @@
 .scene {
   -webkit-perspective: 70rem;
-  width: 25rem;
-  height: 35rem; // Contenedor grande en el que se coloca todo, este es el contenedor que rota
-  margin: 0rem auto -4rem auto;
+  width: fit-content;
+  height: 28rem; // Contenedor grande en el que se coloca todo, este es el contenedor que rota
+  margin: 0rem auto 1rem auto;
+  padding-top: 2rem;
   position: relative;
   z-index: 9;
-  overflow: hidden;
+  
 
   // Cuando el contenedor recibe el hover, la caja rota
   &:hover .box {
     -webkit-transform: rotateY(-180deg); // Rotación del contenedor
     scale: 130%;
-    margin-top: 5rem;
+    margin-top: 3rem;
+    
   }
 
   .box {
@@ -19,7 +21,7 @@
     height: 18rem;
     -webkit-transform-style: preserve-3d;
     -webkit-transition: all 1s ease-out;
-    margin: 3rem auto;
+    margin: 3rem 3rem;
     position: relative;
 
     .shadow {

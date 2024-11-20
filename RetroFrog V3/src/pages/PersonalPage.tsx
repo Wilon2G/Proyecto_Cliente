@@ -95,7 +95,7 @@ const SignupPage: React.FC = () => {
           <input
             value={userName}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder={sessionStorage.getItem("username")}
+            placeholder={sessionStorage.getItem("username")!}
             required
           ></input>
           <label>Enter your NEW username </label>
@@ -115,7 +115,7 @@ const SignupPage: React.FC = () => {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder={sessionStorage.getItem("name")}
+            placeholder={sessionStorage.getItem("name")!}
             required
           ></input>
           <label>Enter your NEW full name </label>
@@ -126,7 +126,7 @@ const SignupPage: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            placeholder={sessionStorage.getItem("email")}
+            placeholder={sessionStorage.getItem("email")!}
             required
           ></input>
           <label>Enter your NEW email </label>
