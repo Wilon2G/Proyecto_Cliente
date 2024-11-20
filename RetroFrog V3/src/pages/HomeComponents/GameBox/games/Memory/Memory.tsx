@@ -77,7 +77,7 @@ function App() {
 
   // return
   return (
-    <div className="App">
+    <div className="MemoryGame">
       <h1>Memory Game</h1>
       <button onClick={shuffleCards}>New Game</button>
       <div className='card-grid'>

@@ -29,11 +29,11 @@
   },
   {
     "title": "Memory Game",
-    "route": "src/assets/games/SimonSays.png",
+    "route": "src/assets/games/MemoryGame.jpeg",
     "backroute": "",
-    "color": "#b6b6b6",
-    "description": "",
-    "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "color": "rgb(140, 11, 227)",
+    "description": "Pon a prueba tu memoria con este ingenioso juego. Derechos de Copyrigh reservados, idea 100% original de RetroFrog",
+    "id": "5aabf3c9-8h7d-4f6a-902a-99123f0e3f2c",
     "component":"Memory"
   },
   {

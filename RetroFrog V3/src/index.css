@@ -466,7 +466,7 @@
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.App {
+.MemoryGame {
   max-width: 860px;
   margin: 40px auto;
 }
@@ -492,15 +492,6 @@ button:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
-}
-
-body {
-  font-family: Raleway, sans-serif;
-  margin: 0;
-  font-size: 1.5em;
-  text-align: center;
-  background: #1b1523;
-  color: #fff;
 }
 
 .card {
@@ -616,11 +607,12 @@ body {
 .header__search--form .input {
   font-family: inherit;
   font-size: inherit;
-  color: inherit;
+  color: whitesmoke;
   background-color: grey;
   border: none;
   padding: 0.7rem 2rem;
   border-radius: 100px;
+  font-weight: 700;
   width: 95%;
   transition: all 0.2s;
   margin-right: -3.25rem;
