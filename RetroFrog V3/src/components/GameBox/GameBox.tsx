@@ -12,7 +12,7 @@ export default function GameBox({ game, setGameState, locked }: GameBoxProps) {
   const urlbackgame = `url(${game.backroute})`;
 
   return (
-    <div className="game">
+    
       <div className="scene">
         <div className="box">
           <div className="shadow"></div>
@@ -58,7 +58,7 @@ export default function GameBox({ game, setGameState, locked }: GameBoxProps) {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
