@@ -3,14 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
-  
+  justify-content: space-evenly;
+
   width: 100%;
 
   @media only screen and (max-width: 450px) {
     flex-direction: column;
-}
-
+    justify-content: center;
+  }
 }
 .game {
   z-index: 1;
@@ -37,15 +37,12 @@
     margin: 0;
     padding-top: 0;
     height: 15rem;
-}
+  }
 
   // Cuando el contenedor recibe el hover, la caja rota
   &:hover .box {
     -webkit-transform: rotateY(-180deg); // Rotación del contenedor
     scale: 130%;
-
-    
-    
   }
 
   .box {
