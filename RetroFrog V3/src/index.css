@@ -190,7 +190,7 @@
 }
 .scene .box .box__face--front {
   background: #efefef;
-  border: 2px solid #0E0E10;
+  border: 2px solid #0e0e10;
   overflow: hidden;
   background-size: cover;
   -webkit-transform: rotateY(0deg) translateZ(1.5rem);
@@ -214,10 +214,10 @@
   border-radius: 0.4rem;
   padding: 0.1rem;
   color: navy;
-  border: #0E0E10 solid 0.1rem;
+  border: #0e0e10 solid 0.1rem;
 }
 .scene .box .box__face--back {
-  background: #0E0E10;
+  background: #0e0e10;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
   display: flex;
@@ -236,7 +236,7 @@
   padding: 0.5rem;
   font-size: 1.5rem;
   color: #efefef;
-  background-color: #0E0E10;
+  background-color: #0e0e10;
   border-radius: 0.2rem;
   z-index: 1;
 }
@@ -376,7 +376,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #0E0E10;
+  border: 1px solid #0e0e10;
 }
 .simon-game .cardWrapper__red--flash, .simon-game .cardWrapper__blue--flash, .simon-game .cardWrapper__green--flash, .simon-game .cardWrapper__yellow--flash {
   flex: 0 0 50%;
@@ -424,7 +424,7 @@
   padding: 10px;
   width: 10rem;
   height: 7rem;
-  background: linear-gradient(to right top, #0E0E10 50%, rgba(10, 10, 11, 0.9) 50%);
+  background: linear-gradient(to right top, #0e0e10 50%, rgba(10, 10, 11, 0.9) 50%);
   border-style: none;
   border-radius: 0.5rem;
   color: #efefef;
@@ -446,13 +446,14 @@
   transform: scale(1.1);
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
-.simon-game .score, .simon-game .lostGame {
+.simon-game .score,
+.simon-game .lostGame {
   width: 15vw;
   height: 15vw;
   max-width: 150px;
   max-height: 150px;
   border-radius: 50%;
-  background-color: #0E0E10;
+  background-color: #0e0e10;
   position: absolute;
   font-size: 1rem;
   text-align: center;
@@ -461,7 +462,8 @@
   justify-content: center;
   align-items: center;
 }
-.simon-game .score p, .simon-game .lostGame p {
+.simon-game .score p,
+.simon-game .lostGame p {
   color: #efefef;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
@@ -708,7 +710,7 @@ html, body {
   align-items: center;
   transform: translateX(-100%);
   z-index: 2000;
-  background-color: #0E0E10;
+  background-color: #0e0e10;
   opacity: 0;
   width: fit-content;
   transition: all 0.5s ease;
@@ -869,7 +871,7 @@ html, body {
 .login__wrapper button,
 .signup__wrapper button {
   background: #efefef;
-  color: #0E0E10;
+  color: #0e0e10;
   font-weight: 600;
   border: none;
   padding: 2px 0vw;

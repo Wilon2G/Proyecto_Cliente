@@ -54,7 +54,7 @@ const SignupPage: React.FC = () => {
       if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(email)) {
         infoGiven = false;
         //Mostrar mensaje de warning
-        alert('Plase enter the valid email');
+        alert('Please enter the valid email');
       }
     }
 
