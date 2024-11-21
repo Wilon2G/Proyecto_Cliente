@@ -6,12 +6,12 @@ export default function HomeHeader() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userName = sessionStorage.getItem('username'); //sessionStorage es otro hook, para mantener la sesion de usuario abierta
+    const userName = sessionStorage.getItem('username');
 
     if (userName == '' || userName === null) {
       navigate('/Login');
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <header className="header">
