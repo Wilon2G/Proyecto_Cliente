@@ -1,7 +1,7 @@
 @use "../abstracts/variables.scss" as *;
 
 .GameContainer {
-    width: 70%;
+    width: 70vw;
 
     margin: 1rem;
     padding: 1.75rem;
@@ -16,16 +16,18 @@
     align-items: center;
     justify-content: center;
 
-    .game{
-        margin: 2rem;
-      }  
-
-    iframe{
+    .GameComponent{
+        height: 70vw;
+        width: 70vw;
         margin: 1rem;
-        border-radius: 0.8rem;
-        max-width: 100vh ;
-        max-height: 100vh;
+        
+        max-width: 72vh ;
+        max-height: 60vh;   
     }
+    iframe{
+        border-radius: 1.2rem;
+    }
+
 
     .button__exit{
         margin: 10px auto;

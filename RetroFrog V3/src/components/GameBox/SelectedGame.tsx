@@ -21,9 +21,12 @@ export default function SelectedGame({ id, setGameState }: GameProps) {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Component />
-      </Suspense>
+      <div className="GameComponent">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Component />
+        </Suspense>
+      </div>
+      
       <button
         className="button__exit"
         onClick={() => {setGameState({ gameOn: false, id: "" }); sessionStorage.removeItem('gameId')}}

@@ -79,6 +79,7 @@ function App() {
   return (
     <div className="MemoryGame">
       <h1>Memory Game</h1>
+      <p>Turns: {turns}</p>
       <button onClick={shuffleCards}>New Game</button>
       <div className='card-grid'>
         {cards.map(card => (
@@ -91,7 +92,7 @@ function App() {
           />
         ))}
       </div>
-      <p>Turns: {turns}</p>
+      
     </div>
   );
 }

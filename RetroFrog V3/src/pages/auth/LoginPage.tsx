@@ -51,7 +51,6 @@ const LoginPage: React.FC = () => {
                     return res.json();  // Convertimos la respuesta en JSON
                 })
                 .then((resp) => {
-                    console.log(resp);
                     const user = resp.find((u: User) => u.userName === userName);
                     
 
@@ -59,14 +58,12 @@ const LoginPage: React.FC = () => {
                         console.log("Please Enter valid username");
                     } else {
                         if (user.password === password) {
-                            //console.log("Success");
                             sessionStorage.setItem('username', userName);
                             sessionStorage.setItem('id', user.id);
                             sessionStorage.setItem('name', user.name);
                             sessionStorage.setItem('email', user.email);
                             sessionStorage.setItem('score', user.score.toString());
                             sessionStorage.setItem('unlockedGames', user.userInfo.gamesUnlocked);
-                            console.log('Score to store:', user.score); // Verifica el valor antes de almacenarlo
 
                             navigate('/'); // Te redirige a home si está todo correcto
                         } else {
