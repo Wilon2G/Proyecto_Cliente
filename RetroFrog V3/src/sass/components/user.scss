@@ -1,0 +1,117 @@
+@use '../abstracts/variables.scss' as *;
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  text-align: center;
+  align-items: center;
+  color: $ppal-white;
+  
+
+  .pic {
+    background-position: center;
+    background-size: cover;
+    transition: transform 300ms;
+    max-width: 5rem;
+    max-height: 5rem;
+  }
+  .pic:active {
+    transform: scale(0.9);
+  }
+  .name {
+    border-top: 1px solid $light-color;
+    border-bottom: 1px solid $light-color;
+    background-color: $dark-purple-1;
+
+    margin: 1rem -1px 1.5rem;
+    padding: 5px;
+    font-size: 1.5rem;
+
+    text-shadow: 2px 2px 2px $ppal-black;
+    padding: 0.3rem 0.7rem;
+    
+  }
+  .row_stats {
+    border-top: 1px solid $light-color;
+    border-bottom: 1px solid $light-color;
+    background-color: $dark-purple-1;
+    margin: 0px -1px 0rem;
+    padding: 1rem;
+    text-shadow: 2px 2px 2px $ppal-black;
+  }
+  .below-fold {
+    position: absolute;
+    transform: scale(0.1) translateY(20%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms ease;
+    border: 1px solid $light-color;
+    border-radius: 0.25rem;
+    z-index: 1000;
+    background-image: linear-gradient(
+      135deg,
+      rgba($dark-purple-1, 0.9),
+      rgba($light-color, 0.9)
+    );
+    @media only screen and (max-width: 780px) {
+      
+      right: -3rem;    
+    }
+    @media only screen and (max-width: 380px) {
+      right: 0.25rem;    
+    }
+  }
+
+  &.expand {
+    .pic:active {
+      transform: scale(1.1);
+    }
+    .below-fold {
+      opacity: 1;
+      transform: scaleY(1) translateY(35%);
+
+      visibility: visible;
+      transition: all 300ms ease;
+    }
+  }
+
+  .button__row {
+    display: flex;
+    justify-content: center;
+    margin: 0px 0px 1rem;
+  }
+
+  .button {
+    &--user {
+      width: 6rem;
+      height: 2.5rem;
+
+      margin: 1rem 0.5rem 0rem;
+      background-color: $dark-purple-2;
+      cursor: pointer;
+
+      font-size: $x-small-font-size;
+      font-weight: 500;
+      color: $ppal-white;
+      border: 1px solid $light-color;
+      border-radius: 0.25rem;
+      transition: transform 200ms ease-in;
+      &:hover {
+        transform: translateY(-0.15rem);
+        background: $ppal-white;
+        background-color: $dark-purple-1;
+      }
+      text-shadow: 2px 2px 2px $ppal-black;
+    }
+  }
+
+  #expand-button {
+    height: 7rem;
+    width: 7rem;
+
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

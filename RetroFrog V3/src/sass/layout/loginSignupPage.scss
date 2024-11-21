@@ -1,0 +1,207 @@
+@use '../abstracts/variables.scss' as *;
+
+.logo {
+  margin: 0 auto;
+  text-align: center;
+
+  img {
+    width: 10rem;
+  }
+}
+
+.login,
+.signup {
+  &__wrapper {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    
+
+    border-radius: 8px;
+    padding: 2rem 4rem;
+    text-align: center;
+    border: 1px solid $login-wrapper-border;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: $login-wrapper-bg;
+
+    a {
+      color: $ppal-white;
+      text-decoration: none;
+      font-size: $smaller-font-size;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      background: $ppal-white;
+      color: $ppal-black;
+      font-weight: 600;
+      border: none;
+      padding: 2px 0vw;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: $ppal-font-size;
+      border: 2px solid transparent;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      color: $ppal-white;
+      border-color: $ppal-white;
+      background: $login-btn-hover;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+
+    ::placeholder {
+      color: transparent;
+    }
+
+    h2 {
+      font-size: $h2-font-size;
+      margin-bottom: 2.5rem;
+      color: $ppal-white;
+    }
+
+    p {
+      color: $ppal-white;
+    }
+
+    &--input-field {
+      position: relative;
+      border-bottom: 2px solid $border-input-color;
+      margin: 15px 0;
+
+      label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+
+        color: $ppal-white;
+        font-size: $smaller-font-size;
+        pointer-events: none;
+        transition: 0.15s ease;
+      }
+
+      input {
+        width: 100%;
+        height: 3rem;
+
+        background: transparent;
+        border: none;
+        outline: none;
+
+        font-size: $smaller-font-size;
+        color: $ppal-white;
+      }
+      input:focus::placeholder {
+        color: $ppal-grey-color;
+      }
+
+      input:focus ~ label,
+      input:valid ~ label {
+        font-size: 1rem;
+        top: 10px;
+        transform: translateY(-120%);
+      }
+
+      .password-eye {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        font-size: 2rem;
+        color: $ppal-white;
+      }
+    }
+
+    &--gender {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      gap: 1vw;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0.5rem 0;
+      color: $ppal-white;
+      font-size: $ppal-font-size;
+      @media only screen and (max-width: 760px) {
+        justify-content: center;
+      }
+      input {
+        width: 1.5rem;
+      }
+    }
+
+    &--back {
+      text-align: center;
+      margin-top: 30px;
+      color: $ppal-white;
+    }
+
+    &--forget {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin: 25px 0 35px 0;
+      color: $ppal-white;
+      @media only screen and (max-width: 760px) {
+        justify-content: center;
+      }
+      label {
+        display: flex;
+        align-items: center;
+
+        p {
+          margin: 0 50px 0 10px;
+          font-size: $smaller-font-size;
+        }
+      }
+    }
+
+    &--remember {
+      accent-color: $ppal-white;
+    }
+
+    &--register {
+      text-align: center;
+      margin-top: 30px;
+      color: $ppal-white;
+    }
+  }
+}
+
+//Diferencias para signup
+.signup {
+  &__wrapper {
+    button {
+      margin: 1.5rem;
+    }
+
+    a {
+      margin-top: 10px;
+      font-size: $ppal-font-size;
+    }
+  }
+
+  &__form {
+    h2 {
+      margin-bottom: 0;
+    }
+
+    p {
+      padding-bottom: 0 1rem;
+      font-size: $ppal-font-size;
+    }
+  }
+}

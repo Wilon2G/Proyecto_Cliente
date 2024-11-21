@@ -1,0 +1,61 @@
+@use "../abstracts/variables.scss" as *;
+
+footer {
+  width: 100%;
+  align-self: flex-end;
+  margin-top: 2rem;
+  // height: 15rem;
+  background-color: $footer-header-bg;
+  
+  color: $ppal-white;
+  padding: 5rem 0rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  //justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+
+  @media only screen and (max-width: 980px) {
+    align-items: baseline;
+    padding: 5rem;
+  }
+
+  .footer--info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: 100%;
+    margin-bottom: 2rem;
+    @media only screen and (max-width: 980px) {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-evenly;
+
+        >div{
+            margin-top: 2rem;
+        }
+        
+        //align-items: stretch;
+    }
+  }
+
+  h2 {
+    font-size: $h2-font-size;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2%;
+
+    @media only screen and (max-width: 980px) {
+        text-align: left;
+    }
+  }
+  
+  ul {
+    list-style: none;
+    li {
+      margin-top: 0.5rem;
+    }
+  }
+}

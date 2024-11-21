@@ -1,0 +1,44 @@
+@use "../abstracts/variables.scss" as *;
+
+.catalog {
+  width: 100%;
+  margin-top: 2rem;
+
+  &__unlock, &__lock {
+    width: 80%;
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    margin: 0 auto;
+
+    background-color:$unlock-bg;
+  
+    
+    border-radius: 1rem;
+    box-shadow: 0 0 10px $ppal-main-shadow, 0 0 10px;
+
+    h1 {
+      width: 100%;
+
+      align-self: center;    
+      text-align: center;
+
+      color: $ppal-white;
+      padding: $h1-font-size;
+      background-color:$unlock-title-bg;
+      border-radius: 0.5rem;
+      font-size: 3rem;
+      text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    }
+  }
+
+  &__lock{
+    margin-top: 2rem;
+    background: $lock-bg;
+    h1{
+      background:$lock-title-bg;
+    }
+  }
+}
