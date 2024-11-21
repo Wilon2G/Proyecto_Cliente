@@ -92,7 +92,12 @@ const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="signup__wrapper" style={{ marginTop: '6%' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ alignSelf: 'center' }}>
+        <div className="logo">
+          <img src="src/assets/logos/Logo.png" alt="LOGO" />
+        </div>
+    <div className="signup__wrapper" >
       <form className="signup__form" onSubmit={handleSubmit}>
         <h2>Register</h2>
 
@@ -175,6 +180,8 @@ const SignupPage: React.FC = () => {
           Back
         </Link>
       </form>
+    </div>
+    </div>
     </div>
   );
 };

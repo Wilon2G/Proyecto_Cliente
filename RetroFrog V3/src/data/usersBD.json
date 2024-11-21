@@ -6,7 +6,7 @@
       "password": "prueba",
       "name": "Prueba pepito",
       "email": "pruebaPepito@gmail.com",
-      "gender": "male",
+      "gender": "female",
       "score": 0,
       "userInfo": {
         "gamesPlayed": [],
@@ -23,10 +23,10 @@
     },
     {
       "id": "b85e",
-      "userName": "Pepito",
-      "password": "pepito",
-      "name": "pepito prueba",
-      "email": "pepito@gmail.com",
+      "userName": "Juan",
+      "password": "1234",
+      "name": "Juanito",
+      "email": "juanito777@gmail.com",
       "gender": "male",
       "score": 0,
       "userInfo": {
@@ -48,7 +48,9 @@
       "userInfo": {
         "gamesPlayed": [],
         "gamesWinned": [],
-        "gamesUnlocked": ["b97bf75d-5764-46b5-be5e-fe4df0d0af4a"],
+        "gamesUnlocked": [
+          "b97bf75d-5764-46b5-be5e-fe4df0d0af4a"
+        ],
         "gamesLocked": [],
         "theme": "dark"
       }
