@@ -1,24 +1,21 @@
-import { useState } from "react";
-import GameBox from "../GameBox/GameBox";
-import games from "../../data/games.json";
-import SelectedGame from "../GameBox/SelectedGame.tsx";
+import { useState } from 'react';
+import GameBox from '../GameBox/GameBox';
+import games from '../../data/games.json';
+import SelectedGame from '../GameBox/SelectedGame.tsx';
 
 export type Game = {
   title: string;
   route: string;
-  backroute:string;
+  backroute: string;
   color: string;
   description: string;
   id: string;
-  component:string;
+  component: string;
 };
-export type GameState ={
+export type GameState = {
   gameOn: boolean;
   id: string;
-}
-
-
-
+};
 
 // const games: Game[] = [
 //   { title: "Mario Kart", route: "./../../media/MarioKart.jpeg", color: "#fd3d4a",description:""},
@@ -26,23 +23,23 @@ export type GameState ={
 // ];
 
 export const HomeMain = () => {
-
-  const [gameState, setGameState] = useState<GameState>({gameOn:false,id:""});
+  const [gameState, setGameState] = useState<GameState>({
+    gameOn: false,
+    id: '',
+  });
   //const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   // console.log("onPlay:", onPlay);
-                                                                       
-  const unlockedGames = sessionStorage.getItem("unlockedGames");
-  const unlockedGamesList = games.filter((game: Game) => 
-    unlockedGames?.includes(game.id)
+
+  const unlockedGames = sessionStorage.getItem('unlockedGames');
+  const unlockedGamesList = games.filter((game: Game) =>
+    unlockedGames?.includes(game.id),
   );
-  const lockedGamesList = games.filter((game: Game) => 
-    !unlockedGames?.includes(game.id)
+  const lockedGamesList = games.filter(
+    (game: Game) => !unlockedGames?.includes(game.id),
   );
-  
+
   if (!gameState.gameOn) {
-
-//const [lockedgame,setLocked]=useState<boolean[]>([]);  Idea de usar estados para definir juegos como bloqueados
-
+    //const [lockedgame,setLocked]=useState<boolean[]>([]);  Idea de usar estados para definir juegos como bloqueados
 
     return (
       <>
@@ -51,31 +48,37 @@ export const HomeMain = () => {
             <h1 id="titleGames">Tus Juegos</h1>
             <div className="games">
               {unlockedGamesList.map((game: Game) => (
-                <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
-              ))}
-            </div>
-          </div >
-          <div className="catalog__lock">
-            <h1 id="titleStore">Tienda</h1>
-              <div className="games">
-              {lockedGamesList.map((game: Game) => (
-                <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
+                <GameBox
+                  key={game.title}
+                  game={game}
+                  setGameState={setGameState}
+                  locked={false}
+                />
               ))}
             </div>
           </div>
-
+          <div className="catalog__lock">
+            <h1 id="titleStore">Tienda</h1>
+            <div className="games">
+              {lockedGamesList.map((game: Game) => (
+                <GameBox
+                  key={game.title}
+                  game={game}
+                  setGameState={setGameState}
+                  locked={true}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-
       </>
     );
-  }
-  else {
+  } else {
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
     return (
       <div className="GameContainer">
-        <SelectedGame id={gameState.id} setGameState={setGameState}/>
-
+        <SelectedGame id={gameState.id} setGameState={setGameState} />
       </div>
     );
   }

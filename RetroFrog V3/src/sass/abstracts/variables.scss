@@ -1,74 +1,74 @@
+//General
+$x-small-font-size: 1rem;
+$smaller-font-size: 1.25rem;
+$ppal-font-size: 1.5rem;
+$medium-font-size: 1.75rem;
+$h2-font-size: 2.5rem;
+$h1-font-size: 3.5rem;
+
+$ppal-black: #0e0e10;
+$ppal-white: #efefef;
+$ppal-purple-color: rgb(72, 18, 83);
+$purple-shadow-color: rgb(88, 0, 110);
+$ppal-black-bg: rgba(10, 10, 11, 0.9);
+$ppal-grey-color: #999;
+$footer-header-bg: rgba(10, 10, 11, 0.71);
+
+//Main
+$ppal-main-shadow: rgba(140, 139, 141, 0.397);
+$unlock-title-bg: #341453c2;
+$unlock-bg: rgba(38, 34, 46, 0.534);
+$lock-title-bg: rgba(157 119 53 / 76%);
+$lock-bg: rgba(46 43 34 / 53%);
+
 //Login + Signup
-$login-wrapper-border:rgba(255, 255, 255, 0.5);
-$login-wrapper-bg:rgba(51, 45, 55, 0.4);
-$login-btn-hover:rgba(255, 255, 255, 0.15);
-$border-input-color:#ccc;
+$login-wrapper-border: rgba(255, 255, 255, 0.5);
+$login-wrapper-bg: rgba(51, 45, 55, 0.4);
+$login-btn-hover: rgba(255, 255, 255, 0.15);
+$border-input-color: #ccc;
+
+//User
+$dark-purple: #2b025ae0;
+$light-purple: #8d4cd6e0;
+$row-status-border: 1px solid #ffffff49;
 
 //Navbar
 $nav-size: 6rem;
 $nav-position: 2.5rem;
-$text-size:1.25rem;
+$text-size: 1.25rem;
 
-$nav-btn-shadow:rgba(0,0,0, .1);
-$nav-block-bg:rgba(148, 147, 147, 0.5);
-
-//General
-$x-small-font-size:1rem;
-$smaller-font-size:1.25rem;
-$ppal-font-size: 1.5rem;
-$medium-font-size:1.75rem;
-$h2-font-size:2.5rem;
-$h1-font-size:3.5rem;
-
-$ppal-black:#0E0E10;
-$ppal-white:#efefef;
-$ppal-purple-color:rgb(72, 18, 83);
-$purple-shadow-color:rgb(88, 0, 110);
-$ppal-black-bg: rgba(10, 10, 11, 0.9);
-$ppal-grey-color:#999;
-$footer-header-bg: rgba(10, 10, 11, 0.71);
-
-//Main
-$ppal-main-shadow:rgba(140, 139, 141, 0.397);
-$unlock-title-bg:#341453c2;
-$unlock-bg:rgba(38, 34, 46, 0.534);
-$lock-title-bg:rgba(157 119 53 / 76%);
-$lock-bg:rgba(46 43 34 / 53%);
-
-//Simon-Game
-$color-green:rgb(0, 145, 0);
-$color-green-flash:lightgreen;
-$color-red:rgb(158, 1, 1);
-$color-red-flash:lightcoral;
-$color-blue:rgb(1, 1, 173);
-$color-blue-flash: lightblue;
-$color-yellow:rgb(231, 175, 33);
-$color-yellow-flash:lightyellow;
-
-//Memory
-$hover-color:#c23866;
+$nav-btn-shadow: rgba(0, 0, 0, 0.1);
+$nav-block-bg: rgba(148, 147, 147, 0.5);
 
 //Game-box
-$right-side:rgb(199,233,223);
-$rigth-etiqueta-text:navy;
-$rigth-etiqueta-init:rgba(255, 255, 255, 1);
-$rigth-etiqueta-final:rgba(110, 110, 110, 1);
-$back-text-bg:#1f1f1fa2;
-$back-button-init:#cab078;
-$back-button-final:#d4ce93;
+$right-side: rgb(199, 233, 223);
+$rigth-etiqueta-text: navy;
+$rigth-etiqueta-init: rgba(255, 255, 255, 1);
+$rigth-etiqueta-final: rgba(110, 110, 110, 1);
+$back-text-bg: #1f1f1fa2;
+$back-button-init: #cab078;
+$back-button-final: #d4ce93;
 $back-button-hover-init: #eeb332;
-$back-button-hover-final:#eedb30;
-$back-button-line-move:#f6e58d;
+$back-button-hover-final: #eedb30;
+$back-button-line-move: #f6e58d;
 
 //Game-container
-$gcont-border-color:rgb(88, 88, 88);
+$gcont-border-color: rgb(88, 88, 88);
 $gcont-bg: rgba(114, 114, 114, 0.336);
-$gcont-btn-exit-init:#663636;
-$gcont-btn-exit-final:#805555;
-$gcont-btn-exit-hover-init:#b62c2c;
-$gcont-btn-exit-hover-final:#ee3030;
+$gcont-btn-exit-init: #663636;
+$gcont-btn-exit-final: #805555;
+$gcont-btn-exit-hover-init: #b62c2c;
+$gcont-btn-exit-hover-final: #ee3030;
 
-//User
-$dark-purple:#2b025ae0;
-$light-purple:#8d4cd6e0;
-$row-status-border:1px solid #ffffff49;
+//Simon-Game
+$color-green: rgb(0, 145, 0);
+$color-green-flash: lightgreen;
+$color-red: rgb(158, 1, 1);
+$color-red-flash: lightcoral;
+$color-blue: rgb(1, 1, 173);
+$color-blue-flash: lightblue;
+$color-yellow: rgb(231, 175, 33);
+$color-yellow-flash: lightyellow;
+
+//Memory
+$hover-color: #c23866;

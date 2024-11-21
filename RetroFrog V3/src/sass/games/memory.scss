@@ -1,70 +1,70 @@
-@use "../abstracts/variables.scss" as *;
+@use '../abstracts/variables.scss' as *;
 
 .MemoryGame {
-    max-width: 860px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 40px auto;
-    & > p{
-      margin-top: 1.75rem;
-      color: $ppal-white;
-      font-size: 1.75rem;
-    }
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+  & > p {
+    margin-top: 1.75rem;
+    color: $ppal-white;
+    font-size: 1.75rem;
+  }
 
-    &> h1{
-      color: $ppal-white;
-      font-size: 2.75rem;
-      margin-bottom: 1rem;
-    }
-  }
-  button {
-    background: none;
-    border: 2px solid $ppal-white;
-    padding: 6px 12px;
-    border-radius: 4px;
+  & > h1 {
     color: $ppal-white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1em;
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
   }
-  button:hover {
-    background: $hover-color;
-    color: $ppal-white;
-  }
-  .card-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-  }
-  
-  .card{
-    position: relative;
-  }
-  
-  .card img{
-    width: 100%;
-    display: block;
-    border: 2px solid $ppal-white;
-    border-radius: 6px;
-  }
-  
-  .card .front{
-    transform: rotateY(90deg);
-    transition: all ease-in 0.2s;
-    position: absolute;
-  }
-  .flipped .front{
-    transform: rotateY(0deg);
-    transition-delay: 0.2s;
-  }
-  
-  .card .back{
-    transition: all ease-in 0.2s;
-    transition-delay: 0.2s;
-  }
-  .flipped .back{
-    transform: rotateY(90deg);
-    transition-delay: 0s;
-  }
+}
+button {
+  background: none;
+  border: 2px solid $ppal-white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: $ppal-white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+}
+button:hover {
+  background: $hover-color;
+  color: $ppal-white;
+}
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border: 2px solid $ppal-white;
+  border-radius: 6px;
+}
+
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}

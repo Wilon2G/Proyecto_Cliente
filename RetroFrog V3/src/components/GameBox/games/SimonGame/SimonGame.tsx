@@ -6,7 +6,7 @@ import delay from './src/utils/util';
 function SimonGame() {
   const [isOn, setIsOn] = useState(false);
 
-  const colorList = ["green", "red", "yellow", "blue"];
+  const colorList = ['green', 'red', 'yellow', 'blue'];
 
   // Define el tipo para el estado 'play'
   type PlayState = {
@@ -22,11 +22,11 @@ function SimonGame() {
     colors: [],
     score: 0,
     userPlay: false,
-    userColors: []
+    userColors: [],
   };
 
   const [play, setPlay] = useState<PlayState>(initPlay);
-  const [flashColor, setFlashColor] = useState("");
+  const [flashColor, setFlashColor] = useState('');
 
   function startHandle() {
     setIsOn(true);
@@ -60,7 +60,7 @@ function SimonGame() {
     for (let i = 0; i < play.colors.length; i++) {
       setFlashColor(play.colors[i]);
       await delay(1000);
-      setFlashColor("");
+      setFlashColor('');
       await delay(500); // Ajuste de tiempo entre flashes
 
       if (i === play.colors.length - 1) {
@@ -82,7 +82,10 @@ function SimonGame() {
 
       if (color === lastColor) {
         if (updatedUserColors.length) {
-          setPlay((prevPlay) => ({ ...prevPlay, userColors: updatedUserColors }));
+          setPlay((prevPlay) => ({
+            ...prevPlay,
+            userColors: updatedUserColors,
+          }));
         } else {
           setPlay((prevPlay) => ({
             ...prevPlay,
@@ -98,7 +101,7 @@ function SimonGame() {
       }
 
       await delay(500);
-      setFlashColor("");
+      setFlashColor('');
     }
   }
 
@@ -107,34 +110,44 @@ function SimonGame() {
   }
 
   return (
-    <div className='simon-game'>
-        <div className='cardWrapper'>
-          {colorList.map((color, i) => (
-            <ColorCard
-              key={i}
-              color={color}
-              onClick={() => handleClick(color)}
-              flash={flashColor === color}
-            />
-          ))}
+    <div className="simon-game">
+      <div className="cardWrapper">
+        {colorList.map((color, i) => (
+          <ColorCard
+            key={i}
+            color={color}
+            onClick={() => handleClick(color)}
+            flash={flashColor === color}
+          />
+        ))}
+      </div>
+
+      {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
+        <div className="lostGame">
+          <p>Final Score: {play.score}</p>
+          <button
+            className="button__exit button__exit--small"
+            onClick={handleClose}
+          >
+            Restart
+          </button>
         </div>
+      )}
 
-        {isOn && !play.isDisplay && !play.userPlay && play.score > 0 && (
-          <div className='lostGame'>
-            <p>Final Score: {play.score}</p>
-            <button className='button__exit button__exit--small' onClick={handleClose}>Restart</button>
-          </div>
-        )}
+      {!isOn && play.score === 0 && (
+        <button
+          onClick={startHandle}
+          className="button__start button__start--simon"
+        >
+          Start
+        </button>
+      )}
 
-        {!isOn && play.score === 0 && (
-          <button onClick={startHandle} className='button__start button__start--simon'>Start</button>
-        )}
-
-        {isOn && (play.isDisplay || play.userPlay) && (
-          <div className='score'>
-            <p>Score: {play.score}</p>
-          </div>
-        )}
+      {isOn && (play.isDisplay || play.userPlay) && (
+        <div className="score">
+          <p>Score: {play.score}</p>
+        </div>
+      )}
     </div>
   );
 }

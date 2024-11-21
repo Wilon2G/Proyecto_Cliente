@@ -1,6 +1,6 @@
-import { Game, GameState } from "../HomeBox/HomeMain";
-import games from "../../data/games.json";
-import React, { Suspense } from "react";
+import { Game, GameState } from '../HomeBox/HomeMain';
+import games from '../../data/games.json';
+import React, { Suspense } from 'react';
 
 export type GameProps = {
   id: string;
@@ -18,7 +18,6 @@ export default function SelectedGame({ id, setGameState }: GameProps) {
   const Component = importGame(juego.component);
   sessionStorage.setItem('gameId', id);
 
-
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
@@ -26,7 +25,10 @@ export default function SelectedGame({ id, setGameState }: GameProps) {
       </Suspense>
       <button
         className="button__exit"
-        onClick={() => {setGameState({ gameOn: false, id: "" }); sessionStorage.removeItem('gameId')}}
+        onClick={() => {
+          setGameState({ gameOn: false, id: '' });
+          sessionStorage.removeItem('gameId');
+        }}
       >
         Salir
       </button>
