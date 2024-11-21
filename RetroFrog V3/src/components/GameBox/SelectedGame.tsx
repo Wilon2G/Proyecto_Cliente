@@ -1,5 +1,5 @@
 import { Game, GameState } from "../HomeMain";
-import games from "./games.json";
+import games from "../../data/games.json";
 import React, { Suspense } from "react";
 
 export type GameProps = {
