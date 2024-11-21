@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
-import UserProfile from "./User";
+import UserProfile from "../User";
 
 
 export default function  HomeHeader  (){

@@ -1,4 +1,4 @@
-import { Game, GameState } from "../HomeMain";
+import { Game, GameState } from "../HomeBox/HomeMain";
 import games from "../../data/games.json";
 import React, { Suspense } from "react";
 

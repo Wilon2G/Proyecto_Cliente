@@ -1,7 +1,7 @@
 import { useState } from "react";
-import GameBox from "./GameBox/GameBox";
-import games from "../data/games.json";
-import SelectedGame from "./GameBox/SelectedGame.tsx";
+import GameBox from "../GameBox/GameBox";
+import games from "../../data/games.json";
+import SelectedGame from "../GameBox/SelectedGame.tsx";
 
 export type Game = {
   title: string;

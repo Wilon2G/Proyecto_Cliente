@@ -1,8 +1,8 @@
 
-import { HomeMain } from "../../components/HomeMain";
-import HomeHeader from "../../components/HomeHeader";
-import HomeNavBar from "../../components/HomeNavBar";
-import HomeFooter from "../../components/HomeFooter";
+import { HomeMain } from "../../components/HomeBox/HomeMain";
+import HomeHeader from "../../components/HomeBox/HomeHeader";
+import HomeNavBar from "../../components/HomeBox/HomeNavBar";
+import HomeFooter from "../../components/HomeBox/HomeFooter";
 
 
 const Home = () => {
