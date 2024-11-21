@@ -862,8 +862,9 @@ html, body {
   justify-self: center;
   align-self: center;
   max-width: 65vw;
+  min-width: 450px;
   border-radius: 8px;
-  padding: 5rem;
+  padding: 4rem;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
@@ -1018,9 +1019,6 @@ html, body {
   color: #efefef;
 }
 
-.signup__wrapper {
-  height: 70vh;
-}
 .signup__wrapper button {
   margin: 1.5rem;
 }

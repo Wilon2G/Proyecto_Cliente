@@ -66,6 +66,7 @@ const LoginPage: React.FC = () => {
                 'unlockedGames',
                 user.userInfo.gamesUnlocked,
               );
+
               console.log('Score to store:', user.score); // Verifica el valor antes de almacenarlo
 
               navigate('/'); // Te redirige a home si está todo correcto
