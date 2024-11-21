@@ -136,12 +136,13 @@
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
 }
 @media only screen and (max-width: 450px) {
   .games {
     flex-direction: column;
+    justify-content: center;
   }
 }
 
