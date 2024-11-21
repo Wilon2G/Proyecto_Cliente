@@ -1,23 +1,27 @@
 @use "../abstracts/variables.scss" as *;
 
 .header {
+    font-size: 1rem;
+    height: fit-content;
+    background-color: rgba(10, 10, 11, 0.9);
     width: 100%;
-    height: 10rem;
-    gap: 30px;
-
-    background-color: $footer-header-bg;
-    font-size: $x-small-font-size;
-
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     
-    @media only screen and (max-width: 780px) {
+    @media only screen and (max-width: 1440px) {
         flex-direction: column;
-        gap: 0px;
-        height: 12rem;
+        
     }
-
+    &__container{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        width: 100%;
+        margin: 1.75rem 0rem;
+        justify-content: space-evenly;
+        align-items: center;
+    }
     &__logo{
         display: flex;
         flex-direction: row;
@@ -25,11 +29,18 @@
         justify-content: center;
 
         text-align: center;
+        margin: 1.75rem 9rem;
         
         h3 {
-            color:$ppal-white;
-            font-size: 2rem;  
-            text-shadow: 0 0 10px $purple-shadow-color, 0 0 10px;
+            background-image: linear-gradient(120deg, #69c42d, rgb(2, 88, 50),#69c42d);
+            -webkit-background-clip: text;
+
+            -webkit-text-stroke: 1px #8ad359;
+
+            color: transparent;
+            font-size: 3rem;  
+            
+            text-shadow: 2px 2px 5px rgb(57, 124, 57);
         }
         img{
             position: relative;
@@ -39,40 +50,27 @@
         }
     }           
    
-    &__search{
+    &__search--form{
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        
-        gap: 25%;
-        text-align: center;
-
-        &--form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 35vw;
-        
+        height: fit-content;
         
             .input {
                 width: 95%;
 
                 font-family: inherit;
                 font-size: inherit;
-                color:$ppal-white;
-                font-weight: 700;
-
-                background-color: $ppal-grey-color;
-
+                color: whitesmoke;
+                background-color: grey;
                 border: none;
+                padding: 0 2.5rem;
                 border-radius: 100px;
-
-                padding: .7rem 2rem;
-                margin-right: -3.25rem;
-                
+                font-weight: 400;
                 transition: all .2s;
-
+                margin-right: -3.25rem;
+                @media only screen and (max-width: 780px) {
+                    max-width: 40vw;
+                    
+                }
                 &:focus {
                     width: 100%;
                     background-color: $ppal-grey-color;
@@ -88,11 +86,10 @@
             .button {
                 border: none;
                 background-color: rgba(255, 255, 255, 0);
-        
-                &:focus {
+                transition: all 200ms ease;
+                &:focus{
                     outline: none;
                 }
-        
                 &:active {
                     transform: translateY(2px);
                 }
@@ -103,21 +100,9 @@
                 width: 1.8rem;
                 fill: rgba(255, 255, 255, 0.781);
             }
-        }
-          
     }
-    &__user{
-        margin-top: 1vh;
-        img{
-            position: relative;
-            max-height: 7vh;
-            max-width: 7vh;
-            margin: auto;
-        }
-    } 
-    &__nav {
-        display: flex;
-        gap: 20px;  
-    }
- 
+    
+    
+    // SEARCH
+    
 }

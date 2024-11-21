@@ -19,45 +19,54 @@
         box-shadow: 0 1rem 3rem $nav-btn-shadow;
         text-align: center;
         cursor: pointer;
+        @media only screen and (max-width: 780px) {
+            top: auto;
+            bottom: 2.5rem;
+            
+        }
     }
 
     &__background {
         height: $nav-size;
         width: $nav-size;
-
+        transform: scale(80);
+        visibility: hidden;
+        opacity: 0;
         position: fixed;
         top: $nav-position;
         left: $nav-position;
 
         background-color: $nav-block-bg;
         z-index: 1000;
-        box-shadow:0 0 10px rgba(255, 255, 255, 0.397), 0 0 10px;
+        box-shadow:0 0 10px rgb(255, 255, 255), 0 0 10px;
+        transition: all 0.5s ease;
     }
 
     &__nav {
-        height: 150vh;
-        max-width: 16rem;
-
+        height: 100%;
         position: fixed;
         top: 0;
         left: 0;
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(-100%);
         z-index: 2000;
         background-color: $ppal-black;
         opacity: 0;
-        width: 0;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        width: fit-content;
+        transition: all 0.5s ease;
+        box-shadow:0px 0px 5px rgba(114, 114, 114, 0.514);
+        
     }
 
     &__list {
-        position: absolute;
-        top: 20%;
-        left: 1.5%;
-
+        display: flex;
+        flex-direction: column;
         list-style: none;
         text-align: left;
 
-        width: 100%;
+        
     }
 
     &__item {
@@ -103,12 +112,15 @@
     }
 
     &__checkbox:checked~&__background {
-        transform: scale(80);
+        opacity: 1;
+        visibility: visible;
     }
 
     &__checkbox:checked~&__nav {
         opacity: 1;
-        width: 50vw;
+        width: fit-content;
+        transform: translateX(0%);
+        
     }
 
     &__icon {
