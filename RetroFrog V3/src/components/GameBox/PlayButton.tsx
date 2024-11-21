@@ -1,4 +1,4 @@
-import { GameState } from "../HomeMain";
+import { GameState } from "../HomeBox/HomeMain";
 
 type PlayButtonProps={
     setOnPlay:(value:GameState)=>void;

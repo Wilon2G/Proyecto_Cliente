@@ -1,4 +1,4 @@
-import { Game, GameState } from "../HomeMain";
+import { Game, GameState } from "../HomeBox/HomeMain";
 import {PlayButton} from "./PlayButton";
 import UnlockButton from "./UnlockButton";
 type GameBoxProps={
