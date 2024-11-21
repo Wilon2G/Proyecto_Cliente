@@ -137,7 +137,12 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 1rem;
+  width: 100%;
+}
+@media only screen and (max-width: 450px) {
+  .games {
+    flex-direction: column;
+  }
 }
 
 .game {
@@ -160,6 +165,14 @@
   position: relative;
   z-index: 9;
   margin: 1rem 1rem;
+}
+@media only screen and (max-width: 450px) {
+  .scene {
+    scale: 50%;
+    margin: 0;
+    padding-top: 0;
+    height: 15rem;
+  }
 }
 .scene:hover .box {
   -webkit-transform: rotateY(-180deg);
@@ -813,7 +826,6 @@ html, body {
   flex-wrap: wrap;
   margin: 0 auto;
   background-color: rgba(38, 34, 46, 0.534);
-  width: 85vw;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 }
