@@ -15,7 +15,10 @@
     height: 500px;
     display: flex;
     flex-wrap: wrap;
-
+    @media only screen and (max-width: 780px) {
+      width: 250px;
+      height: 250px;
+    }
     &__red,
     &__blue,
     &__green,
@@ -73,6 +76,7 @@
         border-bottom-left-radius: 100%;
       }
     }
+   
   }
 
   .button__start {

@@ -8,7 +8,6 @@
   text-align: center;
   align-items: center;
   color: #efefef;
-  margin: 0px 150px;
 }
 .profile-card .pic {
   background-position: center;
@@ -40,7 +39,7 @@
 }
 .profile-card .below-fold {
   position: absolute;
-  transform: scaleY(0.1) translateY(20%);
+  transform: scale(0.1) translateY(20%);
   opacity: 0;
   visibility: hidden;
   transition: all 300ms ease;
@@ -48,6 +47,16 @@
   border-radius: 0.25rem;
   z-index: 1000;
   background-image: linear-gradient(135deg, rgba(55, 32, 82, 0.9), rgba(167, 134, 206, 0.9));
+}
+@media only screen and (max-width: 780px) {
+  .profile-card .below-fold {
+    right: -3rem;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .profile-card .below-fold {
+    right: 0.25rem;
+  }
 }
 .profile-card.expand .pic:active {
   transform: scale(1.1);
@@ -102,14 +111,28 @@
   align-items: center;
   justify-content: center;
 }
-.GameContainer .game {
-  margin: 2rem;
-}
-.GameContainer iframe {
+.GameContainer .GameComponent {
   margin: 1rem;
-  border-radius: 0.8rem;
+  width: 50vw;
+  height: 40vw;
   max-width: 100vh;
   max-height: 100vh;
+}
+@media only screen and (max-width: 780px) {
+  .GameContainer .GameComponent {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+@media only screen and (max-width: 780px) {
+  .GameContainer {
+    width: 90%;
+  }
+}
+.GameContainer iframe {
+  border-radius: 0.8rem;
+  height: 100%;
+  width: 100%;
 }
 .GameContainer .button__exit {
   margin: 10px auto;
@@ -266,7 +289,6 @@
   z-index: 1;
 }
 .scene .box .box__face--back button {
-  margin-bottom: 2rem;
   padding: 0px;
   position: relative;
   width: 150px;
@@ -385,6 +407,12 @@
   height: 500px;
   display: flex;
   flex-wrap: wrap;
+}
+@media only screen and (max-width: 780px) {
+  .simon-game .cardWrapper {
+    width: 250px;
+    height: 250px;
+  }
 }
 .simon-game .cardWrapper__red, .simon-game .cardWrapper__blue, .simon-game .cardWrapper__green, .simon-game .cardWrapper__yellow {
   flex: 0 0 50%;
@@ -664,6 +692,7 @@ html, body {
   margin: 1.75rem 0rem;
   justify-content: space-evenly;
   align-items: center;
+  padding: 0 5rem;
 }
 .header__logo {
   display: flex;
@@ -690,7 +719,6 @@ html, body {
 .header__search--form {
   display: flex;
   height: fit-content;
-  margin-left: 150px;
   flex: 1;
 }
 .header__search--form .input {
@@ -705,11 +733,6 @@ html, body {
   font-weight: 400;
   transition: all 0.2s;
   margin-right: -3.25rem;
-}
-@media only screen and (max-width: 780px) {
-  .header__search--form .input {
-    width: 200px;
-  }
 }
 .header__search--form .input:focus {
   background-color: #999;
@@ -920,10 +943,8 @@ html, body {
   display: flex;
   justify-self: center;
   align-self: center;
-  max-width: 65vw;
-  min-width: 450px;
   border-radius: 8px;
-  padding: 2rem 6rem;
+  padding: 2rem 4rem;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
@@ -1039,6 +1060,12 @@ html, body {
   color: #efefef;
   font-size: 1.5rem;
 }
+@media only screen and (max-width: 760px) {
+  .login__form--gender,
+  .signup__form--gender {
+    justify-content: center;
+  }
+}
 .login__form--gender input,
 .signup__form--gender input {
   width: 1.5rem;
@@ -1056,6 +1083,12 @@ html, body {
   justify-content: space-between;
   margin: 25px 0 35px 0;
   color: #efefef;
+}
+@media only screen and (max-width: 760px) {
+  .login__form--forget,
+  .signup__form--forget {
+    justify-content: center;
+  }
 }
 .login__form--forget label,
 .signup__form--forget label {
@@ -1128,14 +1161,14 @@ footer .footer--info {
     margin-top: 2rem;
   }
 }
-footer h1 {
-  font-size: 3.5rem;
+footer h2 {
+  font-size: 2.5rem;
   width: 100%;
   text-align: center;
   margin-bottom: 2%;
 }
 @media only screen and (max-width: 980px) {
-  footer h1 {
+  footer h2 {
     text-align: left;
   }
 }

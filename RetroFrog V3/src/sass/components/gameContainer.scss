@@ -15,16 +15,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  .game {
-    margin: 2rem;
+  .GameComponent{
+    margin: 1rem;
+    width: 50vw;
+    height: 40vw;
+    max-width: 100vh;
+    max-height: 100vh;
+    @media only screen and (max-width: 780px) {
+      width: 90vw;
+      height: 90vw;
+    }
+  }
+  @media only screen and (max-width: 780px) {
+    width: 90%;
   }
 
   iframe {
-    margin: 1rem;
     border-radius: 0.8rem;
-    max-width: 100vh;
-    max-height: 100vh;
+    height: 100%;
+    width: 100%;
   }
 
   .button__exit {

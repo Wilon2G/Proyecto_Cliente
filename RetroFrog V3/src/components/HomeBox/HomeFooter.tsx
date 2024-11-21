@@ -1,7 +1,7 @@
 export default function HomeFooter() {
   return (
     <footer id="footer">
-      <h1>¡Gracias por visitar RetroFrog!</h1>
+      <h2>¡Gracias por visitar RetroFrog!</h2>
       <div className="footer--info">
         <div>
           <h3>Por qué Retro Frog</h3>

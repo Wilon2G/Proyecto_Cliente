@@ -94,7 +94,7 @@ const SignupPage: React.FC = () => {
   return (
     <div className="signup__wrapper" style={{ marginTop: '6%' }}>
       <form className="signup__form" onSubmit={handleSubmit}>
-        <h2>User Registeration</h2>
+        <h2>Register</h2>
 
         <div className="signup__form--input-field">
           <input

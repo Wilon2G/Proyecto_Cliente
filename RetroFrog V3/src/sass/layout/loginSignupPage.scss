@@ -15,11 +15,10 @@
     display: flex;
     justify-self: center;
     align-self: center;
-    max-width: 65vw;
-    min-width: 450px;
+    
 
     border-radius: 8px;
-    padding: 2rem 6rem;
+    padding: 2rem 4rem;
     text-align: center;
     border: 1px solid $login-wrapper-border;
     backdrop-filter: blur(8px);
@@ -135,6 +134,9 @@
       padding: 0.5rem 0;
       color: $ppal-white;
       font-size: $ppal-font-size;
+      @media only screen and (max-width: 760px) {
+        justify-content: center;
+      }
       input {
         width: 1.5rem;
       }
@@ -153,7 +155,9 @@
 
       margin: 25px 0 35px 0;
       color: $ppal-white;
-
+      @media only screen and (max-width: 760px) {
+        justify-content: center;
+      }
       label {
         display: flex;
         align-items: center;
