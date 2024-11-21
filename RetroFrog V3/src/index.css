@@ -217,7 +217,7 @@
   border: #0E0E10 solid 0.1rem;
 }
 .scene .box .box__face--back {
-  background: rgb(0, 0, 0);
+  background: #0E0E10;
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
   display: flex;
