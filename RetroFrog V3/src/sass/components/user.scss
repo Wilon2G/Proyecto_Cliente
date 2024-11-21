@@ -1,13 +1,5 @@
 @use '../abstracts/variables.scss' as *;
 
-$bg-color: #1e1d29;
-$normal-color: #533179;
-$burn-color: #372052e0;
-$white-font: whitesmoke;
-
-$text-color: #f8f8f2;
-$light-color: #a786cee0;
-
 .profile-card {
   display: flex;
   flex-direction: column;
@@ -29,22 +21,22 @@ $light-color: #a786cee0;
   .name {
     border-top: 1px solid $light-color;
     border-bottom: 1px solid $light-color;
-    background-color: $burn-color;
+    background-color: $dark-purple-1;
 
     margin: 1rem -1px 1.5rem;
     padding: 5px;
     font-size: 1.5rem;
 
-    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 2px 2px 2px $ppal-black;
     padding: 0.3rem 0.7rem;
   }
   .row_stats {
     border-top: 1px solid $light-color;
     border-bottom: 1px solid $light-color;
-    background-color: $burn-color;
+    background-color: $dark-purple-1;
     margin: 0px -1px 0rem;
     padding: 1rem;
-    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 2px 2px 2px $ppal-black;
   }
   .below-fold {
     position: absolute;
@@ -57,7 +49,7 @@ $light-color: #a786cee0;
     z-index: 1000;
     background-image: linear-gradient(
       135deg,
-      rgba($burn-color, 0.9),
+      rgba($dark-purple-1, 0.9),
       rgba($light-color, 0.9)
     );
   }
@@ -87,21 +79,21 @@ $light-color: #a786cee0;
       height: 2.5rem;
 
       margin: 1rem 0.5rem 0rem;
-      background-color: $normal-color;
+      background-color: $dark-purple-2;
       cursor: pointer;
 
       font-size: $x-small-font-size;
       font-weight: 500;
-      color: $white-font;
+      color: $ppal-white;
       border: 1px solid $light-color;
       border-radius: 0.25rem;
       transition: transform 200ms ease-in;
       &:hover {
         transform: translateY(-0.15rem);
-        background: $white-font;
-        background-color: $burn-color;
+        background: $ppal-white;
+        background-color: $dark-purple-1;
       }
-      text-shadow: 2px 2px 2px #000000;
+      text-shadow: 2px 2px 2px $ppal-black;
     }
   }
 
