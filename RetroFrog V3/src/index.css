@@ -275,7 +275,7 @@
   padding: 0.5rem;
   font-size: 1.5rem;
   color: #efefef;
-  background-color: #0e0e10;
+  background-color: rgba(5, 5, 5, 0.5764705882);
   border-radius: 0.2rem;
   z-index: 1;
 }
