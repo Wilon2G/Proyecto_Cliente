@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GameBox from "./GameBox/GameBox";
-import games from "./GameBox/games.json";
+import games from "../data/games.json";
 import SelectedGame from "./GameBox/SelectedGame.tsx";
 
 export type Game = {
@@ -49,15 +49,19 @@ export const HomeMain = () => {
         <div className="catalog">
           <div className="catalog__unlock">
             <h1 id="titleGames">Tus Juegos</h1>
-            {unlockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
-            ))}
+            <div className="games">
+              {unlockedGamesList.map((game: Game) => (
+                <GameBox key={game.title} game={game} setGameState={setGameState} locked={false} />
+              ))}
+            </div>
           </div >
           <div className="catalog__lock">
             <h1 id="titleStore">Tienda</h1>
-            {lockedGamesList.map((game: Game) => (
-              <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
-            ))}
+              <div className="games">
+              {lockedGamesList.map((game: Game) => (
+                <GameBox key={game.title} game={game} setGameState={setGameState} locked={true} />
+              ))}
+            </div>
           </div>
 
         </div>

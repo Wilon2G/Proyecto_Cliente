@@ -1,22 +1,35 @@
-@use "../abstracts/variables.scss" as *;
-
+.games{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin: 1rem;
+}
+.game{
+  z-index: 1;
+  transition: z-index 0s linear 0.4s;
+  margin: 1rem;
+}
+.game:hover{
+  z-index: 10000;
+  transition-delay: 0s;
+  transition: z-index 0s linear 0.4s;
+}
 .scene {
   -webkit-perspective: 70rem;
   width: fit-content;
   height: 28rem; // Contenedor grande en el que se coloca todo, este es el contenedor que rota
-  margin: 0rem auto 1rem auto;
   padding-top: 2rem;
   position: relative;
   
   z-index: 9;
-  
+  margin: 1rem 1rem;
 
   // Cuando el contenedor recibe el hover, la caja rota
   &:hover .box {
     -webkit-transform: rotateY(-180deg); // Rotación del contenedor
     scale: 130%;
-    margin-top: 3rem;
-    
+
   }
 
   .box {
@@ -24,7 +37,7 @@
     height: 18rem;
     -webkit-transform-style: preserve-3d;
     -webkit-transition: all 1s ease-out;
-    margin: 3rem 3rem;
+    margin: 1rem;
     position: relative;
 
     .shadow {
@@ -62,7 +75,7 @@
         background: $right-side;  // Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :)
         width: 3rem;
         -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-        border: 2px solid $ppal-black;
+        
         overflow: hidden;
         
         writing-mode: vertical-rl;
@@ -86,8 +99,7 @@
 
       &--back {
         background: $ppal-black;
-        border: 2px solid $ppal-black;
-
+        
         overflow: hidden;
         -webkit-transform: rotateY(180deg) translateZ(1.5rem);
         

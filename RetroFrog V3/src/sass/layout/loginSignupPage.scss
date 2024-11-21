@@ -13,9 +13,9 @@
 .signup {
     &__wrapper {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 65vw;
+        justify-self: center;
+        align-self: center;
+        max-width: 65vw;
         
         
         border-radius: 8px;

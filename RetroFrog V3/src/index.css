@@ -41,7 +41,7 @@
   transform: scaleY(0.1) translateY(20%);
   opacity: 0;
   visibility: hidden;
-  transition: transform 300ms ease;
+  transition: all 300ms ease;
   border: 1px solid rgba(167, 134, 206, 0.8784313725);
   border-radius: 0.25rem;
   z-index: 1000;
@@ -54,7 +54,7 @@
   opacity: 1;
   transform: scaleY(1) translateY(35%);
   visibility: visible;
-  transition: transform 300ms ease;
+  transition: all 300ms ease;
 }
 .profile-card .button__row {
   display: flex;
@@ -132,26 +132,45 @@
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
+.games {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.game {
+  z-index: 1;
+  transition: z-index 0s linear 0.4s;
+  margin: 1rem;
+}
+
+.game:hover {
+  z-index: 10000;
+  transition-delay: 0s;
+  transition: z-index 0s linear 0.4s;
+}
+
 .scene {
   -webkit-perspective: 70rem;
   width: fit-content;
   height: 28rem;
-  margin: 0rem auto 1rem auto;
   padding-top: 2rem;
   position: relative;
   z-index: 9;
+  margin: 1rem 1rem;
 }
 .scene:hover .box {
   -webkit-transform: rotateY(-180deg);
   scale: 130%;
-  margin-top: 3rem;
 }
 .scene .box {
   width: 18rem;
   height: 18rem;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: all 1s ease-out;
-  margin: 3rem 3rem;
+  margin: 1rem;
   position: relative;
 }
 .scene .box .shadow {
@@ -180,7 +199,6 @@
   background: rgb(199, 233, 223);
   width: 3rem;
   -webkit-transform: rotateY(90deg) translateZ(16.5rem);
-  border: 2px solid #0E0E10;
   overflow: hidden;
   writing-mode: vertical-rl;
   font-weight: 1000;
@@ -199,8 +217,7 @@
   border: #0E0E10 solid 0.1rem;
 }
 .scene .box .box__face--back {
-  background: #0E0E10;
-  border: 2px solid #0E0E10;
+  background: rgb(0, 0, 0);
   overflow: hidden;
   -webkit-transform: rotateY(180deg) translateZ(1.5rem);
   display: flex;
@@ -794,6 +811,7 @@ html, body {
   flex-wrap: wrap;
   margin: 0 auto;
   background-color: rgba(38, 34, 46, 0.534);
+  width: 85vw;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(140, 139, 141, 0.397), 0 0 10px;
 }
@@ -827,9 +845,9 @@ html, body {
 .login__wrapper,
 .signup__wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 65vw;
+  justify-self: center;
+  align-self: center;
+  max-width: 65vw;
   border-radius: 8px;
   padding: 5rem;
   text-align: center;

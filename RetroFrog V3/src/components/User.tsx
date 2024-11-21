@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Link } from "react-router-dom";
-import pfp from '../../assets/icons/userIcon/mmmMonke.jpg';
+import pfp from '../assets/icons/userIcon/mmmMonke.jpg';
 
 const UserProfile = () => {
   const [expanded, setExpanded] = useState(false);
