@@ -114,14 +114,13 @@
 .GameContainer .GameComponent {
   margin: 1rem;
   width: 50vw;
-  height: 40vw;
   max-width: 100vh;
   max-height: 100vh;
 }
 @media only screen and (max-width: 780px) {
   .GameContainer .GameComponent {
     width: 90vw;
-    height: 90vw;
+    height: 50vh;
   }
 }
 @media only screen and (max-width: 780px) {
@@ -131,8 +130,13 @@
 }
 .GameContainer iframe {
   border-radius: 0.8rem;
-  height: 100%;
+  height: 50vh;
   width: 100%;
+}
+@media only screen and (max-width: 780px) {
+  .GameContainer iframe {
+    align-self: center;
+  }
 }
 .GameContainer .button__exit {
   margin: 10px auto;
@@ -513,11 +517,16 @@
 }
 
 .MemoryGame {
-  max-width: 860px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0px auto;
+}
+@media only screen and (max-width: 780px) {
+  .MemoryGame {
+    max-width: 200px;
+  }
 }
 .MemoryGame > p {
   margin-top: 0.75rem;
