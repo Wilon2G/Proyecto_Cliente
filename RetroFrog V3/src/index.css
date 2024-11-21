@@ -90,7 +90,7 @@
 }
 
 .GameContainer {
-  width: 70vw;
+  width: 70%;
   margin: 1rem;
   padding: 1.75rem;
   position: relative;
@@ -102,15 +102,14 @@
   align-items: center;
   justify-content: center;
 }
-.GameContainer .GameComponent {
-  height: 70vw;
-  width: 70vw;
-  margin: 1rem;
-  max-width: 72vh;
-  max-height: 60vh;
+.GameContainer .game {
+  margin: 2rem;
 }
 .GameContainer iframe {
-  border-radius: 1.2rem;
+  margin: 1rem;
+  border-radius: 0.8rem;
+  max-width: 100vh;
+  max-height: 100vh;
 }
 .GameContainer .button__exit {
   margin: 10px auto;
@@ -523,6 +522,61 @@ button:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
+}
+
+.card {
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border: 2px solid #efefef;
+  border-radius: 6px;
+}
+
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+button {
+  background: none;
+  border: 2px solid #efefef;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #efefef;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background: #c23866;
+  color: #efefef;
+}
+
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
 }
 
 .card {
