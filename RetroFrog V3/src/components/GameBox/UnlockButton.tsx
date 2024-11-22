@@ -1,14 +1,17 @@
+import { useState } from "react";
+
 type UnlockButtonProps = {
   id: string;
 };
 
 export default function UnlockButton({ id }: UnlockButtonProps) {
   const userId = sessionStorage.getItem('id'); 
+  const [isClicked, setIsClicked] = useState(false);
+
 
   const handleClick = () => {
-    console.log(`Juego con ID ${id} añadido`);
-
-    
+    if (isClicked) return;
+    setIsClicked(true);
     if (userId) {
       fetch(`http://localhost:3000/users/${userId}`)
         .then((res) => {
@@ -38,7 +41,7 @@ export default function UnlockButton({ id }: UnlockButtonProps) {
               if (!response.ok) {
                 throw new Error('Error al actualizar el usuario');
               }
-              console.log('Juego desbloqueado y datos de usuario actualizados');
+              console.log('Juego con ${id} desbloqueado  y datos de usuario actualizados');
             })
             .catch((error) => {
               console.error('Error al actualizar el usuario:', error);
@@ -51,7 +54,7 @@ export default function UnlockButton({ id }: UnlockButtonProps) {
   };
 
   return (
-    <button className="playBtn" onClick={handleClick}>
+    <button className="playBtn" onClick={handleClick} disabled={isClicked}>
       Buy now!
     </button>
   );

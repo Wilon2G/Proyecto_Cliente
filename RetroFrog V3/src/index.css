@@ -364,6 +364,9 @@
   animation: span4 2s linear infinite;
   animation-delay: 4s;
 }
+.scene .box .box__face--back button:disabled {
+  background: linear-gradient(to left top, #c5c5c5 50%, #6b6b6b 50%);
+}
 @keyframes span1 {
   0% {
     left: -200px;

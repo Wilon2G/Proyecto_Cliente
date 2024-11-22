@@ -174,6 +174,7 @@
             $back-button-init 50%,
             $back-button-final 50%
           );
+
           border-style: none;
 
           color: $ppal-white;
@@ -277,7 +278,11 @@
               animation-delay: 4s;
             }
           }
+          &:disabled{
+            background: linear-gradient(to left top, #c5c5c5 50%, #6b6b6b 50%);
+          }
         }
+        
       }
     }
   }
