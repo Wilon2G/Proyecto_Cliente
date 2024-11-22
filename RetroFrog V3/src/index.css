@@ -714,8 +714,7 @@ html, body {
 }
 .header__logo h3 {
   background-image: linear-gradient(120deg, #69c42d, rgb(2, 88, 50), #69c42d);
-  -webkit-background-clip: text;
-  -webkit-text-stroke: 1px #8ad359;
+  background-clip: text;
   color: transparent;
   font-size: 3rem;
   text-shadow: 2px 2px 5px rgb(57, 124, 57);
