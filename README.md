@@ -49,3 +49,13 @@ Usuario:
 https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
 #### Paleta  
 https://lospec.com/palette-list/jehkoba64
+
+
+# Repartición de tareas 
+- Login y Register: solo diseño 
+- Base de datos: sql lite obv 
+- Home: es el header ponerlo bonico
+- main: news y relleno
+- library: migrar los juegos del ant proy
+- shop: same que library 
+- userProfile: mod y personalizar
