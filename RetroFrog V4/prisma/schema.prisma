@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,14 +9,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @id @default(cuid())
-  UserName String
-  Password String
-  Name String
-  Email String
-  Sex String
-  Score Int
-  Theme String
-  RegisterDate DateTime @default(now())
+model User {
+  id            String   @id @default(cuid())
+  userName      String
+  password      String
+  name          String
+  email         String
+  sex           String
+  score         Int
+  theme         String
+  registerDate  DateTime @default(now())
+
+  // Relación con UserInfo
+  userInfo      UserInfo[]
+}
+
+model UserInfo {
+  id            String   @id @default(cuid()) // PK (Esta PK o compuesta de los dos?)
+  userId        String   // FK User
+  gameId        String   // FK Games
+  unlocked      String
+  unlockedDate  DateTime @default(now())
+
+  // Definición de relaciones
+  user          User     @relation(fields: [userId], references: [id])
+  game          Games    @relation(fields: [gameId], references: [id])
+}
+
+model Games {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  component     String
+  color         String
+  route         String
+
+  // Relación con UserInfo
+  userInfo      UserInfo[]
 }
