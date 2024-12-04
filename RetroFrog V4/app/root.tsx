@@ -8,7 +8,18 @@ import {
 import type { LinksFunction,MetaFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+/*
+Para usar la base de datos lo haremos directamente con loaders 
+y actions, una función sencilla sería:
 
+export async function loader() {
+  const users = await prisma.user.findMany();
+  return { users };
+}
+
+Esa función devolverá todos los usuarios
+
+*/
 
 export const meta: MetaFunction = () => {
   return [

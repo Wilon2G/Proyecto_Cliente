@@ -1,2 +1,2 @@
 
-//Boton generioc que recibe (className,color,width,text,link,border)
+//Boton generico que recibe (className,color,width,text,link,border)

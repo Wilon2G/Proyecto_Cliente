@@ -11,7 +11,7 @@ datasource db {
 
 model User {
   id            String   @id @default(cuid())
-  userName      String
+  userName      String   @unique
   password      String
   name          String
   email         String
@@ -20,23 +20,12 @@ model User {
   theme         String
   registerDate  DateTime @default(now())
 
-  // Relación con UserInfo
-  userInfo      UserInfo[]
+  // Relación con Game
+  GamesUnlocked Game[] @relation("UserGames")
 }
 
-model UserInfo {
-  id            String   @id @default(cuid()) // PK (Esta PK o compuesta de los dos?)
-  userId        String   // FK User
-  gameId        String   // FK Games
-  unlocked      String
-  unlockedDate  DateTime @default(now())
 
-  // Definición de relaciones
-  user          User     @relation(fields: [userId], references: [id])
-  game          Games    @relation(fields: [gameId], references: [id])
-}
-
-model Games {
+model Game {
   id            String   @id @default(cuid())
   title         String
   description   String
@@ -44,6 +33,7 @@ model Games {
   color         String
   route         String
 
-  // Relación con UserInfo
-  userInfo      UserInfo[]
+//Clave foránea relación con user
+  Users       User[] @relation("UserGames")
+
 }
