@@ -4,7 +4,7 @@ export default function Kk() {
   const nav = useNavigate();
 
   function handleClick() {
-    nav("/home/homePage");
+    nav("/home");
   }
 
   return (
