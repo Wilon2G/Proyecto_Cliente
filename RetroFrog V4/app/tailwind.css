@@ -4,20 +4,18 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply h-screen w-screen m-0 p-0;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
 body {
-  background-image: url("/assets/background/bg2.png");
+  background-image: url("/assets/background/bg3.png");
   background-size: cover;
-  background-repeat: no-repeat;
-  
+  background-attachment: fixed; 
+  background-position: center;
 }
-
-
 
 
 .sidebar {
@@ -25,7 +23,7 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;   
   -ms-user-select: none;    
-  opacity: 0.9;
+  opacity: 0.99;
 }
 
 
@@ -41,10 +39,8 @@ body {
   }
 }
 
-
-
 .sidebar {
-  @apply w-48 fixed top-4 left-4 rounded-xl bg-[#151A2D] h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out;
+  @apply w-48 fixed top-4 left-4 rounded-xl bg-[#151A2D] h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
 }
 
 .sidebar.collapsed {
@@ -116,7 +112,8 @@ body {
 }
 
 .nav-link {
-  @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
+  @apply flex items-center no-underline text-white px-3 py-3 
+          rounded-lg gap-3 transition-all duration-300 ease-in-out;
 }
 
 .nav-link:hover {
@@ -142,32 +139,32 @@ body {
 .playlist{
   @apply bg-slate-400 rounded-xl mb-8;
 }
-/*Estilos de contenedor de contenido*/
-.content{
-  width: 90%;
-  margin-left: 10%;
+/* Contenedor principal */
+.content {
+  @apply p-5 ml-24;
+  
 }
-/*Estilos de la galeria 1*/
+
+/* Galería de imágenes */
 .gallery {
-  width: 100%;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+
 }
 
+/* Estilo de las imágenes */
 .gallery img {
-  width: 50%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border: 2px solid #8585858c;
-  transition: all ease-out 0.5s;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  overflow: hidden;
 }
 
+/* Efecto hover */
 .gallery img:hover {
-  height: 100%;
-  width: 500%;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
