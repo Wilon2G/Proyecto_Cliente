@@ -13,6 +13,7 @@ async function main() {
       sex: "NAN",
       score: 50,
       theme: "dark",
+      pfp: "/assets/icon/pfp/default.jpg",  
     },
   });
 

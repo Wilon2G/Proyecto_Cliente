@@ -18,6 +18,7 @@ model User {
   sex           String
   score         Int
   theme         String
+  pfp           String
   registerDate  DateTime @default(now())
 
   // Relación con Game
