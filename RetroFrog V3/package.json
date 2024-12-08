@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "compile:sass": "sass --watch src/sass/main.scss src/index.css",
-    "json": "json-server --watch usersBD.json",
+    "json": "json-server --watch src/data/usersBD.json",
     "super": "concurrently \"npm run dev\" \"npm run compile:sass\" \"npm run json\""
   },
   "dependencies": {

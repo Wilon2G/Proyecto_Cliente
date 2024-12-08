@@ -1,20 +1,18 @@
+@use 'abstracts/variables.scss';
+
+@use 'base/typography.scss';
+
+@use 'components/user.scss';
+@use 'components/gameContainer.scss';
+@use 'components/gameBox.scss';
 
 
-@use "abstracts/variables.scss";
+@use 'games/simonSays.scss';
+@use 'games/memory.scss';
 
-
-
-@use "base/typography.scss";
-
-
-@use "components/button.scss";
-
-@use "games/simonSays.scss";
-
-@use "layout/general.scss";
-@use "layout/header.scss";
-@use "layout/navbar.scss";
-@use "layout/catalog.scss";
-@use "layout/loginSignupPage.scss";
-@use "layout/user.scss";
-
+@use 'layout/general.scss';
+@use 'layout/header.scss';
+@use 'layout/navbar.scss';
+@use 'layout/catalog.scss';
+@use 'layout/loginSignupPage.scss';
+@use 'layout/footer.scss';

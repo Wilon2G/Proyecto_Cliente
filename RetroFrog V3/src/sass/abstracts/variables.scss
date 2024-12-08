@@ -1,66 +1,76 @@
-$color-pink-light: #fabbaf;
-$color-pink: #eb758f;
-$color-red-light: #d94c8e;
-$color-red: #b32d7d;
-$color-peach: #fa9891;
-$color-salmon: #ff7070;
-$color-crimson: #f53141;
-$color-burgundy: #c40c2e;
-$color-purple: #852264;
-$color-gold-light: #faa032;
-$color-gold: #f58122;
-$color-orange-red: #f2621f;
-$color-orange: #db4b16;
-$color-brown: #9e4c4c;
-$color-yellow-light: #fad937;
-$color-yellow: #ffb938;
-$color-amber: #e69b22;
-$color-mustard: #cc8029;
-$color-olive: #ad6a45;
-$color-light-gray: #ccc73d;
-$color-lime: #b3b02d;
-$color-green-yellow: #989c27;
-$color-dark-olive: #8c8024;
-$color-dark-brown: #7a5e37;
-$color-green-light: #94bf30;
-$color-green: #55b33b;
-$color-teal: #179c43;
-$color-teal-dark: #068051;
-$color-blue-dark: #116061;
-$color-mint: #a0eba8;
-$color-mint-light: #7ccf9a;
-$color-green-light-dark: #5cb888;
-$color-green-teal: #3da17e;
-$color-blue-green: #20806c;
-$color-cyan-light: #49c2f2;
-$color-cyan: #25acf5;
-$color-blue: #1793e6;
-$color-blue-dark-light: #1c75bd;
-$color-blue-dark: #195ba6;
-$color-lavender: #ae88e3;
-$color-lavender-light: #7e7ef2;
-$color-blue-gray: #586ac4;
-$color-dark-blue: #3553a6;
-$color-navy: #243966;
-$color-lavender-pink: #e29bfa;
-$color-light-purple: #ca7ef2;
-$color-violet: #a35dd9;
-$color-purple-dark: #773bbf;
-$color-dark-purple: #4e278c;
-$color-brown-gray: #b58c7f;
-$color-green-gray: #9e7767;
-$color-gray: #875d58;
-$color-dark-gray: #6e4250;
-$color-dark-teal: #472e3e;
-$color-gray-light: #a69a9c;
-$color-lavender-gray: #807980;
-$color-blue-gray-dark: #696570;
-$color-dark-blue-gray: #495169;
-$color-black-dark: #0d2140;
-$color-black-light: #050e1a;
-$color-beige: #d9a798;
-$color-light-beige: #c4bbb3;
-$color-off-white: #f2f2da;
+//General
+$x-small-font-size: 1rem;
+$smaller-font-size: 1.25rem;
+$ppal-font-size: 1.5rem;
+$medium-font-size: 1.75rem;
+$h2-font-size: 2.5rem;
+$h1-font-size: 3.5rem;
 
+$ppal-black: #0e0e10;
+$ppal-white: #efefef;
+$ppal-purple-color: rgb(72, 18, 83);
+$purple-shadow-color: rgb(88, 0, 110);
+$ppal-black-bg: rgba(10, 10, 11, 0.9);
+$ppal-grey-color: #999;
+$footer-header-bg: rgba(10, 10, 11, 0.71);
 
-$tamaño-juegos:1rem;
+//Main
+$ppal-main-shadow: rgba(140, 139, 141, 0.397);
+$unlock-title-bg: #341453c2;
+$unlock-bg: rgba(38, 34, 46, 0.534);
+$lock-title-bg: rgba(157 119 53 / 76%);
+$lock-bg: rgba(46 43 34 / 53%);
+
+//Login + Signup
+$login-wrapper-border: rgba(255, 255, 255, 0.5);
+$login-wrapper-bg: rgba(51, 45, 55, 0.4);
+$login-btn-hover: rgba(255, 255, 255, 0.15);
+$border-input-color: #ccc;
+
+//User
+$dark-purple-1: #372052e0;
+$dark-purple-2: #533179;
+$light-color: #a786cee0;
+$row-status-border: 1px solid #ffffff49;
+
+//Navbar
+$nav-size: 6rem;
+$nav-position: 2.5rem;
+$text-size: 1.25rem;
+
+$nav-btn-shadow: rgba(0, 0, 0, 0.1);
+$nav-block-bg: rgba(148, 147, 147, 0.5);
+
+//Game-box
+$right-side: rgb(199, 233, 223);
+$rigth-etiqueta-text: navy;
+$rigth-etiqueta-init: rgba(255, 255, 255, 1);
+$rigth-etiqueta-final: rgba(110, 110, 110, 1);
+$back-text-bg: #1f1f1fa2;
+$back-title-bg: #05050593;
+$back-button-init: #cab078;
+$back-button-final: #d4ce93;
+$back-button-hover-init: #eeb332;
+$back-button-hover-final: #eedb30;
+$back-button-line-move: #f6e58d;
+
+//Game-container
+$gcont-border-color: rgb(88, 88, 88);
+$gcont-bg: rgba(114, 114, 114, 0.336);
+$gcont-btn-exit-init: #663636;
+$gcont-btn-exit-final: #805555;
+$gcont-btn-exit-hover-init: #b62c2c;
+$gcont-btn-exit-hover-final: #ee3030;
+
+//Simon-Game
+$color-green: rgb(0, 145, 0);
+$color-green-flash: lightgreen;
+$color-red: rgb(158, 1, 1);
+$color-red-flash: lightcoral;
+$color-blue: rgb(1, 1, 173);
+$color-blue-flash: lightblue;
+$color-yellow: rgb(231, 175, 33);
+$color-yellow-flash: lightyellow;
+
+//Memory
+$hover-color: #c23866;

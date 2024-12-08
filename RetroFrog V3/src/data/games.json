@@ -1,0 +1,83 @@
+[
+  {
+    "title": "Mario Kart",
+    "route": "src/assets/games/covers/MarioKart.jpeg",
+    "backroute": "src/assets/games/covers/MarioKartBack.gif",
+    "color": "#fd3d4a",
+    "description": "El juego más clásico de carreras de Nintendo",
+    "id": "6671cf46-456d-4bb2-90c3-64548e5e7f7e",
+    "component": "MarioKart"
+  },
+  {
+    "title": "Super Mario",
+    "route": "src/assets/games/covers/SuperMario.jpeg",
+    "backroute": "",
+    "color": "rgb(18, 176, 187)",
+    "description": "La primera aventura del fontanero Italiano.",
+    "id": "fa5ce516-1c26-4018-9d98-9225068ccc18",
+    "component": "SuperMario"
+  },
+  {
+    "title": "Simon Game",
+    "route": "src/assets/games/covers/SimonSays.png",
+    "backroute": "",
+    "color": "#b6b6b6",
+    "description": "El juego más tradicional para entrenar tu memoria.",
+    "id": "b97bf75d-5764-46b5-be5e-fe4df0d0af4a",
+    "component": "SimonGame"
+  },
+  {
+    "title": "Memory Game",
+    "route": "src/assets/games/covers/MemoryGame.jpeg",
+    "backroute": "",
+    "color": "rgb(140, 11, 227)",
+    "description": "Pon a prueba tu memoria con este ingenioso juego. Derechos de Copyrigh reservados, idea 100% original de RetroFrog",
+    "id": "5aabf3c9-8h7d-4f6a-902a-99123f0e3f2c",
+    "component": "Memory"
+  },
+  {
+    "title": "Super Bomberman",
+    "route": "src/assets/games/covers/SuperBombermanCover.jpg",
+    "backroute": "src/assets/games/covers/SuperBombermanBack.gif",
+    "color": "#ff7f27",
+    "description": "Explosiones y estrategia en modo multijugador",
+    "id": "5aabf3c9-8d7d-4f6a-902a-478d8f0e3f2c",
+    "component": "BomberMan"
+  },
+  {
+    "title": "Donkey Kong Country",
+    "route": "src/assets/games/covers/DkCountryCover.jpg",
+    "backroute": "src/assets/games/covers/DkCountryCoverBack.gif",
+    "color": "#004a19",
+    "description": "Aventura clásica en la jungla",
+    "id": "3ed4a416-12c4-4a0e-98e6-48fa7b6e7d3e",
+    "component": "DonkeyKong"
+  },
+  {
+    "title": "The Legend of Zelda",
+    "route": "src/assets/games/covers/LegendOfZeldaCover.png",
+    "backroute": "src/assets/games/covers/LegendOfZeldaBack.gif",
+    "color": "#b29a4e",
+    "description": "Un viaje épico en el mundo de Hyrule",
+    "id": "ae9f3e17-39f9-48e6-bf22-06e4b19f4b1d",
+    "component": "Zelda"
+  },
+  {
+    "title": "Street Fighter II",
+    "route": "src/assets/games/covers/StreetFighterCover.png",
+    "backroute": "src/assets/games/covers/StreetFighterBack.gif",
+    "color": "black",
+    "description": "El clásico de peleas que hizo historia",
+    "id": "d3f0c920-8343-4e3e-99ea-b12f4e8f6c29",
+    "component": "StreetFighter"
+  },
+  {
+    "title": "F-Zero",
+    "route": "src/assets/games/covers/FZeroCover.png",
+    "backroute": "src/assets/games/covers/FZeroBack.gif",
+    "color": "#4a90e2",
+    "description": "Carreras futuristas a toda velocidad",
+    "id": "71e4d5c1-9e7c-4fd2-9cf6-52c245d7e392",
+    "component": "FZero"
+  }
+]
