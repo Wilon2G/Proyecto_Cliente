@@ -1,5 +1,4 @@
 import Spotlight from "~/components/Spotlight";
-import Gallery from "../components/Gallery";
 import Catalog, { SubCatalog } from "~/components/Catalog";
 
 export default function Shop(){

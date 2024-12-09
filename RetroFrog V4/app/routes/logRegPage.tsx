@@ -13,20 +13,13 @@ export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const userName = formData.get("userName");
   const password = formData.get("password");
-
-  if (!userName || !password) {
-    return json({ error: "Error, debe rellenar todos los campos" });
-  }
-
+  
   const user = await prisma.user.findUnique({
     where: { userName: userName as string },
   });
-
-  // Compara la contraseña directamente (sin hash)
   if (!user || user.password !== password) {
-    return json({ error: "Error, nombre de usuario o contraseña incorrectos" });
+    return "";
   }
-
   return redirect("/home/main");
 }
 

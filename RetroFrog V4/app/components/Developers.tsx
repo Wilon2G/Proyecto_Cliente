@@ -40,7 +40,7 @@ export default function Catalog() {
   return (
     <div className="slider-container">
       <Swiper
-        modules={[ EffectCoverflow]}
+        modules={[EffectCoverflow]}
         spaceBetween={10}
         slidesPerView={3}
         effect="coverflow"

@@ -3,8 +3,6 @@ import Developers from "~/components/Developers";
 
 export default function Settings() {
     const [isOpen, setIsOpen] = useState(false);
-
-    // Función para manejar el estado del dropdown
     const toggleDropdown = () => {
         setIsOpen(prevState => !prevState);
     };
@@ -12,7 +10,8 @@ export default function Settings() {
     return (
         <>
             <h1 className="text-3xl font-semibold mb-4 text-gray-900">Seguridad y privacidad</h1>
-            <button className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md mb-6 transition-colors">
+            {/* fake */}
+            <button className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md mb-6 transition-colors"> 
                 Cerrar sesión en todos los dispositivos
             </button>
 

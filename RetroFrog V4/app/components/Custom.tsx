@@ -5,17 +5,15 @@ interface CustomProps {
   className?: string;
 }
 
-const Custom: React.FC<CustomProps> = ({ style, className }) => {
-  // Estados para personalización
+export default function Custom({ style, className }:CustomProps) {
+  
   const [theme, setTheme] = useState<string>("dark");
-  const [background, setBackground] = useState<string>("/assets/background/bg1.png"); // Path al fondo
+  const [background, setBackground] = useState<string>("/assets/background/bg1.png"); 
   const [font, setFont] = useState<string>("'Open Sans', sans-serif");
   const [profilePic, setProfilePic] = useState<string | null>(null);
 
-  // Funciones para manejar cambios en las configuraciones
+  
   const handleThemeChange = (theme: string) => setTheme(theme);
-  const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setBackground(e.target.value);
   const handleFontChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setFont(e.target.value);
   const handleProfilePicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +29,6 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
     }
   };
 
-  // Lista de fondos disponibles
   const backgrounds = [
     "/assets/background/bg1.png",
     "/assets/background/bg2.png",
@@ -44,15 +41,13 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
       style={{ ...style }}
     >
       <h3 className="text-white">Customización de Página</h3>
-
-      {/* Selección de tema */}
       <div className="flex items-center gap-2">
       <label htmlFor="theme" className="text-white">Selecciona Tema</label>
       <select
         id="theme"
         value={theme}
         onChange={(e) => handleThemeChange(e.target.value)}
-        className="hidden"  // Puedes hacer el select invisible si solo deseas manejar los botones
+        className="hidden"  
       >
         <option value="light">Claro</option>
         <option value="dark">Oscuro</option>
@@ -79,8 +74,6 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
         </button>
       </div>
     </div>
-
-      {/* Opciones de color personalizado si "Otros" */}
       {theme === "other" && (
         <div className="flex flex-col items-center gap-2">
           <h4 className="text-white">Selecciona un color para el fondo</h4>
@@ -96,8 +89,6 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
           </div>
         </div>
       )}
-
-      {/* Selector de fuente */}
       <div className="flex items-center gap-2">
         <label htmlFor="font-family" className="text-white">Fuente</label>
         <select
@@ -112,8 +103,6 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
           <option value="'Arial', sans-serif">Arial</option>
         </select>
       </div>
-
-      {/* Foto de perfil */}
       <div className="flex flex-col items-center gap-2">
         <label htmlFor="profile-pic" className="text-white">Foto de Perfil</label>
         <input
@@ -131,8 +120,6 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
           />
         )}
       </div>
-
-      {/* Elementos internos con estilo */}
       <div
         className={`w-full h-full p-4 flex flex-col justify-center items-center transition-all rounded-md`}
         style={{
@@ -149,5 +136,3 @@ const Custom: React.FC<CustomProps> = ({ style, className }) => {
     </div>
   );
 };
-
-export default Custom;

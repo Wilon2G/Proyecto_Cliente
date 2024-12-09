@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Importa los estilos básicos de Swiper
-import "swiper/css/pagination"; // Si usas paginación
-import "swiper/css/navigation"; // Si usas navegación
-import { Navigation, Pagination } from "swiper/modules"; // Importa módulos si los necesitas
+import "swiper/css"; 
+import "swiper/css/pagination"; 
+import "swiper/css/navigation"; 
+import { Navigation, Pagination } from "swiper/modules"; 
 import BuyButton from "./BuyButton";
 
 

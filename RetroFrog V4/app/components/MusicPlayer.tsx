@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
 interface MusicPlayerProps {
-  style?: React.CSSProperties; // Prop de estilo opcional
-  className?: string; // Prop de clase opcional
+  style?: React.CSSProperties; 
+  className?: string; 
 }
 
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ style, className }) => {
@@ -10,8 +10,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ style, className }) => {
   const [volume, setVolume] = useState(0.5);
   const [isRepeating, setIsRepeating] = useState(false);
   const [isPlaylistVisible, setIsPlaylistVisible] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0); // Progreso actual en segundos
-  const [duration, setDuration] = useState(0); // Duración total de la canción
+  const [currentTime, setCurrentTime] = useState(0); 
+  const [duration, setDuration] = useState(0); 
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -81,11 +81,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ style, className }) => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
 
-      // Actualizar duración cuando se carga la canción
       const handleLoadedMetadata = () => setDuration(audioRef.current?.duration || 0);
       audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-      // Actualizar progreso mientras se reproduce la canción
       const handleTimeUpdate = () => updateCurrentTime();
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
 
