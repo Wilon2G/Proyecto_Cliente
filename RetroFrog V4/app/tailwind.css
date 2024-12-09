@@ -11,31 +11,29 @@ body {
   }
 }
 body {
-  background-image: url("/assets/background/bg3.png");
+  background-image: url('/assets/background/bg3.png');
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   background-position: center;
 }
-
 
 .sidebar {
   user-select: none;
   -webkit-user-select: none;
-  -moz-user-select: none;   
-  -ms-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
   opacity: 0.99;
 }
 
-
 @keyframes moveBlobs {
   0% {
-      transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1);
   }
   50% {
-      transform: translate(40px, 40px) scale(1.5); 
+    transform: translate(40px, 40px) scale(1.5);
   }
   100% {
-      transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1);
   }
 }
 
@@ -55,10 +53,10 @@ body {
   @apply w-full h-full object-cover rounded-full transition-all duration-300 ease-in-out;
 }
 .sidebar-header .header-logo {
-@apply w-24 h-24 object-cover rounded-full border-[#dbe2fe] transition-all duration-300 ease-in-out my-4 border-4;
+  @apply w-24 h-24 object-cover rounded-full border-[#dbe2fe] transition-all duration-300 ease-in-out my-4 border-4;
 }
 .sidebar.collapsed .header-logo {
-@apply w-12 h-12 border-2 ;
+  @apply w-12 h-12 border-2;
 }
 .sidebar-header .toggler {
   @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out self-end;
@@ -66,7 +64,7 @@ body {
 .toggler:hover {
   @apply bg-gray-200;
 }
-.toggler:hover svg{
+.toggler:hover svg {
   @apply fill-[#151A2D];
 }
 .toggler svg {
@@ -92,20 +90,20 @@ body {
 }
 .sidebar-nav .primary-nav {
   @apply relative w-full;
-  & .nav-link:hover svg{
-      @apply fill-[#151A2D];
+  & .nav-link:hover svg {
+    @apply fill-[#151A2D];
   }
-  & svg{
-      @apply fill-[#f5f5f5];
+  & svg {
+    @apply fill-[#f5f5f5];
   }
 }
 .sidebar.collapsed .primary-nav {
-  @apply relative ;
-  & .nav-link:hover svg{
-      @apply fill-[#151A2D];
+  @apply relative;
+  & .nav-link:hover svg {
+    @apply fill-[#151A2D];
   }
-  & svg{
-      @apply fill-[#f5f5f5];
+  & svg {
+    @apply fill-[#f5f5f5];
   }
 }
 
@@ -138,21 +136,15 @@ body {
   @apply opacity-0 hidden pointer-events-none;
 }
 
-
-
 .content {
   @apply p-5 ml-24 flex flex-col;
-  
 }
-
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-
 }
-
 
 .gallery img {
   width: 100%;
@@ -162,7 +154,6 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
-
 
 .gallery img:hover {
   transform: scale(1.05);
@@ -178,7 +169,7 @@ body {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.17s ease-in-out;
-  pointer-events: none; 
+  pointer-events: none;
 }
 .custom-enter {
   opacity: 1;
@@ -190,7 +181,7 @@ body {
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.17s ease-in-out;
-  pointer-events: none; 
+  pointer-events: none;
 }
 .playlist {
   @apply bg-[#f0f8ff59] rounded-md  overflow-y-auto h-0;
@@ -205,26 +196,23 @@ body {
 }
 
 .playlist-exit {
-  height: 0; 
+  height: 0;
   opacity: 0;
-  pointer-events: none; 
+  pointer-events: none;
   transition: all 0.17s ease-in-out;
   transform: translateY(10px);
 }
 /*-------------------------SHOP-------------------------------*/
 /*-----------------------Spotlight----------------------------*/
 
-
 /*-------------------------Settings---------------------------*/
-
-
 
 .slider-container {
   height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .slider-wrapper {
@@ -242,9 +230,8 @@ body {
   border: 1px solid white;
   border-radius: 15px;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .slide-image {
   height: 8rem;
@@ -266,45 +253,26 @@ body {
 
 .slide-description {
   font-size: 0.875rem;
-  color: #000000; 
+  color: #000000;
 }
 
 .slide-button {
   margin-top: 1rem;
-  color: #0071fc; 
+  color: #0071fc;
   text-decoration: underline;
   border-radius: 4px;
   transition: color 0.3s ease;
 }
 
 .slide-button:hover {
-  color: #041c52; 
+  color: #041c52;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*-------------------------buyButton--------------------------*/
 
 .buy-button {
   padding: 5px 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
