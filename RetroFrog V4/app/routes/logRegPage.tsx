@@ -61,7 +61,7 @@ export default function LoginPage() {
             <p className="mb-4 text-gray-400 font-bold text-sm ">
               Did you alreday had an account?
             </p>
-            <h2 className={`text-2xl font-bold mb-6 text-center`}>Log In!</h2>
+            <h2 className={`text-2xl font-bold mb-6 text-center transition-all duration-300 border-white rounded-2xl z-50 hover:bg-gray-50 hover:border-gray-300 border-2`}>Log In!</h2>
           </div>
 
           <div
@@ -92,7 +92,7 @@ export default function LoginPage() {
                 type="text"
                 name="userName"
                 id="userName"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
                 placeholder="Tu nombre de usuario"
               />
             </div>
@@ -107,7 +107,7 @@ export default function LoginPage() {
                 type="password"
                 name="password"
                 id="password"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
                 placeholder="Tu contraseña"
               />
             </div>
@@ -134,7 +134,7 @@ export default function LoginPage() {
           role="button" // Define el elemento como un botón para la accesibilidad
         >
           <div
-            className={`transition-all duration-1000 ${
+            className={`transition-all duration-1000 text-center ${
               activePanel === 'register' &&
               'translate-y-[-50px] opacity-0 absolute top-[-200px]'
             }`}
@@ -142,7 +142,7 @@ export default function LoginPage() {
             <p className="mb-4 text-gray-400 font-bold text-sm ">
             Don&apos;t have an account yet?
             </p>
-            <h2 className={`text-2xl font-bold mb-6 text-center`}>Register now!</h2>
+            <h2 className={`p-1 text-2xl transition-all duration-300 font-bold mb-6 text-center border-gray-100 rounded-2xl z-50 hover:bg-gray-50 hover:border-gray-300 border-2`}>Create an account!</h2>
           </div>
 
           <div
@@ -166,14 +166,14 @@ export default function LoginPage() {
                   className="block text-sm font-medium mb-1"
                   htmlFor="userName"
                 >
-                  User Name:
+                  UserName:
                 </label>
                 <input
                   type="text"
                   name="userName"
                   id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                  placeholder="Tu nombre de usuario"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  placeholder="Your user name"
                 />
               </div>
               <div>
@@ -187,8 +187,8 @@ export default function LoginPage() {
                   type="password"
                   name="password"
                   id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                  placeholder="Tu contraseña"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  placeholder="Your password"
                 />
               </div>
               <div>
@@ -196,14 +196,14 @@ export default function LoginPage() {
                   className="block text-sm font-medium mb-1"
                   htmlFor="email"
                 >
-                  Correo electrónico
+                  Email:
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                  placeholder="Tu correo electrónico"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  placeholder="example@gmail.com"
                 />
               </div>
               <Button textBtn="Register" typeBtn="submit" className="" />
