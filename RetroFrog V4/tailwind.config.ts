@@ -4,6 +4,11 @@ export default {
   content: ['./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontSize: {
+        h1: '3xl',
+        h2: '2xl',
+        h3: 'xl',
+      },
       colors: {
         // Tema oscuro
         primaryDark: '#151a2d',

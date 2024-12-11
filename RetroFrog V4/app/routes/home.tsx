@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from '@remix-run/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Custom from '~/components/Custom';
 import {
   CollapseArrow,
@@ -7,7 +7,6 @@ import {
   GamesIcon,
   LogOutIcon,
   MusicIcon,
-  PreferencesIcon,
   SettingsIcon,
   ShopIcon,
   UserIcon,
@@ -19,7 +18,7 @@ import MusicPlayer from '~/components/MusicPlayer';
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
-  const [customState, setCustomState] = useState(false);
+
   function toggleSidebar() {
     setIsCollapsed((prev) => !prev);
   }
@@ -27,9 +26,7 @@ export default function HomePage() {
   function toggleMusic() {
     setMusicState((prev) => !prev);
   }
-  function toggleCustom() {
-    setCustomState((prev) => !prev);
-  }
+
   return (
     <>
       <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -82,17 +79,6 @@ export default function HomePage() {
               </div>
               <MusicPlayer
                 className={musicState ? 'music-enter' : 'music-exit'}
-              />
-            </li>
-            <li className="nav-item">
-              <div className="nav-link" onClick={toggleCustom}>
-                <span className="nav-icon">
-                  <PreferencesIcon />
-                </span>
-                <span className="nav-label">Customize</span>
-              </div>
-              <Custom
-                className={customState ? 'custom-enter' : 'custom-exit'}
               />
             </li>
           </ul>

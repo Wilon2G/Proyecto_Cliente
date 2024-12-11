@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Form, redirect } from '@remix-run/react';
 import { useState } from 'react';
-import Button from '~/components/Button';
+import Button from '~/components/Buttons';
 
 const prisma = new PrismaClient();
 

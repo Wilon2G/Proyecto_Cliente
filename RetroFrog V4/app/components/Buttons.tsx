@@ -7,7 +7,7 @@ type buttonProps = {
   className: string;
 };
 
-export function Button({ textBtn, typeBtn, className }: buttonProps) {
+export default function Button({ textBtn, typeBtn, className }: buttonProps) {
   return (
     <button
       type={typeBtn}
@@ -21,5 +21,3 @@ export function Button({ textBtn, typeBtn, className }: buttonProps) {
     </button>
   );
 }
-
-export default Button;
