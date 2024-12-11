@@ -1,12 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
 >>>>>>> 548adf2 (Añadido footer)
+=======
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+>>>>>>> origin/feature-gui
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Quicksand:wght@300..700&display=swap");
 .profile-card {
+<<<<<<< HEAD
 <<<<<<< HEAD
   display: flex;
   flex-direction: column;
@@ -102,6 +108,13 @@
   text-align: center;
   color: #f8f8f2;
 }
+=======
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+  color: #f8f8f2;
+}
+>>>>>>> origin/feature-gui
 .profile-card .cover {
   background-image: linear-gradient(135deg, rgba(70, 2, 97, 0.2), rgba(59, 1, 82, 0.4));
   background-position: center;
@@ -203,13 +216,17 @@
   background: #f5f5f5;
   color: black;
   border-color: #1e1d29;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .profile-card #expand-button {
   height: 7rem;
   width: 7rem;
   border-radius: 50%;
   cursor: pointer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -514,6 +531,8 @@
     bottom: 70px;
   }
 =======
+=======
+>>>>>>> origin/feature-gui
   transition: background 200ms ease, transform 500ms;
 }
 
@@ -611,7 +630,10 @@
   border-radius: 50%;
   cursor: pointer;
   transition: background 200ms ease, transform 500ms;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 
 .simon-game {
@@ -625,6 +647,7 @@
 }
 .simon-game .cardWrapper {
 <<<<<<< HEAD
+<<<<<<< HEAD
   width: 500px;
   height: 500px;
   display: flex;
@@ -637,12 +660,17 @@
   }
 }
 =======
+=======
+>>>>>>> origin/feature-gui
   width: 400px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
 }
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 .simon-game .cardWrapper__red, .simon-game .cardWrapper__blue, .simon-game .cardWrapper__green, .simon-game .cardWrapper__yellow {
   flex: 0 0 50%;
   height: 50%;
@@ -650,10 +678,14 @@
   align-items: center;
   justify-content: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
   border: 1px solid #0e0e10;
 =======
   border: 1px solid #000;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  border: 1px solid #000;
+>>>>>>> origin/feature-gui
 }
 .simon-game .cardWrapper__red--flash, .simon-game .cardWrapper__blue--flash, .simon-game .cardWrapper__green--flash, .simon-game .cardWrapper__yellow--flash {
   flex: 0 0 50%;
@@ -661,6 +693,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
 <<<<<<< HEAD
   border: 3px solid #efefef;
 }
@@ -672,6 +705,8 @@
   background-color: lightgreen;
   border-top-left-radius: 100%;
 =======
+=======
+>>>>>>> origin/feature-gui
   border: 3px solid white;
 }
 .simon-game .cardWrapper__green {
@@ -681,7 +716,10 @@
 .simon-game .cardWrapper__green--flash {
   background-color: lightgreen;
   border-top-left-radius: 90%;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .simon-game .cardWrapper__red {
   background-color: rgb(158, 1, 1);
@@ -693,6 +731,7 @@
 }
 .simon-game .cardWrapper__blue {
   background-color: rgb(1, 1, 173);
+<<<<<<< HEAD
 <<<<<<< HEAD
   border-bottom-right-radius: 100%;
 }
@@ -745,6 +784,8 @@
   border-radius: 50%;
   background-color: #0e0e10;
 =======
+=======
+>>>>>>> origin/feature-gui
   border-bottom-right-radius: 90%;
 }
 .simon-game .cardWrapper__blue--flash {
@@ -773,7 +814,10 @@
   max-height: 150px;
   border-radius: 50%;
   background-color: black;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   position: absolute;
   font-size: 1rem;
   text-align: center;
@@ -782,6 +826,7 @@
   justify-content: center;
   align-items: center;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 .simon-game .score p,
 .simon-game .lostGame p {
@@ -922,12 +967,17 @@ button:hover {
 }
 
 =======
+=======
+>>>>>>> origin/feature-gui
 .simon-game .score p, .simon-game .lostGame p {
   color: #fff;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 * {
   margin: 0;
   padding: 0;
@@ -936,11 +986,15 @@ button:hover {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 html, body {
   position: absolute;
 =======
 body {
 >>>>>>> 548adf2 (Añadido footer)
+=======
+body {
+>>>>>>> origin/feature-gui
   width: 100%;
   min-height: 100vh;
   margin: 0;
@@ -948,9 +1002,12 @@ body {
   background-image: url("~/assets/backgrounds/bg-ppal.jpg");
   background-position: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-size: cover;
 =======
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   display: flex;
   flex-direction: column;
 }
@@ -959,6 +1016,7 @@ body {
   display: flex;
   flex-direction: column;
 <<<<<<< HEAD
+<<<<<<< HEAD
   align-items: center;
   width: 100%;
   height: 100vh;
@@ -966,6 +1024,10 @@ body {
   justify-content: center;
   align-items: center;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  justify-content: center;
+  align-items: center;
+>>>>>>> origin/feature-gui
 }
 
 #root {
@@ -973,6 +1035,7 @@ body {
 }
 
 .header {
+<<<<<<< HEAD
 <<<<<<< HEAD
   font-size: 1rem;
   height: fit-content;
@@ -1061,6 +1124,8 @@ body {
   width: 1.8rem;
   fill: rgba(255, 255, 255, 0.781);
 =======
+=======
+>>>>>>> origin/feature-gui
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1112,7 +1177,10 @@ body {
 .header__nav {
   display: flex;
   gap: 20px;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 
 .navigation__checkbox {
@@ -1123,6 +1191,7 @@ body {
   width: 6rem;
   position: fixed;
 <<<<<<< HEAD
+<<<<<<< HEAD
   top: 2.5rem;
   left: 2.5rem;
   background-color: rgba(10, 10, 11, 0.9);
@@ -1131,11 +1200,17 @@ body {
   left: 2.5rem;
   background-color: rgba(10, 10, 11, 0.71);
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  top: 5rem;
+  left: 2.5rem;
+  background-color: rgba(10, 10, 11, 0.71);
+>>>>>>> origin/feature-gui
   z-index: 2500;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 @media only screen and (max-width: 780px) {
   .navigation__button {
@@ -1179,6 +1254,8 @@ body {
   list-style: none;
   text-align: left;
 =======
+=======
+>>>>>>> origin/feature-gui
 .navigation__background {
   height: 6rem;
   width: 6rem;
@@ -1207,7 +1284,10 @@ body {
   list-style: none;
   text-align: left;
   width: 100%;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .navigation__item {
   margin: 1rem 0;
@@ -1219,6 +1299,7 @@ body {
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 1.25rem;
   font-weight: 300;
   color: #efefef;
@@ -1227,6 +1308,11 @@ body {
   font-weight: 300;
   color: #c1c1c1;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  font-size: 1rem;
+  font-weight: 300;
+  color: #c1c1c1;
+>>>>>>> origin/feature-gui
   text-decoration: none;
   text-transform: uppercase;
   background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
@@ -1248,6 +1334,7 @@ body {
 }
 .navigation__checkbox:checked ~ .navigation__background {
 <<<<<<< HEAD
+<<<<<<< HEAD
   opacity: 1;
   visibility: visible;
 }
@@ -1256,12 +1343,17 @@ body {
   width: fit-content;
   transform: translateX(0%);
 =======
+=======
+>>>>>>> origin/feature-gui
   transform: scale(80);
 }
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
   width: 20%;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .navigation__icon {
   position: relative;
@@ -1271,10 +1363,14 @@ body {
   width: 3rem;
   height: 2px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-color: #efefef;
 =======
   background-color: #c1c1c1;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  background-color: #c1c1c1;
+>>>>>>> origin/feature-gui
   display: inline-block;
 }
 .navigation__icon::before, .navigation__icon::after {
@@ -1308,6 +1404,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .catalog {
   width: 100%;
   margin-top: 2rem;
@@ -1315,6 +1412,8 @@ body {
 .catalog__unlock, .catalog__lock {
   width: 80%;
 =======
+=======
+>>>>>>> origin/feature-gui
 main {
   width: 100%;
   height: 100%;
@@ -1326,11 +1425,15 @@ main {
   margin-top: 1rem;
 }
 .catalog__unlock, .catalog__lock {
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin: 0 auto;
+<<<<<<< HEAD
 <<<<<<< HEAD
   background-color: rgba(38, 34, 46, 0.534);
   border-radius: 1rem;
@@ -1360,6 +1463,8 @@ main {
   text-align: center;
   height: 130px;
 =======
+=======
+>>>>>>> origin/feature-gui
   background-color: rgba(145, 129, 149, 0.17);
   width: 80%;
   border-radius: 1rem;
@@ -1599,7 +1704,10 @@ main {
   position: absolute;
   margin: 0 auto;
   top: 2%;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .logo img {
   width: 10rem;
@@ -1608,12 +1716,15 @@ main {
 .login__wrapper,
 .signup__wrapper {
 <<<<<<< HEAD
+<<<<<<< HEAD
   display: flex;
   justify-self: center;
   align-self: center;
   border-radius: 8px;
   padding: 2rem 4rem;
 =======
+=======
+>>>>>>> origin/feature-gui
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1624,7 +1735,10 @@ main {
   max-width: 100%;
   border-radius: 8px;
   padding: 3rem;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
@@ -1636,9 +1750,12 @@ main {
   color: #efefef;
   text-decoration: none;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 1.25rem;
 =======
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .login__wrapper a:hover,
 .signup__wrapper a:hover {
@@ -1646,6 +1763,7 @@ main {
 }
 .login__wrapper button,
 .signup__wrapper button {
+<<<<<<< HEAD
 <<<<<<< HEAD
   background: #efefef;
   color: #0e0e10;
@@ -1656,6 +1774,8 @@ main {
   border-radius: 3px;
   font-size: 1.5rem;
 =======
+=======
+>>>>>>> origin/feature-gui
   background: #fff;
   color: #000;
   font-weight: 600;
@@ -1664,12 +1784,16 @@ main {
   cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   border: 2px solid transparent;
   transition: 0.3s ease;
 }
 .login__wrapper button:hover,
 .signup__wrapper button:hover {
+<<<<<<< HEAD
 <<<<<<< HEAD
   color: #efefef;
   border-color: #efefef;
@@ -1677,12 +1801,17 @@ main {
   color: #fff;
   border-color: #fff;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  color: #fff;
+  border-color: #fff;
+>>>>>>> origin/feature-gui
   background: rgba(255, 255, 255, 0.15);
 }
 .login__form,
 .signup__form {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
 <<<<<<< HEAD
   width: 50vw;
 }
@@ -1700,6 +1829,8 @@ main {
 .signup__form p {
   color: #efefef;
 =======
+=======
+>>>>>>> origin/feature-gui
 }
 .login__form h2,
 .signup__form h2 {
@@ -1710,7 +1841,10 @@ main {
 .login__form p,
 .signup__form p {
   color: #fff;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .login__form--input-field,
 .signup__form--input-field {
@@ -1725,18 +1859,24 @@ main {
   left: 0;
   transform: translateY(-50%);
 <<<<<<< HEAD
+<<<<<<< HEAD
   color: #efefef;
   font-size: 1.25rem;
 =======
   color: #fff;
   font-size: 16px;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  color: #fff;
+  font-size: 16px;
+>>>>>>> origin/feature-gui
   pointer-events: none;
   transition: 0.15s ease;
 }
 .login__form--input-field input,
 .signup__form--input-field input {
   width: 100%;
+<<<<<<< HEAD
 <<<<<<< HEAD
   height: 3rem;
   background: transparent;
@@ -1749,23 +1889,32 @@ main {
 .signup__form--input-field input:focus::placeholder {
   color: #999;
 =======
+=======
+>>>>>>> origin/feature-gui
   height: 40px;
   background: transparent;
   border: none;
   outline: none;
   font-size: 16px;
   color: #fff;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .login__form--input-field input:focus ~ label,
 .login__form--input-field input:valid ~ label,
 .signup__form--input-field input:focus ~ label,
 .signup__form--input-field input:valid ~ label {
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 1rem;
 =======
   font-size: 0.8rem;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  font-size: 0.8rem;
+>>>>>>> origin/feature-gui
   top: 10px;
   transform: translateY(-120%);
 }
@@ -1776,12 +1925,17 @@ main {
   right: 0;
   transform: translateY(-50%);
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 2rem;
   color: #efefef;
 =======
   font-size: x-large;
   color: #fff;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  font-size: x-large;
+  color: #fff;
+>>>>>>> origin/feature-gui
 }
 .login__form--gender,
 .signup__form--gender {
@@ -1792,6 +1946,7 @@ main {
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
   color: #efefef;
   font-size: 1.5rem;
@@ -1804,6 +1959,9 @@ main {
 =======
   color: #fff;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  color: #fff;
+>>>>>>> origin/feature-gui
 }
 .login__form--gender input,
 .signup__form--gender input {
@@ -1814,10 +1972,14 @@ main {
   text-align: center;
   margin-top: 30px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   color: #efefef;
 =======
   color: #fff;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  color: #fff;
+>>>>>>> origin/feature-gui
 }
 .login__form--forget,
 .signup__form--forget {
@@ -1825,6 +1987,7 @@ main {
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
   color: #efefef;
 }
@@ -1836,6 +1999,9 @@ main {
 =======
   color: #fff;
 >>>>>>> 548adf2 (Añadido footer)
+=======
+  color: #fff;
+>>>>>>> origin/feature-gui
 }
 .login__form--forget label,
 .signup__form--forget label {
@@ -1846,49 +2012,65 @@ main {
 .signup__form--forget label p {
   margin: 0 50px 0 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 1.25rem;
 }
 .login__form--remember,
 .signup__form--remember {
   accent-color: #efefef;
 =======
+=======
+>>>>>>> origin/feature-gui
 }
 .login__form--remember,
 .signup__form--remember {
   accent-color: #fff;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .login__form--register,
 .signup__form--register {
   text-align: center;
   margin-top: 30px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   color: #efefef;
 }
 
 =======
+=======
+>>>>>>> origin/feature-gui
   color: #fff;
 }
 
 .signup__wrapper {
   height: 70vh;
 }
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 .signup__wrapper button {
   margin: 1.5rem;
 }
 .signup__wrapper a {
   margin-top: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 1.5rem;
 =======
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 }
 .signup__form h2 {
   margin-bottom: 0;
 }
 .signup__form p {
   padding-bottom: 0 1rem;
+<<<<<<< HEAD
 <<<<<<< HEAD
   font-size: 1.5rem;
 }
@@ -1931,6 +2113,8 @@ footer .footer--info {
 footer h2 {
   font-size: 2.5rem;
 =======
+=======
+>>>>>>> origin/feature-gui
 }
 
 footer {
@@ -1945,11 +2129,15 @@ footer {
 }
 footer h1 {
   font-size: 1.5rem;
+<<<<<<< HEAD
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
   width: 100%;
   text-align: center;
   margin-bottom: 2%;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 @media only screen and (max-width: 980px) {
   footer h2 {
@@ -1958,6 +2146,8 @@ footer h1 {
 }
 =======
 >>>>>>> 548adf2 (Añadido footer)
+=======
+>>>>>>> origin/feature-gui
 footer ul {
   list-style: none;
 }

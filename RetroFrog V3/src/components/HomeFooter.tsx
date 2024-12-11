@@ -1,7 +1,11 @@
 
 export default function HomeFooter(){
     return <footer>
+<<<<<<< HEAD:RetroFrog V3/src/components/HomeFooter.tsx
         <h1>¡Gracias por visitar RetrFrog!</h1>
+=======
+        <h1>¡Gracias por visitar RetroFrog!</h1>
+>>>>>>> origin/feature-gui:RetroFrog V3/src/pages/HomeComponents/HomeFooter.tsx
         <div>
             <h3>Contacta con nosotros</h3>
             <ul>
