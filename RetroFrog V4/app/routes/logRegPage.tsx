@@ -28,24 +28,32 @@ export default function LoginPage() {
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   return (
-    <div className="cont">
-      <div className="log">
-        <div className="title">
-          <img src="../../public/assets/icon/Logo.png" alt="" />
-          <div className="text">
-            <h1>Retrofrog</h1>
-            <h3>Welcome to the first online arcade experience</h3>
+    <div className="h-full flex justify-end">
+      <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
+        <div className="w-full h-1/5 p-6 flex items-center text-textDark">
+          <img
+            src="../../public/assets/icon/frog-logo3.png"
+            alt=""
+            className="w-32 h-auto"
+          />
+          <div className="w-full">
+            <h1 className="text-4xl">Retrofrog</h1>
+            <h3 className="text-xl">
+              Welcome to the first online arcade experience
+            </h3>
             <p>
-              Login to discover our full catalog or Signup if you dont have an
-              account
+              Login to discover our full catalog or Signup if you don&apos;t
+              have an account
             </p>
           </div>
         </div>
-        <div className="info">
+        <div className="w-full h-4/5 flex">
           <div
-            className={`flex-1 transition-all duration-500 ${
-              activePanel === 'login' ? 'flex-[2]' : 'flex-[1]'
-            } bg-white text-gray-900 p-8 flex flex-col justify-center items-center cursor-pointer`}
+            className={`h-full flex-1 transition-all duration-500 ${
+              activePanel === 'login'
+                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
+                : 'flex-[1] '
+            }  text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('login')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
@@ -53,12 +61,10 @@ export default function LoginPage() {
                 setActivePanel('register');
               }
             }}
-            tabIndex={0} // Permite navegasr con Tab
+            tabIndex={0} // Permite navegar con Tab
             role="button" // Define el elemento como un botón para la accesibilidad
           >
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Iniciar Sesión
-            </h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
             {activePanel === 'login' && (
               <Form method="post" className="space-y-4 w-full max-w-sm">
                 <div>
@@ -66,14 +72,14 @@ export default function LoginPage() {
                     className="block text-sm font-medium mb-1"
                     htmlFor="userName"
                   >
-                    Nombre de usuario
+                    Username
                   </label>
                   <input
                     type="text"
                     name="userName"
                     id="userName"
                     className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                    placeholder="Tu nombre de usuario"
+                    placeholder="Your username"
                   />
                 </div>
                 <div>
@@ -81,18 +87,18 @@ export default function LoginPage() {
                     className="block text-sm font-medium mb-1"
                     htmlFor="password"
                   >
-                    Contraseña
+                    Password
                   </label>
                   <input
                     type="password"
                     name="password"
                     id="password"
                     className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                    placeholder="Tu contraseña"
+                    placeholder="Your password"
                   />
                 </div>
                 <Button
-                  textBtn="Entrar"
+                  textBtn="Login"
                   typeBtn="submit"
                   className="bg-indigo-600 hover:bg-indigo-700"
                 />
@@ -101,9 +107,11 @@ export default function LoginPage() {
           </div>
 
           <div
-            className={`flex-1 transition-all duration-500 ${
-              activePanel === 'register' ? 'flex-[2]' : 'flex-[1]'
-            } bg-gray-100 text-gray-900 p-8 flex flex-col justify-center items-center cursor-pointer`}
+            className={`h-full flex-1 transition-all duration-500 ${
+              activePanel === 'register'
+                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
+                : 'flex-[1] '
+            }  text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('register')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
@@ -114,7 +122,7 @@ export default function LoginPage() {
             tabIndex={0} // Permite navegar con Tab
             role="button" // Define el elemento como un botón para la accesibilidad
           >
-            <h2 className="text-2xl font-bold mb-6">Registrarse</h2>
+            <h2 className="text-2xl font-bold mb-6">Register</h2>
             {activePanel === 'register' && (
               <Form method="post" className="space-y-4 w-full max-w-sm">
                 <div>
@@ -122,14 +130,14 @@ export default function LoginPage() {
                     className="block text-sm font-medium mb-1"
                     htmlFor="userName"
                   >
-                    Nombre de usuario
+                    Username
                   </label>
                   <input
                     type="text"
                     name="userName"
                     id="userName"
                     className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                    placeholder="Tu nombre de usuario"
+                    placeholder="Your username"
                   />
                 </div>
                 <div>
@@ -137,14 +145,14 @@ export default function LoginPage() {
                     className="block text-sm font-medium mb-1"
                     htmlFor="password"
                   >
-                    Contraseña
+                    Password
                   </label>
                   <input
                     type="password"
                     name="password"
                     id="password"
                     className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                    placeholder="Tu contraseña"
+                    placeholder="Your password"
                   />
                 </div>
                 <div>
@@ -152,14 +160,14 @@ export default function LoginPage() {
                     className="block text-sm font-medium mb-1"
                     htmlFor="email"
                   >
-                    Correo electrónico
+                    Email
                   </label>
                   <input
                     type="email"
                     name="email"
                     id="email"
                     className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                    placeholder="Tu correo electrónico"
+                    placeholder="Your email"
                   />
                 </div>
                 <Button textBtn="Register" typeBtn="submit" className="" />
