@@ -28,8 +28,8 @@ export default function LoginPage() {
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   return (
-    <div className="min-h-screen flex flex-row items-center justify-center bg-gradient-to-br">
-      <div>
+    <div className="flex flex-row mt-64 justify-evenly bg-gradient-to-br">
+      <div className='self-start'>
         <h1>Retrofrog</h1>
         <h3>Welcome to the first online arcade experience</h3>
         <p>
