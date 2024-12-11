@@ -29,7 +29,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-row mt-64 justify-evenly bg-gradient-to-br">
-      <div className='self-start'>
+      <div className="self-start">
         <h1>Retrofrog</h1>
         <h3>Welcome to the first online arcade experience</h3>
         <p>
@@ -37,11 +37,11 @@ export default function LoginPage() {
           account
         </p>
       </div>
-      <div className="flex w-2.5/5 h-[400px] shadow-lg rounded-lg overflow-hidden">
+      <div className="flex w-2/5 h-[400px] shadow-lg rounded-lg overflow-hidden">
         <div
           className={`flex-1 transition-all duration-500 ${
-            activePanel === 'login' ? 'flex-[2]' : 'flex-[1]'
-          } bg-white text-gray-900 p-8 flex flex-col justify-center items-center cursor-pointer`}
+            activePanel === 'login' ? 'flex-[2]' : 'flex-[1] justify-center'
+          } bg-white text-gray-900 p-8 flex flex-col  items-center cursor-pointer`}
           onClick={() => setActivePanel('login')}
           onKeyDown={(event) => {
             if (event.key === ' ') {
@@ -52,48 +52,71 @@ export default function LoginPage() {
           tabIndex={0} // Permite navegasr con Tab
           role="button" // Define el elemento como un botón para la accesibilidad
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Iniciar Sesión
-          </h2>
-          {activePanel === 'login' && (
-            <Form method="post" className="space-y-4 w-full max-w-sm">
-              <div>
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="userName"
-                >
-                  Nombre de usuario
-                </label>
-                <input
-                  type="text"
-                  name="userName"
-                  id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                  placeholder="Tu nombre de usuario"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="password"
-                >
-                  Contraseña
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
-                  placeholder="Tu contraseña"
-                />
-              </div>
-              <Button
-                textBtn="Entrar"
-                typeBtn="submit"
-                className="bg-indigo-600 hover:bg-indigo-700"
+          <div
+            className={`transition-all duration-1000 ${
+              activePanel === 'login' &&
+              'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+            }`}
+          >
+            <p className="mb-4 text-gray-400 font-bold text-sm ">
+              Did you alreday had an account?
+            </p>
+            <h2 className={`text-2xl font-bold mb-6 text-center`}>Log In!</h2>
+          </div>
+
+          <div
+            className={`transition-all duration-1000 ${
+              activePanel !== 'login' &&
+              'translate-y-[50px] opacity-0 absolute top-[-200px]'
+            }`}
+          >
+            <h2 className={`text-2xl font-bold mb-6 text-center`}>
+              Welcome Back!
+            </h2>
+          </div>
+
+          <Form
+            method="post"
+            className={`space-y-4 w-full max-w-sm transition-all duration-500 ${
+              activePanel === 'register' && 'opacity-0 scale-0 absolute'
+            }`}
+          >
+            <div>
+              <label
+                className="block text-sm font-medium mb-1"
+                htmlFor="userName"
+              >
+                User Name:
+              </label>
+              <input
+                type="text"
+                name="userName"
+                id="userName"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
+                placeholder="Tu nombre de usuario"
               />
-            </Form>
-          )}
+            </div>
+            <div>
+              <label
+                className="block text-sm font-medium mb-1"
+                htmlFor="password"
+              >
+                Password:
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-white"
+                placeholder="Tu contraseña"
+              />
+            </div>
+            <Button
+              textBtn="Log In"
+              typeBtn="submit"
+              className="bg-indigo-600 hover:bg-indigo-700"
+            />
+          </Form>
         </div>
 
         <div
@@ -110,15 +133,40 @@ export default function LoginPage() {
           tabIndex={0} // Permite navegar con Tab
           role="button" // Define el elemento como un botón para la accesibilidad
         >
-          <h2 className="text-2xl font-bold mb-6">Registrarse</h2>
-          {activePanel === 'register' && (
-            <Form method="post" className="space-y-4 w-full max-w-sm">
+          <div
+            className={`transition-all duration-1000 ${
+              activePanel === 'register' &&
+              'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+            }`}
+          >
+            <p className="mb-4 text-gray-400 font-bold text-sm ">
+            Don&apos;t have an account yet?
+            </p>
+            <h2 className={`text-2xl font-bold mb-6 text-center`}>Register now!</h2>
+          </div>
+
+          <div
+            className={`transition-all duration-1000 ${
+              activePanel !== 'register' &&
+              'translate-y-[50px] opacity-0 absolute top-[-200px]'
+            }`}
+          >
+            <h2 className={`text-2xl font-bold mb-6 text-center`}>
+              Welcome!
+            </h2>
+          </div>
+            <Form
+              method="post"
+              className={`space-y-4 w-full max-w-sm transition-all duration-500 ${
+                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ""}
+              `}
+            >
               <div>
                 <label
                   className="block text-sm font-medium mb-1"
                   htmlFor="userName"
                 >
-                  Nombre de usuario
+                  User Name:
                 </label>
                 <input
                   type="text"
@@ -133,7 +181,7 @@ export default function LoginPage() {
                   className="block text-sm font-medium mb-1"
                   htmlFor="password"
                 >
-                  Contraseña
+                  Password:
                 </label>
                 <input
                   type="password"
@@ -160,7 +208,7 @@ export default function LoginPage() {
               </div>
               <Button textBtn="Register" typeBtn="submit" className="" />
             </Form>
-          )}
+          
         </div>
       </div>
     </div>
