@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ButtonAction } from './Buttons';
 
 function PrivacyPolices() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,16 +10,15 @@ function PrivacyPolices() {
 
   return (
     <div className="dropdown h-fit">
-      <button
-        className="text-h3 font-semibold text-textDark hover:text-textDarkHighlight transition-colors"
+      <ButtonAction
+        textBtn="Revisar nuestras políticas de privacidad"
         onClick={toggleDropdown}
-        aria-expanded={isOpen}
-      >
-        Revisar nuestras políticas de privacidad
-      </button>
+        className="text-2xl font-semibold text-textDark hover:text-textDarkHighlight mt-1 mb-1 transition-colors "
+      />
+
       <div
         className={`dropdown-content bg-primaryDark text-textDark p-6 rounded-lg shadow-lg 
-                  duration-300 ease-in-out overflow-scroll overflow-x-hidden
+                  duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
                     ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`}
       >
         <p className="mb-4">
@@ -30,9 +30,9 @@ function PrivacyPolices() {
           términos de esta política.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           1. Información que Recopilamos
-        </h2>
+        </h3>
         <p>
           Recopilamos información personal de nuestros usuarios de diversas
           maneras, incluyendo cuando visitan nuestro sitio web, realizan compras
@@ -61,7 +61,7 @@ function PrivacyPolices() {
           </li>
         </ul>
 
-        <h2 className="text-h3 font-semibold mb-2">2. Uso de la Información</h2>
+        <h3 className="text-xl font-semibold mb-2">2. Uso de la Información</h3>
         <p>Utilizamos la información recopilada para los siguientes fines:</p>
         <ul className="list-disc pl-6 mb-4">
           <li>
@@ -88,9 +88,9 @@ function PrivacyPolices() {
           </li>
         </ul>
 
-        <h2 className="text-h3 font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           3. Compartir Información con Terceros
-        </h2>
+        </h3>
         <p>
           No compartimos su información personal con terceros, excepto en los
           siguientes casos:
@@ -115,9 +115,9 @@ function PrivacyPolices() {
           </li>
         </ul>
 
-        <h2 className="text-h3 font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           4. Seguridad de la Información
-        </h2>
+        </h3>
         <p>
           RetroFrog implementa medidas de seguridad físicas, electrónicas y
           administrativas para proteger su información personal contra accesos
@@ -127,7 +127,7 @@ function PrivacyPolices() {
           seguridad absoluta.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">5. Sus Derechos</h2>
+        <h3 className="text-xl font-semibold mb-2">5. Sus Derechos</h3>
         <p>
           Usted tiene derecho a acceder, corregir o eliminar la información
           personal que tenemos sobre usted. También puede solicitar que dejemos
@@ -136,7 +136,7 @@ function PrivacyPolices() {
           la información proporcionada al final de esta política.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">6. Uso de Cookies</h2>
+        <h3 className="text-xl font-semibold mb-2">6. Uso de Cookies</h3>
         <p>
           Las cookies son pequeños archivos que se almacenan en su dispositivo
           cuando visita nuestro sitio web. Usamos cookies para mejorar la
@@ -146,9 +146,9 @@ function PrivacyPolices() {
           lo hace.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           7. Enlaces a Otros Sitios
-        </h2>
+        </h3>
         <p>
           Este sitio web puede contener enlaces a otros sitios de terceros. No
           somos responsables de las prácticas de privacidad ni del contenido de
@@ -157,9 +157,9 @@ function PrivacyPolices() {
           información personal.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           8. Cambios en la Política de Privacidad
-        </h2>
+        </h3>
         <p>
           RetroFrog se reserva el derecho de actualizar esta política de
           privacidad en cualquier momento. Cualquier cambio será publicado en
@@ -168,7 +168,7 @@ function PrivacyPolices() {
           cómo protegemos su información.
         </p>
 
-        <h2 className="text-h3 font-semibold mb-2">9. Contacto</h2>
+        <h3 className="text-xl font-semibold mb-2">9. Contacto</h3>
         <p>
           Si tiene alguna pregunta sobre esta política de privacidad o sobre
           cómo manejamos su información personal, no dude en contactarnos:
