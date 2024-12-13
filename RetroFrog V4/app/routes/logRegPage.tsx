@@ -37,7 +37,7 @@ export default function LoginPage() {
             className="w-32 h-auto"
           />
           <div className="w-full">
-            <h1 className="text-4xl">Retrofrog</h1>
+            <h1 className="text-6xl">Retrofrog</h1>
             <h3 className="text-xl">
               Welcome to the first online arcade experience
             </h3>
@@ -48,11 +48,13 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="flex h-full shadow-lg overflow-hidden">
+        <div className="flex w-full h-4/5">
           <div
             className={`flex-1 transition-all duration-500 ${
-              activePanel === 'login' ? 'flex-[2]' : 'flex-[1] justify-center'
-            } bg-white text-gray-900 p-8 flex flex-col  items-center cursor-pointer`}
+              activePanel === 'login'
+                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
+                : 'flex-[1] '
+            }text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('login')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
@@ -69,11 +71,11 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-sm ">
+              <p className="mb-4 text-gray-400 font-bold text-lg ">
                 Did you alreday had an account?
               </p>
               <h2
-                className={`text-2xl font-bold mb-6 text-center transition-all duration-300 border-white rounded-2xl z-50 hover:bg-gray-50 hover:border-gray-300 border-2`}
+                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Log In!
               </h2>
@@ -85,20 +87,20 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-2xl font-bold mb-6 text-center`}>
+              <h2 className={`text-3xl font-bold mb-6 text-center`}>
                 Welcome Back!
               </h2>
             </div>
 
             <Form
               method="post"
-              className={`space-y-4 w-full max-w-sm transition-all duration-500 ${
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'register' && 'opacity-0 scale-0 absolute'
               }`}
             >
               <div>
                 <label
-                  className="block text-sm font-medium mb-1"
+                  className="block text-lg font-medium mb-2"
                   htmlFor="userName"
                 >
                   User Name:
@@ -107,13 +109,13 @@ export default function LoginPage() {
                   type="text"
                   name="userName"
                   id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
                   placeholder="Tu nombre de usuario"
                 />
               </div>
               <div>
                 <label
-                  className="block text-sm font-medium mb-1"
+                  className="block text-lg font-medium mb-2"
                   htmlFor="password"
                 >
                   Password:
@@ -122,22 +124,24 @@ export default function LoginPage() {
                   type="password"
                   name="password"
                   id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
                   placeholder="Tu contraseña"
                 />
               </div>
               <Button
                 textBtn="Log In"
                 typeBtn="submit"
-                className="bg-indigo-600 hover:bg-indigo-700"
+                className="bg-indigo-600 hover:bg-indigo-700 text-lg"
               />
             </Form>
           </div>
 
           <div
-            className={`flex-1 transition-all duration-500 ${
-              activePanel === 'register' ? 'flex-[2]' : 'flex-[1]'
-            } bg-gray-100 text-gray-900 p-8 flex flex-col justify-center items-center cursor-pointer`}
+            className={`h-full flex-1 transition-all duration-500 ${
+              activePanel === 'register'
+                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
+                : 'flex-[1] '
+            }  text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('register')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
@@ -154,11 +158,11 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-sm ">
+              <p className="mb-4 text-gray-400 font-bold text-lg ">
                 Don&apos;t have an account yet?
               </p>
               <h2
-                className={`p-1 text-2xl transition-all duration-300 font-bold mb-6 text-center border-gray-100 rounded-2xl z-50 hover:bg-gray-50 hover:border-gray-300 border-2`}
+                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Create an account!
               </h2>
@@ -170,20 +174,20 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-2xl font-bold mb-6 text-center`}>
+              <h2 className={`text-3xl font-bold mb-6 text-center`}>
                 Welcome!
               </h2>
             </div>
             <Form
               method="post"
-              className={`space-y-4 w-full max-w-sm transition-all duration-500 ${
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
               }
               `}
             >
               <div>
                 <label
-                  className="block text-sm font-medium mb-1"
+                  className="block text-lg font-medium mb-2"
                   htmlFor="userName"
                 >
                   UserName:
@@ -192,13 +196,13 @@ export default function LoginPage() {
                   type="text"
                   name="userName"
                   id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
                   placeholder="Your user name"
                 />
               </div>
               <div>
                 <label
-                  className="block text-sm font-medium mb-1"
+                  className="block text-lg font-medium mb-2"
                   htmlFor="password"
                 >
                   Password:
@@ -207,13 +211,13 @@ export default function LoginPage() {
                   type="password"
                   name="password"
                   id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
                   placeholder="Your password"
                 />
               </div>
               <div>
                 <label
-                  className="block text-sm font-medium mb-1"
+                  className="block text-lg font-medium mb-2"
                   htmlFor="email"
                 >
                   Email:
@@ -222,11 +226,11 @@ export default function LoginPage() {
                   type="email"
                   name="email"
                   id="email"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-black"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
                   placeholder="example@gmail.com"
                 />
               </div>
-              <Button textBtn="Register" typeBtn="submit" className="" />
+              <Button textBtn="Register" typeBtn="submit" className="text-lg" />
             </Form>
           </div>
         </div>
