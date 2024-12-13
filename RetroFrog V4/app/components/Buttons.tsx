@@ -18,7 +18,7 @@ type ButtonSimpleProps = {
   className?: string;
 };
 
-export function Button({ textBtn, typeBtn, className }: ButtonProps) {
+export default function Button({ textBtn, typeBtn, className }: ButtonProps) {
   return (
     <button
       type={typeBtn}
