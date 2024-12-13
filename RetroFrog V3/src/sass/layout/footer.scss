@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 @use "../abstracts/variables.scss" as *;
 
 footer {
@@ -57,3 +59,35 @@ footer {
     }
   }
 }
+=======
+=======
+>>>>>>> origin/feature-gui
+footer{
+    margin-top: 5rem;
+    // height: 15rem;
+    background-color: rgba(10, 10, 11, 0.71);
+    width: 100%;
+    color: aliceblue;
+    padding: 5rem;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+
+    h1{
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2%;
+    }
+    ul{
+        list-style: none;
+        li{
+            margin-top: 0.5rem;
+        }
+    }
+<<<<<<< HEAD
+}
+>>>>>>> 548adf2 (Añadido footer)
+=======
+}
+>>>>>>> origin/feature-gui
