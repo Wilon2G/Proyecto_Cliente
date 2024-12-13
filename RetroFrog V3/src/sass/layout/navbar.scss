@@ -6,6 +6,16 @@
     }
 
     &__button {
+<<<<<<< HEAD
+        height: 6rem;
+        width: 6rem;
+
+        position: fixed;
+        top: 5rem;
+        left: 2.5rem;
+
+        background-color: rgba(10, 10, 11, 0.71);
+=======
         height: $nav-size;
         width: $nav-size;
 
@@ -14,6 +24,7 @@
         left: $nav-position;
 
         background-color: $ppal-black-bg;
+>>>>>>> develop
 
         z-index: 2500;
         box-shadow: 0 1rem 3rem $nav-btn-shadow;
@@ -27,6 +38,14 @@
     }
 
     &__background {
+<<<<<<< HEAD
+        height: 6rem;
+        width: 6rem;
+
+        position: fixed;
+        top: 5rem;
+        left: 2.5rem;
+=======
         height: $nav-size;
         width: $nav-size;
         transform: scale(80);
@@ -35,6 +54,7 @@
         position: fixed;
         top: $nav-position;
         left: $nav-position;
+>>>>>>> develop
 
         background-color: $nav-block-bg;
         z-index: 1000;
@@ -43,7 +63,13 @@
     }
 
     &__nav {
+<<<<<<< HEAD
+        height: 100vh;
+        max-width: 16rem;
+
+=======
         height: 100%;
+>>>>>>> develop
         position: fixed;
         top: 0;
         left: 0;
@@ -52,7 +78,11 @@
         align-items: center;
         transform: translateX(-100%);
         z-index: 2000;
+<<<<<<< HEAD
+        background-color: black;
+=======
         background-color: $ppal-black;
+>>>>>>> develop
         opacity: 0;
         width: fit-content;
         transition: all 0.5s ease;
@@ -82,11 +112,19 @@
             display: inline-block;
             font-size: $smaller-font-size;
             font-weight: 300;
+<<<<<<< HEAD
+            color: #c1c1c1;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgb(72, 18, 83) 50%);
+=======
             color:$ppal-white;
             text-decoration: none;
             text-transform: uppercase;
 
             background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $ppal-purple-color 50%);
+>>>>>>> develop
             background-size: 230%;
             transition: all 0.4s;
         }
@@ -132,7 +170,11 @@
         &::after {
             width: 3rem;
             height: 2px;
+<<<<<<< HEAD
+            background-color: #c1c1c1;
+=======
             background-color: $ppal-white;
+>>>>>>> develop
             display: inline-block;
         }
 

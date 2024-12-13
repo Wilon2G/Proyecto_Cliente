@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Form, redirect } from '@remix-run/react';
 import { useState } from 'react';
-import Button from '~/components/Button';
+import Button from '~/components/Buttons';
 
 const prisma = new PrismaClient();
 
@@ -28,15 +28,28 @@ export default function LoginPage() {
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   return (
-    <div className="flex flex-row mt-64 justify-evenly bg-gradient-to-br">
-      <div className="self-start">
-        <h1>Retrofrog</h1>
-        <h3>Welcome to the first online arcade experience</h3>
-        <p>
-          Login to discover our full catalog or Signup if you dont have an
-          account
-        </p>
-      </div>
+
+    <div className="h-full flex justify-end">
+      <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
+        <div className="w-full h-1/5 p-6 flex items-center text-textDark">
+          <img
+            src="../../public/assets/icon/frog-logo3.png"
+            alt=""
+            className="w-32 h-auto"
+          />
+          <div className="w-full">
+            <h1 className="text-4xl">Retrofrog</h1>
+            <h3 className="text-xl">
+              Welcome to the first online arcade experience
+            </h3>
+            <p>
+              Login to discover our full catalog or Signup if you don&apos;t
+              have an account
+            </p>
+          </div>
+        </div>
+        
+          
       <div className="flex w-2/5 h-[400px] shadow-lg rounded-lg overflow-hidden">
         <div
           className={`flex-1 transition-all duration-500 ${

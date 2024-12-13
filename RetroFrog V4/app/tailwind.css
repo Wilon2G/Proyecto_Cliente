@@ -10,8 +10,9 @@ body {
     color-scheme: dark;
   }
 }
+
 body {
-  background-image: url('/assets/background/bg3.png');
+  background-image: url('/assets/background/bg.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -29,9 +30,11 @@ body {
   0% {
     transform: translate(0, 0) scale(1);
   }
+
   50% {
     transform: translate(40px, 40px) scale(1.5);
   }
+
   100% {
     transform: translate(0, 0) scale(1);
   }
@@ -52,24 +55,31 @@ body {
 .sidebar-header .header-logo img {
   @apply w-full h-full object-cover rounded-full transition-all duration-300 ease-in-out;
 }
+
 .sidebar-header .header-logo {
   @apply w-24 h-24 object-cover rounded-full border-[#dbe2fe] transition-all duration-300 ease-in-out my-4 border-4;
 }
+
 .sidebar.collapsed .header-logo {
   @apply w-12 h-12 border-2;
 }
+
 .sidebar-header .toggler {
   @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out self-end;
 }
+
 .toggler:hover {
   @apply bg-gray-200;
 }
+
 .toggler:hover svg {
   @apply fill-[#151A2D];
 }
+
 .toggler svg {
   fill: antiquewhite;
 }
+
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
 }
@@ -85,23 +95,30 @@ body {
 .sidebar-nav .secondary-nav {
   @apply relative w-full h-full top-44 transition-all ease-linear;
 }
+
 .sidebar.collapsed .secondary-nav {
   @apply top-52 transition-all ease-linear;
 }
+
 .sidebar-nav .primary-nav {
   @apply relative w-full;
+
   & .nav-link:hover svg {
     @apply fill-[#151A2D];
   }
+
   & svg {
     @apply fill-[#f5f5f5];
   }
 }
+
 .sidebar.collapsed .primary-nav {
   @apply relative;
+
   & .nav-link:hover svg {
     @apply fill-[#151A2D];
   }
+
   & svg {
     @apply fill-[#f5f5f5];
   }
@@ -112,8 +129,7 @@ body {
 }
 
 .nav-link {
-  @apply flex items-center no-underline text-white px-3 py-3 
-          rounded-lg gap-3 transition-all duration-300 ease-in-out;
+  @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
 }
 
 .nav-link:hover {
@@ -159,6 +175,7 @@ body {
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
+
 .music-enter {
   opacity: 1;
   transform: translateY(0px);
@@ -171,6 +188,7 @@ body {
   transition: all 0.17s ease-in-out;
   pointer-events: none;
 }
+
 .custom-enter {
   opacity: 1;
   transform: translateX(0px);
@@ -183,8 +201,9 @@ body {
   transition: all 0.17s ease-in-out;
   pointer-events: none;
 }
+
 .playlist {
-  @apply bg-[#f0f8ff59] rounded-md  overflow-y-auto h-0;
+  @apply bg-[#f0f8ff59] rounded-md overflow-y-auto h-0;
   transition: height 0.17s ease, opacity 0.17s ease;
   background-color: #f0f8ff59;
 }
@@ -202,6 +221,7 @@ body {
   transition: all 0.17s ease-in-out;
   transform: translateY(10px);
 }
+
 /*-------------------------SHOP-------------------------------*/
 /*-----------------------Spotlight----------------------------*/
 
