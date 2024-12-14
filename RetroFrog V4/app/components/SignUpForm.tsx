@@ -12,7 +12,7 @@ function SignUpForm() {
           name="userName"
           id="userName"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-          placeholder="Your user name"
+          placeholder="Your username"
         />
       </div>
       <div>

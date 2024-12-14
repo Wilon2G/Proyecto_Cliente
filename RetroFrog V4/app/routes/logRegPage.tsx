@@ -72,11 +72,11 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-lg ">
+              <p className="mb-4 text-gray-400 font-bold text-base ">
                 Did you alreday had an account?
               </p>
               <h2
-                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Log In!
               </h2>
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-3xl font-bold mb-6 text-center`}>
+              <h2 className={`text-2xl font-bold mb-6 text-center`}>
                 Welcome Back!
               </h2>
             </div>
@@ -129,7 +129,7 @@ export default function LoginPage() {
                 Don&apos;t have an account yet?
               </p>
               <h2
-                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Create an account!
               </h2>
@@ -141,7 +141,7 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-3xl font-bold mb-6 text-center`}>
+              <h2 className={`text-2xl font-bold mb-6 text-center`}>
                 Welcome!
               </h2>
             </div>

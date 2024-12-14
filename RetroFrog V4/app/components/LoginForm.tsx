@@ -12,7 +12,7 @@ function LoginForm() {
           name="userName"
           id="userName"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-          placeholder="Tu nombre de usuario"
+          placeholder="Your username"
         />
       </div>
       <div>
@@ -24,7 +24,7 @@ function LoginForm() {
           name="password"
           id="password"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-          placeholder="Tu contraseña"
+          placeholder="Your password"
         />
       </div>
       <Button
