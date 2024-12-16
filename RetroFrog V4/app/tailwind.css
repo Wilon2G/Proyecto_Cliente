@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply m-0 p-0;
+  @apply h-screen m-0 p-0;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -17,12 +17,7 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
-.unselectable{
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
+
 .sidebar {
   user-select: none;
   -webkit-user-select: none;

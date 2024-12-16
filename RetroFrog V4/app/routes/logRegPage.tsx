@@ -48,6 +48,13 @@ export default function LoginPage() {
   }, []);
   const slides = [
     {
+      tag: "Lucha",
+      title: "Super Street Fighter II",
+      description: "Compite en intensos combates.",
+      buttonText: "Learn More",
+      route: "/assets/big/SF2Cover.png"
+    },
+    {
       tag: "RPG",
       title: "Legend of Zelda, The - A Link to the Past",
       description: "Explora mazmorras y salva Hyrule.",
@@ -67,7 +74,14 @@ export default function LoginPage() {
       description: "Corre y lanza ítems para ganar.",
       buttonText: "Learn More",
       route: "/assets/big/MK.png"
+    },{
+      tag: "Lucha",
+      title: "Super Street Fighter II",
+      description: "Compite en intensos combates.",
+      buttonText: "Learn More",
+      route: "/assets/big/SF2Cover.png"
     },
+    
     {
         tag: "Party",
         title: "Super Bomberman",
@@ -96,6 +110,13 @@ export default function LoginPage() {
         buttonText: "Learn More",
         route: "/assets/big/SF2Cover.png"
       },
+      {
+        tag: "Plataformas",
+        title: "Super Mario World",
+        description: "Salta y corre en un mundo colorido.",
+        buttonText: "Learn More",
+        route: "/assets/big/SMCover.jpeg"
+      },
     ];
     if (isLoading) {
       return <LoadingScreen progress={progress} />;
@@ -104,7 +125,128 @@ export default function LoginPage() {
   return (
     <>
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
+    <div className='flex flex-col -rotate-45 translate-x-1/4'>
+    <div className="slider-container mt-8">
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={25} // No espacio entre los slides para continuidad visual
+        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
+        loop={true} // Activar loop para desplazamiento continuo
+        autoplay={{
+          delay: 0, // Delay muy bajo para movimiento constante
+          disableOnInteraction: false,
+        }}
+        speed={9000} // Velocidad alta para un scroll lineal continuo
+        centeredSlides={true} // Quitar centrado si no es necesario
+        onSwiper={(swiper) => {
+          // Aplica la transición lineal al contenedor dinámicamente, es un callback
+          swiper.wrapperEl.style.transitionTimingFunction = "linear";
+        }}
+        allowTouchMove={false}
+        
+        className="slider-wrapper"
+       
+      >
+          {slides.map((slide, index) => (
+            <SwiperSlide
+              key={index}
+              style={{
+                background: `url('${slide.route}') no-repeat center center`,
+                backgroundSize: "cover",
+                height: "350px",
+                borderRadius:"2rem",
+                width:"350px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+              }}
+            >
+              
+            </SwiperSlide>
+          ))}
+        </Swiper>
+    </div>
+    
+      <div className="slider-container mt-8">
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={25} // No espacio entre los slides para continuidad visual
+        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
+        loop={true} // Activar loop para desplazamiento continuo
+        autoplay={{
+          delay: 0, // Delay muy bajo para movimiento constante
+          disableOnInteraction: false,
+        }}
+        speed={9000} // Velocidad alta para un scroll lineal continuo
+        centeredSlides={true} // Quitar centrado si no es necesario
+        onSwiper={(swiper) => {
+          // Aplica la transición lineal al contenedor dinámicamente, es un callback
+          swiper.wrapperEl.style.transitionTimingFunction = "linear";
+        }}
+        allowTouchMove={false}
+        
+        className="slider-wrapper"
+       
+      >
+          {slides.map((slide, index) => (
+            <SwiperSlide
+              key={index}
+              style={{
+                background: `url('${slide.route}') no-repeat center center`,
+                backgroundSize: "cover",
+                height: "350px",
+                borderRadius:"2rem",
+                width:"350px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+              }}
+            >
+              
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    <div className="slider-container mt-8">
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={25} // No espacio entre los slides para continuidad visual
+        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
+        loop={true} // Activar loop para desplazamiento continuo
+        autoplay={{
+          delay: 0, // Delay muy bajo para movimiento constante
+          disableOnInteraction: false,
+        }}
+        speed={9000} // Velocidad alta para un scroll lineal continuo
+        centeredSlides={true} // Quitar centrado si no es necesario
+        onSwiper={(swiper) => {
+          // Aplica la transición lineal al contenedor dinámicamente, es un callback
+          swiper.wrapperEl.style.transitionTimingFunction = "linear";
+        }}
+        allowTouchMove={false}
+        
+        className="slider-wrapper"
+       
+      >
+          {slides.map((slide, index) => (
+            <SwiperSlide
+              key={index}
+              style={{
+                background: `url('${slide.route}') no-repeat center center`,
+                backgroundSize: "cover",
+                height: "350px",
+                borderRadius:"2rem",
+                width:"350px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+              }}
+            >
+              
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>  
+    
+      <div className="h-full w-3/5 bg-primaryDark backdrop-blur-lg">
         <div className="w-full h-1/5 p-6 flex items-center text-textDark">
           <img
             src="../../public/assets/icon/frog-logo3.png"
@@ -311,45 +453,7 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-    <div className="slider-container mt-8">
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={25} // No espacio entre los slides para continuidad visual
-        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
-        loop={true} // Activar loop para desplazamiento continuo
-        autoplay={{
-          delay: 0, // Delay muy bajo para movimiento constante
-          disableOnInteraction: false,
-        }}
-        speed={9000} // Velocidad alta para un scroll lineal continuo
-        centeredSlides={true} // Quitar centrado si no es necesario
-        onSwiper={(swiper) => {
-          // Aplica la transición lineal al contenedor dinámicamente, es un callback
-          swiper.wrapperEl.style.transitionTimingFunction = "linear";
-        }}
-        allowTouchMove={false}
-        
-        className="slider-wrapper"
-       
-      >
-          {slides.map((slide, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                background: `url('${slide.route}') no-repeat center center`,
-                backgroundSize: "cover",
-                height: "350px",
-                borderRadius:"2rem",
-                width:"350px",
-                overflow: "hidden",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-              }}
-            >
-              
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    
     </>
     
   );
