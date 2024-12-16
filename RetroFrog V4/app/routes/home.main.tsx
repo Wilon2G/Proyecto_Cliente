@@ -1,24 +1,17 @@
-import { NyTitle } from "~/components/IconsSVG";
+import News from "../components/News";
 
 export default function HomePage() {
   return (
     <div>
       <header>
-        <h1>Welcome!</h1>
+        <h1>Welcome [aquí el nombre de usuario] !</h1>
       </header>
-      <main>
-        <div className="w-1/4">
-          <h1>What&apos;s fresh?</h1>
-          <div className="bg-[#FFFFFF] p-8">
-            <NyTitle/>
-            <h2 className="text-xl" style={{fontFamily:"nyt-cheltenham, cheltenham-fallback-georgia, cheltenham-fallback-noto, georgia, 'times new roman', times, serif"}}>
-              Breaking news! Oracle surrenders their empire to the retroForg army!
-            </h2>
-            <p style={{fontFamily:"nyt-imperial, georgia, 'times new roman', times, Songti SC, simsun, serif"}}>
-              Millionare and CEO of the gigant international empire Oracle is forced to surrender his company to the new lider in technology RetroFrof INC.
-            </p>
-          </div>
+      <main className='grid grid-cols-2 gap-4'>
+        <News/>
+        <div className="bg-orange-400">
+          <h1>CkeckOut our latest sales!</h1>
         </div>
+
       </main>
     </div>
   );
