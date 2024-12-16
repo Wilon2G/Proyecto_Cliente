@@ -44,7 +44,7 @@ export default function LoginPage() {
         }
         return prev + 1;
       });
-    }, 100); 
+    }, 10); 
   }, []);
   const slides = [
     {
@@ -125,7 +125,7 @@ export default function LoginPage() {
   return (
     <>
     <div className="h-full flex justify-end">
-    <div className='flex flex-col -rotate-45 translate-x-1/4'>
+    <div className='flex flex-col  translate-x-1/4 h-screen w-screen'>
     <div className="slider-container mt-8">
       <Swiper
         modules={[Autoplay]}
@@ -245,8 +245,7 @@ export default function LoginPage() {
         </Swiper>
       </div>
     </div>  
-    
-      <div className="h-full w-3/5 bg-primaryDark backdrop-blur-lg">
+    <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
         <div className="w-full h-1/5 p-6 flex items-center text-textDark">
           <img
             src="../../public/assets/icon/frog-logo3.png"
@@ -288,11 +287,11 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-lg ">
+              <p className="mb-4 text-gray-400 font-bold text-base ">
                 Did you alreday had an account?
               </p>
               <h2
-                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Log In!
               </h2>
@@ -304,7 +303,7 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-3xl font-bold mb-6 text-center`}>
+              <h2 className={`text-2xl font-bold mb-6 text-center`}>
                 Welcome Back!
               </h2>
             </div>
@@ -315,41 +314,7 @@ export default function LoginPage() {
                 activePanel === 'register' && 'opacity-0 scale-0 absolute'
               }`}
             >
-              <div>
-                <label
-                  className="block text-lg font-medium mb-2"
-                  htmlFor="userName"
-                >
-                  User Name:
-                </label>
-                <input
-                  type="text"
-                  name="userName"
-                  id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-                  placeholder="Tu nombre de usuario"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-lg font-medium mb-2"
-                  htmlFor="password"
-                >
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-                  placeholder="Tu contraseña"
-                />
-              </div>
-              <Button
-                textBtn="Log In"
-                typeBtn="submit"
-                className="bg-indigo-600 hover:bg-indigo-700 text-lg"
-              />
+              <LoginForm />
             </Form>
           </div>
 
@@ -379,7 +344,7 @@ export default function LoginPage() {
                 Don&apos;t have an account yet?
               </p>
               <h2
-                className={`text-2xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-2xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
               >
                 Create an account!
               </h2>
@@ -391,7 +356,7 @@ export default function LoginPage() {
                 'translate-y-[50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <h2 className={`text-3xl font-bold mb-6 text-center`}>
+              <h2 className={`text-2xl font-bold mb-6 text-center`}>
                 Welcome!
               </h2>
             </div>
@@ -402,52 +367,7 @@ export default function LoginPage() {
               }
               `}
             >
-              <div>
-                <label
-                  className="block text-lg font-medium mb-2"
-                  htmlFor="userName"
-                >
-                  UserName:
-                </label>
-                <input
-                  type="text"
-                  name="userName"
-                  id="userName"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-                  placeholder="Your user name"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-lg font-medium mb-2"
-                  htmlFor="password"
-                >
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-                  placeholder="Your password"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-lg font-medium mb-2"
-                  htmlFor="email"
-                >
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
-                  placeholder="example@gmail.com"
-                />
-              </div>
-              <Button textBtn="Register" typeBtn="submit" className="text-lg" />
+              <SignUpForm />
             </Form>
           </div>
         </div>
@@ -475,4 +395,3 @@ function LoadingScreen({ progress }: any) {
     </div>
   );
 }
-
