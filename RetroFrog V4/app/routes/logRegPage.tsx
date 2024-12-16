@@ -13,7 +13,7 @@ export async function loader() {
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
-  const userName = formData.get('userName');
+  const userName = formData.get('username');
   const password = formData.get('password');
 
   const user = await prisma.user.findUnique({
@@ -30,8 +30,8 @@ export default function LoginPage() {
 
   return (
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
-        <div className="w-full h-1/5 p-6 flex items-center text-textDark">
+      <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
+        <div className="w-full h-1/5 p-6 flex items-center ">
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt=""
@@ -55,7 +55,7 @@ export default function LoginPage() {
               activePanel === 'login'
                 ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
                 : 'flex-[1] '
-            }text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
+            } p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('login')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
@@ -108,7 +108,7 @@ export default function LoginPage() {
               activePanel === 'register'
                 ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
                 : 'flex-[1] '
-            }  text-textDark p-8 flex flex-col justify-center items-center cursor-pointer`}
+            }   p-8 flex flex-col justify-center items-center cursor-pointer`}
             onClick={() => setActivePanel('register')}
             onKeyDown={(event) => {
               if (event.key === ' ') {

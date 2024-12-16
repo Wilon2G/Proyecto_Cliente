@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import {
   Links,
   Meta,
@@ -8,18 +9,6 @@ import {
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 
 import './tailwind.css';
-/*
-Para usar la base de datos lo haremos directamente con loaders 
-y actions, una función sencilla sería:
-
-export async function loader() {
-  const users = await prisma.user.findMany();
-  return { users };
-}
-
-Esa función devolverá todos los usuarios
-
-*/
 
 export const meta: MetaFunction = () => {
   return [
@@ -41,16 +30,31 @@ export const links: LinksFunction = () => [
   },
 ];
 
+//Cambio de tema, se cambia en head, afecta a todo
+export const changeTheme = () => {
+  const theme =
+    localStorage.getItem('color-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light');
+
+  document.documentElement.classList.toggle('dark', theme === 'dark');
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    changeTheme();
+  }, []);
+
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-full">
         {children}
         <ScrollRestoration />
         <Scripts />

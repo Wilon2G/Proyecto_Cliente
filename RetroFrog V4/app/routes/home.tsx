@@ -47,7 +47,7 @@ export default function HomePage() {
         </header>
         <nav className="sidebar-nav">
           <ul className="nav-list primary-nav">
-          <li className="nav-item">
+            <li className="nav-item">
               <NavLink to="main" className="nav-link">
                 <span className="nav-icon">
                   <HomeIcon />
@@ -119,7 +119,7 @@ export default function HomePage() {
           </ul>
         </nav>
       </aside>
-      <div className="content">
+      <div className="content h-full">
         <Outlet />
       </div>
     </>
