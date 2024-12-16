@@ -5,6 +5,7 @@ import {
   CollapseArrow,
   FavGamesIcon,
   GamesIcon,
+  HomeIcon,
   LogOutIcon,
   MusicIcon,
   SettingsIcon,
@@ -46,6 +47,14 @@ export default function HomePage() {
         </header>
         <nav className="sidebar-nav">
           <ul className="nav-list primary-nav">
+          <li className="nav-item">
+              <NavLink to="main" className="nav-link">
+                <span className="nav-icon">
+                  <HomeIcon />
+                </span>
+                <span className="nav-label">Home</span>
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink to="shop" className="nav-link">
                 <span className="nav-icon">
