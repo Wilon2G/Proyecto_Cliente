@@ -10,4 +10,10 @@ const logInSchema = z.object({
 export  function ValidateLogin(formData){
 const result = logInSchema.safeParse(formData);
 
+if (result.error) {
+    return result.error.format();
+}
+
+return result.data;
+
 }

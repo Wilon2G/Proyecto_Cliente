@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { Form, redirect } from '@remix-run/react';
 import { useState } from 'react';
-import SignUpForm from '~/components/SignUpForm';
-import LoginForm from '~/components/LoginForm';
+import SignUpForm from '../components/SignUpForm';
+import LoginForm from '../components/LoginForm';
 
 const prisma = new PrismaClient();
 
@@ -15,13 +15,17 @@ export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const userName = formData.get('userName');
   const password = formData.get('password');
+  
+
 
   const user = await prisma.user.findUnique({
     where: { userName: userName as string },
   });
+
   if (!user || user.password !== password) {
-    return '';
+    return 'error';
   }
+
   return redirect('/home/main');
 }
 
