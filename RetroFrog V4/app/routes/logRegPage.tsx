@@ -7,6 +7,8 @@ import "swiper/css"; // Importa los estilos básicos de Swiper
 import "swiper/css/pagination"; // Si usas paginación
 import "swiper/css/navigation"; // Si usas navegación
 import { Autoplay, Navigation, Pagination } from "swiper/modules"; // Importa módulos si los necesitas
+import LoginForm from '~/components/LoginForm';
+import SignUpForm from '~/components/SignUpForm';
 const prisma = new PrismaClient();
 
 export async function loader() {
@@ -18,7 +20,6 @@ export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const userName = formData.get('userName');
   const password = formData.get('password');
-
   const user = await prisma.user.findUnique({
     where: { userName: userName as string },
   });
@@ -27,14 +28,12 @@ export async function action({ request }: { request: Request }) {
   }
   return redirect('/home/main');
 }
-
 export default function LoginPage() {
-  // const { users } = useLoaderData(); // Carga de datos de usuarios
-  const [progress, setProgress] = useState(0); // Estado del progreso
-  const [isLoading, setIsLoading] = useState(true); // Estado de carga
+  // const { users } = useLoaderData(); 
+  const [progress, setProgress] = useState(0); 
+  const [isLoading, setIsLoading] = useState(true); 
   const [activePanel, setActivePanel] = useState<"login" | "register">("login");
   useEffect(() => {
-    // Simula un progreso de carga
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -125,125 +124,43 @@ export default function LoginPage() {
   return (
     <>
     <div className="h-full flex justify-end">
-    <div className='flex flex-col  translate-x-1/4 h-screen w-screen'>
-    <div className="slider-container mt-8">
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={25} // No espacio entre los slides para continuidad visual
-        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
-        loop={true} // Activar loop para desplazamiento continuo
-        autoplay={{
-          delay: 0, // Delay muy bajo para movimiento constante
-          disableOnInteraction: false,
-        }}
-        speed={9000} // Velocidad alta para un scroll lineal continuo
-        centeredSlides={true} // Quitar centrado si no es necesario
-        onSwiper={(swiper) => {
-          // Aplica la transición lineal al contenedor dinámicamente, es un callback
-          swiper.wrapperEl.style.transitionTimingFunction = "linear";
-        }}
-        allowTouchMove={false}
-        
-        className="slider-wrapper"
-       
-      >
-          {slides.map((slide, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                background: `url('${slide.route}') no-repeat center center`,
-                backgroundSize: "cover",
-                height: "350px",
-                borderRadius:"2rem",
-                width:"350px",
-                overflow: "hidden",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-              }}
-            >
-              
-            </SwiperSlide>
-          ))}
-        </Swiper>
-    </div>
-    
-      <div className="slider-container mt-8">
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={25} // No espacio entre los slides para continuidad visual
-        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
-        loop={true} // Activar loop para desplazamiento continuo
-        autoplay={{
-          delay: 0, // Delay muy bajo para movimiento constante
-          disableOnInteraction: false,
-        }}
-        speed={9000} // Velocidad alta para un scroll lineal continuo
-        centeredSlides={true} // Quitar centrado si no es necesario
-        onSwiper={(swiper) => {
-          // Aplica la transición lineal al contenedor dinámicamente, es un callback
-          swiper.wrapperEl.style.transitionTimingFunction = "linear";
-        }}
-        allowTouchMove={false}
-        
-        className="slider-wrapper"
-       
-      >
-          {slides.map((slide, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                background: `url('${slide.route}') no-repeat center center`,
-                backgroundSize: "cover",
-                height: "350px",
-                borderRadius:"2rem",
-                width:"350px",
-                overflow: "hidden",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-              }}
-            >
-              
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    <div className="slider-container mt-8">
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={25} // No espacio entre los slides para continuidad visual
-        slidesPerView="auto" // Permite mostrar varios slides adaptando el tamaño
-        loop={true} // Activar loop para desplazamiento continuo
-        autoplay={{
-          delay: 0, // Delay muy bajo para movimiento constante
-          disableOnInteraction: false,
-        }}
-        speed={9000} // Velocidad alta para un scroll lineal continuo
-        centeredSlides={true} // Quitar centrado si no es necesario
-        onSwiper={(swiper) => {
-          // Aplica la transición lineal al contenedor dinámicamente, es un callback
-          swiper.wrapperEl.style.transitionTimingFunction = "linear";
-        }}
-        allowTouchMove={false}
-        
-        className="slider-wrapper"
-       
-      >
-          {slides.map((slide, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                background: `url('${slide.route}') no-repeat center center`,
-                backgroundSize: "cover",
-                height: "350px",
-                borderRadius:"2rem",
-                width:"350px",
-                overflow: "hidden",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-              }}
-            >
-              
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    <div className='flex flex-col w-2/4'>
+      <div className="slider-container">
+        <Swiper
+          direction={'horizontal'}
+          modules={[Autoplay]}
+          spaceBetween={15} 
+          slidesPerView="auto"
+          loop={true} 
+          autoplay={{
+            delay: 0, 
+            disableOnInteraction: false,
+          }}
+          speed={7000} 
+          centeredSlides={true} 
+          onSwiper={(swiper) => {
+            swiper.wrapperEl.style.transitionTimingFunction = "linear";
+          }}
+          allowTouchMove={false}
+          className="slider-wrapper"
+        >
+            {slides.map((slide, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  background: `url('${slide.route}') no-repeat center center`,
+                  backgroundSize: "cover",
+                  height: "150px",
+                  borderRadius:"1rem",
+                  width:"150px",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+                }}
+              > 
+              </SwiperSlide>
+            ))}
+          </Swiper>
+      </div> 
     </div>  
     <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
         <div className="w-full h-1/5 p-6 flex items-center text-textDark">

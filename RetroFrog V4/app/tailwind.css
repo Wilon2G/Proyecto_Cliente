@@ -228,7 +228,6 @@ body {
 /*-------------------------Settings---------------------------*/
 
 .slider-container {
-  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
