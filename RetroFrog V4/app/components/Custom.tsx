@@ -3,7 +3,7 @@ import { ButtonAction } from './Buttons';
 
 export default function Custom() {
   const [theme, setTheme] = useState<string>(
-    localStorage.getItem('color-theme') || 'light',
+    //localStorage.getItem('color-theme') || 'light',
   );
   const [background, setBackground] = useState<string>(
     '/assets/background/bg.jpg',
@@ -14,7 +14,7 @@ export default function Custom() {
   // Actualizar la clase del tema y localStorage
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
-    localStorage.setItem('color-theme', newTheme);
+    //localStorage.setItem('color-theme', newTheme);
   };
 
   // Hacer cambio de tema claro-oscuro
