@@ -1,4 +1,4 @@
-import Custom from '~/components/Custom';
+import Custom from '~/components/Custom2';
 
 import Developers from '~/components/Developers';
 import PrivacyPolices from '~/components/PrivacyPolices';

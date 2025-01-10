@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react';
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 
 import './tailwind.css';
+import { commitSession, getSession } from './sessions';
 
 export const meta: MetaFunction = () => {
   return [
@@ -30,21 +32,49 @@ export const links: LinksFunction = () => [
   },
 ];
 
-//Cambio de tema, se cambia en head, afecta a todo
-export const changeTheme = () => {
-  const theme =
-    localStorage.getItem('color-theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light');
 
-  document.documentElement.classList.toggle('dark', theme === 'dark');
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get("cookie");
+  const session = await getSession(cookieHeader);
+
+  console.log("Session data before:", session.data);
+
+  // Verificar si la sesión está vacía
+  if (Object.keys(session.data).length === 0) {
+    console.log("Estableciendo valores predeterminados en la sesión");
+
+    // Establecer valores predeterminados
+    session.set("theme", "primaryDark");
+    session.set("background", "/assets/background/bg3.jpg");
+    session.set("fontFamily", "arial");
+
+  }
+
+  // Obtener datos de la sesión
+  const bgColor = session.get("theme");
+  const bgImage = session.get("background");
+  const fontFamily = session.get("fontFamily");
+
+  console.log("Session data after:", session.data);
+
+  // Serializar los datos como JSON
+  const themeChanges = { bgColor, bgImage, fontFamily };
+
+  return themeChanges;
 };
 
+
+type themeChanges = {
+  bgColor: string
+  bgImage: string
+  fontFamily: string
+  
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    changeTheme();
-  }, []);
+
+  const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  
 
   return (
     <html lang="en" className="h-full">
@@ -54,7 +84,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
+      <body className={'h-full'} style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}}>
         {children}
         <ScrollRestoration />
         <Scripts />
