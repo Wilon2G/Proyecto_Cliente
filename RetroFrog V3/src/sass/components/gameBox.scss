@@ -23,7 +23,7 @@
   transition: z-index 0s linear 0.4s;
 }
 .scene {
-  -webkit-perspective: 70rem;
+  perspective: 70rem;
   width: fit-content;
   height: 28rem; // Contenedor grande en el que se coloca todo, este es el contenedor que rota
   padding-top: 2rem;
@@ -41,15 +41,15 @@
 
   // Cuando el contenedor recibe el hover, la caja rota
   &:hover .box {
-    -webkit-transform: rotateY(-180deg); // Rotación del contenedor
+    transform: rotateY(-180deg); // Rotación del contenedor
     scale: 130%;
   }
 
   .box {
     width: 18rem;
     height: 18rem;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: all 1s ease-out;
+    transform-style: preserve-3d;
+    transition: all 1s ease-out;
     margin: 1rem;
     position: relative;
 
@@ -59,7 +59,7 @@
         #000000 0%,
         #ffffff00 69%
       );
-      -webkit-transform: rotateX(-90deg);
+      transform: rotateX(-90deg);
 
       width: 19.4rem; // De momento no se me ocurre qué hacer
       height: 18.4rem;
@@ -78,20 +78,20 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
 
       &--front {
         background: $ppal-white;
         border: 2px solid $ppal-black;
         overflow: hidden;
         background-size: cover;
-        -webkit-transform: rotateY(0deg) translateZ(1.5rem);
+        transform: rotateY(0deg) translateZ(1.5rem);
       }
 
       &--right {
         background: $right-side; // Para escribir en vertical en el lado queremos usar la etiqueta writing-mode y text-orientation :)
         width: 3rem;
-        -webkit-transform: rotateY(90deg) translateZ(16.5rem);
+        transform: rotateY(90deg) translateZ(16.5rem);
 
         overflow: hidden;
 
@@ -122,7 +122,7 @@
         background: $ppal-black;
 
         overflow: hidden;
-        -webkit-transform: rotateY(180deg) translateZ(1.5rem);
+        transform: rotateY(180deg) translateZ(1.5rem);
 
         display: flex;
         align-items: center;
@@ -174,6 +174,7 @@
             $back-button-init 50%,
             $back-button-final 50%
           );
+
           border-style: none;
 
           color: $ppal-white;
@@ -277,7 +278,11 @@
               animation-delay: 4s;
             }
           }
+          &:disabled{
+            background: linear-gradient(to left top, #c5c5c5 50%, #6b6b6b 50%);
+          }
         }
+        
       }
     }
   }

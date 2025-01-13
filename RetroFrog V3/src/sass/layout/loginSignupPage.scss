@@ -3,7 +3,7 @@
 .logo {
   margin: 0 auto;
   text-align: center;
-
+  height: 130px;
   img {
     width: 10rem;
   }
@@ -11,6 +11,15 @@
 
 .login,
 .signup {
+<<<<<<< HEAD
+    &__wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+        display: flex;
+=======
   &__wrapper {
     display: flex;
     justify-self: center;
@@ -135,6 +144,7 @@
       color: $ppal-white;
       font-size: $ppal-font-size;
       @media only screen and (max-width: 760px) {
+>>>>>>> develop
         justify-content: center;
       }
       input {
@@ -162,6 +172,58 @@
         display: flex;
         align-items: center;
 
+<<<<<<< HEAD
+        max-width: 100%;
+
+        border-radius: 8px;
+        padding: 3rem;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        background-color: rgba(51, 45, 55, 0.4);
+
+        a {
+            color: #efefef;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20vw;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #fff;
+        }
+
+=======
+>>>>>>> develop
         p {
           margin: 0 50px 0 10px;
           font-size: $smaller-font-size;
@@ -183,6 +245,29 @@
 
 //Diferencias para signup
 .signup {
+<<<<<<< HEAD
+    &__wrapper {
+        height: 70vh;
+
+        button {
+            margin: 1.5rem;
+        }
+
+        a {
+            margin-top: 10px;
+        }
+
+    }
+
+    &__form {
+        h2 {
+            margin-bottom: 0;
+        }
+
+        p{
+            padding-bottom: 0 1rem;
+        }
+=======
   &__wrapper {
     button {
       margin: 1.5rem;
@@ -191,6 +276,7 @@
     a {
       margin-top: 10px;
       font-size: $ppal-font-size;
+>>>>>>> develop
     }
   }
 

@@ -42,7 +42,7 @@ export default function GameBox({ game, setGameState, locked }: GameBoxProps) {
             ></div>
             <h3>{game.title}</h3>
             <p>{game.description}</p>
-            {locked ? <UnlockButton></UnlockButton> : <></>}
+            {locked ? <UnlockButton id={game.id}></UnlockButton> : <></>}
 
             <PlayButton setOnPlay={setGameState} id={game.id} locked={locked} />
           </div>

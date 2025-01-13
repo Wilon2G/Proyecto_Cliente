@@ -99,7 +99,8 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <div style={{ marginTop: '6%' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ alignSelf: 'center' }}>
         <div className="logo">
           <img src="src/assets/logos/Logo.png" alt="LOGO" />
         </div>
@@ -141,6 +142,7 @@ const LoginPage: React.FC = () => {
             </Link>
           </form>
         </div>
+      </div>
       </div>
     </>
   );

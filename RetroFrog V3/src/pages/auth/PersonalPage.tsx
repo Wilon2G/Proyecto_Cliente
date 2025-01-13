@@ -1,93 +1,94 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const SignupPage: React.FC = () => {
+const ModifyPage: React.FC = () => {
   const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('male'); //Se puede poner por defecto para que se marque el check
+  const [gender, setGender] = useState('male'); 
+  
+  const navigate = useNavigate();
+  const userId = sessionStorage.getItem('id'); 
 
-  //Caracteristicas del usuario que se rellenaran mas tarde
-  const score = 0;
-  const userInfo = {
-    gamesPlayed: [],
-    gamesWinned: [],
-    gamesUnlocked: ['b97bf75d-5764-46b5-be5e-fe4df0d0af4a'],
-    gamesLocked: [],
-    theme: 'dark',
-  };
-
-  const navigate = useNavigate(); //hook
+  useEffect(() => {
+    setUsername(sessionStorage.getItem('username') || '');
+    setName(sessionStorage.getItem('name') || '');
+    setEmail(sessionStorage.getItem('email') || '');
+  }, []);
 
   const isValidate = () => {
     let infoGiven = true;
     let errorMessage = 'Please enter the value in ';
 
-    if (userName === null || userName === '') {
+    if (!userName) {
       infoGiven = false;
-      errorMessage += `${userName}`;
+      errorMessage += 'username ';
     }
-    if (password === null || password === '') {
+    if (!password) {
       infoGiven = false;
-      errorMessage += `${password}`;
+      errorMessage += 'password ';
     }
-    if (name === null || name === '') {
+    if (!name) {
       infoGiven = false;
-      errorMessage += `${name}`;
+      errorMessage += 'name ';
     }
-    if (gender === null || gender === '') {
+    if (!email || !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(email)) {
       infoGiven = false;
-      errorMessage += `${gender}`;
+      errorMessage += 'email ';
     }
 
-    if (!infoGiven) {
-      //Mostrar mensaje de warning
-      alert(errorMessage);
-    } else {
-      if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/.test(email)) {
-        infoGiven = false;
-        //Mostrar mensaje de warning
-        alert('Plase enter the valid email');
-      }
-    }
-
+    if (!infoGiven) alert(errorMessage);
     return infoGiven;
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (isValidate()) {
-      event.preventDefault(); //Prevenir que se actualice la pagina al hacer click en el boton
-      const userObj = {
+    event.preventDefault(); 
+
+    if (isValidate() && userId) {
+      const updatedUser = {
         userName,
         password,
         name,
         email,
         gender,
-        score,
-        userInfo,
-      }; //Se crea un objeto con toda esta informacion de usuario
-      //console.log(userObj);
+      };
 
-      //Para llamar a la API (JSON) se necesita fetch("APIEndPOint")
-      fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(userObj),
+      
+      fetch(`http://localhost:3000/users/${userId}`, {
+        method: 'PATCH', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedUser),
       })
-        .then(() => {
-          console.log('Registered successfully.');
-          navigate('/login'); //Depues de registrarte te manda al login
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to update user');
+          }
+          return response.json();
         })
-        .catch((err) => {
-          console.log('Error: ' + err.message);
+        .then(() => {
+          alert('User information updated successfully.');
+          sessionStorage.setItem('username', userName);
+          sessionStorage.setItem('name', name);
+          sessionStorage.setItem('email', email);
+          navigate('/'); 
+        })
+        .catch((error) => {
+          console.error('Error:', error.message);
+          alert('Failed to update user information.');
         });
+    } else if (!userId) {
+      alert('User ID not found in session.');
     }
   };
 
   return (
-    <div className="signup__wrapper" style={{ marginTop: '6%' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ alignSelf: 'center' }}>
+        <div className="logo">
+          <img src="src/assets/logos/Logo.png" alt="LOGO" />
+        </div>
+    <div className="signup__wrapper" >
       <form className="signup__form" onSubmit={handleSubmit}>
         <h2>User Modification</h2>
 
@@ -95,10 +96,10 @@ const SignupPage: React.FC = () => {
           <input
             value={userName}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder={sessionStorage.getItem('username')!}
+            placeholder="Enter new username"
             required
-          ></input>
-          <label>Enter your NEW username </label>
+          />
+          <label>Username</label>
         </div>
 
         <div className="signup__form--input-field">
@@ -106,19 +107,20 @@ const SignupPage: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
+            placeholder="Enter new password"
             required
-          ></input>
-          <label>Enter your NEW password </label>
+          />
+          <label>Password</label>
         </div>
 
         <div className="signup__form--input-field">
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder={sessionStorage.getItem('name')!}
+            placeholder="Enter new full name"
             required
-          ></input>
-          <label>Enter your NEW full name </label>
+          />
+          <label>Full Name</label>
         </div>
 
         <div className="signup__form--input-field">
@@ -126,57 +128,57 @@ const SignupPage: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            placeholder={sessionStorage.getItem('email')!}
+            placeholder="Enter new email"
             required
-          ></input>
-          <label>Enter your NEW email </label>
+          />
+          <label>Email</label>
         </div>
+
         <p>
           <b>Change your gender</b>
         </p>
         <div className="signup__form--gender">
-          <label htmlFor="gender">
+          <label>
             <input
               type="radio"
               checked={gender === 'male'}
-              onChange={(e) => setGender(e.target.value)}
+              onChange={() => setGender('male')}
               name="gender"
               value="male"
-              className="form-control"
-            ></input>
+            />
             Male
           </label>
-          <label htmlFor="gender">
+          <label>
             <input
               type="radio"
               checked={gender === 'female'}
-              onChange={(e) => setGender(e.target.value)}
+              onChange={() => setGender('female')}
               name="gender"
               value="female"
-              className="form-control"
-            ></input>
+            />
             Female
           </label>
-          <label htmlFor="gender">
+          <label>
             <input
               type="radio"
               checked={gender === 'other'}
-              onChange={(e) => setGender(e.target.value)}
+              onChange={() => setGender('other')}
               name="gender"
               value="other"
-              className="form-control"
-            ></input>
+            />
             Other
           </label>
         </div>
 
-        <button type="submit">Change User info</button>
+        <button type="submit">Change User Info</button>
         <Link className="signup__form--back" to={'/'}>
           Back
         </Link>
       </form>
     </div>
+    </div>
+    </div>
   );
 };
 
-export default SignupPage;
+export default ModifyPage;
