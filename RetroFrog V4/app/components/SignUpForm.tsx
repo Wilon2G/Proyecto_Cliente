@@ -10,7 +10,6 @@ function SignUpForm() {
         <input
           type="text"
           name="userName"
-          id="userName"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
           placeholder="Your username"
         />
@@ -22,9 +21,9 @@ function SignUpForm() {
         <input
           type="password"
           name="password"
-          id="password"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
           placeholder="Your password"
+          autoComplete=''
         />
       </div>
       <div>
@@ -34,7 +33,6 @@ function SignUpForm() {
         <input
           type="email"
           name="email"
-          id="email"
           className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-textDark"
           placeholder="example@gmail.com"
         />

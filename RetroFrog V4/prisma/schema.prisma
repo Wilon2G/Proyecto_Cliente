@@ -32,9 +32,7 @@ model Game {
   description   String
   component     String
   color         String
-  route         String
 
 //Clave foránea relación con user
   Users       User[] @relation("UserGames")
-
 }
