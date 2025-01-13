@@ -37,7 +37,7 @@ export default function HomePage() {
               <CollapseArrow />
             </span>
           </button>
-          <a href="#" className="header-logo">
+          <a href="../home/main" className="header-logo">
             <img
               src="/assets/icon/pfp/default.jpg"
               alt="User Profile"

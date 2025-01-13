@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { Form, redirect } from '@remix-run/react';
+import { Form, json, redirect, useActionData } from '@remix-run/react';
 import { useState } from 'react';
-import SignUpForm from '~/components/SignUpForm';
-import LoginForm from '~/components/LoginForm';
+import SignUpForm from '../components/SignUpForm';
+import LoginForm from '../components/LoginForm';
+import { logInSchema } from '../utils/zodValidation';
 
 const prisma = new PrismaClient();
+
 
 export async function loader() {
   const users = await prisma.user.findMany();
@@ -16,17 +18,29 @@ export async function action({ request }: { request: Request }) {
   const userName = formData.get('username');
   const password = formData.get('password');
 
+  const validationResult=(logInSchema.safeParse({userName:formData.get('userName'),password:formData.get('password')}));
+
+  if (validationResult.success==false) {
+    console.log(validationResult.error);
+    return validationResult.error;
+  }
+
   const user = await prisma.user.findUnique({
     where: { userName: userName as string },
   });
+
   if (!user || user.password !== password) {
-    return '';
+    return 'error';
   }
+
   return redirect('/home/main');
 }
 
+
 export default function LoginPage() {
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
+  const actionData = useActionData<typeof action>();
+
 
   return (
     <div className="h-full flex justify-end">
@@ -99,6 +113,7 @@ export default function LoginPage() {
                 activePanel === 'register' && 'opacity-0 scale-0 absolute'
               }`}
             >
+              <p className={'bg-red-50'}>{actionData?.toString()}</p>
               <LoginForm />
             </Form>
           </div>
