@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import 'swiper/css'; // Importa los estilos básicos de Swiper
 import 'swiper/css/navigation'; // Si usas navegación
 import 'swiper/css/pagination'; // Si usas paginación
-import { Autoplay } from 'swiper/modules'; // Importa módulos si los necesitas
-import { Swiper, SwiperSlide } from 'swiper/react';
 import LoginForm from '~/components/LoginForm';
 import SignUpForm from '~/components/SignUpForm';
 const prisma = new PrismaClient();
@@ -52,43 +50,6 @@ export default function LoginPage() {
   return (
     <>
       <div className="h-full flex justify-end">
-        <div className="flex flex-col w-2/4">
-          <div className="slider-container">
-            <Swiper
-              direction={'horizontal'}
-              modules={[Autoplay]}
-              spaceBetween={15}
-              slidesPerView="auto"
-              loop={true}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-              }}
-              speed={7000}
-              centeredSlides={true}
-              onSwiper={(swiper) => {
-                swiper.wrapperEl.style.transitionTimingFunction = 'linear';
-              }}
-              allowTouchMove={false}
-              className="slider-wrapper"
-            >
-              {slides.map((slide, index) => (
-                <SwiperSlide
-                  key={index}
-                  style={{
-                    background: `url('${slide.route}') no-repeat center center`,
-                    backgroundSize: 'cover',
-                    height: '150px',
-                    borderRadius: '1rem',
-                    width: '150px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-                  }}
-                ></SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
         <div className="h-full w-2/5 bg-primaryDark backdrop-blur-lg">
           <div className="w-full h-1/5 p-6 flex items-center text-textDark">
             <img
