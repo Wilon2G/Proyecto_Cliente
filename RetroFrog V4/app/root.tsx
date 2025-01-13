@@ -1,25 +1,16 @@
+import React from 'react';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react';
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 
 import './tailwind.css';
-/*
-Para usar la base de datos lo haremos directamente con loaders 
-y actions, una función sencilla sería:
-
-export async function loader() {
-  const users = await prisma.user.findMany();
-  return { users };
-}
-
-Esa función devolverá todos los usuarios
-
-*/
+import { commitSession, getSession } from './sessions';
 
 export const meta: MetaFunction = () => {
   return [
@@ -41,16 +32,59 @@ export const links: LinksFunction = () => [
   },
 ];
 
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get("cookie");
+  const session = await getSession(cookieHeader);
+
+  console.log("Session data before:", session.data);
+
+  // Verificar si la sesión está vacía
+  if (Object.keys(session.data).length === 0) {
+    console.log("Estableciendo valores predeterminados en la sesión");
+
+    // Establecer valores predeterminados
+    session.set("theme", "primaryDark");
+    session.set("background", "/assets/background/bg3.jpg");
+    session.set("fontFamily", "arial");
+
+  }
+
+  // Obtener datos de la sesión
+  const bgColor = session.get("theme");
+  const bgImage = session.get("background");
+  const fontFamily = session.get("fontFamily");
+
+  console.log("Session data after:", session.data);
+
+  // Serializar los datos como JSON
+  const themeChanges = { bgColor, bgImage, fontFamily };
+
+  return themeChanges;
+};
+
+
+type themeChanges = {
+  bgColor: string
+  bgImage: string
+  fontFamily: string
+  
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+
+  const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  
+
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={'h-full'} style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}}>
         {children}
         <ScrollRestoration />
         <Scripts />
