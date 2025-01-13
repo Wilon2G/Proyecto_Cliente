@@ -1,6 +1,5 @@
 import { NavLink, Outlet } from '@remix-run/react';
 import { useState } from 'react';
-import Custom from '~/components/Custom';
 import {
   CollapseArrow,
   FavGamesIcon,
