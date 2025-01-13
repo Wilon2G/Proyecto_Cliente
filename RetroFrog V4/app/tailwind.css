@@ -44,11 +44,11 @@ body {
 }
 
 .sidebar {
-  @apply w-36 fixed mt-4 ml-4 rounded-xl bg-[#151A2D] h-[95vh] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
+  @apply w-48 fixed top-4 left-4 rounded-xl bg-[#151A2D] h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
 }
 
 .sidebar.collapsed {
-  @apply w-16;
+  @apply w-20;
 }
 
 .sidebar-header {
@@ -92,17 +92,15 @@ body {
 }
 
 .sidebar-nav .nav-list {
-  @apply list-none flex flex-col justify-center gap-1 px-2;
+  @apply list-none flex flex-col justify-center gap-1 px-4;
 }
-.sidebar-nav {
-  @apply flex flex-col justify-evenly;
-}
+
 .sidebar-nav .secondary-nav {
-  @apply relative w-full h-full transition-all ease-linear;
+  @apply relative w-full h-full top-44 transition-all ease-linear;
 }
 
 .sidebar.collapsed .secondary-nav {
-  @apply transition-all ease-linear;
+  @apply top-52 transition-all ease-linear;
 }
 
 .sidebar-nav .primary-nav {
@@ -134,7 +132,7 @@ body {
 }
 
 .nav-link {
-  @apply flex items-center no-underline text-white px-1 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
+  @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
 }
 
 .nav-link:hover {
@@ -233,6 +231,7 @@ body {
 /*-------------------------Settings---------------------------*/
 
 .slider-container {
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;

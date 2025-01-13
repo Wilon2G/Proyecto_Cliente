@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -6,74 +6,59 @@ async function main() {
   // Crear un usuario
   const user = await prisma.user.create({
     data: {
-      userName: 'Prueba',
-      password: 'prueba',
-      name: 'Pepito Prueba',
-      email: 'pepitoprueba@example.com',
-      sex: 'NAN',
+      userName: "Prueba",
+      password: "prueba",
+      name: "Pepito Prueba",
+      email: "pepitoprueba@example.com",
+      sex: "NAN",
       score: 50,
-      theme: 'dark',
-      pfp: '/assets/icon/pfp/default.jpg',
+      theme: "dark",
+      pfp: "/assets/icon/pfp/default.jpg",  
     },
   });
 
-  // Juegos del catálogo
-  const gamesData = [
-    {
-      title: 'The Legend of Zelda - A Link to the Past',
-      description: 'Explora mazmorras y salva Hyrule.',
-      component: 'RPG',
-      color: 'Gold',
+  // Crear tres juegos
+  const game1 = await prisma.game.create({
+    data: {
+      title: "Super amigo italiano",
+      description: "Descripción del juego 1",
+      component: "Componente1",
+      color: "Red",
+      route: "/juego-1",
     },
-    {
-      title: 'Super Street Fighter II',
-      description: 'Compite en intensos combates.',
-      component: 'Lucha',
-      color: 'Red',
-    },
-    {
-      title: 'Super Mario Kart',
-      description: 'Corre y lanza ítems para ganar.',
-      component: 'Carreras',
-      color: 'Green',
-    },
-    {
-      title: 'Super Bomberman',
-      description: 'Desafía amigos en explosivas partidas.',
-      component: 'Party',
-      color: 'Blue',
-    },
-    {
-      title: 'Simon Says Game',
-      description: 'Sigue el ritmo y memoriza patrones.',
-      component: 'Puzzle',
-      color: 'Yellow',
-    },
-    {
-      title: 'Super Mario World',
-      description: 'Salta y corre en un mundo colorido.',
-      component: 'Plataformas',
-      color: 'SkyBlue',
-    },
-  ];
+  });
 
-  // Crear juegos y asociarlos al usuario
-  for (const gameData of gamesData) {
-    const game = await prisma.game.create({
-      data: gameData,
-    });
+  const game2 = await prisma.game.create({
+    data: {
+      title: "Juego 2",
+      description: "Descripción del juego 2",
+      component: "Componente2",
+      color: "Green",
+      route: "/juego-2",
+    },
+  });
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        GamesUnlocked: {
-          connect: { id: game.id },
-        },
+  const game3 = await prisma.game.create({
+    data: {
+      title: "Juego 3",
+      description: "Descripción del juego 3",
+      component: "Componente3",
+      color: "Blue",
+      route: "/juego-3",
+    },
+  });
+
+  // Asociar juegos al usuario
+  await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      GamesUnlocked: {
+        connect: [{ id: game1.id }, { id: game2.id }, { id: game3.id }],
       },
-    });
-  }
+    },
+  });
 
-  console.log('Seed data has been created successfully!');
+  console.log("Seed data has been created successfully!");
 }
 
 main()

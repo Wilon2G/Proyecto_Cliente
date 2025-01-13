@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from '@remix-run/react';
 import { useState } from 'react';
+import Custom from '~/components/Custom';
 import {
   CollapseArrow,
   FavGamesIcon,
@@ -36,7 +37,7 @@ export default function HomePage() {
               <CollapseArrow />
             </span>
           </button>
-          <a href="#" className="header-logo">
+          <a href="../home/main" className="header-logo">
             <img
               src="/assets/icon/pfp/default.jpg"
               alt="User Profile"
