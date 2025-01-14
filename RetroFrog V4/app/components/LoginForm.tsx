@@ -1,11 +1,13 @@
 import Button from '../components/Buttons';
 import InputForm from './InputForm';
 
+//Deprecated ___________________________________________________!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 function LoginForm() {
   return (
     <>
       <div>
-        <InputForm inputType="username" />
+        <InputForm inputType="userName" />
       </div>
       <div>
         <InputForm inputType="password" />

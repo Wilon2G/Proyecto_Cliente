@@ -1,25 +1,16 @@
 import { PrismaClient } from '@prisma/client';
-import { Form, json, redirect, useActionData } from '@remix-run/react';
+import { Form,  redirect, useActionData } from '@remix-run/react';
 import { useState } from 'react';
 import SignUpForm from '../components/SignUpForm';
 import LoginForm from '../components/LoginForm';
-import { logInSchema } from '../utils/zodValidation';
+import { logInSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
 import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
 
-const prisma = new PrismaClient();
 
-export async function loader() {
-  const users = await prisma.user.findMany();
-  return { users };
-}
 
-export const logInSchema = z.object({
-  username: z.string().min(1, 'You must fill the User Name field'),
-  password: z.string().min(1, 'Password'),
-});
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -27,7 +18,8 @@ export async function action({ request }: { request: Request }) {
     formData,
     logInSchema,
     (data) => {
-      console.log(data.username + ' y ' + data.password);
+      console.log(data.userName + ' y ' + data.password);
+      return null;
     },
     (errors) =>
       new Response(JSON.stringify({ errors }), {
@@ -113,8 +105,8 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" />
-                <p>{actionData?.errors?.username}</p>
+                <InputForm inputType="userName" />
+                <p>{actionData?.errors?.userName}</p>
               </div>
               <div>
                 <InputForm inputType="password" />
