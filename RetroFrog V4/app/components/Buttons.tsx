@@ -5,6 +5,7 @@ type ButtonProps = {
   textBtn: string;
   typeBtn: 'submit' | 'reset' | 'button' | undefined;
   className: string;
+  name: string
 };
 
 type ButtonActionProps = {
@@ -18,9 +19,10 @@ type ButtonSimpleProps = {
   className?: string;
 };
 
-export default function Button({ textBtn, typeBtn, className }: ButtonProps) {
+export default function Button({ textBtn, typeBtn, className, name }: ButtonProps) {
   return (
     <button
+      name={name}
       type={typeBtn}
       className={classNames(
         'w-full py-2 px-4 rounded-md text-textDark font-bold transition duration-300',

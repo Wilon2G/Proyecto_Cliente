@@ -14,6 +14,7 @@ import InputForm from '~/components/InputForm';
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
+  console.log(formData);
   return validateForm(
     formData,
     logInSchema,
@@ -116,6 +117,7 @@ export default function LoginPage() {
                 textBtn="Log In"
                 typeBtn="submit"
                 className="bg-indigo-600 hover:bg-indigo-700 text-lg"
+                name="logIn"
               />
             </form>
           </div>
@@ -166,7 +168,19 @@ export default function LoginPage() {
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
-              <SignUpForm />
+                <div>
+                <InputForm inputType="userName" />
+                <p>{actionData?.errors?.userName}</p>
+              </div>
+              <div>
+                <InputForm inputType="password" />
+                <p>{actionData?.errors?.password}</p>
+              </div>
+              <div>
+                <InputForm inputType="name" />
+                <p>{actionData?.errors?.name}</p>
+              </div>
+              {/* <SignUpForm /> */}
             </Form>
           </div>
         </div>
