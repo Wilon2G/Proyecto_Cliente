@@ -165,10 +165,7 @@ export default function LoginPage() {
             <Form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
-                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
-              }
-              `}
-            >
+                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
               <SignUpForm />
             </Form>
           </div>
