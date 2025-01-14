@@ -21,6 +21,7 @@ function InputForm({ inputType }: InputProps) {
         type={`${inputType}`}
         name={`${inputType}`}
         id={`${inputType}`}
+        autoComplete="off"
         className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none "
         placeholder={`Your ${inputType}`}
       />

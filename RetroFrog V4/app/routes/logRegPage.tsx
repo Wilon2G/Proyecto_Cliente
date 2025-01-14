@@ -4,43 +4,42 @@ import { useState } from 'react';
 import SignUpForm from '../components/SignUpForm';
 import LoginForm from '../components/LoginForm';
 import { logInSchema } from '../utils/zodValidation';
+import validateForm from '~/utils/validation';
+import { z } from 'zod';
+import Button from '~/components/Buttons';
+import InputForm from '~/components/InputForm';
 
 const prisma = new PrismaClient();
-
 
 export async function loader() {
   const users = await prisma.user.findMany();
   return { users };
 }
 
+export const logInSchema = z.object({
+  username: z.string().min(1, 'You must fill the User Name field'),
+  password: z.string().min(1, 'Password'),
+});
+
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
-  const userName = formData.get('username');
-  const password = formData.get('password');
-
-  const validationResult=(logInSchema.safeParse({userName:formData.get('userName'),password:formData.get('password')}));
-
-  if (validationResult.success==false) {
-    console.log(validationResult.error);
-    return validationResult.error;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { userName: userName as string },
-  });
-
-  if (!user || user.password !== password) {
-    return 'error';
-  }
-
-  return redirect('/home/main');
+  return validateForm(
+    formData,
+    logInSchema,
+    (data) => {
+      console.log(data.username + ' y ' + data.password);
+    },
+    (errors) =>
+      new Response(JSON.stringify({ errors }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      }),
+  );
 }
-
 
 export default function LoginPage() {
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const actionData = useActionData<typeof action>();
-
 
   return (
     <div className="h-full flex justify-end">
@@ -107,15 +106,26 @@ export default function LoginPage() {
               </h2>
             </div>
 
-            <Form
+            <form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'register' && 'opacity-0 scale-0 absolute'
               }`}
             >
-              <p className={'bg-red-50'}>{actionData?.toString()}</p>
-              <LoginForm />
-            </Form>
+              <div>
+                <InputForm inputType="username" />
+                <p>{actionData?.errors?.username}</p>
+              </div>
+              <div>
+                <InputForm inputType="password" />
+                <p>{actionData?.errors?.password}</p>
+              </div>
+              <Button
+                textBtn="Log In"
+                typeBtn="submit"
+                className="bg-indigo-600 hover:bg-indigo-700 text-lg"
+              />
+            </form>
           </div>
 
           <div
