@@ -64,16 +64,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 
-type themeChanges = {
-  bgColor: string
-  bgImage: string
-  fontFamily: string
+// type themeChanges = {
+//   bgColor: string
+//   bgImage: string
+//   fontFamily: string
   
-}
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
 
-  const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  //const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  //style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}} Para el body!!!!!!!!!!
   
 
   return (
@@ -84,7 +85,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className={'h-full'} style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}}>
+      <body className={'h-full'} >
         {children}
         <ScrollRestoration />
         <Scripts />

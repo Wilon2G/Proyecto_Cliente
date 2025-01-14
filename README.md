@@ -59,3 +59,8 @@ https://lospec.com/palette-list/jehkoba64
 - library: migrar los juegos del ant proy
 - shop: same que library 
 - userProfile: mod y personalizar
+
+# Pendiente V4
+- Esta semana: Login terminado + Juegos + Favoritos
+- Siguiente semana: Sesiones + Pending UI + Cifrado cookies + Favoritos + Buscador
+
