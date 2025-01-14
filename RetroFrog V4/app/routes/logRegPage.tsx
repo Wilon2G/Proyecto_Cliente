@@ -1,16 +1,26 @@
-import { PrismaClient } from '@prisma/client';
-import { Form,  redirect, useActionData } from '@remix-run/react';
+import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
 import SignUpForm from '../components/SignUpForm';
-import LoginForm from '../components/LoginForm';
 import { logInSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
-import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
+import { getSession } from '~/sessions';
+import { LoaderFunction } from '@remix-run/node';
+import { themeChanges } from '~/root';
+import { changeThemeColor } from '~/utils/themeColors';
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
 
-
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
+};
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -18,8 +28,7 @@ export async function action({ request }: { request: Request }) {
     formData,
     logInSchema,
     (data) => {
-      console.log(data.userName + ' y ' + data.password);
-      return null;
+      return redirect('/home');
     },
     (errors) =>
       new Response(JSON.stringify({ errors }), {
@@ -30,24 +39,41 @@ export async function action({ request }: { request: Request }) {
 }
 
 export default function LoginPage() {
+  const data = useLoaderData<themeChanges>();
+
+  const theme = data?.theme; // Asegura que `theme` sea del tipo correcto
+  const colors = changeThemeColor(theme || 'dark'); // Ahora `theme` es garantizado que es 'dark' o 'light'
+  console.log(colors);
+  const { primaryBg, highlightBg, textColor, textHighlight } = colors;
+
+  console.log(primaryBg);
+
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const actionData = useActionData<typeof action>();
 
   return (
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
-        <div className="w-full h-1/5 p-6 flex items-center ">
+      <div
+        className="h-full w-2/5  backdrop-blur-lg"
+        style={{ background: `${primaryBg}` }} // Aplicación de color dinámico
+      >
+        <div
+          className="w-full h-1/5 p-6 flex items-center "
+          style={{ background: `${highlightBg}` }}
+        >
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt=""
             className="w-32 h-auto"
           />
           <div className="w-full">
-            <h1 className="text-6xl">Retrofrog</h1>
-            <h3 className="text-xl">
+            <h1 className="text-6xl" style={{ color: `${textColor}` }}>
+              Retrofrog
+            </h1>
+            <h3 className="text-xl" style={{ color: `${textColor}` }}>
               Welcome to the first online arcade experience
             </h3>
-            <p>
+            <p className={textColor}>
               Login to discover our full catalog or Signup if you don&apos;t
               have an account
             </p>
@@ -57,19 +83,21 @@ export default function LoginPage() {
         <div className="flex w-full h-4/5">
           <div
             className={`flex-1 transition-all duration-500 ${
-              activePanel === 'login'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
+              activePanel === 'login' ? `flex-[2]` : 'flex-[1]'
             } p-8 flex flex-col justify-center items-center cursor-pointer`}
+            style={{
+              background: activePanel === 'login' ? highlightBg : '', // Aplicación de color dinámico
+              color: activePanel === 'login' ? textHighlight : '', // Aplicación de color dinámico
+            }}
             onClick={() => setActivePanel('login')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
+                event.preventDefault();
                 setActivePanel('register');
               }
             }}
-            tabIndex={0} // Permite navegasr con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+            tabIndex={0}
+            role="button"
           >
             <div
               className={`transition-all duration-1000 ${
@@ -81,7 +109,10 @@ export default function LoginPage() {
                 Did you alreday had an account?
               </p>
               <h2
-                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-[${textColor}] rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                style={{
+                  borderColor: `${textColor}`, // Aplicación de color dinámico
+                }}
               >
                 Log In!
               </h2>
@@ -122,19 +153,21 @@ export default function LoginPage() {
 
           <div
             className={`h-full flex-1 transition-all duration-500 ${
-              activePanel === 'register'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
+              activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
             }   p-8 flex flex-col justify-center items-center cursor-pointer`}
+            style={{
+              background: activePanel === 'register' ? highlightBg : '', // Aplicación de color dinámico
+              color: activePanel === 'register' ? textHighlight : '', // Aplicación de color dinámico
+            }}
             onClick={() => setActivePanel('register')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
+                event.preventDefault();
                 setActivePanel('login');
               }
             }}
-            tabIndex={0} // Permite navegar con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+            tabIndex={0}
+            role="button"
           >
             <div
               className={`transition-all duration-1000 text-center ${
@@ -146,7 +179,10 @@ export default function LoginPage() {
                 Don&apos;t have an account yet?
               </p>
               <h2
-                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-[${textColor}] rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                style={{
+                  borderColor: `${textColor}`, // Aplicación de color dinámico
+                }}
               >
                 Create an account!
               </h2>
@@ -166,8 +202,7 @@ export default function LoginPage() {
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
-              }
-              `}
+              }`}
             >
               <SignUpForm />
             </Form>
