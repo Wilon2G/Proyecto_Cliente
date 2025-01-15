@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Links,
   Meta,
@@ -15,6 +15,7 @@ import type {
 
 import './tailwind.css';
 import { commitSession, getSession } from './sessions';
+import { changeThemeColor } from './utils/themeColors';
 
 export const meta: MetaFunction = () => {
   return [
@@ -72,6 +73,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const background = data?.background || '/assets/background/bg3.jpg';
   const fontFamily = data?.fontFamily || 'arial';
+  const theme = data?.theme; 
+    const colors = changeThemeColor(theme || 'dark'); 
+    
+  const {  textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <html lang="en" className="h-full">
@@ -86,7 +92,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         style={{
           backgroundImage: `url(${background})`,
           fontFamily,
+          color: isHovered ? `${textHighlight}` : `${textColor}`,
         }}
+        onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
       >
         {children}
         <ScrollRestoration />
