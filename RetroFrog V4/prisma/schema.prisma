@@ -30,9 +30,8 @@ model Game {
   id            String   @id @default(cuid())
   title         String
   description   String
-  component     String
   color         String
-  route         String
+  tags          String
 
 //Clave foránea relación con user
   Users       User[] @relation("UserGames")
