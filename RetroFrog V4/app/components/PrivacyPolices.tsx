@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { ButtonAction } from './Buttons';
+import { useLoaderData } from '@remix-run/react';
+import { themeChanges } from '~/root';
+import { changeThemeColor } from '~/utils/themeColors';
 
 function PrivacyPolices() {
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, textColor, textHighlight } = colors;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -13,11 +22,14 @@ function PrivacyPolices() {
       <ButtonAction
         textBtn="Revisar nuestras políticas de privacidad"
         onClick={toggleDropdown}
-        className="text-2xl font-semibold text-textDark hover:text-textDarkHighlight mt-1 mb-1 transition-colors "
+        className="text-2xl font-semibold mt-1 mb-1 transition-colors "
+        textColor={textColor}
+        textColorHover={textHighlight}
       />
 
       <div
-        className={`dropdown-content bg-primaryDark text-textDark p-6 rounded-lg shadow-lg 
+        style={{ background: primaryBg, color: textColor }}
+        className={`dropdown-content p-6 rounded-lg shadow-lg 
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
                     ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`}
       >

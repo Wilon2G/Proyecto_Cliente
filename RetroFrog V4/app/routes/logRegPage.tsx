@@ -1,19 +1,31 @@
-import { PrismaClient } from '@prisma/client';
-import { Form,  redirect, useActionData } from '@remix-run/react';
+import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
 import SignUpForm from '../components/SignUpForm';
 import LoginForm from '../components/LoginForm';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
-import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
+import { getSession } from '~/sessions';
+import { LoaderFunction } from '@remix-run/node';
+import { themeChanges } from '~/root';
+import { changeThemeColor } from '~/utils/themeColors';
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
 
-
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
+};
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
+
   console.log(formData);
   if (formData.get("_action")==="logIn") {
     return validateForm(
@@ -45,17 +57,32 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   }
-  
+
 }
 
 export default function LoginPage() {
+  const data = useLoaderData<themeChanges>();
+
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, highlightBg, textColor, textHighlight } = colors;
+
+  const [isHovered, setIsHovered] = useState(false);
+
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const actionData = useActionData<typeof action>();
 
   return (
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
-        <div className="w-full h-1/5 p-6 flex items-center ">
+      <div
+        className="h-full w-2/5  backdrop-blur-lg"
+        style={{ background: `${primaryBg}` }} // Aplicación de color dinámico
+      >
+        <div
+          className="w-full h-1/5 p-6 flex items-center "
+          style={{ background: `${highlightBg}` }}
+        >
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt=""
@@ -76,19 +103,21 @@ export default function LoginPage() {
         <div className="flex w-full h-4/5">
           <div
             className={`flex-1 transition-all duration-500 ${
-              activePanel === 'login'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
+              activePanel === 'login' ? `flex-[2]` : 'flex-[1]'
             } p-8 flex flex-col justify-center items-center cursor-pointer`}
+            style={{
+              background: activePanel === 'login' ? highlightBg : '', // Aplicación de color dinámico
+              color: activePanel === 'login' ? textHighlight : '', // Aplicación de color dinámico
+            }}
             onClick={() => setActivePanel('login')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
+                event.preventDefault();
                 setActivePanel('register');
               }
             }}
-            tabIndex={0} // Permite navegasr con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+            tabIndex={0}
+            role="button"
           >
             <div
               className={`transition-all duration-1000 ${
@@ -96,11 +125,18 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-base ">
+              <p className="mb-4 font-bold text-base ">
                 Did you alreday had an account?
               </p>
               <h2
-                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+                style={{
+                  borderColor: `${textColor}`,
+                  background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+                  color: isHovered ? `${textHighlight}` : `${textColor}`,
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 Log In!
               </h2>
@@ -124,11 +160,11 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" />
+                <InputForm inputType="userName" textColor={'#151A2D'} />
                 <p>{actionData?.errors?.userName}</p>
               </div>
               <div>
-                <InputForm inputType="password" />
+                <InputForm inputType="password" textColor={'#151A2D'} />
                 <p>{actionData?.errors?.password}</p>
               </div>
               <Button
@@ -143,19 +179,21 @@ export default function LoginPage() {
 
           <div
             className={`h-full flex-1 transition-all duration-500 ${
-              activePanel === 'register'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
+              activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
             }   p-8 flex flex-col justify-center items-center cursor-pointer`}
+            style={{
+              background: activePanel === 'register' ? highlightBg : '', // Aplicación de color dinámico
+              color: activePanel === 'register' ? textHighlight : '', // Aplicación de color dinámico
+            }}
             onClick={() => setActivePanel('register')}
             onKeyDown={(event) => {
               if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
+                event.preventDefault();
                 setActivePanel('login');
               }
             }}
-            tabIndex={0} // Permite navegar con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+            tabIndex={0}
+            role="button"
           >
             <div
               className={`transition-all duration-1000 text-center ${
@@ -163,11 +201,18 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 text-gray-400 font-bold text-lg ">
+              <p className="mb-4 font-bold text-lg ">
                 Don&apos;t have an account yet?
               </p>
               <h2
-                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
+                className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+                style={{
+                  borderColor: `${textColor}`,
+                  background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+                  color: isHovered ? `${textHighlight}` : `${textColor}`,
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 Create an account!
               </h2>
@@ -186,6 +231,7 @@ export default function LoginPage() {
             <Form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
+
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
                 <div>
                 <InputForm inputType="userName" />
@@ -207,6 +253,7 @@ export default function LoginPage() {
                 name="_action"
                 value="singUp"
               />
+
             </Form>
           </div>
         </div>
