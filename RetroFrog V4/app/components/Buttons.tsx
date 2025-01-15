@@ -40,7 +40,7 @@ export default function Button({
     <button
       type={typeBtn}
       className={classNames(
-        'w-full py-2 px-4 rounded-md text-textDark font-bold transition duration-300',
+        'w-full py-2 px-4 rounded-md font-bold transition duration-300',
         'bg-green-600 hover:bg-green-700',
         className,
       )}
@@ -57,29 +57,50 @@ export default function Button({
 
 export function ButtonAction({
   textBtn,
+  textColor,
+  textColorHover,
   onClick,
   className,
 }: ButtonActionProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <button
       onClick={onClick}
       className={classNames(
-        'w-full py-2 px-2 rounded-md text-textDark font-bold transition duration-300',
+        'w-full py-2 px-2 rounded-md font-bold transition duration-300',
         className,
       )}
+      style={{
+        color: isHovered ? `${textColorHover}` : `${textColor}`,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {textBtn}
     </button>
   );
 }
 
-export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
+export function ButtonSimple({
+  textBtn,
+  textColor,
+  textColorHover,
+  className,
+}: ButtonSimpleProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <button
       className={classNames(
-        'w-full py-2 px-2 rounded-md text-textDark font-bold transition duration-300',
+        'w-full py-2 px-2 rounded-md font-bold transition duration-300',
         className,
       )}
+      style={{
+        color: isHovered ? `${textColorHover}` : `${textColor}`,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {textBtn}
     </button>

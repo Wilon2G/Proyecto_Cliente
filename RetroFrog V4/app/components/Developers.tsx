@@ -40,7 +40,12 @@ export default function Catalog() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold text-textDark hover:text-textDarkHighlight  mt-1 mb-1">
+      <h2
+        className="text-2xl font-semibold  mt-1 mb-1"
+        style={{
+          color: '#e6e6e6',
+        }}
+      >
         Sobre nosotros
       </h2>
       <div className="slider-container">

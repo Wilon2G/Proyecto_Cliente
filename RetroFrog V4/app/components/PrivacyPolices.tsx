@@ -9,7 +9,7 @@ function PrivacyPolices() {
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg, textColor, textHighlight } = colors;
+  const { primaryBg, textColor } = colors;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,8 +23,8 @@ function PrivacyPolices() {
         textBtn="Revisar nuestras políticas de privacidad"
         onClick={toggleDropdown}
         className="text-2xl font-semibold mt-1 mb-1 transition-colors "
-        textColor={textColor}
-        textColorHover={textHighlight}
+        textColor={'#e6e6e6'}
+        textColorHover={'#f3f4f6'}
       />
 
       <div

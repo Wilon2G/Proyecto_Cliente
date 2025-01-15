@@ -22,7 +22,6 @@ const backgrounds = [
   '/assets/background/bg1.jpg',
   '/assets/background/bg2.jpg',
   '/assets/background/bg3.jpg',
-  '/assets/background/bg4.jpg',
 ];
 
 function Custom() {
@@ -32,18 +31,15 @@ function Custom() {
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg, textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false);
+  const { primaryBg } = colors;
 
   return (
     <>
       <h2
         className="text-2xl font-semibold mt-1 mb-1"
         style={{
-          color: isHovered ? `${textHighlight}` : `${textColor}`,
+          color: '#e6e6e6',
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         Customize
       </h2>
