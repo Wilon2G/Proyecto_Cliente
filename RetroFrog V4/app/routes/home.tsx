@@ -1,5 +1,10 @@
 import { LoaderFunction } from '@remix-run/node';
-import { NavLink, Outlet, useActionData, useLoaderData } from '@remix-run/react';
+import {
+  NavLink,
+  Outlet,
+  useActionData,
+  useLoaderData,
+} from '@remix-run/react';
 import { useState } from 'react';
 import { ActionData } from '~/components/Custom';
 import {
@@ -33,15 +38,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 //Comprobar que usuario está loggeado
 
 export default function HomePage() {
-    
-    const data = useLoaderData<themeChanges>();
-    const theme = data?.theme; 
-    const colors = changeThemeColor(theme || 'dark'); 
-    
-      
-    const { primaryBg, textColor, textHighlight } = colors;
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, iconFill } = colors;
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
 
@@ -55,14 +58,21 @@ export default function HomePage() {
 
   return (
     <>
-      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`} style={{ background: `${primaryBg}` }} >
+      <aside
+        className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}
+        style={{ background: `${primaryBg}` }}
+      >
         <header className="sidebar-header">
           <button className="toggler" onClick={toggleSidebar}>
             <span>
-              <CollapseArrow />
+              <CollapseArrow iconFill={`${iconFill}`} />
             </span>
           </button>
-          <a href="../home/main" className="header-logo" style={{borderColor: (theme==='dark')?'#ffffff':'#151a2d'}}>
+          <a
+            href="../home/main"
+            className="header-logo"
+            style={{ borderColor: theme === 'dark' ? '#ffffff' : '#151a2d' }}
+          >
             <img
               src="/assets/icon/pfp/default.jpg"
               alt="User Profile"
@@ -75,7 +85,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="main" className="nav-link">
                 <span className="nav-icon">
-                  <HomeIcon />
+                  <HomeIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Home</span>
               </NavLink>
@@ -83,7 +93,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="shop" className="nav-link">
                 <span className="nav-icon">
-                  <ShopIcon />
+                  <ShopIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Shop</span>
               </NavLink>
@@ -91,7 +101,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="library" className="nav-link">
                 <span className="nav-icon">
-                  <GamesIcon />
+                  <GamesIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Games</span>
               </NavLink>
@@ -99,7 +109,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="library" className="nav-link">
                 <span className="nav-icon">
-                  <FavGamesIcon />
+                  <FavGamesIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Favorites</span>
               </NavLink>
@@ -107,7 +117,7 @@ export default function HomePage() {
             <li className="nav-item">
               <div className="nav-link" onClick={toggleMusic}>
                 <span className="nav-icon">
-                  <MusicIcon />
+                  <MusicIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Music</span>
               </div>
@@ -120,7 +130,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="user" className="nav-link">
                 <span className="nav-icon">
-                  <UserIcon />
+                  <UserIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Profile</span>
               </NavLink>
@@ -128,7 +138,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="settings" className="nav-link">
                 <span className="nav-icon">
-                  <SettingsIcon />
+                  <SettingsIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Settings</span>
               </NavLink>
@@ -136,7 +146,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="/logRegPage" className="nav-link">
                 <span className="nav-icon">
-                  <LogOutIcon />
+                  <LogOutIcon iconFill={`${iconFill}`} />
                 </span>
                 <span className="nav-label">Logout</span>
               </NavLink>

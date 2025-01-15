@@ -41,13 +41,12 @@ export async function action({ request }: { request: Request }) {
 export default function LoginPage() {
   const data = useLoaderData<themeChanges>();
 
-  const theme = data?.theme; 
-  const colors = changeThemeColor(theme || 'dark'); 
-  
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
   const { primaryBg, highlightBg, textColor, textHighlight } = colors;
 
   const [isHovered, setIsHovered] = useState(false);
-  
 
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const actionData = useActionData<typeof action>();
@@ -68,13 +67,11 @@ export default function LoginPage() {
             className="w-32 h-auto"
           />
           <div className="w-full">
-            <h1 className="text-6xl" >
-              Retrofrog
-            </h1>
-            <h3 className="text-xl" >
+            <h1 className="text-6xl">Retrofrog</h1>
+            <h3 className="text-xl">
               Welcome to the first online arcade experience
             </h3>
-            <p >
+            <p>
               Login to discover our full catalog or Signup if you don&apos;t
               have an account
             </p>
@@ -106,19 +103,19 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 font-bold text-base " >
+              <p className="mb-4 font-bold text-base ">
                 Did you alreday had an account?
               </p>
               <h2
-                  className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
-                  style={{
-                    borderColor: `${textColor}`,
-                    background: isHovered ?  `${highlightBg}`: `${primaryBg}`,
-                    color: isHovered ? `${textHighlight}` : `${textColor}`,
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
+                className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+                style={{
+                  borderColor: `${textColor}`,
+                  background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+                  color: isHovered ? `${textHighlight}` : `${textColor}`,
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 Log In!
               </h2>
             </div>
@@ -141,17 +138,16 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" />
+                <InputForm inputType="userName" textColor={'#151A2D'} />
                 <p>{actionData?.errors?.userName}</p>
               </div>
               <div>
-                <InputForm inputType="password" />
+                <InputForm inputType="password" textColor={'#151A2D'} />
                 <p>{actionData?.errors?.password}</p>
               </div>
               <Button
                 textBtn="Log In"
                 typeBtn="submit"
-                
                 className="bg-indigo-600 hover:bg-indigo-700 text-lg"
               />
             </form>
@@ -181,19 +177,19 @@ export default function LoginPage() {
                 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
               }`}
             >
-              <p className="mb-4 font-bold text-lg " >
+              <p className="mb-4 font-bold text-lg ">
                 Don&apos;t have an account yet?
               </p>
               <h2
-                  className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
-                  style={{
-                    borderColor: `${textColor}`,
-                    background: isHovered ?  `${highlightBg}`: `${primaryBg}`,
-                    color: isHovered ? `${textHighlight}` : `${textColor}`,
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
+                className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+                style={{
+                  borderColor: `${textColor}`,
+                  background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+                  color: isHovered ? `${textHighlight}` : `${textColor}`,
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 Create an account!
               </h2>
             </div>

@@ -1,5 +1,5 @@
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
-import {  useState } from 'react';
+import { useState } from 'react';
 import Button from './Buttons';
 import { changeThemeColor } from '~/utils/themeColors';
 import { themeChanges } from '~/root';
@@ -22,32 +22,36 @@ const backgrounds = [
   '/assets/background/bg1.jpg',
   '/assets/background/bg2.jpg',
   '/assets/background/bg3.jpg',
+  '/assets/background/bg4.jpg',
 ];
 
 function Custom() {
   const actionData = useActionData<ActionData>();
-  
+
   const data = useLoaderData<themeChanges>();
-  const theme = data?.theme; 
-  const colors = changeThemeColor(theme || 'dark'); 
-  
-    
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
   const { primaryBg, textColor, textHighlight } = colors;
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <>
-      <h2 className="text-2xl font-semibold mt-1 mb-1"
+      <h2
+        className="text-2xl font-semibold mt-1 mb-1"
         style={{
-                    color: isHovered ? `${textHighlight}` : `${textColor}`,
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}>
+          color: isHovered ? `${textHighlight}` : `${textColor}`,
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         Customize
       </h2>
 
-      <div className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg"
-        style={{ background: primaryBg }} > 
+      <div
+        className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg"
+        style={{ background: primaryBg }}
+      >
         <Form method="post" className="w-full">
           {/* Tema oscuro-claro */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
@@ -62,7 +66,12 @@ function Custom() {
                 </label>
               </div>
               <div>
-                <input type="radio" name="theme" id="themeLight" value="light" />
+                <input
+                  type="radio"
+                  name="theme"
+                  id="themeLight"
+                  value="light"
+                />
                 <label htmlFor="themeLight" className="ml-2">
                   Light
                 </label>
@@ -110,9 +119,9 @@ function Custom() {
               id="fontFamily"
               className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300"
               style={{
-                borderColor: (theme!=='dark')?'#e6e6e6':'#1f253d',
-                background: (theme!=='dark')?'#151a2d':'#ffffff',
-                color: (theme!=='dark')?'#e6e6e6':'#1f253d',
+                borderColor: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
+                background: theme !== 'dark' ? '#151a2d' : '#ffffff',
+                color: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
               }}
             >
               <option value="Open sans">Open Sans</option>

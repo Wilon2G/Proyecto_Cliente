@@ -18,8 +18,6 @@ body {
   background-position: center;
 }
 
-
-
 .sidebar {
   user-select: none;
   -webkit-user-select: none;
@@ -78,9 +76,6 @@ body {
   @apply fill-[#151A2D];
 }
 
-.toggler svg {
-  fill: antiquewhite;
-}
 
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
@@ -102,17 +97,7 @@ body {
   @apply top-52 transition-all ease-linear;
 }
 
-.sidebar-nav .primary-nav {
-  @apply relative w-full;
 
-  & .nav-link:hover svg {
-    @apply fill-[#151A2D];
-  }
-
-  & svg {
-    @apply fill-[#f5f5f5];
-  }
-}
 
 .sidebar.collapsed .primary-nav {
   @apply relative;
@@ -121,9 +106,6 @@ body {
     @apply fill-[#151A2D];
   }
 
-  & svg {
-    @apply fill-[#f5f5f5];
-  }
 }
 
 .nav-item {
@@ -131,7 +113,7 @@ body {
 }
 
 .nav-link {
-  @apply flex items-center no-underline text-white px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
+  @apply flex items-center no-underline px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
 }
 
 .nav-link:hover {
