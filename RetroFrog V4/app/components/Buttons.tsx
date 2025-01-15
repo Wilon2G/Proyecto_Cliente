@@ -8,8 +8,8 @@ type ButtonProps = {
   textColor?: string;
   textColorHover?: string;
   className: string;
-  name: string
-  value: string
+  name: string;
+  value: string;
 };
 
 type ButtonActionProps = {
@@ -38,8 +38,6 @@ export default function Button({
 
   return (
     <button
-      name={name}
-      value={value}
       type={typeBtn}
       className={classNames(
         'w-full py-2 px-4 rounded-md text-textDark font-bold transition duration-300',
