@@ -1,5 +1,7 @@
-import { NavLink, Outlet } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/node';
+import { NavLink, Outlet, useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
+import { ActionData } from '~/components/Custom';
 import {
   CollapseArrow,
   FavGamesIcon,
@@ -12,10 +14,34 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
+import { themeChanges } from '~/root';
+import { getSession } from '~/sessions';
+import { changeThemeColor } from '~/utils/themeColors';
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
+};
 
 //Comprobar que usuario está loggeado
 
 export default function HomePage() {
+    
+    const data = useLoaderData<themeChanges>();
+    const theme = data?.theme; 
+    const colors = changeThemeColor(theme || 'dark'); 
+    
+      
+    const { primaryBg, textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false);
+  
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
 
@@ -29,14 +55,14 @@ export default function HomePage() {
 
   return (
     <>
-      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`} style={{ background: `${primaryBg}` }} >
         <header className="sidebar-header">
           <button className="toggler" onClick={toggleSidebar}>
             <span>
               <CollapseArrow />
             </span>
           </button>
-          <a href="../home/main" className="header-logo">
+          <a href="../home/main" className="header-logo" style={{borderColor: (theme==='dark')?'#ffffff':'#151a2d'}}>
             <img
               src="/assets/icon/pfp/default.jpg"
               alt="User Profile"

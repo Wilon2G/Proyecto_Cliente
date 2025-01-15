@@ -43,7 +43,7 @@ body {
 }
 
 .sidebar {
-  @apply w-48 fixed top-4 left-4 rounded-xl bg-[#151A2D] h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
+  @apply w-48 fixed top-4 left-4 rounded-xl h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
 }
 
 .sidebar.collapsed {
@@ -59,7 +59,7 @@ body {
 }
 
 .sidebar-header .header-logo {
-  @apply w-24 h-24 object-cover rounded-full border-[#dbe2fe] transition-all duration-300 ease-in-out my-4 border-4;
+  @apply w-24 h-24 object-cover rounded-full transition-all duration-300 ease-in-out my-4 border-4;
 }
 
 .sidebar.collapsed .header-logo {
