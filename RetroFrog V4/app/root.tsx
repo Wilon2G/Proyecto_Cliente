@@ -36,12 +36,13 @@ export const links: LinksFunction = () => [
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("cookie");
   const session = await getSession(cookieHeader);
-
-  console.log("Session data before:", session.data);
+  //Descomentar para ver los estilos de la sesión
+  //console.log("Session data before:", session.data);
 
   // Verificar si la sesión está vacía
   if (Object.keys(session.data).length === 0) {
-    console.log("Estableciendo valores predeterminados en la sesión");
+    //Descomentar para que se notifique si no había sesión de estilos guardada
+    //console.log("Estableciendo valores predeterminados en la sesión");
 
     // Establecer valores predeterminados
     session.set("theme", "primaryDark");
@@ -54,8 +55,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   const bgColor = session.get("theme");
   const bgImage = session.get("background");
   const fontFamily = session.get("fontFamily");
-
-  console.log("Session data after:", session.data);
+  //Descomentar esto para los estilos de la sesión
+  //console.log("[In root.tsx] --> Session data after:", session.data);
 
   // Serializar los datos como JSON
   const themeChanges = { bgColor, bgImage, fontFamily };

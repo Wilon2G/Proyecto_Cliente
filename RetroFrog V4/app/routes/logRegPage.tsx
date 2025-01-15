@@ -8,13 +8,15 @@ import validateForm from '~/utils/validation';
 import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
+import { ErrorMessage } from '~/components/ErrorMessage';
 
 
 
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
-  console.log(formData);
+  //Descomentar esto para ver los datos que se envían por los formularios de login y registro
+  //console.log("logRegPage.tsx/ -->"+formData);
   if (formData.get("_action")==="logIn") {
     return validateForm(
       formData,
@@ -125,11 +127,11 @@ export default function LoginPage() {
             >
               <div>
                 <InputForm inputType="userName" />
-                <p>{actionData?.errors?.userName}</p>
+                <ErrorMessage>{actionData?.errors?.userName}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="password" />
-                <p>{actionData?.errors?.password}</p>
+                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
               </div>
               <Button
                 textBtn="Log In"
@@ -189,15 +191,15 @@ export default function LoginPage() {
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
                 <div>
                 <InputForm inputType="userName" />
-                <p>{actionData?.errors?.userName}</p>
+                <ErrorMessage>{actionData?.errors?.userName}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="password" />
-                <p>{actionData?.errors?.password}</p>
+                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="name" />
-                <p>{actionData?.errors?.name}</p>
+                <ErrorMessage>{actionData?.errors?.name}</ErrorMessage>
               </div>
               {/* <SignUpForm /> */}
               <Button
