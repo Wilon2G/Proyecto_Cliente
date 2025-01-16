@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 interface UserProfileProps {
   userId: string;
@@ -17,13 +17,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
           {/* <p><strong>Score:</strong> {user.score}</p> */}
           {/* <p><strong>Theme:</strong> {user.theme}</p> */}
           <button
-            className="mt-4 p-2 bg-blue-500 text-white rounded"
+            className="mt-4 p-2 bg-blue-500  rounded"
           >
             Edit Profile
           </button>
         </div>
           <button
-            className="ml-4 mt-4 p-2 bg-gray-500 text-white rounded"
+            className="ml-4 mt-4 p-2  rounded"
           >
             Cancel
           </button>
