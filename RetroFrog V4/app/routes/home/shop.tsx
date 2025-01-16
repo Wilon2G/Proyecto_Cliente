@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client/extension';
+import { LoaderFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 import 'swiper/css'; // Importa los estilos básicos de Swiper
 import 'swiper/css/navigation'; // Si usas navegación
 import 'swiper/css/pagination'; // Si usas paginación
@@ -6,52 +8,24 @@ import { Navigation } from 'swiper/modules'; // Importa módulos si los necesita
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BuyButton from '~/components/BuyButton';
 
+interface Game {
+  id: string;
+  title: string;
+  description: string;
+  color: string;
+  tags: string;
+  route: string; // Agregado para manejar las rutas personalizadas si son necesarias.
+}
+
+const prisma = new PrismaClient();
+
+export let loader: LoaderFunction = async () => {
+  const games = await prisma.game.findMany();
+  return games;
+};
+
 export default function Shop() {
-  const slides = [
-    {
-      tag: 'RPG',
-      title: 'Legend of Zelda, The - A Link to the Past',
-      description: 'Explora mazmorras y salva Hyrule.',
-      buttonText: 'Learn More',
-      route: '/assets/games/Zelda-large.png',
-    },
-    {
-      tag: 'Lucha',
-      title: 'Super Street Fighter II',
-      description: 'Compite en intensos combates.',
-      buttonText: 'Learn More',
-      route: '/assets/games/SF2-large.png',
-    },
-    {
-      tag: 'Carreras',
-      title: 'Super Mario Kart',
-      description: 'Corre y lanza ítems para ganar.',
-      buttonText: 'Learn More',
-      route: '/assets/games/MarioKart-large.png',
-    },
-    {
-      tag: 'Party',
-      title: 'Super Bomberman',
-      description: 'Desafía amigos en explosivas partidas.',
-      buttonText: 'Learn More',
-      route: '/assets/games/SuperBombermanCover.jpg',
-    },
-    {
-      tag: 'Puzzle',
-      title: 'Simon Says Game',
-      description: 'Sigue el ritmo y memoriza patrones.',
-      buttonText: 'Learn More',
-      route: '/assets/games/SimonSays-large.png',
-    },
-    {
-      tag: 'Plataformas',
-      title: 'Super Mario World',
-      description: 'Salta y corre en un mundo colorido.',
-      buttonText: 'Learn More',
-      route: '/assets/games/SuperMario.jpeg',
-    },
-  ];
-  const prisma = new PrismaClient();
+  const games = useLoaderData<Game[]>();
 
   return (
     <>
@@ -63,19 +37,19 @@ export default function Shop() {
           navigation
           className="slider-wrapper"
         >
-          {slides.map((slide, index) => (
+          {games.map((game) => (
             <SwiperSlide
-              key={index}
+              key={game.id}
               style={{
-                background: `url('${slide.route}') no-repeat center center`,
+                background: `url(/assets/background/games/${game.title.toLowerCase()}-cover.jpg) no-repeat center center`,
                 backgroundSize: 'cover',
                 height: '45vh',
               }}
             >
               <div className="slide-content">
-                <h3 className="slide-subtitle">{slide.tag}</h3>
-                <h2 className="slide-title">{slide.title}</h2>
-                <p className="slide-description">{slide.description}</p>
+                <h3 className="slide-subtitle">{game.tags}</h3>
+                <h2 className="slide-title">{game.title}</h2>
+                <p className="slide-description">{game.description}</p>
                 <div className="slide-footer">
                   <BuyButton />
                 </div>
@@ -84,6 +58,7 @@ export default function Shop() {
           ))}
         </Swiper>
       </div>
+
       <h1 className="title">Juegos populares</h1>
       <div className="slider-container">
         <Swiper
@@ -93,30 +68,31 @@ export default function Shop() {
           navigation
           className="slider-wrapper"
         >
-          {slides.map((slide, index) => (
+          {games.map((game) => (
             <SwiperSlide
-              key={index}
+              key={game.id}
               className="rounded-lg"
               style={{
-                backgroundColor:
-                  'rgb(100 116 139 / var(--tw-bg-opacity, 0.6)) ',
+                backgroundColor: 'rgb(100 116 139 / var(--tw-bg-opacity, 0.6))',
                 height: '45vh',
               }}
             >
               <div className="slide-content">
                 <img
-                  src={slide.route}
+                  src={`/assets/background/games/${game.title.toLowerCase()}-cover.jpg`}
+                  alt={game.title}
                   className="h-3/4 w-3/4 rounded-xl m-auto my-2"
                 />
-                <h3 className="slide-tag">{slide.tag}</h3>
-                <h2 className="slide-title">{slide.title}</h2>
-                <p className="slide-description">{slide.description}</p>
+                <h3 className="slide-tag">{game.tags}</h3>
+                <h2 className="slide-title">{game.title}</h2>
+                <p className="slide-description">{game.description}</p>
                 <BuyButton />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+
       <h1 className="title">Más Hot topic</h1>
       <div className="slider-container">
         <Swiper
@@ -126,20 +102,20 @@ export default function Shop() {
           navigation
           className="slider-wrapper"
         >
-          {slides.map((slide, index) => (
+          {games.map((game) => (
             <SwiperSlide
-              key={index}
+              key={game.id}
               className="rounded-lg"
               style={{
-                background: `url('${slide.route}') no-repeat center center`,
+                background: `url(${game.route}) no-repeat center center`,
                 backgroundSize: 'cover',
                 height: '45vh',
               }}
             >
               <div className="slide-content">
-                <h3 className="slide-tag">{slide.tag}</h3>
-                <h2 className="slide-title">{slide.title}</h2>
-                <p className="slide-description">{slide.description}</p>
+                <h3 className="slide-tag">{game.tags}</h3>
+                <h2 className="slide-title">{game.title}</h2>
+                <p className="slide-description">{game.description}</p>
                 <BuyButton />
               </div>
             </SwiperSlide>

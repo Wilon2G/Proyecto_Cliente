@@ -1,5 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,20 +18,14 @@ model User {
   theme         String
   pfp           String
   registerDate  DateTime @default(now())
-
-  // Relación con Game
-  GamesUnlocked Game[] @relation("UserGames")
+  GamesUnlocked Game[]   @relation("UserGames")
 }
 
-
 model Game {
-  id            String   @id @default(cuid())
-  title         String
-  description   String
-  color         String
-  tags          String
-
-//Clave foránea relación con user
+  id          String @id @default(cuid())
+  title       String
+  description String
+  color       String
+  tags        String
   Users       User[] @relation("UserGames")
-
 }
