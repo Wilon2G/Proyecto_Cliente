@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client/extension';
 import { LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import 'swiper/css'; // Importa los estilos básicos de Swiper
@@ -16,8 +15,6 @@ interface Game {
   tags: string;
   route: string; // Agregado para manejar las rutas personalizadas si son necesarias.
 }
-
-const prisma = new PrismaClient();
 
 export let loader: LoaderFunction = async () => {
   const games = await prisma.game.findMany();
