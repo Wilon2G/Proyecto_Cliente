@@ -16,13 +16,13 @@ import { ErrorMessage } from '~/components/ErrorMessage';
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   //Descomentar esto para ver los datos que se envían por los formularios de login y registro
-  //console.log("logRegPage.tsx/ -->"+formData);
+  //console.log("login.tsx/ -->"+formData);
   if (formData.get("_action")==="logIn") {
     return validateForm(
       formData,
       logInSchema,
       (data) => {
-        console.log(data.userName + ' y ' + data.password);
+        console.log(data.userNameLog + ' y ' + data.passwordLog);
         return null;
       },
       (errors) =>
@@ -37,7 +37,7 @@ export async function action({ request }: { request: Request }) {
       formData,
       registerSchema,
       (data) => {
-        console.log(data.userName + ' y ' + data.password);
+        console.log(data.userNameReg + ' y ' + data.passwordReg);
         return null;
       },
       (errors) =>
@@ -126,12 +126,12 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" />
-                <ErrorMessage>{actionData?.errors?.userName}</ErrorMessage>
+                <InputForm inputType="userName" inputName="userNameLog" />
+                <ErrorMessage>{actionData?.errors?.userNameLog}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" />
-                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
+                <InputForm inputType="password" inputName="passwordLog" />
+                <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
               </div>
               <Button
                 textBtn="Log In"
@@ -190,16 +190,16 @@ export default function LoginPage() {
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
                 <div>
-                <InputForm inputType="userName" />
-                <ErrorMessage>{actionData?.errors?.userName}</ErrorMessage>
+                <InputForm inputType="userName" inputName="userNameReg" />
+                <ErrorMessage>{actionData?.errors?.userNameReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" />
-                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
+                <InputForm inputType="password" inputName="passwordReg" />
+                <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="name" />
-                <ErrorMessage>{actionData?.errors?.name}</ErrorMessage>
+                <InputForm inputType="name" inputName="nameReg" />
+                <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
               </div>
               {/* <SignUpForm /> */}
               <Button
