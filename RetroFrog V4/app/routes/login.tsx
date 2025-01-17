@@ -9,6 +9,7 @@ import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
 import { ErrorMessage } from '~/components/ErrorMessage';
+import { checkUser } from '~/models/user.server';
 
 
 
@@ -21,8 +22,16 @@ export async function action({ request }: { request: Request }) {
     return validateForm(
       formData,
       logInSchema,
-      (data) => {
+      async (data) => {
         console.log(data.userNameLog + ' y ' + data.passwordLog);
+        const user= await checkUser(data.userNameLog,data.passwordLog);
+        if (!user) {
+          return {
+            errors: {
+              general: "User or password are incorrect",
+            },
+          };
+        }
         return null;
       },
       (errors) =>
@@ -140,6 +149,7 @@ export default function LoginPage() {
                 name="_action"
                 value="logIn"
               />
+              <ErrorMessage>{actionData?.errors?.general}</ErrorMessage>
             </form>
           </div>
 

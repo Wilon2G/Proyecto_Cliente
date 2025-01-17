@@ -2,7 +2,7 @@ import { z } from "zod";
 
 
 export const logInSchema = z.object({
-    userNameLog: z.string().email("Your User Name must be your email"),
+    userNameLog: z.string().min(1,"Your User Name must be your email"),
     passwordLog: z.string().min(5,  "Password must have at least five characters" ),
 });
 
