@@ -24,8 +24,8 @@ export async function action({ request }: { request: Request }) {
       logInSchema,
       async (data) => {
         console.log(data.userNameLog + ' y ' + data.passwordLog);
-        const user= await checkUser(data.userNameLog,data.passwordLog);
-        if (!user) {
+        const userId= await checkUser(data.userNameLog,data.passwordLog);
+        if (!userId) {
           return {
             errors: {
               general: "User or password are incorrect",

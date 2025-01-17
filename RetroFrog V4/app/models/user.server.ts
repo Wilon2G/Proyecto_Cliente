@@ -7,13 +7,11 @@ export async function checkUser(username:string, password:string){
             username
         }
     })
-
     if (!user) {
         return null;
     }
-
     if (user.password===password) {
-        return user;
+        return user.id;
     }
     else{
         return null;
