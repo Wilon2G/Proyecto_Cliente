@@ -1,19 +1,18 @@
 import { LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import 'swiper/css'; // Importa los estilos básicos de Swiper
-import 'swiper/css/navigation'; // Si usas navegación
-import 'swiper/css/pagination'; // Si usas paginación
-import { Navigation } from 'swiper/modules'; // Importa módulos si los necesitas
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BuyButton from '~/components/BuyButton';
-
+import prisma from '~/utils/prismaClient';
 interface Game {
   id: string;
   title: string;
   description: string;
   color: string;
   tags: string;
-  route: string; // Agregado para manejar las rutas personalizadas si son necesarias.
 }
 
 export let loader: LoaderFunction = async () => {
@@ -25,11 +24,12 @@ export default function Shop() {
   const games = useLoaderData<Game[]>();
 
   return (
-    <>
-      <div className="slider-container">
+    <div className="container mx-auto p-4 select-none">
+      {/* Slider Principal */}
+      <div className="mb-8">
         <Swiper
           modules={[Navigation]}
-          spaceBetween={0}
+          spaceBetween={16}
           slidesPerView={2}
           navigation
           className="slider-wrapper"
@@ -37,17 +37,21 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
+              className="relative rounded-lg overflow-hidden shadow-lg"
               style={{
-                background: `url(/assets/background/games/${game.title.toLowerCase()}-cover.jpg) no-repeat center center`,
+                background: `url(/assets/games/${game.title.replace(
+                  /\s/g,
+                  '',
+                )}-boxa.png) no-repeat center center`,
                 backgroundSize: 'cover',
-                height: '45vh',
+                height: '60vh',
               }}
             >
-              <div className="slide-content">
-                <h3 className="slide-subtitle">{game.tags}</h3>
-                <h2 className="slide-title">{game.title}</h2>
-                <p className="slide-description">{game.description}</p>
-                <div className="slide-footer">
+              <div className="absolute inset-0 bg-black/60 flex flex-col justify-end p-6 text-white">
+                <h3 className="text-sm font-medium opacity-80">{game.tags}</h3>
+                <h2 className="text-2xl font-bold mb-2">{game.title}</h2>
+                <p className="text-sm mb-4">{game.description}</p>
+                <div className="mt-auto">
                   <BuyButton />
                 </div>
               </div>
@@ -56,11 +60,12 @@ export default function Shop() {
         </Swiper>
       </div>
 
-      <h1 className="title">Juegos populares</h1>
-      <div className="slider-container">
+      {/* Juegos Populares */}
+      <h1 className="text-2xl font-bold mb-4">Juegos populares</h1>
+      <div className="mb-8">
         <Swiper
           modules={[Navigation]}
-          spaceBetween={10}
+          spaceBetween={16}
           slidesPerView={6}
           navigation
           className="slider-wrapper"
@@ -68,21 +73,22 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
-              className="rounded-lg"
-              style={{
-                backgroundColor: 'rgb(100 116 139 / var(--tw-bg-opacity, 0.6))',
-                height: '45vh',
-              }}
+              className="rounded-lg bg-slate-700 p-4 shadow-md hover:shadow-lg transition-shadow"
             >
-              <div className="slide-content">
+              <div className="text-center">
                 <img
-                  src={`/assets/background/games/${game.title.toLowerCase()}-cover.jpg`}
+                  src={`/assets/games/${game.title.replace(
+                    /\s/g,
+                    '',
+                  )}-boxa.png`}
                   alt={game.title}
-                  className="h-3/4 w-3/4 rounded-xl m-auto my-2"
+                  className="h-40 w-auto mx-auto mb-4 rounded"
                 />
-                <h3 className="slide-tag">{game.tags}</h3>
-                <h2 className="slide-title">{game.title}</h2>
-                <p className="slide-description">{game.description}</p>
+                <h3 className="text-sm text-gray-300">{game.tags}</h3>
+                <h2 className="text-lg font-semibold text-white mb-2">
+                  {game.title}
+                </h2>
+                <p className="text-gray-400 text-sm mb-4">{game.description}</p>
                 <BuyButton />
               </div>
             </SwiperSlide>
@@ -90,11 +96,12 @@ export default function Shop() {
         </Swiper>
       </div>
 
-      <h1 className="title">Más Hot topic</h1>
-      <div className="slider-container">
+      {/* Más Hot Topic */}
+      <h1 className="text-2xl font-bold mb-4">Más Hot topic</h1>
+      <div>
         <Swiper
           modules={[Navigation]}
-          spaceBetween={10}
+          spaceBetween={16}
           slidesPerView={4}
           navigation
           className="slider-wrapper"
@@ -102,23 +109,28 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
-              className="rounded-lg"
+              className="relative rounded-lg overflow-hidden shadow-lg"
               style={{
-                background: `url(${game.route}) no-repeat center center`,
+                background: `url(/assets/games/${game.title.replace(
+                  /\s/g,
+                  '',
+                )}-boxa.png) no-repeat center center`,
                 backgroundSize: 'cover',
-                height: '45vh',
+                height: '50vh',
               }}
             >
-              <div className="slide-content">
-                <h3 className="slide-tag">{game.tags}</h3>
-                <h2 className="slide-title">{game.title}</h2>
-                <p className="slide-description">{game.description}</p>
-                <BuyButton />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80 p-6 text-white">
+                <h3 className="text-sm font-medium">{game.tags}</h3>
+                <h2 className="text-xl font-bold mb-2">{game.title}</h2>
+                <p className="text-sm mb-4">{game.description}</p>
+                <div>
+                  <BuyButton />
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }

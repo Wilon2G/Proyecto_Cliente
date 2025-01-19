@@ -1,12 +1,6 @@
 import { LoaderFunction } from '@remix-run/node';
-import {
-  NavLink,
-  Outlet,
-  useActionData,
-  useLoaderData,
-} from '@remix-run/react';
+import { NavLink, Outlet, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
-import { ActionData } from '~/components/Custom';
 import {
   CollapseArrow,
   FavGamesIcon,
@@ -19,6 +13,7 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
+
 import { themeChanges } from '~/root';
 import { getSession } from '~/sessions';
 import { changeThemeColor } from '~/utils/themeColors';
