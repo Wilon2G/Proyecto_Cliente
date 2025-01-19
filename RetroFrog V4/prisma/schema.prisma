@@ -19,6 +19,7 @@ model User {
   pfp           String
   registerDate  DateTime @default(now())
   GamesUnlocked Game[]   @relation("UserGames")
+  FavoriteGames Game[]   @relation("UserFavorites")
 }
 
 model Game {
@@ -28,4 +29,5 @@ model Game {
   color       String
   tags        String
   Users       User[] @relation("UserGames")
+  UsersFavorited User[] @relation("UserFavorites")
 }

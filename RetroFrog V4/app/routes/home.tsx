@@ -102,7 +102,7 @@ export default function HomePage() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="library" className="nav-link">
+              <NavLink to="library?filter=favorites" className="nav-link">
                 <span className="nav-icon">
                   <FavGamesIcon iconFill={`${iconFill}`} />
                 </span>

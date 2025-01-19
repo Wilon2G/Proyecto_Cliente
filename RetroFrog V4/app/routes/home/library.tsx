@@ -1,18 +1,43 @@
 import { Game } from '@prisma/client';
 import { LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
 
-export let loader: LoaderFunction = async () => {
-  const games = await prisma.game.findMany();
-  return games;
+export let loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+  const userId = session.get('userId');
+  const url = new URL(request.url);
+  const filter = url.searchParams.get('filter'); // Obtiene el parámetro de filtro
+
+  let games;
+
+  if (filter === 'favorites' && userId) {
+    // Obtiene solo los juegos favoritos del usuario
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        FavoriteGames: true, // Asegúrate de que la relación está bien definida en el esquema de Prisma
+      },
+    });
+
+    // Si el usuario tiene juegos favoritos, devuelve la lista
+    games = user?.FavoriteGames || [];
+  } else {
+    // Obtiene todos los juegos (o cualquier otro filtro)
+    games = await prisma.game.findMany();
+  }
+
+  return { games, userId };
 };
 
 export default function Library() {
-  const games = useLoaderData<Game[]>();
+  const { games, userId } = useLoaderData<{ games: Game[]; userId: string }>(); // Obtiene los juegos y userId desde el loader
 
   return (
     <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+      <p>{userId}</p>
       {games.map((game, index) => (
         <img
           key={index}

@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Crear un usuario
+  await prisma.user.deleteMany({});
   const user = await prisma.user.create({
     data: {
       username: 'Prueba',
@@ -71,12 +72,19 @@ async function main() {
     games.push(createdGame);
   }
 
-  // Asociar los juegos al usuario
+  // Asociar los juegos desbloqueados al usuario
   await prisma.user.update({
     where: { id: user.id },
     data: {
       GamesUnlocked: {
         connect: games.map((game) => ({ id: game.id })),
+      },
+      // Agregar algunos juegos a la lista de favoritos
+      FavoriteGames: {
+        connect: [
+          { id: games[0].id }, // Añadir "Legend of Zelda" como favorito
+          { id: games[3].id }, // Añadir "Super Bomberman" como favorito
+        ],
       },
     },
   });
