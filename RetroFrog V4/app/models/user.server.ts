@@ -1,10 +1,10 @@
 import db from "~/db.server";
 
 
-export async function checkUser(username:string, password:string){
+export async function checkUser(userName:string, password:string){
     const user= await db.user.findUnique({
         where: {
-            username
+            userName
         }
     })
     if (!user) {
@@ -18,3 +18,26 @@ export async function checkUser(username:string, password:string){
     }
 }
 
+export async function userExists(userName:string){
+    const user= await db.user.findUnique({
+        where: {
+            userName
+        }
+    })
+    if (!user) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+
+export function getUserById(id: string) {
+    return db.user.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+  

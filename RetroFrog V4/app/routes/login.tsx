@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Form,  redirect, useActionData } from '@remix-run/react';
+import { Form,  json,  redirect, useActionData } from '@remix-run/react';
 import { useState } from 'react';
 import SignUpForm from '../components/SignUpForm';
 import LoginForm from '../components/LoginForm';
@@ -9,7 +9,8 @@ import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
 import { ErrorMessage } from '~/components/ErrorMessage';
-import { checkUser } from '~/models/user.server';
+import { checkUser, userExists } from '~/models/user.server';
+import { hash } from '~/utils/cryptography';
 
 
 
@@ -23,16 +24,26 @@ export async function action({ request }: { request: Request }) {
       formData,
       logInSchema,
       async (data) => {
-        console.log(data.userNameLog + ' y ' + data.passwordLog);
+        //console.log(data.userNameLog + ' y ' + data.passwordLog);
         const userId= await checkUser(data.userNameLog,data.passwordLog);
         if (!userId) {
           return {
             errors: {
-              general: "User or password are incorrect",
+              status:400,
+              generalLog: "User or password are incorrect",
             },
           };
         }
-        return null;
+        else{
+          const hashedId= hash(userId);
+          console.log(hashedId);
+          return json("ok", {
+            headers: {
+              "Set-Cookie": hashedId,
+            },
+          });
+    
+        }
       },
       (errors) =>
         new Response(JSON.stringify({ errors }), {
@@ -45,8 +56,17 @@ export async function action({ request }: { request: Request }) {
     return validateForm(
       formData,
       registerSchema,
-      (data) => {
+      async (data) => {
         console.log(data.userNameReg + ' y ' + data.passwordReg);
+        const userExist=await userExists(data.userNameReg);
+        if (userExist) {
+          return {
+            errors: {
+              status:400,
+              generalReg: "User Name is already registered, please Log In",
+            },
+          };
+        }
         return null;
       },
       (errors) =>
@@ -149,7 +169,7 @@ export default function LoginPage() {
                 name="_action"
                 value="logIn"
               />
-              <ErrorMessage>{actionData?.errors?.general}</ErrorMessage>
+              <ErrorMessage>{actionData?.errors?.generalLog}</ErrorMessage>
             </form>
           </div>
 
@@ -219,6 +239,7 @@ export default function LoginPage() {
                 name="_action"
                 value="singUp"
               />
+              <ErrorMessage>{actionData?.errors?.generalReg}</ErrorMessage>
             </Form>
           </div>
         </div>
