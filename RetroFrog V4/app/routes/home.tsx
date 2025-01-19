@@ -139,7 +139,7 @@ export default function HomePage() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/logRegPage" className="nav-link">
+              <NavLink to="/login" className="nav-link">
                 <span className="nav-icon">
                   <LogOutIcon iconFill={`${iconFill}`} />
                 </span>

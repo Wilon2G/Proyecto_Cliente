@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from '@remix-run/node';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from '@remix-run/react';
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from '@remix-run/node';
+import React from 'react';
 
-import './tailwind.css';
 import { commitSession, getSession } from './sessions';
-import { changeThemeColor } from './utils/themeColors';
 
 export const meta: MetaFunction = () => {
   return [
@@ -40,10 +37,16 @@ export const links: LinksFunction = () => [
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
+  //Descomentar para ver los estilos de la sesión
+  //console.log("Session data before:", session.data);
 
-  // Verificar si la sesión tiene datos
-  if (!session.has('theme')) {
-    session.set('theme', 'dark');
+  // Verificar si la sesión está vacía
+  if (Object.keys(session.data).length === 0) {
+    //Descomentar para que se notifique si no había sesión de estilos guardada
+    //console.log("Estableciendo valores predeterminados en la sesión");
+
+    // Establecer valores predeterminados
+    session.set('theme', 'primaryDark');
     session.set('background', '/assets/background/bg3.jpg');
     session.set('fontFamily', 'arial');
 
@@ -54,12 +57,17 @@ export const loader: LoaderFunction = async ({ request }) => {
     });
   }
 
-  // Devolver los valores existentes en la sesión.
-  return {
-    theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/bg3.jpg',
-    fontFamily: session.get('fontFamily') || 'arial',
-  };
+  // Obtener datos de la sesión
+  const bgColor = session.get('theme');
+  const bgImage = session.get('background');
+  const fontFamily = session.get('fontFamily');
+  //Descomentar esto para los estilos de la sesión
+  //console.log("[In root.tsx] --> Session data after:", session.data);
+
+  // Serializar los datos como JSON
+  const themeChanges = { bgColor, bgImage, fontFamily };
+
+  return themeChanges;
 };
 
 export type themeChanges = {
@@ -69,15 +77,8 @@ export type themeChanges = {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const data = useLoaderData<themeChanges>();
-
-  const background = data?.background || '/assets/background/bg3.jpg';
-  const fontFamily = data?.fontFamily || 'arial';
-  const theme = data?.theme; 
-    const colors = changeThemeColor(theme || 'dark'); 
-    
-  const {  textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false);
+  //const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  //style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}} Para el body!!!!!!!!!!
 
   return (
     <html lang="en" className="h-full">
@@ -87,16 +88,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body
-        className={'h-full'}
-        style={{
-          backgroundImage: `url(${background})`,
-          fontFamily,
-          color: isHovered ? `${textHighlight}` : `${textColor}`,
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-      >
+      <body className={'h-full'}>
         {children}
         <ScrollRestoration />
         <Scripts />
