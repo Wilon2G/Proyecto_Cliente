@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id            String   @id @default(cuid())
   username      String   @unique
@@ -18,16 +23,17 @@ model User {
   theme         String
   pfp           String
   registerDate  DateTime @default(now())
+  role          Role     @default(USER) // Nuevo campo para rol del usuario
   GamesUnlocked Game[]   @relation("UserGames")
   FavoriteGames Game[]   @relation("UserFavorites")
 }
 
 model Game {
-  id          String @id @default(cuid())
-  title       String
-  description String
-  color       String
-  tags        String
-  Users       User[] @relation("UserGames")
+  id            String @id @default(cuid())
+  title         String
+  description   String
+  color         String
+  tags          String
+  Users         User[] @relation("UserGames")
   UsersFavorited User[] @relation("UserFavorites")
 }

@@ -3,28 +3,58 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Crear un usuario
+  // Limpiar datos existentes
   await prisma.user.deleteMany({});
-  const user = await prisma.user.create({
-    data: {
-      username: 'Prueba',
-      password: 'prueba',
-      name: 'Pepito Prueba',
-      email: 'pepitoprueba@example.com',
-      sex: 'NAN',
-      score: 50,
-      theme: 'dark',
-      pfp: '/assets/icon/pfp/default.jpg',
-    },
+  await prisma.game.deleteMany({});
+
+  // Crear usuarios
+  const users = await prisma.user.createMany({
+    data: [
+      {
+        username: 'adminUser',
+        password: 'securepassword',
+        name: 'Admin User',
+        email: 'admin@example.com',
+        sex: 'M',
+        score: 100,
+        theme: 'dark',
+        pfp: '/assets/icon/pfp/admin.jpg',
+        role: 'ADMIN', // Usuario administrador
+      },
+      {
+        username: 'testUser1',
+        password: 'testpassword',
+        name: 'Test User 1',
+        email: 'test1@example.com',
+        sex: 'F',
+        score: 70,
+        theme: 'light',
+        pfp: '/assets/icon/pfp/test1.jpg',
+        role: 'USER', // Usuario normal
+      },
+      {
+        username: 'testUser2',
+        password: 'anotherpassword',
+        name: 'Test User 2',
+        email: 'test2@example.com',
+        sex: 'M',
+        score: 30,
+        theme: 'dark',
+        pfp: '/assets/icon/pfp/test2.jpg',
+        role: 'USER', // Usuario normal
+      },
+    ],
   });
+
+  console.log('Users created:', users);
 
   // Lista de juegos a crear
   const gamelist = [
     {
       tags: 'RPG',
-      title: 'Legend of Zelda a Link to the Past',
+      title: 'Legend of Zelda: A Link to the Past',
       description: 'Explora mazmorras y salva Hyrule.',
-      color: '#FFD700', // Ejemplo de color hexadecimal
+      color: '#FFD700',
     },
     {
       tags: 'Lucha',
@@ -58,7 +88,7 @@ async function main() {
     },
   ];
 
-  // Crear los juegos y asociarlos al usuario
+  // Crear juegos
   const games = [];
   for (const game of gamelist) {
     const createdGame = await prisma.game.create({
@@ -72,19 +102,46 @@ async function main() {
     games.push(createdGame);
   }
 
-  // Asociar los juegos desbloqueados al usuario
+  console.log('Games created:', games);
+
+  // Asociar juegos desbloqueados y favoritos a los usuarios
+  const [admin, user1, user2] = await prisma.user.findMany();
+
   await prisma.user.update({
-    where: { id: user.id },
+    where: { id: admin.id },
     data: {
       GamesUnlocked: {
         connect: games.map((game) => ({ id: game.id })),
       },
-      // Agregar algunos juegos a la lista de favoritos
       FavoriteGames: {
         connect: [
-          { id: games[0].id }, // Añadir "Legend of Zelda" como favorito
-          { id: games[3].id }, // Añadir "Super Bomberman" como favorito
+          { id: games[0].id }, // Legend of Zelda
+          { id: games[3].id }, // Super Bomberman
         ],
+      },
+    },
+  });
+
+  await prisma.user.update({
+    where: { id: user1.id },
+    data: {
+      GamesUnlocked: {
+        connect: games.slice(0, 4).map((game) => ({ id: game.id })), // Primeros 4 juegos
+      },
+      FavoriteGames: {
+        connect: [{ id: games[1].id }], // Super Street Fighter II
+      },
+    },
+  });
+
+  await prisma.user.update({
+    where: { id: user2.id },
+    data: {
+      GamesUnlocked: {
+        connect: games.slice(2).map((game) => ({ id: game.id })), // Últimos 4 juegos
+      },
+      FavoriteGames: {
+        connect: [{ id: games[4].id }], // Simon Says Game
       },
     },
   });
