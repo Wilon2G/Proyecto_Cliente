@@ -1,15 +1,16 @@
+import { LoaderFunction } from '@remix-run/node';
 import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
-import SignUpForm from '../components/SignUpForm';
-import LoginForm from '../components/LoginForm';
-import { logInSchema, registerSchema } from '../utils/zodSchemas';
-import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
+import ErrorMessage from '~/components/ErrorMsg';
 import InputForm from '~/components/InputForm';
-import { getSession } from '~/sessions';
-import { LoaderFunction } from '@remix-run/node';
+import { checkUser, userExists } from '~/models/user.server';
 import { themeChanges } from '~/root';
+import { getSession } from '~/sessions';
+import { hash } from '~/utils/cryptography';
 import { changeThemeColor } from '~/utils/themeColors';
+import validateForm from '~/utils/validation';
+import { logInSchema, registerSchema } from '../utils/zodSchemas';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
@@ -27,31 +28,28 @@ export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
 
   console.log(formData);
-  if (formData.get("_action")==="logIn") {
+  if (formData.get('_action') === 'logIn') {
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
         //console.log(data.userNameLog + ' y ' + data.passwordLog);
-        const userId= await checkUser(data.userNameLog,data.passwordLog);
+        const userId = await checkUser(data.userNameLog, data.passwordLog);
         if (!userId) {
           return {
             errors: {
-              status:400,
-              generalLog: "User or password are incorrect",
+              status: 400,
+              generalLog: 'User or password are incorrect',
             },
           };
-        }
-        else{
-          const hashedId= hash(userId);
+        } else {
+          const hashedId = hash(userId);
           console.log(hashedId);
-          return redirect("/home",{
+          return redirect('/home', {
             headers: {
-              "Set-Cookie": hashedId,
+              'Set-Cookie': hashedId,
             },
           });
-          
-    
         }
       },
       (errors) =>
@@ -60,19 +58,18 @@ export async function action({ request }: { request: Request }) {
           headers: { 'Content-Type': 'application/json' },
         }),
     );
-  }
-  else{
+  } else {
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
         console.log(data.userNameReg + ' y ' + data.passwordReg);
-        const userExist=await userExists(data.userNameReg);
+        const userExist = await userExists(data.userNameReg);
         if (userExist) {
           return {
             errors: {
-              status:400,
-              generalReg: "User Name is already registered, please Log In",
+              status: 400,
+              generalReg: 'User Name is already registered, please Log In',
             },
           };
         }
@@ -85,7 +82,6 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   }
-
 }
 
 export default function LoginPage() {
@@ -260,9 +256,10 @@ export default function LoginPage() {
             <Form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
-
-                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
-                <div>
+                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
+              }`}
+            >
+              <div>
                 <InputForm inputType="userName" inputName="userNameReg" />
                 <ErrorMessage>{actionData?.errors?.userNameReg}</ErrorMessage>
               </div>
@@ -282,7 +279,6 @@ export default function LoginPage() {
                 name="_action"
                 value="singUp"
               />
-
             </Form>
           </div>
         </div>
