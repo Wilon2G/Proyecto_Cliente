@@ -35,7 +35,7 @@ function SignUpForm() {
         />
 
       </div>
-      <Button textBtn="Register" typeBtn="submit" className="text-lg" />
+      <Button textBtn="Register" typeBtn="submit"  className="text-lg" />
     </>
   );
 }

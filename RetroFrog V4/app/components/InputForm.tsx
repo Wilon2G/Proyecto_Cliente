@@ -1,9 +1,9 @@
 export type InputProps = {
   inputType: string;
-  inputName: string;
+  textColor?: string;
 };
 
-function InputForm({ inputType, inputName }: InputProps) {
+function InputForm({ inputType, textColor }: InputProps) {
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
@@ -25,6 +25,7 @@ function InputForm({ inputType, inputName }: InputProps) {
         autoComplete="off"
         className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none "
         placeholder={`Your ${inputType}`}
+        style={{ color: textColor }}
       />
     </>
   );

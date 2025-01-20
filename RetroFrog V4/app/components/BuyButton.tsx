@@ -22,7 +22,7 @@ export default function BuyButton() {
     <button
       onClick={handleClick}
       className={classNames(
-        'w-full text-textDark font-bold py-2 px-4 rounded-md transition duration-300',
+        'w-full font-bold py-2 px-4 rounded-md transition duration-300',
         'bg-amber-500 hover:bg-amber-600', //Se queda el color verde de base
         {
           'buy-button': true,
@@ -31,6 +31,7 @@ export default function BuyButton() {
         },
       )}
       disabled={isDisabled}
+      
     >
       {purchased ? 'Ya Adquirido' : loading ? 'Procesando...' : 'Comprar'}
     </button>
