@@ -14,6 +14,7 @@ import React from 'react';
 
 import { commitSession, getSession } from './sessions';
 
+import './tailwind.css';
 export const meta: MetaFunction = () => {
   return [
     { title: 'RetroFrog' },

@@ -7,7 +7,7 @@ import prisma from '~/utils/prismaClient';
 export let loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
-  const userId = session.get('userId');
+  const userId = 'cm63sz99b0000qs500abhtycc'; //session.get('userId');
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter'); // Obtiene el parámetro de filtro
 
@@ -25,7 +25,7 @@ export let loader: LoaderFunction = async ({ request }) => {
     // Si el usuario tiene juegos favoritos, devuelve la lista
     games = user?.FavoriteGames || [];
   } else {
-    // Obtiene todos los juegos (o cualquier otro filtro)
+    // Si el usuario tiene juegos favoritos, devuelve la lista
     games = await prisma.game.findMany();
   }
 
@@ -37,7 +37,6 @@ export default function Library() {
 
   return (
     <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-      <p>{userId}</p>
       {games.map((game, index) => (
         <img
           key={index}
