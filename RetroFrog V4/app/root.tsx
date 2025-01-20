@@ -70,7 +70,7 @@ export type themeChanges = {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Obtener los datos de la sesión
-  const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
+  const { theme, background, fontFamily } = useLoaderData<themeChanges>();
 
   return (
     <html lang="en" className="h-full">
@@ -83,9 +83,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body
         className="h-full"
         style={{
-          backgroundColor: `${bgColor}`, // Aplicar el color de fondo
-          backgroundImage: `url(${bgImage})`, // Aplicar la imagen de fondo
-          fontFamily: `${fontFamily}`, // Aplicar la fuente
+          backgroundColor: theme === 'dark' ? '#151A2D' : '#F5F5F5', // Adjust the background color based on theme
+          backgroundImage: `url(${background})`, // Apply the background image
+          fontFamily: fontFamily, // Apply the font family
         }}
       >
         {children}

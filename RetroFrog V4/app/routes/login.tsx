@@ -31,7 +31,7 @@ export async function action({ request }: { request: Request }) {
       formData,
       logInSchema,
       async (data) => {
-        //console.log(data.userNameLog + ' y ' + data.passwordLog);
+        console.log(data.userNameLog + ' y ' + data.passwordLog);
         const userId = await checkUser(data.userNameLog, data.passwordLog);
         if (!userId) {
           return {
@@ -91,7 +91,7 @@ export default function LoginPage() {
       <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
         <div className="w-full h-1/5 p-6 flex items-center ">
           <img
-            src="../../public/assets/icon/frog-logo3.png"
+            src="/assets/icon/frog-logo3.png"
             alt=""
             className="w-32 h-auto"
           />
