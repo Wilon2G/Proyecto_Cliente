@@ -1,17 +1,31 @@
-import { Form, json, useActionData } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/node';
+import { Form, redirect, useActionData } from '@remix-run/react';
 import { useState } from 'react';
 import Button from '~/components/Buttons';
-import { ErrorMessage } from '~/components/ErrorMessage';
+import ErrorMessage from '~/components/ErrorMsg';
 import InputForm from '~/components/InputForm';
 import { checkUser, userExists } from '~/models/user.server';
+import { getSession } from '~/sessions';
 import { hash } from '~/utils/cryptography';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
+};
+
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
-  //Descomentar esto para ver los datos que se envían por los formularios de login y registro
-  //console.log("login.tsx/ -->"+formData);
+
+  console.log(formData);
   if (formData.get('_action') === 'logIn') {
     return validateForm(
       formData,
@@ -29,7 +43,7 @@ export async function action({ request }: { request: Request }) {
         } else {
           const hashedId = hash(userId);
           console.log(hashedId);
-          return json('ok', {
+          return redirect('/home', {
             headers: {
               'Set-Cookie': hashedId,
             },
@@ -144,12 +158,12 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" inputName="userNameLog" />
-                <ErrorMessage>{actionData?.errors?.userNameLog}</ErrorMessage>
+                <InputForm inputType="userName" textColor={'#151A2D'} />
+                <p>{actionData?.errors?.userName}</p>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordLog" />
-                <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
+                <InputForm inputType="password" textColor={'#151A2D'} />
+                <p>{actionData?.errors?.password}</p>
               </div>
               <Button
                 textBtn="Log In"
@@ -230,7 +244,6 @@ export default function LoginPage() {
                 name="_action"
                 value="singUp"
               />
-              <ErrorMessage>{actionData?.errors?.generalReg}</ErrorMessage>
             </Form>
           </div>
         </div>

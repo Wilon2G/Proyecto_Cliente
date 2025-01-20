@@ -1,9 +1,10 @@
 export type InputProps = {
   inputType: string;
-  inputName: string;
+  textColor?: string;
+  inputName?: string;
 };
 
-function InputForm({ inputType, inputName }: InputProps) {
+function InputForm({ inputType, textColor, inputName }: InputProps) {
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }

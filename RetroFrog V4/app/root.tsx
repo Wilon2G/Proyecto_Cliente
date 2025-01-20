@@ -41,10 +41,9 @@ export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  // Verificar si la sesión está vacía
-  if (Object.keys(session.data).length === 0) {
-    // Establecer valores predeterminados
-    session.set('theme', 'primaryDark');
+  // Verificar si la sesión tiene datos
+  if (!session.has('theme')) {
+    session.set('theme', 'dark');
     session.set('background', '/assets/background/bg3.jpg');
     session.set('fontFamily', 'arial');
 
@@ -55,15 +54,12 @@ export const loader: LoaderFunction = async ({ request }) => {
     });
   }
 
-  // Obtener datos de la sesión
-  const bgColor = session.get('theme');
-  const bgImage = session.get('background');
-  const fontFamily = session.get('fontFamily');
-
-  // Serializar los datos como JSON
-  const themeChanges = { bgColor, bgImage, fontFamily };
-
-  return themeChanges;
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
 };
 
 export type themeChanges = {
