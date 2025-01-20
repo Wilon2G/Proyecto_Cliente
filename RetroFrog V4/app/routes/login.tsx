@@ -11,7 +11,13 @@ import InputForm from '~/components/InputForm';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { checkUser, userExists } from '~/models/user.server';
 import { hash } from '~/utils/cryptography';
+import { requiredLoggedOutUser } from '~/utils/auth.server';
+import { LoaderFunction } from '@remix-run/node';
 
+export const loader: LoaderFunction = async ({ request }) => {
+  await requiredLoggedOutUser(request);
+  return null;
+};
 
 
 
@@ -37,11 +43,12 @@ export async function action({ request }: { request: Request }) {
         else{
           const hashedId= hash(userId);
           console.log(hashedId);
-          return json("ok", {
+          return redirect("/home",{
             headers: {
               "Set-Cookie": hashedId,
             },
           });
+          
     
         }
       },

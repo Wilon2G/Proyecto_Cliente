@@ -18,7 +18,7 @@ export async function getCurrentUser(request: Request) {
   export async function requiredLoggedOutUser(request: Request) {
     const user = await getCurrentUser(request);
     if (user !== null) {
-      throw redirect("/app");
+      throw redirect("/home");
     }
   }
   
