@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -12,8 +8,6 @@ import {
   useLoaderData,
 } from '@remix-run/react';
 import React from 'react';
-
-import { commitSession, getSession } from './sessions';
 
 import './tailwind.css';
 
@@ -37,31 +31,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-
-  // Verificar si la sesión tiene datos
-  if (!session.has('theme')) {
-    session.set('theme', 'dark');
-    session.set('background', '/assets/background/bg3.jpg');
-    session.set('fontFamily', 'arial');
-
-    const cookie = await commitSession(session);
-    return new Response(null, {
-      status: 200,
-      headers: { 'Set-Cookie': cookie },
-    });
-  }
-
-  // Devolver los valores existentes en la sesión.
-  return {
-    theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/bg3.jpg',
-    fontFamily: session.get('fontFamily') || 'arial',
-  };
-};
-
+// Aquí definimos el tipo para los cambios de tema
 export type themeChanges = {
   theme: string;
   background: string;
@@ -70,7 +40,19 @@ export type themeChanges = {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Obtener los datos de la sesión
-  const { theme, background, fontFamily } = useLoaderData<themeChanges>();
+  const data = useLoaderData<themeChanges>();
+
+  // Asegurarse de que data tenga valores por defecto en caso de que sea undefined
+  const {
+    theme = 'dark', // Valor por defecto 'dark' si theme es undefined
+    background = '/assets/background/bg3.jpg', // Valor por defecto para el background
+    fontFamily = 'arial', // Valor por defecto para fontFamily
+  } = data || {}; // Desestructuramos, y si data es undefined, se usa el valor por defecto
+
+  // Si algún valor es undefined, mostramos un mensaje de error
+  if (!theme || !background || !fontFamily) {
+    return <div>Error loading data</div>;
+  }
 
   return (
     <html lang="en" className="h-full">
@@ -83,9 +65,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body
         className="h-full"
         style={{
-          backgroundColor: theme === 'dark' ? '#151A2D' : '#F5F5F5', // Adjust the background color based on theme
-          backgroundImage: `url(${background})`, // Apply the background image
-          fontFamily: fontFamily, // Apply the font family
+          backgroundColor: theme === 'dark' ? '#151A2D' : '#F5F5F5', // Ajustamos el color de fondo dependiendo del tema
+          backgroundImage: `url(${background})`, // Aplicamos la imagen de fondo
+          fontFamily: fontFamily, // Aplicamos la familia tipográfica
         }}
       >
         {children}

@@ -1,12 +1,12 @@
 import { LoaderFunction } from '@remix-run/node';
 import { Form, redirect, useActionData } from '@remix-run/react';
+import crypto from 'crypto'; // Si usas SHA-256 o algún algoritmo similar
 import { useState } from 'react';
 import Button from '~/components/Buttons';
 import ErrorMessage from '~/components/ErrorMsg';
 import InputForm from '~/components/InputForm';
 import { checkUser, userExists } from '~/models/user.server';
-import { getSession } from '~/sessions';
-import { hash } from '~/utils/cryptography';
+import { commitSession, getSession } from '~/sessions';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 
@@ -25,15 +25,20 @@ export const loader: LoaderFunction = async ({ request }) => {
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
 
-  console.log(formData);
+  console.log('Form data received:', formData); // Log los datos del formulario
+
   if (formData.get('_action') === 'logIn') {
+    console.log('ANDAS LOGUEANDOTE');
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
-        console.log(data.userNameLog + ' y ' + data.passwordLog);
+        console.log('Login form data:', data); // Log de los datos procesados
         const userId = await checkUser(data.userNameLog, data.passwordLog);
+
         if (!userId) {
+          console.log('User not found or incorrect credentials.');
+
           return {
             errors: {
               status: 400,
@@ -41,11 +46,24 @@ export async function action({ request }: { request: Request }) {
             },
           };
         } else {
-          const hashedId = hash(userId);
-          console.log(hashedId);
-          return redirect('/home', {
+          // Hashear el ID del usuario
+          const hashedId = crypto
+            .createHash('sha256')
+            .update(userId)
+            .digest('hex');
+          console.log('Hashed user ID:', hashedId); // Verifica el hash
+
+          // Guardar el hash en la sesión
+          const session = await getSession(request.headers.get('cookie'));
+          session.set('userId', hashedId); // Guardar el ID hasheado en la sesión
+          console.log('Session after setting userId:', session);
+
+          // Redirigir al usuario a la página de inicio
+          const cookie = await commitSession(session);
+          console.log('Cookie set for session:', cookie);
+          return redirect('/home/main', {
             headers: {
-              'Set-Cookie': hashedId,
+              'Set-Cookie': cookie,
             },
           });
         }
@@ -57,13 +75,15 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   } else {
+    // Registro de usuario
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
-        console.log(data.userNameReg + ' y ' + data.passwordReg);
+        console.log('Register form data:', data); // Log de los datos de registro
         const userExist = await userExists(data.userNameReg);
         if (userExist) {
+          console.log('User already exists:', data.userNameReg);
           return {
             errors: {
               status: 400,
@@ -158,11 +178,19 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" textColor={'#151A2D'} />
-                <p>{actionData?.errors?.userName}</p>
+                <InputForm
+                  inputType="username"
+                  textColor={'#151A2D'}
+                  inputName="userNameLog"
+                />
+                <p>{actionData?.errors?.username}</p>
               </div>
               <div>
-                <InputForm inputType="password" textColor={'#151A2D'} />
+                <InputForm
+                  inputType="password"
+                  textColor={'#151A2D'}
+                  inputName="passwordLog"
+                />
                 <p>{actionData?.errors?.password}</p>
               </div>
               <Button
@@ -225,8 +253,8 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" inputName="userNameReg" />
-                <ErrorMessage>{actionData?.errors?.userNameReg}</ErrorMessage>
+                <InputForm inputType="username" inputName="usernameReg" />
+                <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="password" inputName="passwordReg" />
