@@ -9,12 +9,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react';
 import React from 'react';
 
 import { commitSession, getSession } from './sessions';
 
 import './tailwind.css';
+
 export const meta: MetaFunction = () => {
   return [
     { title: 'RetroFrog' },
@@ -38,14 +40,9 @@ export const links: LinksFunction = () => [
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
-  //Descomentar para ver los estilos de la sesión
-  //console.log("Session data before:", session.data);
 
   // Verificar si la sesión está vacía
   if (Object.keys(session.data).length === 0) {
-    //Descomentar para que se notifique si no había sesión de estilos guardada
-    //console.log("Estableciendo valores predeterminados en la sesión");
-
     // Establecer valores predeterminados
     session.set('theme', 'primaryDark');
     session.set('background', '/assets/background/bg3.jpg');
@@ -62,8 +59,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   const bgColor = session.get('theme');
   const bgImage = session.get('background');
   const fontFamily = session.get('fontFamily');
-  //Descomentar esto para los estilos de la sesión
-  //console.log("[In root.tsx] --> Session data after:", session.data);
 
   // Serializar los datos como JSON
   const themeChanges = { bgColor, bgImage, fontFamily };
@@ -78,8 +73,8 @@ export type themeChanges = {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  //const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
-  //style={{ background: `${bgColor}`,backgroundImage:`url(${bgImage})`,fontFamily:`${fontFamily}`}} Para el body!!!!!!!!!!
+  // Obtener los datos de la sesión
+  const { bgColor, bgImage, fontFamily } = useLoaderData<themeChanges>();
 
   return (
     <html lang="en" className="h-full">
@@ -89,7 +84,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className={'h-full'}>
+      <body
+        className="h-full"
+        style={{
+          backgroundColor: `${bgColor}`, // Aplicar el color de fondo
+          backgroundImage: `url(${bgImage})`, // Aplicar la imagen de fondo
+          fontFamily: `${fontFamily}`, // Aplicar la fuente
+        }}
+      >
         {children}
         <ScrollRestoration />
         <Scripts />
