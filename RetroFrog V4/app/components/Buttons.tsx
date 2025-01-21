@@ -33,11 +33,15 @@ export default function Button({
   textColor,
   textColorHover,
   className,
+  name,
+  value,
 }: ButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <button
+      name={name}
+      value={value}
       type={typeBtn}
       className={classNames(
         'w-full py-2 px-4 rounded-md font-bold transition duration-300',

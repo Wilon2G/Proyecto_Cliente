@@ -7,7 +7,7 @@ function LoginForm() {
   return (
     <>
       <div>
-        <InputForm inputType="userName" />
+        <InputForm inputType="username" />
       </div>
       <div>
         <InputForm inputType="password" />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const SignupPage: React.FC = () => {
-  const [userName, setUsername] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,9 +30,9 @@ const SignupPage: React.FC = () => {
     let infoGiven = true;
     let errorMessage = 'Please enter the value in ';
 
-    if (userName === null || userName === '') {
+    if (username === null || username === '') {
       infoGiven = false;
-      errorMessage += `${userName}`;
+      errorMessage += `${username}`;
     }
     if (password === null || password === '') {
       infoGiven = false;
@@ -65,7 +65,7 @@ const SignupPage: React.FC = () => {
     if (isValidate()) {
       event.preventDefault(); //Prevenir que se actualice la pagina al hacer click en el boton
       const userObj = {
-        userName,
+        username,
         password,
         name,
         email,
@@ -103,8 +103,8 @@ const SignupPage: React.FC = () => {
 
         <div className="signup__form--input-field">
           <input
-            value={userName}
-            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
             required
           ></input>
           <label>Enter your username </label>

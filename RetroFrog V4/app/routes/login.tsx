@@ -1,11 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { Form,  json,  redirect, useActionData } from '@remix-run/react';
+import { Form,    redirect, useActionData } from '@remix-run/react';
 import { useState } from 'react';
-import SignUpForm from '../components/SignUpForm';
-import LoginForm from '../components/LoginForm';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
-import { z } from 'zod';
 import Button from '~/components/Buttons';
 import InputForm from '~/components/InputForm';
 import { ErrorMessage } from '~/components/ErrorMessage';
@@ -24,14 +20,15 @@ export const loader: LoaderFunction = async ({ request }) => {
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   //Descomentar esto para ver los datos que se envían por los formularios de login y registro
-  //console.log("login.tsx/ -->"+formData);
+  //console.log(formData);
   if (formData.get("_action")==="logIn") {
+    console.log("Ha entrado en el action de login");
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
-        //console.log(data.userNameLog + ' y ' + data.passwordLog);
-        const userId= await checkUser(data.userNameLog,data.passwordLog);
+        console.log(data.usernameLog + ' y ' + data.passwordLog);
+        const userId= await checkUser(data.usernameLog,data.passwordLog);
         if (!userId) {
           return {
             errors: {
@@ -43,7 +40,7 @@ export async function action({ request }: { request: Request }) {
         else{
           const hashedId= hash(userId);
           console.log(hashedId);
-          return redirect("/home",{
+          return redirect("/home/main",{
             headers: {
               "Set-Cookie": hashedId,
             },
@@ -60,12 +57,13 @@ export async function action({ request }: { request: Request }) {
     );
   }
   else{
+    console.log("Ha entrado en el action de registro");
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
-        console.log(data.userNameReg + ' y ' + data.passwordReg);
-        const userExist=await userExists(data.userNameReg);
+        console.log(data.usernameReg + ' y ' + data.passwordReg);
+        const userExist=await userExists(data.usernameReg);
         if (userExist) {
           return {
             errors: {
@@ -162,8 +160,8 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="userName" inputName="userNameLog" />
-                <ErrorMessage>{actionData?.errors?.userNameLog}</ErrorMessage>
+                <InputForm inputType="username" inputName="usernameLog" />
+                <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="password" inputName="passwordLog" />
@@ -227,8 +225,8 @@ export default function LoginPage() {
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
                 <div>
-                <InputForm inputType="userName" inputName="userNameReg" />
-                <ErrorMessage>{actionData?.errors?.userNameReg}</ErrorMessage>
+                <InputForm inputType="username" inputName="usernameReg" />
+                <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
               </div>
               <div>
                 <InputForm inputType="password" inputName="passwordReg" />

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ModifyPage: React.FC = () => {
-  const [userName, setUsername] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const ModifyPage: React.FC = () => {
   const userId = sessionStorage.getItem('id'); 
 
   useEffect(() => {
-    setUsername(sessionStorage.getItem('username') || '');
+    setusername(sessionStorage.getItem('username') || '');
     setName(sessionStorage.getItem('name') || '');
     setEmail(sessionStorage.getItem('email') || '');
   }, []);
@@ -21,7 +21,7 @@ const ModifyPage: React.FC = () => {
     let infoGiven = true;
     let errorMessage = 'Please enter the value in ';
 
-    if (!userName) {
+    if (!username) {
       infoGiven = false;
       errorMessage += 'username ';
     }
@@ -47,7 +47,7 @@ const ModifyPage: React.FC = () => {
 
     if (isValidate() && userId) {
       const updatedUser = {
-        userName,
+        username,
         password,
         name,
         email,
@@ -68,7 +68,7 @@ const ModifyPage: React.FC = () => {
         })
         .then(() => {
           alert('User information updated successfully.');
-          sessionStorage.setItem('username', userName);
+          sessionStorage.setItem('username', username);
           sessionStorage.setItem('name', name);
           sessionStorage.setItem('email', email);
           navigate('/'); 
@@ -94,12 +94,12 @@ const ModifyPage: React.FC = () => {
 
         <div className="signup__form--input-field">
           <input
-            value={userName}
-            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
             placeholder="Enter new username"
             required
           />
-          <label>Username</label>
+          <label>username</label>
         </div>
 
         <div className="signup__form--input-field">

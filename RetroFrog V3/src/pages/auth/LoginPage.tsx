@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export type User = {
   id: string;
-  userName: string;
+  username: string;
   password: string;
   name: string;
   email: string;
@@ -19,7 +19,7 @@ export type User = {
 };
 
 const LoginPage: React.FC = () => {
-  const [userName, setUsername] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
 
   //Para ocultar y mostrar contrseña
@@ -36,7 +36,7 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
 
     if (validate()) {
-      // Realizamos la petición sin concatenar el userName
+      // Realizamos la petición sin concatenar el username
       fetch('http://localhost:3000/users')
         .then((res) => {
           // Verifica que la respuesta sea correcta
@@ -50,14 +50,14 @@ const LoginPage: React.FC = () => {
         })
         .then((resp) => {
           
-          const user = resp.find((u: User) => u.userName === userName);
+          const user = resp.find((u: User) => u.username === username);
 
           if (!user) {
             alert('Please Enter valid username');
           } else {
             if (user.password === password) {
               //console.log("Success");
-              sessionStorage.setItem('username', userName);
+              sessionStorage.setItem('username', username);
               sessionStorage.setItem('id', user.id);
               sessionStorage.setItem('name', user.name);
               sessionStorage.setItem('email', user.email);
@@ -82,10 +82,10 @@ const LoginPage: React.FC = () => {
   const validate = () => {
     let result = true;
 
-    if (userName === '' || userName === null) {
+    if (username === '' || username === null) {
       result = false;
       //Mensaje
-      alert('Please Enter Username');
+      alert('Please Enter username');
     }
 
     if (password === '' || password === null) {
@@ -110,8 +110,8 @@ const LoginPage: React.FC = () => {
             <h2>Login</h2>
             <div className="login__form--input-field">
               <input
-                value={userName}
-                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 required
               ></input>
               <label>Enter your username </label>
