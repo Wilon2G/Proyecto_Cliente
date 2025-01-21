@@ -1,12 +1,6 @@
 import { LoaderFunction } from '@remix-run/node';
-import {
-  NavLink,
-  Outlet,
-  useActionData,
-  useLoaderData,
-} from '@remix-run/react';
+import { NavLink, Outlet, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
-import { ActionData } from '~/components/Custom';
 import {
   CollapseArrow,
   FavGamesIcon,
@@ -26,7 +20,7 @@ import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedInUser(request);
-  
+
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
@@ -46,7 +40,6 @@ export default function HomePage() {
   const colors = changeThemeColor(theme || 'dark');
 
   const { primaryBg, iconFill } = colors;
-  const [isHovered, setIsHovered] = useState(false);
 
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);

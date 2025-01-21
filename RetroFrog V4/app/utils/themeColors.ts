@@ -8,7 +8,6 @@ export function changeThemeColor(theme: string) {
       iconFill: '#f5f5f5', //Color Relleno Icon
       iconFillHighlight: '#151A2D', //Color Relleno Icon hover
       iconBgHighlight: '#f5f5f5', //Color bg Icon hover
-      
     };
   } else {
     return {

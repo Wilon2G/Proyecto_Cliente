@@ -1,4 +1,3 @@
-
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import Custom from '~/components/Custom';
 import Developers from '~/components/Developers';
@@ -35,18 +34,16 @@ export const action: ActionFunction = async ({ request }) => {
     formData,
     customSchema,
     async ({ theme, background, fontFamily }) => {
-      
-
       //Alamacenamos valores
       session.set('theme', theme);
       session.set('background', background);
       session.set('fontFamily', fontFamily);
 
       return new Response(null, {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-  },
-});
+        headers: {
+          'Set-Cookie': await commitSession(session),
+        },
+      });
     },
     (errors) =>
       new Response(JSON.stringify({ errors }), {
@@ -59,11 +56,16 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Settings() {
   return (
     <>
-      <div className="flex flex-col justify-center content-around gap-16 text-center w-full h-full">
-        <h1 className="text-3xl font-semibold mb-4 ">Settings</h1>
+      <div className="flex flex-col justify-center gap-16 text-center ">
+        <h1
+          className="text-3xl font-semibold mb-4"
+          style={{ color: '#e6e6e6' }}
+        >
+          Settings
+        </h1>
 
         <div className="custom">
-          <Custom/>
+          <Custom />
         </div>
 
         <div className="privacy">
@@ -72,7 +74,7 @@ export default function Settings() {
 
         <div className="aboutUs">
           <Developers />
-        </div> 
+        </div>
       </div>
     </>
   );

@@ -1,21 +1,30 @@
-import { Form,    Outlet,    redirect, useActionData } from '@remix-run/react';
+import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import React, { useState } from 'react';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
-import InputForm from '~/components/InputForm';
+import InputForm from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { checkUser, userExists } from '~/models/user.server';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
 import { LoaderFunction } from '@remix-run/node';
 import { commitSession, getSession } from '~/sessions';
+import { themeChanges } from '~/root';
+import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedOutUser(request);
-  return null;
+
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
 };
-
-
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -23,32 +32,29 @@ export async function action({ request }: { request: Request }) {
   const session = await getSession(cookieHeader);
   //Descomentar esto para ver los datos que se envían por los formularios de login y registro
   //console.log(formData);
-  if (formData.get("_action")==="logIn") {
+  if (formData.get('_action') === 'logIn') {
     //console.log("Ha entrado en el action de login");
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
         //console.log(data.usernameLog + ' y ' + data.passwordLog);
-        const userId= await checkUser(data.usernameLog,data.passwordLog);
+        const userId = await checkUser(data.usernameLog, data.passwordLog);
         if (!userId) {
           return {
             errors: {
-              status:400,
-              generalLog: "User or password are incorrect",
+              status: 400,
+              generalLog: 'User or password are incorrect',
             },
           };
-        }
-        else{
-          session.set("userId",userId);
+        } else {
+          session.set('userId', userId);
           const cookie = await commitSession(session);
-          return redirect("/home/main",{
+          return redirect('/home/main', {
             headers: {
               'Set-Cookie': cookie,
             },
           });
-          
-    
         }
       },
       (errors) =>
@@ -57,20 +63,19 @@ export async function action({ request }: { request: Request }) {
           headers: { 'Content-Type': 'application/json' },
         }),
     );
-  }
-  else{
+  } else {
     //console.log("Ha entrado en el action de registro");
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
         //console.log(data.usernameReg + ' y ' + data.passwordReg);
-        const userExist=await userExists(data.usernameReg);
+        const userExist = await userExists(data.usernameReg);
         if (userExist) {
           return {
             errors: {
-              status:400,
-              generalReg: "User Name is already registered, please Log In",
+              status: 400,
+              generalReg: 'User Name is already registered, please Log In',
             },
           };
         }
@@ -83,9 +88,7 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   }
-  
 }
-
 
 export default function LoginPage() {
   const actionData = useActionData<typeof action>();
@@ -97,10 +100,23 @@ export default function LoginPage() {
     }
   };
 
+  //Recuperar colores
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, highlightBg } = colors;
+
   return (
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
-        <div className="w-full h-1/5 p-6 flex items-center">
+      <div
+        className="h-full w-2/5 backdrop-blur-lg"
+        style={{ background: primaryBg }}
+      >
+        <div
+          className="w-full h-1/5 p-6 flex items-center"
+          style={{ background: `${highlightBg}` }}
+        >
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt="Frog Logo"
@@ -119,6 +135,7 @@ export default function LoginPage() {
         </div>
 
         <div className="flex w-full h-4/5">
+          {/**LOGIN */}
           <SlidePannel
             panelId="login"
             otherPanelId="register"
@@ -135,11 +152,19 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameLog" />
+                <InputForm
+                  inputType="username"
+                  inputName="usernameLog"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordLog" />
+                <InputForm
+                  inputType="password"
+                  inputName="passwordLog"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
               </div>
               <Button
@@ -153,11 +178,12 @@ export default function LoginPage() {
             </form>
           </SlidePannel>
 
+          {/**REGISTER */}
           <SlidePannel
             panelId="register"
             otherPanelId="login"
             activeTitle="Welcome!"
-            inactiveTitle="Don&apos;t have an account yet?"
+            inactiveTitle="Don't have an account yet?"
             buttonText="Create an account!"
             activePanel={activePanel}
             onPanelChange={handlePanelChange}
@@ -169,15 +195,23 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameReg" />
+                <InputForm
+                  inputType="username"
+                  inputName="usernameReg"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordReg" />
+                <InputForm
+                  inputType="password"
+                  inputName="passwordReg"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="name" inputName="nameReg" />
+                <InputForm inputType="name" inputName="nameReg" theme={theme} />
                 <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
               </div>
               <Button
@@ -217,15 +251,26 @@ function SlidePannel({
   activePanel,
   onPanelChange,
 }: SlidePannelProps) {
+  //otherpanelID(Para el login es register y viceversa)
   const isActive = activePanel === panelId;
+
+  //Recuperar colores
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, highlightBg, textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`flex-1 transition-all duration-500 ${
-        isActive
-          ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-          : 'flex-[1]'
-      } p-8 flex flex-col justify-center items-center cursor-pointer`}
+      className={`h-full flex-1 transition-all duration-500 ${
+        activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
+      }   p-8 flex flex-col justify-center items-center cursor-pointer`}
+      style={{
+        background: activePanel === otherPanelId ? highlightBg : '', // Aplicación de color dinámico
+        color: activePanel === otherPanelId ? textHighlight : '', // Aplicación de color dinámico
+      }}
       onClick={() => onPanelChange(panelId)}
       onKeyDown={(event) => {
         if (event.key === ' ') {
@@ -238,27 +283,30 @@ function SlidePannel({
     >
       <div
         className={`transition-all duration-1000 ${
-          isActive &&
-          'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+          isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
         }`}
       >
-        <p className="mb-4 text-gray-400 font-bold text-base">
-          {inactiveTitle}
-        </p>
-        <h2 className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2">
+        <p className="mb-4 font-bold text-base">{inactiveTitle}</p>
+        <h2
+          className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+          style={{
+            borderColor: `${textColor}`,
+            background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+            color: isHovered ? `${textHighlight}` : `${textColor}`,
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {buttonText}
         </h2>
       </div>
 
       <div
         className={`transition-all duration-1000 ${
-          !isActive &&
-          'translate-y-[50px] opacity-0 absolute top-[-200px]'
+          !isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
         }`}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          {activeTitle}
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">{activeTitle}</h2>
       </div>
 
       {children}
