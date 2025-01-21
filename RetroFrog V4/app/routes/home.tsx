@@ -21,9 +21,12 @@ import {
 import MusicPlayer from '~/components/MusicPlayer';
 import { themeChanges } from '~/root';
 import { getSession } from '~/sessions';
+import { requiredLoggedInUser } from '~/utils/auth.server';
 import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
+  await requiredLoggedInUser(request);
+  
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 

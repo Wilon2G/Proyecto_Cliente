@@ -7,7 +7,9 @@ export async function getCurrentUser(request: Request) {
     const session = await getSession(cookieHeader);
   
     const userId = session.get("userId");
-  
+
+    //console.log(userId);
+
     if (!userId) {
       return null;
     }
@@ -18,7 +20,7 @@ export async function getCurrentUser(request: Request) {
   export async function requiredLoggedOutUser(request: Request) {
     const user = await getCurrentUser(request);
     if (user !== null) {
-      throw redirect("/home");
+      throw redirect("/home/main");
     }
   }
   
