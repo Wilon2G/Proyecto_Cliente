@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import BuyButton from '~/components/BuyButton';
 import prisma from '~/utils/prismaClient';
 
-// Para capturar el tema desde las cookies (sesión)
+
 import { getSession } from '~/sessions';
 
 interface Game {
@@ -23,7 +23,7 @@ export let loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  // Obtener el tema desde la sesión
+  
   const theme = session.get('theme') || 'dark';
 
   const games = await prisma.game.findMany();
@@ -33,7 +33,7 @@ export let loader: LoaderFunction = async ({ request }) => {
 export default function Shop() {
   const { games, theme } = useLoaderData<{ games: Game[]; theme: string }>();
 
-  // Definir las clases de color dependiendo del tema
+  
   const textClasses = theme === 'dark' ? 'text-white' : 'text-black';
 
   return (
@@ -93,19 +93,19 @@ export default function Shop() {
         <Swiper
           modules={[Navigation]}
           spaceBetween={16}
-          slidesPerView={1} // Mobile first
+          slidesPerView={1} 
           breakpoints={{
             640: {
-              slidesPerView: 2, // For small tablets and up
+              slidesPerView: 2, 
             },
             768: {
-              slidesPerView: 3, // For medium tablets and up
+              slidesPerView: 3, 
             },
             1024: {
-              slidesPerView: 4, // For large screens
+              slidesPerView: 4, 
             },
             1280: {
-              slidesPerView: 5, // For larger screens
+              slidesPerView: 5, 
             },
           }}
           navigation
