@@ -5,7 +5,7 @@ import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
 import {InputForm} from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
-import { checkUser, userExists } from '~/models/user.server';
+import { checkUser, getThemes, userExists } from '~/models/user.server';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
 import { LoaderFunction } from '@remix-run/node';
 import { commitSession, getSession } from '~/sessions';
@@ -49,6 +49,15 @@ export async function action({ request }: { request: Request }) {
           };
         } else {
           session.set('userId', userId);
+
+          const themeData= await getThemes(userId);
+
+          if (themeData) {
+            session.set('theme', themeData[0]);
+            session.set('background', themeData[1]);
+            session.set('fontFamily', themeData[2]);
+          }
+
           const cookie = await commitSession(session);
           return redirect('/home/main', {
             headers: {

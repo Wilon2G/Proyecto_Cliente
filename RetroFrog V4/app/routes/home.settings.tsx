@@ -5,6 +5,8 @@ import PrivacyPolices from '~/components/PrivacyPolices';
 import { z } from 'zod';
 import { commitSession, getSession } from '~/sessions';
 import validateForm from '~/utils/validation';
+import { updateTheme } from '~/models/user.server';
+import { requiredLoggedInUser } from '~/utils/auth.server';
 
 const customSchema = z.object({
   theme: z.string(),
@@ -25,6 +27,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
+  const user = await requiredLoggedInUser(request)
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
@@ -38,6 +41,8 @@ export const action: ActionFunction = async ({ request }) => {
       session.set('theme', theme);
       session.set('background', background);
       session.set('fontFamily', fontFamily);
+
+      updateTheme(user.id,theme,background, fontFamily);
 
       return new Response(null, {
         headers: {
@@ -57,13 +62,11 @@ export default function Settings() {
   return (
     <>
       <div className="flex flex-col justify-center gap-16 text-center ">
-        <h1
-          className="text-3xl font-semibold mb-4"
-          style={{ color: '#e6e6e6' }}
-        >
-          Settings
-        </h1>
 
+        <div className="aboutUs">
+          <Developers />
+        </div>
+        
         <div className="custom">
           <Custom />
         </div>
@@ -72,9 +75,7 @@ export default function Settings() {
           <PrivacyPolices />
         </div>
 
-        <div className="aboutUs">
-          <Developers />
-        </div>
+        
       </div>
     </>
   );

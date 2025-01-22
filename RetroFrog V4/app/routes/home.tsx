@@ -13,23 +13,25 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
+import { getThemes } from '~/models/user.server';
 import { themeChanges } from '~/root';
-import { getSession } from '~/sessions';
+import { commitSession, getSession } from '~/sessions';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
-  await requiredLoggedInUser(request);
 
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  // Devolver los valores existentes en la sesión.
+
+    // Devolver los valores existentes en la sesión.
   return {
     theme: session.get('theme') || 'dark',
     background: session.get('background') || '/assets/background/bg3.jpg',
     fontFamily: session.get('fontFamily') || 'arial',
   };
+  
 };
 
 //Comprobar que usuario está loggeado

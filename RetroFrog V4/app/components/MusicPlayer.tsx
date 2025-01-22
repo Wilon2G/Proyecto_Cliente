@@ -17,7 +17,7 @@ interface MusicPlayerProps {
   className?: string;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = () => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [isRepeating, setIsRepeating] = useState(false);
@@ -141,7 +141,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = () => {
 
   return (
     <div
-      className={`h-fit w-72 max-w-md rounded-xl shadow-lg p-4 flex flex-col items-center fixed right-2 bottom-4 gap-4 transition-all z-50`}
+      className={`h-fit w-72 max-w-md rounded-xl shadow-lg p-4 flex flex-col items-center fixed right-2 bottom-4 gap-4 transition-all z-50 ${className}`}
       style={{ background: primaryBg, color: textColor }}
     >
       <div className="flex flex-row items-center justify-center gap-2 w-full">

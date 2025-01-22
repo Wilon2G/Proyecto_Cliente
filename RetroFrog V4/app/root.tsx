@@ -43,15 +43,16 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   // Verificar si la sesión tiene datos
   if (!session.has('theme')) {
-    session.set('theme', 'dark');
-    session.set('background', '/assets/background/bg3.jpg');
-    session.set('fontFamily', 'arial');
+    // session.set('theme', 'dark');
+    // session.set('background', '/assets/background/bg3.jpg');
+    // session.set('fontFamily', 'arial');
 
-    const cookie = await commitSession(session);
-    return new Response(null, {
-      status: 200,
-      headers: { 'Set-Cookie': cookie },
-    });
+    // const cookie = await commitSession(session);
+    // return new Response(null, {
+    //   status: 200,
+    //   headers: { 'Set-Cookie': cookie },
+    // });
+    return null;
   }
 
   // Devolver los valores existentes en la sesión.
