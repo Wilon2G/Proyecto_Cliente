@@ -1,52 +1,69 @@
-import { Form,    redirect, useActionData } from '@remix-run/react';
-import { useState } from 'react';
+import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
+import React, { useState } from 'react';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
-import InputForm from '~/components/InputForm';
+import {InputForm} from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
-import { checkUser, userExists } from '~/models/user.server';
-import { hash } from '~/utils/cryptography';
+import { checkUser, getThemes, userExists } from '~/models/user.server';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
 import { LoaderFunction } from '@remix-run/node';
+import { commitSession, getSession } from '~/sessions';
+import { themeChanges } from '~/root';
+import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedOutUser(request);
-  return null;
+
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
 };
-
-
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
   //Descomentar esto para ver los datos que se envían por los formularios de login y registro
   //console.log(formData);
-  if (formData.get("_action")==="logIn") {
-    console.log("Ha entrado en el action de login");
+  if (formData.get('_action') === 'logIn') {
+    //console.log("Ha entrado en el action de login");
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
-        console.log(data.usernameLog + ' y ' + data.passwordLog);
-        const userId= await checkUser(data.usernameLog,data.passwordLog);
+        //console.log(data.usernameLog + ' y ' + data.passwordLog);
+        const userId = await checkUser(data.usernameLog, data.passwordLog);
         if (!userId) {
           return {
             errors: {
-              status:400,
-              generalLog: "User or password are incorrect",
+              status: 400,
+              generalLog: 'User or password are incorrect',
             },
           };
-        }
-        else{
-          const hashedId= hash(userId);
-          console.log(hashedId);
-          return redirect("/home/main",{
+        } else {
+          session.set('userId', userId);
+
+          const themeData= await getThemes(userId);
+
+          if (themeData) {
+            session.set('theme', themeData[0]);
+            session.set('background', themeData[1]);
+            session.set('fontFamily', themeData[2]);
+          }
+
+          const cookie = await commitSession(session);
+          return redirect('/home/main', {
             headers: {
-              "Set-Cookie": hashedId,
+              'Set-Cookie': cookie,
             },
           });
-          
-    
         }
       },
       (errors) =>
@@ -55,20 +72,19 @@ export async function action({ request }: { request: Request }) {
           headers: { 'Content-Type': 'application/json' },
         }),
     );
-  }
-  else{
-    console.log("Ha entrado en el action de registro");
+  } else {
+    //console.log("Ha entrado en el action de registro");
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
-        console.log(data.usernameReg + ' y ' + data.passwordReg);
-        const userExist=await userExists(data.usernameReg);
+        //console.log(data.usernameReg + ' y ' + data.passwordReg);
+        const userExist = await userExists(data.usernameReg);
         if (userExist) {
           return {
             errors: {
-              status:400,
-              generalReg: "User Name is already registered, please Log In",
+              status: 400,
+              generalReg: 'User Name is already registered, please Log In',
             },
           };
         }
@@ -81,20 +97,38 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   }
-  
 }
 
 export default function LoginPage() {
-  const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const actionData = useActionData<typeof action>();
+  const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
+
+  const handlePanelChange = (panel: 'login' | 'register') => {
+    if (activePanel !== panel) {
+      setActivePanel(panel);
+    }
+  };
+
+  //Recuperar colores
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, highlightBg } = colors;
 
   return (
     <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 bg-primaryDark text-textDark backdrop-blur-lg">
-        <div className="w-full h-1/5 p-6 flex items-center ">
+      <div
+        className="h-full w-2/5 backdrop-blur-lg"
+        style={{ background: primaryBg }}
+      >
+        <div
+          className="w-full h-1/5 p-6 flex items-center"
+          style={{ background: `${highlightBg}` }}
+        >
           <img
             src="../../public/assets/icon/frog-logo3.png"
-            alt=""
+            alt="Frog Logo"
             className="w-32 h-auto"
           />
           <div className="w-full">
@@ -110,49 +144,16 @@ export default function LoginPage() {
         </div>
 
         <div className="flex w-full h-4/5">
-          <div
-            className={`flex-1 transition-all duration-500 ${
-              activePanel === 'login'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
-            } p-8 flex flex-col justify-center items-center cursor-pointer`}
-            onClick={() => setActivePanel('login')}
-            onKeyDown={(event) => {
-              if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
-                setActivePanel('register');
-              }
-            }}
-            tabIndex={0} // Permite navegasr con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+          {/**LOGIN */}
+          <SlidePannel
+            panelId="login"
+            otherPanelId="register"
+            activeTitle="Welcome Back!"
+            inactiveTitle="Did you already have an account?"
+            buttonText="Log In!"
+            activePanel={activePanel}
+            onPanelChange={handlePanelChange}
           >
-            <div
-              className={`transition-all duration-1000 ${
-                activePanel === 'login' &&
-                'translate-y-[-50px] opacity-0 absolute top-[-200px]'
-              }`}
-            >
-              <p className="mb-4 text-gray-400 font-bold text-base ">
-                Did you alreday had an account?
-              </p>
-              <h2
-                className={`text-lg font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
-              >
-                Log In!
-              </h2>
-            </div>
-
-            <div
-              className={`transition-all duration-1000 ${
-                activePanel !== 'login' &&
-                'translate-y-[50px] opacity-0 absolute top-[-200px]'
-              }`}
-            >
-              <h2 className={`text-2xl font-bold mb-6 text-center`}>
-                Welcome Back!
-              </h2>
-            </div>
-
             <form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
@@ -160,11 +161,19 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameLog" />
+                <InputForm
+                  inputType="username"
+                  inputName="usernameLog"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordLog" />
+                <InputForm
+                  inputType="password"
+                  inputName="passwordLog"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
               </div>
               <Button
@@ -176,67 +185,44 @@ export default function LoginPage() {
               />
               <ErrorMessage>{actionData?.errors?.generalLog}</ErrorMessage>
             </form>
-          </div>
+          </SlidePannel>
 
-          <div
-            className={`h-full flex-1 transition-all duration-500 ${
-              activePanel === 'register'
-                ? 'flex-[2] bg-highlightDark text-textDarkHighlight'
-                : 'flex-[1] '
-            }   p-8 flex flex-col justify-center items-center cursor-pointer`}
-            onClick={() => setActivePanel('register')}
-            onKeyDown={(event) => {
-              if (event.key === ' ') {
-                event.preventDefault(); // Evitar scroll cuando se presiona "Espacio"
-                setActivePanel('login');
-              }
-            }}
-            tabIndex={0} // Permite navegar con Tab
-            role="button" // Define el elemento como un botón para la accesibilidad
+          {/**REGISTER */}
+          <SlidePannel
+            panelId="register"
+            otherPanelId="login"
+            activeTitle="Welcome!"
+            inactiveTitle="Don't have an account yet?"
+            buttonText="Create an account!"
+            activePanel={activePanel}
+            onPanelChange={handlePanelChange}
           >
-            <div
-              className={`transition-all duration-1000 text-center ${
-                activePanel === 'register' &&
-                'translate-y-[-50px] opacity-0 absolute top-[-200px]'
-              }`}
-            >
-              <p className="mb-4 text-gray-400 font-bold text-lg ">
-                Don&apos;t have an account yet?
-              </p>
-              <h2
-                className={`text-xl font-bold mb-6 p-2 text-center transition-all duration-300 border-textDark rounded-xl z-50 hover:bg-primaryLight hover:text-textLight border-2`}
-              >
-                Create an account!
-              </h2>
-            </div>
-
-            <div
-              className={`transition-all duration-1000 ${
-                activePanel !== 'register' &&
-                'translate-y-[50px] opacity-0 absolute top-[-200px]'
-              }`}
-            >
-              <h2 className={`text-2xl font-bold mb-6 text-center`}>
-                Welcome!
-              </h2>
-            </div>
             <Form
               method="post"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
-                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''}`}>
-                <div>
-                <InputForm inputType="username" inputName="usernameReg" />
+                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
+              }`}
+            >
+              <div>
+                <InputForm
+                  inputType="username"
+                  inputName="usernameReg"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordReg" />
+                <InputForm
+                  inputType="password"
+                  inputName="passwordReg"
+                  theme={theme}
+                />
                 <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="name" inputName="nameReg" />
+                <InputForm inputType="name" inputName="nameReg" theme={theme} />
                 <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
               </div>
-              {/* <SignUpForm /> */}
               <Button
                 textBtn="Sign up"
                 typeBtn="submit"
@@ -246,9 +232,93 @@ export default function LoginPage() {
               />
               <ErrorMessage>{actionData?.errors?.generalReg}</ErrorMessage>
             </Form>
-          </div>
+          </SlidePannel>
         </div>
       </div>
+    </div>
+  );
+}
+
+type SlidePannelProps = {
+  panelId: 'login' | 'register';
+  otherPanelId: 'login' | 'register';
+  activeTitle: string;
+  inactiveTitle: string;
+  buttonText: string;
+  children: React.ReactNode;
+  activePanel: 'login' | 'register';
+  onPanelChange: (panel: 'login' | 'register') => void;
+};
+
+function SlidePannel({
+  panelId,
+  otherPanelId,
+  activeTitle,
+  inactiveTitle,
+  buttonText,
+  children,
+  activePanel,
+  onPanelChange,
+}: SlidePannelProps) {
+  //otherpanelID(Para el login es register y viceversa)
+  const isActive = activePanel === panelId;
+
+  //Recuperar colores
+  const data = useLoaderData<themeChanges>();
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { primaryBg, highlightBg, textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className={`h-full flex-1 transition-all duration-500 ${
+        activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
+      }   p-8 flex flex-col justify-center items-center cursor-pointer`}
+      style={{
+        background: activePanel === otherPanelId ? highlightBg : '', // Aplicación de color dinámico
+        color: activePanel === otherPanelId ? textHighlight : '', // Aplicación de color dinámico
+      }}
+      onClick={() => onPanelChange(panelId)}
+      onKeyDown={(event) => {
+        if (event.key === ' ') {
+          event.preventDefault();
+          onPanelChange(otherPanelId);
+        }
+      }}
+      tabIndex={0}
+      role="button"
+    >
+      <div
+        className={`transition-all duration-1000 ${
+          isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+        }`}
+      >
+        <p className="mb-4 font-bold text-base">{inactiveTitle}</p>
+        <h2
+          className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
+          style={{
+            borderColor: `${textColor}`,
+            background: isHovered ? `${highlightBg}` : `${primaryBg}`,
+            color: isHovered ? `${textHighlight}` : `${textColor}`,
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {buttonText}
+        </h2>
+      </div>
+
+      <div
+        className={`transition-all duration-1000 ${
+          !isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
+        }`}
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center">{activeTitle}</h2>
+      </div>
+
+      {children}
     </div>
   );
 }

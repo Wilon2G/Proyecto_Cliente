@@ -23,11 +23,18 @@ export default function Catalog() {
       route: '/assets/icon/pfp/wilon2g.jpeg',
     },
     {
+      tag: 'Get to know our first class developers',
+      title: 'RetroFrog',
+      description: 'The first online-arcade experience',
+      gitlink: 'https://github.com/Wilon2G/Proyecto_Cliente.git',
+      route: '/assets/icon/frog-logo3.png',
+    },
+    {
       tag: 'Web Developer',
       title: 'GonS11',
       description: 'Desarrollador de aplicaciones web y enfermero.',
       gitlink: 'https://github.com/GonS11',
-      route: '/assets/icon/pfp/gons11.png',
+      route: 'https://avatars.githubusercontent.com/u/148366975?v=4',
     },
     {
       tag: 'Web Developer',
@@ -40,19 +47,12 @@ export default function Catalog() {
 
   return (
     <>
-      <h2
-        className="text-2xl font-semibold  mt-1 mb-1"
-        style={{
-          color: '#e6e6e6',
-        }}
-      >
-        Sobre nosotros
-      </h2>
       <div className="slider-container">
         <Swiper
           modules={[EffectCoverflow]}
           spaceBetween={10}
           slidesPerView={3}
+          initialSlide={2}
           effect="coverflow"
           centeredSlides={true}
           coverflowEffect={{
