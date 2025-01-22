@@ -1,5 +1,4 @@
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
 import Button from './Buttons';
 import { changeThemeColor } from '~/utils/themeColors';
 import { themeChanges } from '~/root';

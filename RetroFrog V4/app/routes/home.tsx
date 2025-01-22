@@ -13,21 +13,25 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
-
+import { getThemes } from '~/models/user.server';
 import { themeChanges } from '~/root';
-import { getSession } from '~/sessions';
+import { commitSession, getSession } from '~/sessions';
+import { requiredLoggedInUser } from '~/utils/auth.server';
 import { changeThemeColor } from '~/utils/themeColors';
 
 export const loader: LoaderFunction = async ({ request }) => {
+
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  // Devolver los valores existentes en la sesión.
+
+    // Devolver los valores existentes en la sesión.
   return {
     theme: session.get('theme') || 'dark',
     background: session.get('background') || '/assets/background/bg3.jpg',
     fontFamily: session.get('fontFamily') || 'arial',
   };
+  
 };
 
 //Comprobar que usuario está loggeado
@@ -38,7 +42,6 @@ export default function HomePage() {
   const colors = changeThemeColor(theme || 'dark');
 
   const { primaryBg, iconFill } = colors;
-  const [isHovered, setIsHovered] = useState(false);
 
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
@@ -102,7 +105,7 @@ export default function HomePage() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="library?filter=favorites" className="nav-link">
+              <NavLink to="library" className="nav-link">
                 <span className="nav-icon">
                   <FavGamesIcon iconFill={`${iconFill}`} />
                 </span>
@@ -139,9 +142,9 @@ export default function HomePage() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link">
-                <span className="nav-icon">
-                  <LogOutIcon iconFill={`${iconFill}`} />
+              <NavLink to="/logout" className="nav-link" >
+                <span className="nav-icon" >
+                  <LogOutIcon iconFill={`${iconFill}`}  />
                 </span>
                 <span className="nav-label">Logout</span>
               </NavLink>
@@ -155,3 +158,5 @@ export default function HomePage() {
     </>
   );
 }
+
+

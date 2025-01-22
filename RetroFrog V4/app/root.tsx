@@ -1,4 +1,4 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import React, { useState } from 'react';
 import {
   Links,
   Meta,
@@ -7,9 +7,15 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react';
-import React from 'react';
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from '@remix-run/node';
 
 import './tailwind.css';
+import { commitSession, getSession } from './sessions';
+import { changeThemeColor } from './utils/themeColors';
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,7 +37,32 @@ export const links: LinksFunction = () => [
   },
 ];
 
-// Aquí definimos el tipo para los cambios de tema
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+
+  // Verificar si la sesión tiene datos
+  if (!session.has('theme')) {
+    // session.set('theme', 'dark');
+    // session.set('background', '/assets/background/bg3.jpg');
+    // session.set('fontFamily', 'arial');
+
+    // const cookie = await commitSession(session);
+    // return new Response(null, {
+    //   status: 200,
+    //   headers: { 'Set-Cookie': cookie },
+    // });
+    return null;
+  }
+
+  // Devolver los valores existentes en la sesión.
+  return {
+    theme: session.get('theme') || 'dark',
+    background: session.get('background') || '/assets/background/bg3.jpg',
+    fontFamily: session.get('fontFamily') || 'arial',
+  };
+};
+
 export type themeChanges = {
   theme: string;
   background: string;
@@ -39,20 +70,15 @@ export type themeChanges = {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  // Obtener los datos de la sesión
   const data = useLoaderData<themeChanges>();
 
-  // Asegurarse de que data tenga valores por defecto en caso de que sea undefined
-  const {
-    theme = 'dark', // Valor por defecto 'dark' si theme es undefined
-    background = '/assets/background/bg3.jpg', // Valor por defecto para el background
-    fontFamily = 'arial', // Valor por defecto para fontFamily
-  } = data || {}; // Desestructuramos, y si data es undefined, se usa el valor por defecto
-
-  // Si algún valor es undefined, mostramos un mensaje de error
-  if (!theme || !background || !fontFamily) {
-    return <div>Error loading data</div>;
-  }
+  const background = data?.background || '/assets/background/bg3.jpg';
+  const fontFamily = data?.fontFamily || 'arial';
+  const theme = data?.theme; 
+    const colors = changeThemeColor(theme || 'dark'); 
+    
+  const {  textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <html lang="en" className="h-full">
@@ -63,12 +89,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body
-        className="h-full"
+        className={'h-full'}
         style={{
-          backgroundColor: theme === 'dark' ? '#151A2D' : '#F5F5F5', // Ajustamos el color de fondo dependiendo del tema
-          backgroundImage: `url(${background})`, // Aplicamos la imagen de fondo
-          fontFamily: fontFamily, // Aplicamos la familia tipográfica
+          backgroundImage: `url(${background})`,
+          fontFamily,
+          color: isHovered ? `${textHighlight}` : `${textColor}`,
         }}
+        onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
       >
         {children}
         <ScrollRestoration />

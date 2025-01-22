@@ -6,9 +6,9 @@ export default function HomeHeader() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userName = sessionStorage.getItem('username');
+    const username = sessionStorage.getItem('username');
 
-    if (userName == '' || userName === null) {
+    if (username == '' || username === null) {
       navigate('/Login');
     }
   }, [navigate]);

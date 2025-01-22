@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "4ed1",
-      "userName": "Prueba",
+      "username": "Prueba",
       "password": "prueba",
       "name": "Prueba pepito",
       "email": "pruebaPepito@gmail.com",
@@ -23,7 +23,7 @@
     },
     {
       "id": "b85e",
-      "userName": "Juan",
+      "username": "Juan",
       "password": "1234",
       "name": "Juanito",
       "email": "juanito777@gmail.com",
@@ -39,7 +39,7 @@
     },
     {
       "id": "1a4b",
-      "userName": "Pichulilla",
+      "username": "Pichulilla",
       "password": "prueba",
       "name": "Pepote prueba",
       "email": "pichulillachula@gmail.com",
@@ -57,7 +57,7 @@
     },
     {
       "id": "88a2",
-      "userName": "Potillo",
+      "username": "Potillo",
       "password": "prueba",
       "name": "Potillo Prueba Gómez",
       "email": "potitopotilloprueba@gmail.com",
