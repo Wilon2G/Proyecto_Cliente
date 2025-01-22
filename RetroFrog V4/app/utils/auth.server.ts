@@ -32,4 +32,7 @@ export async function getCurrentUser(request: Request) {
   
     return user;
   }
+
+
+
   

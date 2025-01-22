@@ -140,9 +140,9 @@ export default function HomePage() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link">
-                <span className="nav-icon">
-                  <LogOutIcon iconFill={`${iconFill}`} />
+              <NavLink to="/logout" className="nav-link" >
+                <span className="nav-icon" >
+                  <LogOutIcon iconFill={`${iconFill}`}  />
                 </span>
                 <span className="nav-label">Logout</span>
               </NavLink>
@@ -156,3 +156,5 @@ export default function HomePage() {
     </>
   );
 }
+
+

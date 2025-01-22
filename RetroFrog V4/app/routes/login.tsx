@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
-import InputForm from '~/components/Inputs';
+import {InputForm} from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { checkUser, userExists } from '~/models/user.server';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
