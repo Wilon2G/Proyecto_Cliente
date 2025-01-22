@@ -1,12 +1,74 @@
-import { Game } from '@prisma/client';
+import { Game, User } from '@prisma/client';
+import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
 import React from 'react';
+import prisma from '~/utils/prismaClient';
+
+const userId = 'cm65hosr80000qstgkhik7b11';
+
+export let loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  const filter = url.searchParams.get('filter');
+
+  const games = await prisma.game.findMany({
+    where:
+      filter === 'favorites'
+        ? { UsersFavorited: { some: { id: userId } } }
+        : {},
+    include: {
+      UsersFavorited: true,
+    },
+  });
+
+  return { games, filter };
+};
+
+export let action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const gameId = formData.get('gameId') as string;
+
+  if (!gameId) {
+    throw new Response('ID de juego no proporcionado', { status: 400 });
+  }
+
+  const existingFavorite = await prisma.user.findFirst({
+    where: {
+      id: userId,
+      FavoriteGames: { some: { id: gameId } },
+    },
+  });
+
+  if (existingFavorite) {
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        FavoriteGames: {
+          disconnect: { id: gameId },
+        },
+      },
+    });
+  } else {
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        FavoriteGames: {
+          connect: { id: gameId },
+        },
+      },
+    });
+  }
+
+  return new Response(null, { status: 200 });
+};
 
 export default function Library() {
-  const { games, userId } = useLoaderData<{ games: Game[]; userId: string }>();
+  const { games, filter } = useLoaderData<{
+    games: (Game & { UsersFavorited: User[] })[];
+    filter: string | null;
+  }>();
   const fetcher = useFetcher();
 
-  const [isModalOpen, setIsModalOpen] = React.useState(false); // Controla el estado del pop-up
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const toggleFavorite = (gameId: string) => {
     fetcher.submit({ gameId }, { method: 'post' });
@@ -26,17 +88,15 @@ export default function Library() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    // Subir nuevo juego a través del fetcher
     fetcher.submit(formData, { method: 'post', action: '/upload-game' });
-    handleCloseModal(); // Cerrar el pop-up después de enviar
+    handleCloseModal();
   };
 
-  // Simular la comprobación de rol de administrador (esto debería venir del servidor)
-  const isAdmin = true; // Cambia esto por la lógica de rol real
+  const isAdmin = true;
 
   return (
     <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4 relative">
-      {games.map((game) => {
+      {games?.map((game) => {
         const isFavorite = game.UsersFavorited.some(
           (user) => user.id === userId,
         );
@@ -89,7 +149,6 @@ export default function Library() {
         );
       })}
 
-      {/* Botón de agregar juego para administradores */}
       {isAdmin && (
         <div
           onClick={handleOpenModal}
@@ -112,7 +171,6 @@ export default function Library() {
         </div>
       )}
 
-      {/* Pop-up para subir un nuevo juego */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -120,7 +178,7 @@ export default function Library() {
         >
           <div
             className="bg-white p-6 rounded-lg shadow-lg w-96"
-            onClick={(e) => e.stopPropagation()} // Evitar cerrar al hacer clic dentro
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-bold mb-4">Subir Nuevo Juego</h2>
             <form onSubmit={handleSubmitNewGame}>
