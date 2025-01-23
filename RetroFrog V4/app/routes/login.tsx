@@ -48,13 +48,13 @@ export async function action({ request }: { request: Request }) {
           session.set('userId', userId);
 
           const themeData = await getThemes(userId);
-
-          /* if (themeData) {
-            session.set('theme', themeData[0]);
-            session.set('background', themeData[1]);
-            session.set('fontFamily', themeData[2]);
-          } */
-
+          console.log(themeData);
+           if (themeData) {
+            session.set("theme",themeData[0]);
+            session.set("background",themeData[1]);
+            session.set("fontFamily",themeData[2]);
+            
+          }
           const cookie = await commitSession(session);
           return redirect('/home/main', {
             headers: {

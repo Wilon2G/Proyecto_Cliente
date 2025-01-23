@@ -1,9 +1,10 @@
 import db from '~/db.server';
+import { getCurrentUser } from '~/utils/auth.server';
 
 export async function checkUser(username: string, password: string) {
   const user = await db.user.findUnique({
     where: {
-      userName: username,
+      username: username,
     },
   });
   if (!user) {
@@ -19,7 +20,7 @@ export async function checkUser(username: string, password: string) {
 export async function userExists(username: string) {
   const user = await db.user.findUnique({
     where: {
-      userName: username,
+      username: username,
     },
   });
   if (!user) {
@@ -68,3 +69,14 @@ export async function getThemes(id: string) {
 
   return themeData?.theme.split(':');
 }
+
+
+  //Función para comprobar si el usuario está logeado que no redirige
+  export async function getUserId(request: Request) {
+    const user = await getCurrentUser(request);
+    if (user === null) {
+      return null
+    }
+  
+    return user.id;
+  }
