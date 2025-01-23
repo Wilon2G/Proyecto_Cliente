@@ -1,28 +1,30 @@
+import { LoaderFunction } from '@remix-run/node';
 import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import React, { useState } from 'react';
-import { logInSchema, registerSchema } from '../utils/zodSchemas';
-import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
-import {InputForm} from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
+import { InputForm } from '~/components/Inputs';
 import { checkUser, getThemes, userExists } from '~/models/user.server';
-import { requiredLoggedOutUser } from '~/utils/auth.server';
-import { LoaderFunction } from '@remix-run/node';
-import { commitSession, getSession } from '~/sessions';
 import { themeChanges } from '~/root';
+import { commitSession, getSession } from '~/sessions';
+import { requiredLoggedOutUser } from '~/utils/auth.server';
 import { changeThemeColor } from '~/utils/themeColors';
+import validateForm from '~/utils/validation';
+import { logInSchema, registerSchema } from '../utils/zodSchemas';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedOutUser(request);
 
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
+  const userId = session.get('userId'); // Recuperar el ID del usuario
 
   // Devolver los valores existentes en la sesión.
   return {
     theme: session.get('theme') || 'dark',
     background: session.get('background') || '/assets/background/bg3.jpg',
     fontFamily: session.get('fontFamily') || 'arial',
+    userId,
   };
 };
 
@@ -50,7 +52,7 @@ export async function action({ request }: { request: Request }) {
         } else {
           session.set('userId', userId);
 
-          const themeData= await getThemes(userId);
+          const themeData = await getThemes(userId);
 
           if (themeData) {
             session.set('theme', themeData[0]);

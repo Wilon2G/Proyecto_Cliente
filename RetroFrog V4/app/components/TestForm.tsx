@@ -1,5 +1,5 @@
-"use client";
-import { Button } from "@/components/ui/button";
+'use client';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -7,22 +7,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"; //shadcn ui folder
-import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { BsImages, BsPaperclip } from "react-icons/bs";
-import { IoSendOutline } from "react-icons/io5";
-import * as z from "zod";
+} from '@/components/ui/form'; //shadcn ui folder
+import { cn } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { BsImages, BsPaperclip } from 'react-icons/bs';
+import { IoSendOutline } from 'react-icons/io5';
+import * as z from 'zod';
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
 ];
-const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+const ACCEPTED_IMAGE_TYPES = ['jpeg', 'jpg', 'png', 'webp'];
 const formSchema = z.object({
   adImage: z
     .any()
@@ -31,7 +31,7 @@ const formSchema = z.object({
     }, `Max image size is 5MB.`)
     .refine(
       (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
+      'Only .jpg, .jpeg, .png and .webp formats are supported.',
     ),
 });
 export type ContactFormData = z.infer<typeof formSchema>;
@@ -52,7 +52,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className={cn("flex md:flex-row w-[100%] gap-4 flex-col")}>
+          <div className={cn('flex md:flex-row w-[100%] gap-4 flex-col')}>
             <div className="flex  w-[100%] gap-4 flex-col ">
               <FormLabel>your form title</FormLabel>
               <div
@@ -118,7 +118,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={cn("flex w-[100%] gap-4 justify-end")}>
+          <div className={cn('flex w-[100%] gap-4 justify-end')}>
             <div className="space-y-2">
               <Button className="gap-1 py-4 px-4" type="submit">
                 <span>SUBMIT</span>

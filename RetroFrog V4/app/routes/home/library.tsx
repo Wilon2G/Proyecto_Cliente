@@ -2,14 +2,15 @@ import { Game, User } from '@prisma/client';
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
 import React from 'react';
+import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
-
-const userId = 'cm65hosr80000qstgkhik7b11';
 
 export let loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter');
-
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+  const userId = session.get('userId');
   const games = await prisma.game.findMany({
     where:
       filter === 'favorites'
@@ -19,8 +20,13 @@ export let loader: LoaderFunction = async ({ request }) => {
       UsersFavorited: true,
     },
   });
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true },
+  });
 
-  return { games, filter };
+  const userRole = user ? user.role : null;
+  return { games, filter, userRole };
 };
 
 export let action: ActionFunction = async ({ request }) => {
@@ -62,9 +68,9 @@ export let action: ActionFunction = async ({ request }) => {
 };
 
 export default function Library() {
-  const { games, filter } = useLoaderData<{
+  const { games, userRole } = useLoaderData<{
     games: (Game & { UsersFavorited: User[] })[];
-    filter: string | null;
+    userRole: string | null;
   }>();
   const fetcher = useFetcher();
 
@@ -92,7 +98,7 @@ export default function Library() {
     handleCloseModal();
   };
 
-  const isAdmin = true;
+  const isAdmin = userRole;
 
   return (
     <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4 relative">
@@ -103,6 +109,7 @@ export default function Library() {
 
         return (
           <div key={game.id} className="relative">
+            <p>{userRole}</p>
             <img
               src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
               alt={`Cover of ${game.title}`}
