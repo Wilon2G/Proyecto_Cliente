@@ -20,7 +20,7 @@ export async function checkUser(username: string, password: string) {
 export async function userExists(username: string) {
   const user = await db.user.findUnique({
     where: {
-      userName: username,
+      username: username,
     },
   });
   if (!user) {

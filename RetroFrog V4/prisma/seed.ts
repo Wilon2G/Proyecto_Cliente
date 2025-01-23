@@ -52,7 +52,7 @@ async function main() {
   const gamelist = [
     {
       tags: 'RPG',
-      title: 'Legend of Zelda: A Link to the Past',
+      title: 'Legend of Zelda a Link to the Past',
       description: 'Explora mazmorras y salva Hyrule.',
       color: '#FFD700',
     },
