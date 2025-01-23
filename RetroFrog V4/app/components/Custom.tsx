@@ -1,8 +1,6 @@
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import Button from './Buttons';
-import { changeThemeColor } from '~/utils/themeColors';
-import { themeChanges } from '~/root';
-import ErrorMessage from './ErrorMsg';
+import {ErrorMessage} from './ErrorMessage';
 
 //Para los errors
 export interface ActionData {
@@ -26,27 +24,17 @@ const backgrounds = [
 function Custom() {
   const actionData = useActionData<ActionData>();
 
-  const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
+  // const data = useLoaderData<themeChanges>();
+  // const theme = data?.theme;
+  // const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg } = colors;
+  // const { primaryBg } = colors; 
 
   return (
     <>
-      <h2
-        className="text-2xl font-semibold mt-1 mb-1"
-        style={{
-          color: '#e6e6e6',
-        }}
-      >
-        Customize
-      </h2>
+      <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">Customize</h2>
 
-      <div
-        className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg"
-        style={{ background: primaryBg }}
-      >
+      <div className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg bg-primary">
         <Form method="post" className="w-full">
           {/* Tema oscuro-claro */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
@@ -112,12 +100,7 @@ function Custom() {
             <select
               name="fontFamily"
               id="fontFamily"
-              className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300"
-              style={{
-                borderColor: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
-                background: theme !== 'dark' ? '#151a2d' : '#ffffff',
-                color: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
-              }}
+              className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300 border-color-reverse bg-primary-reverse text-color-reverse"
             >
               <option value="Open sans">Open Sans</option>
               <option value="Roboto">Roboto</option>

@@ -1,26 +1,26 @@
 import type { Config } from 'tailwindcss';
 
 export default {
-  content: ['./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}'],
-  darkMode: 'class',
+  content: ['./app/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      fontSize: {
-        h1: '3xl',
-        h2: '2xl',
-        h3: 'xl',
+      colors: {
+        primary: 'var(--primary)',
+        'primary-hover': 'var(--primary-hover)',
+        'primary-reverse': 'var(--primary-reverse)',
+        'primary-hover-reverse': 'var(--primary-hover-reverse)',
+        color: 'var(--color)',
+        'color-reverse': 'var(--color-reverse)',
+        'color-hover': 'var(--color-hover)',
+        'icon-fill': 'var(--icon-fill)',
+        'icon-fill-hover': 'var(--icon-fill-hover)',
+        'icon-bg-hover': 'var(--icon-bg-hover)',
       },
       fontFamily: {
-        sans: [
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
-          'sans-serif',
-          'Apple Color Emoji',
-          'Segoe UI Emoji',
-          'Segoe UI Symbol',
-          'Noto Color Emoji',
-        ],
+        'primary-font': 'var(--fontFamily)',
+      },
+      backgroundImage: {
+        'image-bg': 'var(--bgImage)',
       },
     },
   },

@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { BsImages, BsPaperclip } from 'react-icons/bs';
 import { IoSendOutline } from 'react-icons/io5';
 import * as z from 'zod';
+
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
   'image/jpeg',

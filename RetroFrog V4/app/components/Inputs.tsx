@@ -3,10 +3,10 @@ import classNames from 'classnames';
 export type InputProps = {
   inputType: string;
   inputName: string;
-  theme?: string;
+  classname?: string;
 };
 
-export function InputForm({ inputType, theme, inputName }: InputProps) {
+export function InputForm({ inputType, classname, inputName }: InputProps) {
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
@@ -26,20 +26,18 @@ export function InputForm({ inputType, theme, inputName }: InputProps) {
         name={`${inputName}`}
         id={`${inputType}`}
         autoComplete="off"
-        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none "
+        className={classNames(
+          'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
+          'border-color-reverse bg-primary-reverse text-color-reverse', //Cambios
+          classname,
+        )}
         placeholder={`Your ${inputType}`}
-        style={{
-          borderColor: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
-          background: theme !== 'dark' ? '#151a2d' : '#ffffff',
-          color: theme !== 'dark' ? '#e6e6e6' : '#1f253d',
-        }}
       />
     </>
   );
 }
 
 type InputRangeProps = {
-  theme?: string;
   classname?: string;
   value: number;
   max: number;
@@ -48,7 +46,6 @@ type InputRangeProps = {
 };
 
 export function InputRange({
-  theme,
   classname,
   value,
   max,
@@ -60,6 +57,7 @@ export function InputRange({
       type="range"
       className={classNames(
         'h-2 rounded-full appearance-none w-full',
+        'bg-primary-reverse',
         classname,
       )}
       min="0"
@@ -67,9 +65,6 @@ export function InputRange({
       step={step}
       value={value}
       onChange={onChange}
-      style={{
-        background: theme !== 'dark' ? '#151a2d' : '#ffffff',
-      }}
     />
   );
 }

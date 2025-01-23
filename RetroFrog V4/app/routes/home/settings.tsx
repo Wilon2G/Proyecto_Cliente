@@ -27,7 +27,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  const user = await requiredLoggedInUser(request)
+  const user = await requiredLoggedInUser(request);
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
@@ -42,8 +42,8 @@ export const action: ActionFunction = async ({ request }) => {
       session.set('background', background);
       session.set('fontFamily', fontFamily);
 
-      updateTheme(user.id,theme,background, fontFamily);
-
+      updateTheme(user.id, theme, background, fontFamily);
+      //console.log("tema updateadooooo");
       return new Response(null, {
         headers: {
           'Set-Cookie': await commitSession(session),
@@ -62,11 +62,10 @@ export default function Settings() {
   return (
     <>
       <div className="flex flex-col justify-center gap-16 text-center ">
-
         <div className="aboutUs">
           <Developers />
         </div>
-        
+
         <div className="custom">
           <Custom />
         </div>
@@ -74,8 +73,6 @@ export default function Settings() {
         <div className="privacy">
           <PrivacyPolices />
         </div>
-
-        
       </div>
     </>
   );

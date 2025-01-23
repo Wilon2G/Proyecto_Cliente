@@ -1,7 +1,4 @@
-import { useLoaderData } from '@remix-run/react';
 import React, { useState, useRef, useEffect } from 'react';
-import { themeChanges } from '~/root';
-import { changeThemeColor } from '~/utils/themeColors';
 import {
   ChooseMusicIcon,
   PlayingMusic,
@@ -10,6 +7,7 @@ import {
   VolumeIcon,
 } from './IconsSVG';
 import { InputRange } from './Inputs';
+import classNames from 'classnames';
 
 //DUDAS CON ESTA INTERFAZ Y PQ MUSICPLAYER ES CONST Y NO FUNCTION
 interface MusicPlayerProps {
@@ -17,7 +15,9 @@ interface MusicPlayerProps {
   className?: string;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({
+  className,
+}: MusicPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [isRepeating, setIsRepeating] = useState(false);
@@ -124,7 +124,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) =
     }
   }, [volume, audioRef]);
 
-  //Recuperar colores
+  /* //Recuperar colores
   const data = useLoaderData<themeChanges>();
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
@@ -137,21 +137,18 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) =
     iconFill,
     iconFillHighlight,
     iconBgHighlight,
-  } = colors;
+  } = colors; */
 
   return (
     <div
-      className={`h-fit w-72 max-w-md rounded-xl shadow-lg p-4 flex flex-col items-center fixed right-2 bottom-4 gap-4 transition-all z-50 ${className}`}
-      style={{ background: primaryBg, color: textColor }}
+      className={classNames(
+        `h-fit w-72 max-w-md rounded-xl shadow-lg p-4 flex flex-col items-center fixed right-2 bottom-4 gap-4 transition-all z-50 ${className}`,
+        'bg-primary text-color',
+      )}
     >
       <div className="flex flex-row items-center justify-center gap-2 w-full">
-        <VolumeIcon iconFill={iconFill} />
-        <InputRange
-          theme={theme}
-          value={volume}
-          max={1}
-          onChange={changeVolume}
-        />
+        <VolumeIcon iconFill={'text-icon-fill'} />
+        <InputRange value={volume} max={1} onChange={changeVolume} />
       </div>
 
       <div className="flex flex-col items-center transition-all w-full">
@@ -163,15 +160,14 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) =
           {songs.map((song, index) => (
             <li
               key={index}
-              className="text-sm p-2 cursor-pointer rounded-md transition duration-200"
-              style={{
-                background: audioRef.current?.src.includes(song.src)
-                  ? highlightBg
-                  : primaryBg,
-                color: audioRef.current?.src.includes(song.src)
-                  ? textHighlight
-                  : textColor,
-              }}
+              className={classNames(
+                'text-sm p-2 cursor-pointer rounded-md transition duration-200',
+                `${
+                  audioRef.current?.src.includes(song.src)
+                    ? 'bg-primary-hover text-color-hover'
+                    : 'bg-primary text-color'
+                }`,
+              )}
               onClick={() => changeSong(song.src)}
               onKeyDown={(e) => e.key === 'Enter' && changeSong(song.src)}
               // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
@@ -186,37 +182,33 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({className}:MusicPlayerProps) =
         <div className="flex justify-between items-center w-full gap-4 mt-4">
           <button
             onClick={togglePlaylist}
-            className="p-2 rounded-md transition duration-300"
-            style={{ background: iconBgHighlight }}
+            className="p-2 rounded-md transition duration-300 bg-icon-fill"
           >
-            <ChooseMusicIcon iconFill={iconFillHighlight} />
+            <ChooseMusicIcon iconFill={'bg-icon-fill'} />
           </button>
 
           <div className="flex gap-4">
             <button
               onClick={playPause}
-              className="p-2 rounded-full transition duration-300"
-              style={{ background: iconBgHighlight }}
+              className="p-2 rounded-full transition duration-300 bg-icon-fill"
             >
               {isPlaying ? (
-                <StopingMusic iconFill={iconFillHighlight} />
+                <StopingMusic iconFill={'bg-icon-fill'} />
               ) : (
-                <PlayingMusic iconFill={iconFillHighlight} />
+                <PlayingMusic iconFill={'bg-icon-fill'} />
               )}
             </button>
             <button
               onClick={toggleRepeat}
-              className="p-2 rounded-full transition duration-300"
-              style={{ background: iconBgHighlight }}
+              className="p-2 rounded-full transition duration-300 bg-icon-fill"
             >
-              <ToggleMusic iconFill={iconFillHighlight} />
+              <ToggleMusic iconFill={'bg-icon-fill'} />
             </button>
           </div>
         </div>
 
         <InputRange
           classname="mt-4"
-          theme={theme}
           value={currentTime}
           max={duration}
           step={0.1}

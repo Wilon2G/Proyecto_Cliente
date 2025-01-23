@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { ButtonAction } from './Buttons';
-import { useLoaderData } from '@remix-run/react';
-import { themeChanges } from '~/root';
-import { changeThemeColor } from '~/utils/themeColors';
+import classNames from 'classnames';
 
 function PrivacyPolices() {
-  const data = useLoaderData<themeChanges>();
+  /* const data = useLoaderData<themeChanges>();
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg, textColor } = colors;
+  const { primaryBg, textColor } = colors; */
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,16 +20,16 @@ function PrivacyPolices() {
       <ButtonAction
         textBtn="Revisar nuestras políticas de privacidad"
         onClick={toggleDropdown}
-        className="text-2xl font-semibold mt-1 mb-1 transition-colors "
-        textColor={'#e6e6e6'}
-        textColorHover={'#f3f4f6'}
+        className="text-2xl font-semibold mt-1 mb-1 transition-colors"
       />
 
       <div
-        style={{ background: primaryBg, color: textColor }}
-        className={`dropdown-content p-6 rounded-lg shadow-lg 
+        className={classNames(
+          `dropdown-content p-6 rounded-lg shadow-lg 
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
-                    ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`}
+                    ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`,
+          'bg-primary text-color',
+        )}
       >
         <p className="mb-4">
           En RetroFrog, nos tomamos muy en serio la privacidad de nuestros
