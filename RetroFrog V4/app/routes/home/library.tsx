@@ -26,12 +26,15 @@ export let loader: LoaderFunction = async ({ request }) => {
   });
 
   const userRole = user ? user.role : null;
-  return { games, filter, userRole };
+  return { games, filter, userRole, userId };
 };
 
 export let action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const gameId = formData.get('gameId') as string;
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+  const userId = session.get('userId');
 
   if (!gameId) {
     throw new Response('ID de juego no proporcionado', { status: 400 });
@@ -68,9 +71,10 @@ export let action: ActionFunction = async ({ request }) => {
 };
 
 export default function Library() {
-  const { games, userRole } = useLoaderData<{
+  const { games, userRole, userId } = useLoaderData<{
     games: (Game & { UsersFavorited: User[] })[];
     userRole: string | null;
+    userId: string;
   }>();
   const fetcher = useFetcher();
 
