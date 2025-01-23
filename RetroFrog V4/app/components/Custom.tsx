@@ -1,6 +1,6 @@
-import { Form, useActionData } from '@remix-run/react';
+import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import Button from './Buttons';
-import ErrorMessage from './ErrorMsg';
+import {ErrorMessage} from './ErrorMessage';
 
 //Para los errors
 export interface ActionData {
@@ -24,11 +24,11 @@ const backgrounds = [
 function Custom() {
   const actionData = useActionData<ActionData>();
 
-  /*   const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
+  // const data = useLoaderData<themeChanges>();
+  // const theme = data?.theme;
+  // const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg } = colors; */
+  // const { primaryBg } = colors; 
 
   return (
     <>

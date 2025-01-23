@@ -43,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
       session.set('fontFamily', fontFamily);
 
       updateTheme(user.id, theme, background, fontFamily);
-
+      //console.log("tema updateadooooo");
       return new Response(null, {
         headers: {
           'Set-Cookie': await commitSession(session),
