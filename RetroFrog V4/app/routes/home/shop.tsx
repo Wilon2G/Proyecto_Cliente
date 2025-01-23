@@ -33,10 +33,10 @@ export default function Shop() {
 
   const textClasses = theme === 'dark' ? 'text-white' : 'text-black';
   const borderClasses =
-    theme === 'dark' ? 'border-gray-600' : 'border-gray-400'; // Borde contrastante
-  const shadowClasses = theme === 'dark' ? 'shadow-lg' : 'shadow-xl'; // Sombra dinámica
-  const bgClasses = theme === 'dark' ? 'bg-black' : 'bg-white'; // Fondo dinámico en las tarjetas
-  const opacityClasses = 'bg-opacity-70'; // Opacidad solo para el fondo
+    theme === 'dark' ? 'border-gray-600' : 'border-gray-400';
+  const shadowClasses = theme === 'dark' ? 'shadow-lg' : 'shadow-xl';
+  const bgClasses = theme === 'dark' ? 'bg-black' : 'bg-white';
+  const opacityClasses = 'bg-opacity-70';
 
   return (
     <div className="container mx-auto p-4 select-none">
@@ -89,7 +89,7 @@ export default function Shop() {
 
       {/* Juegos Populares */}
       <h1 className={`text-2xl font-bold mb-4 ${textClasses}`}>
-        Juegos populares
+        Popular Games
       </h1>
       <div className="mb-8">
         <Swiper
@@ -143,7 +143,7 @@ export default function Shop() {
 
       {/* Más Hot Topic */}
       <h1 className={`text-2xl font-bold mb-4 ${textClasses}`}>
-        Más Hot topic
+        More Hot topic
       </h1>
       <div>
         <Swiper

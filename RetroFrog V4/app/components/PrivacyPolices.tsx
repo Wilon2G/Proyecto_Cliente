@@ -12,7 +12,7 @@ function PrivacyPolices() {
   return (
     <div className="dropdown h-fit">
       <ButtonAction
-        textBtn="Revisar nuestras políticas de privacidad"
+        textBtn="Review our privacy policies"
         onClick={toggleDropdown}
         className="text-2xl font-semibold mt-1 mb-1 transition-colors text-color-reverse"
       />
@@ -26,156 +26,139 @@ function PrivacyPolices() {
         )}
       >
         <p className="mb-4">
-          En RetroFrog, nos tomamos muy en serio la privacidad de nuestros
-          usuarios. Esta política de privacidad tiene como objetivo informarle
-          sobre cómo recopilamos, usamos, protegemos y compartimos su
-          información personal al utilizar nuestros servicios. Al acceder a
-          nuestro sitio web o realizar compras en nuestra tienda, acepta los
-          términos de esta política.
+          At RetroFrog, we take the privacy of our users very seriously. This
+          privacy policy aims to inform you about how we collect, use, protect,
+          and share your personal information when using our services. By
+          accessing our website or making purchases in our store, you agree to
+          the terms of this policy.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">
-          1. Información que Recopilamos
+          1. Information We Collect
         </h3>
         <p>
-          Recopilamos información personal de nuestros usuarios de diversas
-          maneras, incluyendo cuando visitan nuestro sitio web, realizan compras
-          o interactúan con nuestros servicios. Los tipos de información que
-          recopilamos incluyen:
+          We collect personal information from our users in various ways,
+          including when they visit our website, make purchases, or interact
+          with our services. The types of information we collect include:
         </p>
         <ul className="list-disc pl-6 mb-4">
           <li>
-            <strong>Información Personal Identificable:</strong> nombre,
-            dirección de correo electrónico, dirección de envío, número de
-            teléfono, etc.
+            <strong>Personally Identifiable Information:</strong> name, email
+            address, shipping address, phone number, etc.
           </li>
           <li>
-            <strong>Información de Pago:</strong> detalles de la tarjeta de
-            crédito, PayPal u otros métodos de pago utilizados.
+            <strong>Payment Information:</strong> credit card details, PayPal or
+            other payment methods used.
           </li>
           <li>
-            <strong>Datos de Navegación:</strong> dirección IP, tipo de
-            navegador, páginas visitadas, tiempo de permanencia en nuestro
-            sitio, etc.
+            <strong>Browsing Data:</strong> IP address, browser type, pages
+            visited, time spent on our site, etc.
           </li>
           <li>
-            <strong>Cookies y Tecnologías de Seguimiento:</strong> utilizamos
-            cookies y tecnologías similares para mejorar la experiencia del
-            usuario, personalizar el contenido y analizar el tráfico del sitio.
+            <strong>Cookies and Tracking Technologies:</strong> we use cookies
+            and similar technologies to enhance user experience, personalize
+            content, and analyze site traffic.
           </li>
         </ul>
 
-        <h3 className="text-xl font-semibold mb-2">2. Uso de la Información</h3>
-        <p>Utilizamos la información recopilada para los siguientes fines:</p>
+        <h3 className="text-xl font-semibold mb-2">2. Use of Information</h3>
+        <p>We use the information collected for the following purposes:</p>
         <ul className="list-disc pl-6 mb-4">
           <li>
-            Procesar y completar sus pedidos de videojuegos y otros productos.
+            Process and complete your video game orders and other products.
           </li>
           <li>
-            Enviar confirmaciones de pedido, notificaciones y actualizaciones
-            sobre su cuenta o compras.
+            Send order confirmations, notifications, and updates regarding your
+            account or purchases.
+          </li>
+          <li>Improve our website and personalize the shopping experience.</li>
+          <li>Respond to questions, comments, or customer support requests.</li>
+          <li>
+            Send newsletters, promotions, and updates about RetroFrog (if you
+            have allowed it).
           </li>
           <li>
-            Mejorar nuestro sitio web y personalizar la experiencia de compra.
-          </li>
-          <li>
-            Responder a preguntas, comentarios o solicitudes de soporte al
-            cliente.
-          </li>
-          <li>
-            Envío de boletines informativos, promociones y novedades de
-            RetroFrog (si usted lo ha permitido).
-          </li>
-          <li>
-            Realizar análisis estadísticos sobre el uso del sitio y las
-            preferencias del usuario para mejorar nuestros servicios.
+            Conduct statistical analysis of site usage and user preferences to
+            improve our services.
           </li>
         </ul>
 
         <h3 className="text-xl font-semibold mb-2">
-          3. Compartir Información con Terceros
+          3. Sharing Information with Third Parties
         </h3>
         <p>
-          No compartimos su información personal con terceros, excepto en los
-          siguientes casos:
+          We do not share your personal information with third parties except in
+          the following cases:
         </p>
         <ul className="list-disc pl-6 mb-4">
           <li>
-            <strong>Proveedores de Servicios:</strong> compartimos su
-            información con proveedores de servicios de pago, servicios de envío
-            y otros socios que nos ayudan a operar nuestro negocio, siempre que
-            estos proveedores se comprometan a proteger su información.
+            <strong>Service Providers:</strong> we share your information with
+            payment service providers, shipping services, and other partners who
+            help us run our business, provided that these providers commit to
+            protecting your information.
           </li>
           <li>
-            <strong>Cumplimiento Legal:</strong> podemos divulgar su información
-            si es requerido por la ley o en respuesta a una solicitud válida de
-            una autoridad gubernamental o judicial.
+            <strong>Legal Compliance:</strong> we may disclose your information
+            if required by law or in response to a valid request from a
+            government or judicial authority.
           </li>
           <li>
-            <strong>Transferencias de Negocios:</strong> en caso de fusión,
-            adquisición o venta de RetroFrog, su información personal puede ser
-            transferida como parte de la transacción, pero siempre bajo las
-            condiciones de privacidad acordadas.
+            <strong>Business Transfers:</strong> in the event of a merger,
+            acquisition, or sale of RetroFrog, your personal information may be
+            transferred as part of the transaction, but always under the agreed
+            privacy terms.
           </li>
         </ul>
 
-        <h3 className="text-xl font-semibold mb-2">
-          4. Seguridad de la Información
-        </h3>
+        <h3 className="text-xl font-semibold mb-2">4. Information Security</h3>
         <p>
-          RetroFrog implementa medidas de seguridad físicas, electrónicas y
-          administrativas para proteger su información personal contra accesos
-          no autorizados, alteración, divulgación o destrucción. Sin embargo,
-          ningún sistema de transmisión de datos por Internet o almacenamiento
-          electrónico es 100% seguro, por lo que no podemos garantizar la
-          seguridad absoluta.
+          RetroFrog implements physical, electronic, and administrative security
+          measures to protect your personal information from unauthorized
+          access, alteration, disclosure, or destruction. However, no data
+          transmission system over the internet or electronic storage is 100%
+          secure, so we cannot guarantee absolute security.
         </p>
 
-        <h3 className="text-xl font-semibold mb-2">5. Sus Derechos</h3>
+        <h3 className="text-xl font-semibold mb-2">5. Your Rights</h3>
         <p>
-          Usted tiene derecho a acceder, corregir o eliminar la información
-          personal que tenemos sobre usted. También puede solicitar que dejemos
-          de enviarle comunicaciones de marketing en cualquier momento. Para
-          ejercer estos derechos, por favor, contacte con nosotros a través de
-          la información proporcionada al final de esta política.
+          You have the right to access, correct, or delete the personal
+          information we hold about you. You may also request that we stop
+          sending you marketing communications at any time. To exercise these
+          rights, please contact us through the information provided at the end
+          of this policy.
         </p>
 
-        <h3 className="text-xl font-semibold mb-2">6. Uso de Cookies</h3>
+        <h3 className="text-xl font-semibold mb-2">6. Use of Cookies</h3>
         <p>
-          Las cookies son pequeños archivos que se almacenan en su dispositivo
-          cuando visita nuestro sitio web. Usamos cookies para mejorar la
-          experiencia del usuario, realizar análisis y personalizar el
-          contenido. Puede configurar su navegador para rechazar las cookies,
-          pero algunas funcionalidades del sitio pueden no estar disponibles si
-          lo hace.
+          Cookies are small files stored on your device when you visit our
+          website. We use cookies to improve user experience, perform analysis,
+          and personalize content. You can configure your browser to reject
+          cookies, but some features of the site may not be available if you do
+          so.
         </p>
 
-        <h3 className="text-xl font-semibold mb-2">
-          7. Enlaces a Otros Sitios
-        </h3>
+        <h3 className="text-xl font-semibold mb-2">7. Links to Other Sites</h3>
         <p>
-          Este sitio web puede contener enlaces a otros sitios de terceros. No
-          somos responsables de las prácticas de privacidad ni del contenido de
-          estos sitios. Le recomendamos que revise las políticas de privacidad
-          de los sitios de terceros antes de proporcionarles cualquier
-          información personal.
+          This website may contain links to third-party sites. We are not
+          responsible for the privacy practices or content of these sites. We
+          recommend that you review the privacy policies of third-party sites
+          before providing them with any personal information.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">
-          8. Cambios en la Política de Privacidad
+          8. Changes to the Privacy Policy
         </h3>
         <p>
-          RetroFrog se reserva el derecho de actualizar esta política de
-          privacidad en cualquier momento. Cualquier cambio será publicado en
-          esta página con la fecha de la última actualización. Le recomendamos
-          que revise esta política periódicamente para estar informado sobre
-          cómo protegemos su información.
+          RetroFrog reserves the right to update this privacy policy at any
+          time. Any changes will be posted on this page with the date of the
+          last update. We recommend that you periodically review this policy to
+          stay informed about how we protect your information.
         </p>
 
-        <h3 className="text-xl font-semibold mb-2">9. Contacto</h3>
+        <h3 className="text-xl font-semibold mb-2">9. Contact</h3>
         <p>
-          Si tiene alguna pregunta sobre esta política de privacidad o sobre
-          cómo manejamos su información personal, no dude en contactarnos:
+          If you have any questions about this privacy policy or how we handle
+          your personal information, please feel free to contact us:
         </p>
         <ul className="list-disc pl-6 mb-4">
           <li>
@@ -187,13 +170,12 @@ function PrivacyPolices() {
               support@retrofrog.com
             </a>
           </li>
-          <li>Teléfono: 123-456-789</li>
-          <li>Dirección: Calle Retro 123, Ciudad, Madrid</li>
+          <li>Phone: 123-456-789</li>
+          <li>Address: Retro Street 123, City, Madrid</li>
         </ul>
 
         <p>
-          Fecha de la última actualización:{' '}
-          <strong>8 de diciembre de 2024</strong>
+          Last updated on: <strong>December 8, 2024</strong>
         </p>
       </div>
     </div>

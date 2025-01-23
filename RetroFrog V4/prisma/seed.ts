@@ -48,42 +48,41 @@ async function main() {
 
   console.log('Users created:', users);
 
-  // Lista de juegos a crear
   const gamelist = [
     {
       tags: 'RPG',
-      title: 'Legend of Zelda a Link to the Past',
-      description: 'Explora mazmorras y salva Hyrule.',
+      title: 'Legend of Zelda: A Link to the Past',
+      description: 'Explore dungeons and save Hyrule.',
       color: '#FFD700',
     },
     {
-      tags: 'Lucha',
+      tags: 'Fighting',
       title: 'Super Street Fighter II',
-      description: 'Compite en intensos combates.',
+      description: 'Compete in intense battles.',
       color: '#FF4500',
     },
     {
-      tags: 'Carreras',
+      tags: 'Racing',
       title: 'Super Mario Kart',
-      description: 'Corre y lanza ítems para ganar.',
+      description: 'Race and throw items to win.',
       color: '#1E90FF',
     },
     {
       tags: 'Party',
       title: 'Super Bomberman',
-      description: 'Desafía amigos en explosivas partidas.',
+      description: 'Challenge friends in explosive matches.',
       color: '#32CD32',
     },
     {
       tags: 'Puzzle',
       title: 'Simon Says Game',
-      description: 'Sigue el ritmo y memoriza patrones.',
+      description: 'Follow the rhythm and memorize patterns.',
       color: '#8A2BE2',
     },
     {
-      tags: 'Plataformas',
+      tags: 'Platformer',
       title: 'Super Mario World',
-      description: 'Salta y corre en un mundo colorido.',
+      description: 'Jump and run through a colorful world.',
       color: '#FF69B4',
     },
   ];

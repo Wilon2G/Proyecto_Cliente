@@ -23,7 +23,6 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
   'image/png',
   'image/webp',
 ];
-const ACCEPTED_IMAGE_TYPES = ['jpeg', 'jpg', 'png', 'webp'];
 const formSchema = z.object({
   adImage: z
     .any()
