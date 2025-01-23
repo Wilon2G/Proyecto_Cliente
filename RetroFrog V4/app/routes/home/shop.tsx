@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import BuyButton from '~/components/BuyButton';
 import prisma from '~/utils/prismaClient';
 
-
 import { getSession } from '~/sessions';
 
 interface Game {
@@ -23,7 +22,6 @@ export let loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  
   const theme = session.get('theme') || 'dark';
 
   const games = await prisma.game.findMany();
@@ -33,11 +31,15 @@ export let loader: LoaderFunction = async ({ request }) => {
 export default function Shop() {
   const { games, theme } = useLoaderData<{ games: Game[]; theme: string }>();
 
-  
   const textClasses = theme === 'dark' ? 'text-white' : 'text-black';
+  const borderClasses =
+    theme === 'dark' ? 'border-gray-600' : 'border-gray-400'; // Borde contrastante
+  const shadowClasses = theme === 'dark' ? 'shadow-lg' : 'shadow-xl'; // Sombra dinámica
+  const bgClasses = theme === 'dark' ? 'bg-black' : 'bg-white'; // Fondo dinámico en las tarjetas
+  const opacityClasses = 'bg-opacity-70'; // Opacidad solo para el fondo
 
   return (
-    <div className={`container mx-auto p-4 select-none `}>
+    <div className="container mx-auto p-4 select-none">
       {/* Slider Principal */}
       <div className="mb-8">
         <Swiper
@@ -50,7 +52,7 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
-              className={'relative rounded-lg overflow-hidden shadow-lg '}
+              className={`relative rounded-lg overflow-hidden ${shadowClasses} ${borderClasses}`}
               style={{
                 background: `url(/assets/games/${game.title.replace(
                   /\s/g,
@@ -61,10 +63,10 @@ export default function Shop() {
               }}
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${
+                className={`absolute inset-0 bg-gradient-to-t ${opacityClasses} ${
                   theme === 'dark'
-                    ? 'from-black/20 to-black/80'
-                    : 'from-white/20 to-white/80'
+                    ? 'from-black/40 to-black/80'
+                    : 'from-white/40 to-white/80'
                 } flex flex-col justify-end p-6`}
               >
                 <h3 className={`text-sm font-medium opacity-80 ${textClasses}`}>
@@ -93,19 +95,19 @@ export default function Shop() {
         <Swiper
           modules={[Navigation]}
           spaceBetween={16}
-          slidesPerView={1} 
+          slidesPerView={1}
           breakpoints={{
             640: {
-              slidesPerView: 2, 
+              slidesPerView: 2,
             },
             768: {
-              slidesPerView: 3, 
+              slidesPerView: 3,
             },
             1024: {
-              slidesPerView: 4, 
+              slidesPerView: 4,
             },
             1280: {
-              slidesPerView: 5, 
+              slidesPerView: 5,
             },
           }}
           navigation
@@ -114,7 +116,7 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
-              className="rounded-lg bg-slate-700 p-4 shadow-md hover:shadow-lg transition-shadow"
+              className={`rounded-lg ${bgClasses} p-4 ${borderClasses} ${shadowClasses} ${opacityClasses} hover:shadow-xl transition-shadow`}
             >
               <div className="text-center">
                 <img
@@ -154,7 +156,7 @@ export default function Shop() {
           {games.map((game) => (
             <SwiperSlide
               key={game.id}
-              className="relative rounded-lg overflow-hidden shadow-lg"
+              className={`relative rounded-lg overflow-hidden ${shadowClasses} ${borderClasses}`}
               style={{
                 background: `url(/assets/games/${game.title.replace(
                   /\s/g,
@@ -165,10 +167,10 @@ export default function Shop() {
               }}
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-t ${
+                className={`absolute inset-0 bg-gradient-to-t ${opacityClasses} ${
                   theme === 'dark'
-                    ? 'from-black/20 to-black/80'
-                    : 'from-white/20 to-white/80'
+                    ? 'from-black/40 to-black/80'
+                    : 'from-white/40 to-white/80'
                 } p-6 ${textClasses}`}
               >
                 <h3 className="text-sm font-medium">{game.tags}</h3>

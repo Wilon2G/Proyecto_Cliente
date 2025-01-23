@@ -113,7 +113,6 @@ export default function Library() {
 
         return (
           <div key={game.id} className="relative">
-            <p>{userRole}</p>
             <img
               src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
               alt={`Cover of ${game.title}`}
@@ -160,7 +159,7 @@ export default function Library() {
         );
       })}
 
-      {isAdmin && (
+      {userRole === 'ADMIN' && (
         <div
           onClick={handleOpenModal}
           className="flex items-center justify-center border-2 border-dashed border-gray-400 rounded-md cursor-pointer hover:bg-gray-100 transition-colors"

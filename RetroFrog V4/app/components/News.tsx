@@ -1,59 +1,35 @@
 import { NyTitle } from './IconsSVG';
 
-//Fake news
 export default function News() {
   return (
-    <div className="w-fit">
-      <h1>What&apos;s fresh?</h1>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">What’s fresh?</h1>
 
-      <div className="bg-[#FFFFFF] p-8 w-full ">
-        <div className="flex justify-center">
-          <NyTitle />
-        </div>
-
-        <div className="flex mt-5">
-          <div className="mr-5">
-            <h2
-              className="text-xl"
-              style={{
-                fontFamily:
-                  "nyt-cheltenham, cheltenham-fallback-georgia, cheltenham-fallback-noto, georgia, 'times new roman', times, serif",
-                fontWeight: 700,
-                marginBottom: '1rem',
-              }}
-            >
-              Breaking news! Oracle surrenders their empire to the retroForg
-              army!
-            </h2>
-            <p
-              style={{
-                fontFamily:
-                  "nyt-imperial, georgia, 'times new roman', times, Songti SC, simsun, serif",
-                color: '#5A5A5A',
-              }}
-            >
-              Millionare and CEO of the gigant international empire Oracle is
-              forced to surrender his company to the new leader in technology
-              RetroFrog INC &quot;We just can&apos;t compete with their
-              greatness&quot;.
-            </p>
-            <br></br>
-            <p
-              style={{
-                fontFamily:
-                  "nyt-imperial, georgia, 'times new roman', times, Songti SC, simsun, serif",
-                color: '#5A5A5A',
-              }}
-            >
-              He will spend his retirement in a budist temple at Chongqing,
-              China.
-            </p>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex-1">
+          <div className="flex justify-center mb-4">
+            <NyTitle />
           </div>
 
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            Breaking news! Oracle surrenders their empire to the retroForg army!
+          </h2>
+          <p className="text-gray-700 mb-4">
+            Millionaire and CEO of the giant international empire Oracle is
+            forced to surrender his company to the new leader in technology,
+            RetroFrog INC. "We just can't compete with their greatness."
+          </p>
+          <p className="text-gray-700">
+            He will spend his retirement in a Buddhist temple at Chongqing,
+            China.
+          </p>
+        </div>
+
+        <div className="flex-1">
           <img
-            className="w-2/3 h-2/3"
+            className="w-full h-auto rounded-lg shadow-md"
             src="/assets/news/ceoNews.png"
-            alt="oracleCeo"
+            alt="Oracle CEO"
           />
         </div>
       </div>

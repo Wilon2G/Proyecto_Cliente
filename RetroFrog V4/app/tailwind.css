@@ -11,7 +11,6 @@ body {
   }
 }
 
-
 body {
   background-size: cover;
   background-attachment: fixed;
@@ -76,7 +75,6 @@ body {
   @apply fill-[#151A2D];
 }
 
-
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
 }
@@ -97,15 +95,12 @@ body {
   @apply top-52 transition-all ease-linear;
 }
 
-
-
 .sidebar.collapsed .primary-nav {
   @apply relative;
 
   & .nav-link:hover svg {
     @apply fill-[#151A2D];
   }
-
 }
 
 .nav-item {
@@ -288,4 +283,4 @@ body {
 
 .buy-button:hover {
   background-color: #45a049;
-}
+} /* Asegúrate de que el swiper no se desborde */

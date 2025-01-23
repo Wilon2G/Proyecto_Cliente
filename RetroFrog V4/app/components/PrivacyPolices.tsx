@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 import { ButtonAction } from './Buttons';
-import classNames from 'classnames';
 
 function PrivacyPolices() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,15 +14,15 @@ function PrivacyPolices() {
       <ButtonAction
         textBtn="Revisar nuestras políticas de privacidad"
         onClick={toggleDropdown}
-        className="text-2xl font-semibold mt-1 mb-1 transition-colors"
+        className="text-2xl font-semibold mt-1 mb-1 transition-colors text-color-reverse"
       />
 
       <div
         className={classNames(
-          `dropdown-content p-6 rounded-lg shadow-lg 
+          `dropdown-content p-6 rounded-lg shadow-lg bg-slate-200
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
                     ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`,
-          'bg-primary text-color',
+          'bg-primary text-color-reverse',
         )}
       >
         <p className="mb-4">

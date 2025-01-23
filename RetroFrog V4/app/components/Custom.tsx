@@ -15,21 +15,34 @@ export interface ActionData {
 }
 
 const backgrounds = [
-  '/assets/background/bg.jpg',
-  '/assets/background/bg1.jpg',
-  '/assets/background/bg2.jpg',
-  '/assets/background/bg3.jpg',
-  '/assets/background/bg4.jpg',
+  '/assets/background/1-bg.png',
+  '/assets/background/2-bg.png',
+  '/assets/background/3-bg.png',
+  '/assets/background/4-bg.png',
+  '/assets/background/5-bg.png',
+  '/assets/background/6-bg.png',
+  '/assets/background/7-bg.png',
+  '/assets/background/8-bg.png',
+  '/assets/background/9-bg.png',
+  '/assets/background/10-bg.png',
+  '/assets/background/11-bg.png',
+  '/assets/background/12-bg.png',
+  '/assets/background/13-bg.png',
+  '/assets/background/14-bg.png',
+  '/assets/background/15-bg.png',
+  '/assets/background/16-bg.png',
+  '/assets/background/17-bg.png',
 ];
 
-function Custom() {
+// Este es el componente Custom donde seleccionas la fuente
+export default function Custom() {
   const actionData = useActionData<ActionData>();
 
   return (
     <>
       <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">Customize</h2>
 
-      <div className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg bg-primary">
+      <div className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg bg-primary border border-primary-reverse">
         <Form method="post" className="w-full">
           {/* Tema oscuro-claro */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
@@ -121,5 +134,3 @@ function Custom() {
     </>
   );
 }
-
-export default Custom;

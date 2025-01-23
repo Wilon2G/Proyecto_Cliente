@@ -1,18 +1,18 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { EffectCoverflow } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-export default function Catalog() {
+export default function Developers() {
   const slides = [
     {
       tag: 'Web Developer',
-      title: 'Favio138',
+      title: 'Favio-Cesar',
       description:
         'Amateur del diseño gráfico y desarrollador de aplicaciones web.',
-      gitlink: 'https://github.com/Favio138',
+      gitlink: 'https://github.com/Favio-Cesar',
       route: '/assets/icon/pfp/favio138.png',
     },
     {
@@ -47,7 +47,7 @@ export default function Catalog() {
 
   return (
     <>
-      <div className="slider-container">
+      <div className="w-full mx-auto p-4">
         <Swiper
           modules={[EffectCoverflow]}
           spaceBetween={10}
@@ -66,17 +66,28 @@ export default function Catalog() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className="slider-slide">
-              <img
-                src={slide.route}
-                className="slide-image"
-                alt={slide.title}
-              />
-              <h3 className="slide-tag">{slide.tag}</h3>
-              <h2 className="slide-title">{slide.title}</h2>
-              <p className="slide-description">{slide.description}</p>
-              <a href={slide.gitlink} className="slide-button">
-                Ver más info
-              </a>
+              <div className="text-center overflow-hidden">
+                <img
+                  src={slide.route}
+                  className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg"
+                  alt={slide.title}
+                />
+                <h3 className="mt-4 text-xl font-semibold text-gray-800">
+                  {slide.tag}
+                </h3>
+                <h2 className="mt-2 text-2xl font-bold text-gray-900">
+                  {slide.title}
+                </h2>
+                <p className="mt-2 text-gray-600">{slide.description}</p>
+                <a
+                  href={slide.gitlink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-blue-500 hover:text-blue-700"
+                >
+                  Ver más info
+                </a>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

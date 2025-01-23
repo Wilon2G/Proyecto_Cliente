@@ -8,7 +8,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   let themeChoice = 'dark';
   let fontChoice = 'arial';
-  let bgChoice = '/assets/background/bg1.jpg';
+  let bgChoice = '/assets/background/1-bg.png';
 
   //Si no existe la cookie de sesión es que el usuario aún no se ha logeado o se ha logueado pero aún no se ha sacado la info de la base de datos
   if (session.get('background') !== undefined) {
