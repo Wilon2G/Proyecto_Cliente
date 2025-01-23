@@ -1,18 +1,15 @@
-import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
+import { Form, redirect, useActionData } from '@remix-run/react';
 import React, { useState } from 'react';
 import { logInSchema, registerSchema } from '../utils/zodSchemas';
 import validateForm from '~/utils/validation';
 import Button from '~/components/Buttons';
-import {InputForm} from '~/components/Inputs';
+import { InputForm } from '~/components/Inputs';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { checkUser, getThemes, userExists } from '~/models/user.server';
-import { requiredLoggedOutUser } from '~/utils/auth.server';
-import { LoaderFunction } from '@remix-run/node';
 import { commitSession, getSession } from '~/sessions';
-import { themeChanges } from '~/root';
-import { changeThemeColor } from '~/utils/themeColors';
+import classNames from 'classnames';
 
-export const loader: LoaderFunction = async ({ request }) => {
+/* export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedOutUser(request);
 
   const cookieHeader = request.headers.get('cookie');
@@ -24,7 +21,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     background: session.get('background') || '/assets/background/bg3.jpg',
     fontFamily: session.get('fontFamily') || 'arial',
   };
-};
+}; */
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -50,13 +47,13 @@ export async function action({ request }: { request: Request }) {
         } else {
           session.set('userId', userId);
 
-          const themeData= await getThemes(userId);
+          const themeData = await getThemes(userId);
 
-          if (themeData) {
+          /* if (themeData) {
             session.set('theme', themeData[0]);
             session.set('background', themeData[1]);
             session.set('fontFamily', themeData[2]);
-          }
+          } */
 
           const cookie = await commitSession(session);
           return redirect('/home/main', {
@@ -109,23 +106,17 @@ export default function LoginPage() {
     }
   };
 
-  //Recuperar colores
+  /*  //Recuperar colores
   const data = useLoaderData<themeChanges>();
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
 
-  const { primaryBg, highlightBg } = colors;
+  const { primaryBg, highlightBg } = colors; */
 
   return (
     <div className="h-full flex justify-end">
-      <div
-        className="h-full w-2/5 backdrop-blur-lg"
-        style={{ background: primaryBg }}
-      >
-        <div
-          className="w-full h-1/5 p-6 flex items-center"
-          style={{ background: `${highlightBg}` }}
-        >
+      <div className="h-full w-2/5 backdrop-blur-lg bg-primary">
+        <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt="Frog Logo"
@@ -161,19 +152,11 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm
-                  inputType="username"
-                  inputName="usernameLog"
-                  theme={theme}
-                />
+                <InputForm inputType="username" inputName="usernameLog" />
                 <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
               </div>
               <div>
-                <InputForm
-                  inputType="password"
-                  inputName="passwordLog"
-                  theme={theme}
-                />
+                <InputForm inputType="password" inputName="passwordLog" />
                 <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
               </div>
               <Button
@@ -204,23 +187,15 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm
-                  inputType="username"
-                  inputName="usernameReg"
-                  theme={theme}
-                />
+                <InputForm inputType="username" inputName="usernameReg" />
                 <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm
-                  inputType="password"
-                  inputName="passwordReg"
-                  theme={theme}
-                />
+                <InputForm inputType="password" inputName="passwordReg" />
                 <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="name" inputName="nameReg" theme={theme} />
+                <InputForm inputType="name" inputName="nameReg" />
                 <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
               </div>
               <Button
@@ -263,23 +238,26 @@ function SlidePannel({
   //otherpanelID(Para el login es register y viceversa)
   const isActive = activePanel === panelId;
 
-  //Recuperar colores
+  /*  //Recuperar colores
   const data = useLoaderData<themeChanges>();
   const theme = data?.theme;
   const colors = changeThemeColor(theme || 'dark');
 
   const { primaryBg, highlightBg, textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false); */
 
   return (
     <div
-      className={`h-full flex-1 transition-all duration-500 ${
-        activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
-      }   p-8 flex flex-col justify-center items-center cursor-pointer`}
-      style={{
-        background: activePanel === otherPanelId ? highlightBg : '', // Aplicación de color dinámico
-        color: activePanel === otherPanelId ? textHighlight : '', // Aplicación de color dinámico
-      }}
+      className={classNames(
+        `h-full flex-1 transition-all duration-500 ${
+          activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
+        }   p-8 flex flex-col justify-center items-center cursor-pointer`,
+        `${
+          activePanel === otherPanelId
+            ? `bg-primary-hover text-color-hover`
+            : ``
+        }`,
+      )}
       onClick={() => onPanelChange(panelId)}
       onKeyDown={(event) => {
         if (event.key === ' ') {
@@ -296,16 +274,7 @@ function SlidePannel({
         }`}
       >
         <p className="mb-4 font-bold text-base">{inactiveTitle}</p>
-        <h2
-          className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2"
-          style={{
-            borderColor: `${textColor}`,
-            background: isHovered ? `${highlightBg}` : `${primaryBg}`,
-            color: isHovered ? `${textHighlight}` : `${textColor}`,
-          }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <h2 className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2 border-color bg-primary hover:bg-primary-hover text-color hover:text-color-hover">
           {buttonText}
         </h2>
       </div>

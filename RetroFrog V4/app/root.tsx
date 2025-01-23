@@ -14,7 +14,7 @@ import type {
 } from '@remix-run/node';
 
 import './tailwind.css';
-import { commitSession, getSession } from './sessions';
+import { getSession } from './sessions';
 import { changeThemeColor } from './utils/themeColors';
 
 export const meta: MetaFunction = () => {
@@ -25,6 +25,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: '/theme.css' },
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
     rel: 'preconnect',
@@ -37,7 +38,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export const loader: LoaderFunction = async ({ request }) => {
+/* export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
@@ -61,24 +62,24 @@ export const loader: LoaderFunction = async ({ request }) => {
     background: session.get('background') || '/assets/background/bg3.jpg',
     fontFamily: session.get('fontFamily') || 'arial',
   };
-};
+}; */
 
-export type themeChanges = {
+/* export type themeChanges = {
   theme: string;
   background: string;
   fontFamily: string;
-};
+}; */
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const data = useLoaderData<themeChanges>();
+  /* const data = useLoaderData<themeChanges>();
 
   const background = data?.background || '/assets/background/bg3.jpg';
   const fontFamily = data?.fontFamily || 'arial';
-  const theme = data?.theme; 
-    const colors = changeThemeColor(theme || 'dark'); 
-    
-  const {  textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false);
+  const theme = data?.theme;
+  const colors = changeThemeColor(theme || 'dark');
+
+  const { textColor, textHighlight } = colors;
+  const [isHovered, setIsHovered] = useState(false); */
 
   return (
     <html lang="en" className="h-full">
@@ -89,14 +90,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body
-        className={'h-full'}
-        style={{
-          backgroundImage: `url(${background})`,
-          fontFamily,
-          color: isHovered ? `${textHighlight}` : `${textColor}`,
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
+        className={
+          'h-full bg-image-bg font-primary-font text-primary hover:text-primary-hover'
+        }
       >
         {children}
         <ScrollRestoration />

@@ -1,1 +1,0 @@
-//Varios componentes: Titulo ppql, titulos secundarios
