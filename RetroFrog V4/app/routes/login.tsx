@@ -102,7 +102,7 @@ export default function LoginPage() {
       <div className="h-full w-2/5 backdrop-blur-lg bg-primary">
         <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img
-            src="../../public/assets/icon/frog-logo3.png"
+            src="/assets/icon/frog-logo3.png"
             alt="Frog Logo"
             className="w-32 h-auto mr-5"
           />
