@@ -93,7 +93,7 @@ export default function LoginPage() {
           <img
             src="../../public/assets/icon/frog-logo3.png"
             alt="Frog Logo"
-            className="w-32 h-auto"
+            className="w-32 h-auto mr-5"
           />
           <div className="w-full">
             <h1 className="text-6xl">Retrofrog</h1>
