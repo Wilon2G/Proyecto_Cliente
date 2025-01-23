@@ -31,7 +31,6 @@ export default function BuyButton() {
         },
       )}
       disabled={isDisabled}
-      
     >
       {purchased ? 'Ya Adquirido' : loading ? 'Procesando...' : 'Comprar'}
     </button>

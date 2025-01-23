@@ -1,5 +1,4 @@
 import { LoaderFunction } from '@remix-run/node';
-import { sessionCookie } from '~/cookies';
 import { getThemes, getUserId } from '~/models/user.server';
 import { getSession } from '~/sessions';
 
@@ -7,35 +6,28 @@ export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-  let themeChoice="dark";
-  let fontChoice="arial";
-  let bgChoice="/assets/background/bg1.jpg";
+  let themeChoice = 'dark';
+  let fontChoice = 'arial';
+  let bgChoice = '/assets/background/bg1.jpg';
 
   //Si no existe la cookie de sesión es que el usuario aún no se ha logeado o se ha logueado pero aún no se ha sacado la info de la base de datos
-  if (session.get("background")!==undefined) {
-    themeChoice=session.get("theme");
-    fontChoice=session.get("fontFamily");
-    bgChoice=session.get("background");
-    console.log("------------------------------session--weeee>"+session.get("theme"));
-  }
-  else{
+  if (session.get('background') !== undefined) {
+    themeChoice = session.get('theme');
+    fontChoice = session.get('fontFamily');
+    bgChoice = session.get('background');
+  } else {
     const userId = await getUserId(request);
-    //console.log(userId);
-    console.log("------------------------------Base de datosssssssssssss");
 
     if (userId) {
       const themeData = await getThemes(userId);
       console.log(themeData);
-       if (themeData) {
-        themeChoice= themeData[0];
-        bgChoice= themeData[1];
-        fontChoice= themeData[2];
-        
+      if (themeData) {
+        themeChoice = themeData[0];
+        bgChoice = themeData[1];
+        fontChoice = themeData[2];
       }
     }
   }
-
-
 
   const darkModeStyles = `
     --primary:#151a2d;
@@ -63,8 +55,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     --icon-bg-hover:#151A2D;
   `;
 
-  const themeStyles =
-    themeChoice === 'dark' ? darkModeStyles : lightModeStyles;
+  const themeStyles = themeChoice === 'dark' ? darkModeStyles : lightModeStyles;
 
   const data = `
     :root {

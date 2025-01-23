@@ -124,21 +124,6 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     }
   }, [volume, audioRef]);
 
-  /* //Recuperar colores
-  const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const {
-    primaryBg,
-    highlightBg,
-    textColor,
-    textHighlight,
-    iconFill,
-    iconFillHighlight,
-    iconBgHighlight,
-  } = colors; */
-
   return (
     <div
       className={classNames(
