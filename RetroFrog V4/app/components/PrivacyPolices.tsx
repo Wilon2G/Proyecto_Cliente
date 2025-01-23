@@ -3,12 +3,6 @@ import { ButtonAction } from './Buttons';
 import classNames from 'classnames';
 
 function PrivacyPolices() {
-  /* const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const { primaryBg, textColor } = colors; */
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {

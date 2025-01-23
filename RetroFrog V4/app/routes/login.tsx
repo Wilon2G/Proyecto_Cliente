@@ -9,35 +9,16 @@ import { commitSession, getSession } from '~/sessions';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '~/utils/zodSchemas';
 
-/* export const loader: LoaderFunction = async ({ request }) => {
-  await requiredLoggedOutUser(request);
-
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-  const userId = session.get('userId'); // Recuperar el ID del usuario
-
-  // Devolver los valores existentes en la sesión.
-  return {
-    theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/bg3.jpg',
-    fontFamily: session.get('fontFamily') || 'arial',
-    userId,
-  };
-}; */
-
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
-  //Descomentar esto para ver los datos que se envían por los formularios de login y registro
-  //console.log(formData);
+
   if (formData.get('_action') === 'logIn') {
-    //console.log("Ha entrado en el action de login");
     return validateForm(
       formData,
       logInSchema,
       async (data) => {
-        //console.log(data.usernameLog + ' y ' + data.passwordLog);
         const userId = await checkUser(data.usernameLog, data.passwordLog);
         if (!userId) {
           return {
@@ -50,7 +31,7 @@ export async function action({ request }: { request: Request }) {
           session.set('userId', userId);
 
           const themeData = await getThemes(userId);
-          console.log(themeData);
+
           if (themeData) {
             session.set('theme', themeData[0]);
             session.set('background', themeData[1]);
@@ -71,12 +52,10 @@ export async function action({ request }: { request: Request }) {
         }),
     );
   } else {
-    //console.log("Ha entrado en el action de registro");
     return validateForm(
       formData,
       registerSchema,
       async (data) => {
-        //console.log(data.usernameReg + ' y ' + data.passwordReg);
         const userExist = await userExists(data.usernameReg);
         if (userExist) {
           return {
@@ -106,13 +85,6 @@ export default function LoginPage() {
       setActivePanel(panel);
     }
   };
-
-  /*  //Recuperar colores
-  const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const { primaryBg, highlightBg } = colors; */
 
   return (
     <div className="h-full flex justify-end">
@@ -238,14 +210,6 @@ function SlidePannel({
 }: SlidePannelProps) {
   //otherpanelID(Para el login es register y viceversa)
   const isActive = activePanel === panelId;
-
-  /*  //Recuperar colores
-  const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const { primaryBg, highlightBg, textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false); */
 
   return (
     <div

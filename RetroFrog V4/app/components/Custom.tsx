@@ -1,6 +1,6 @@
-import { Form, useActionData, useLoaderData } from '@remix-run/react';
+import { Form, useActionData } from '@remix-run/react';
 import Button from './Buttons';
-import {ErrorMessage} from './ErrorMessage';
+import { ErrorMessage } from './ErrorMessage';
 
 //Para los errors
 export interface ActionData {
@@ -19,16 +19,11 @@ const backgrounds = [
   '/assets/background/bg1.jpg',
   '/assets/background/bg2.jpg',
   '/assets/background/bg3.jpg',
+  '/assets/background/bg4.jpg',
 ];
 
 function Custom() {
   const actionData = useActionData<ActionData>();
-
-  // const data = useLoaderData<themeChanges>();
-  // const theme = data?.theme;
-  // const colors = changeThemeColor(theme || 'dark');
-
-  // const { primaryBg } = colors; 
 
   return (
     <>
@@ -102,10 +97,14 @@ function Custom() {
               id="fontFamily"
               className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300 border-color-reverse bg-primary-reverse text-color-reverse"
             >
-              <option value="Open sans">Open Sans</option>
-              <option value="Roboto">Roboto</option>
-              <option value="Comic sans">Comic sans</option>
-              <option value="Arial">Arial</option>
+              <option value="open-sans">Open Sans</option>
+              <option value="roboto">Roboto</option>
+              <option value="comic-sans">Comic Sans</option>
+              <option value="arial">Arial</option>
+              <option value="press-start-2p">Press Start 2P</option>
+              <option value="vt323">VT323</option>
+              <option value="orbitron">Orbitron</option>
+              <option value="bungee">Bungee</option>
             </select>
             <ErrorMessage>{actionData?.errors?.fontFamily}</ErrorMessage>
           </div>

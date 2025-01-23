@@ -1,4 +1,3 @@
-import { LoaderFunction } from '@remix-run/node';
 import { NavLink, Outlet } from '@remix-run/react';
 import { useState } from 'react';
 import {
@@ -13,29 +12,10 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
-import { getSession } from '~/sessions';
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-
-  // Devolver los valores existentes en la sesión.
-  return {
-    theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/bg3.jpg',
-    fontFamily: session.get('fontFamily') || 'arial',
-  };
-};
 
 //Comprobar que usuario está loggeado
 
 export default function HomePage() {
-  /* const data = useLoaderData<themeChanges>();
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const { primaryBg, iconFill } = colors; */
-
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
 

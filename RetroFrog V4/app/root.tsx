@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from '@remix-run/react';
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 
 import './tailwind.css';
-import { getSession } from './sessions';
-import { changeThemeColor } from './utils/themeColors';
 
 export const meta: MetaFunction = () => {
   return [
@@ -38,49 +31,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-/* export const loader: LoaderFunction = async ({ request }) => {
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-
-  // Verificar si la sesión tiene datos
-  if (!session.has('theme')) {
-    // session.set('theme', 'dark');
-    // session.set('background', '/assets/background/bg3.jpg');
-    // session.set('fontFamily', 'arial');
-
-    // const cookie = await commitSession(session);
-    // return new Response(null, {
-    //   status: 200,
-    //   headers: { 'Set-Cookie': cookie },
-    // });
-    return null;
-  }
-
-  // Devolver los valores existentes en la sesión.
-  return {
-    theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/bg3.jpg',
-    fontFamily: session.get('fontFamily') || 'arial',
-  };
-}; */
-
-/* export type themeChanges = {
-  theme: string;
-  background: string;
-  fontFamily: string;
-}; */
-
 export function Layout({ children }: { children: React.ReactNode }) {
-  /* const data = useLoaderData<themeChanges>();
-
-  const background = data?.background || '/assets/background/bg3.jpg';
-  const fontFamily = data?.fontFamily || 'arial';
-  const theme = data?.theme;
-  const colors = changeThemeColor(theme || 'dark');
-
-  const { textColor, textHighlight } = colors;
-  const [isHovered, setIsHovered] = useState(false); */
-
   return (
     <html lang="en" className="h-full">
       <head>
@@ -91,7 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body
         className={
-          'h-full bg-image-bg font-primary-font text-primary hover:text-primary-hover'
+          'h-full bg-image-bg font-primary-font text-color hover:text-color-hover'
         }
       >
         {children}
