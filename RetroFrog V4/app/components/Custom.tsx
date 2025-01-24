@@ -42,8 +42,8 @@ export default function Custom() {
     <>
       <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">Customize</h2>
 
-      <div className="flex flex-col items-center gap-6 w-full max-w-4xl p-6 rounded-lg text-center shadow-lg bg-primary border border-primary-reverse">
-        <Form method="post" className="w-full">
+      <div className="flex flex-col items-center gap-6 w-full p-6 rounded-lg text-center shadow-lg bg-primary border border-primary-reverse">
+        <Form method="post" className="w-full" reloadDocument>
           {/* Tema oscuro-claro */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
             <label htmlFor="theme" className="text-lg font-medium">
