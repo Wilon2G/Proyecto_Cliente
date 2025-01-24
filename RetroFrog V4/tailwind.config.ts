@@ -9,6 +9,8 @@ export default {
         'primary-hover': 'var(--primary-hover)',
         'primary-reverse': 'var(--primary-reverse)',
         'primary-hover-reverse': 'var(--primary-hover-reverse)',
+        'gradient-from': 'var(--gradient-from)',
+        'gradient-to': 'var(--gradient-to)',
         color: 'var(--color)',
         'color-reverse': 'var(--color-reverse)',
         'color-hover': 'var(--color-hover)',

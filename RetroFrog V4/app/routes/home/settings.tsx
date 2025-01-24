@@ -1,5 +1,4 @@
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
-import { z } from 'zod';
 import Custom from '~/components/Custom';
 import Developers from '~/components/Developers';
 import PrivacyPolices from '~/components/PrivacyPolices';
@@ -7,12 +6,7 @@ import { updateTheme } from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 import validateForm from '~/utils/validation';
-
-const customSchema = z.object({
-  theme: z.string(),
-  background: z.string(),
-  fontFamily: z.string(),
-});
+import { customSchema } from '~/utils/zodSchemas';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('cookie');
@@ -55,30 +49,19 @@ export const action: ActionFunction = async ({ request }) => {
       }),
   );
 };
+
 export default function Settings() {
   return (
-    <div className="h-fit bg-gray-200 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full max-w-4xl px-4 self-center">
-      <h1 className="text-4xl font-semibold  text-gray-800 mb-4">Settings</h1>
-
-      <div className="w-full max-w-4xl px-4 mb-10">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-          Developers:
-        </h2>
-
+    <div className="h-fit bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
+      <div className="w-full  px-4 mb-10">
         <Developers />
       </div>
-      <h2 className="text-3xl font-semibold  text-gray-800 mb-4">
-        Personalization
-      </h2>
-      <div className="w-full max-w-4xl bg-primary shadow-lg rounded-lg p-8">
+      <div className="w-4/5 bg-primary shadow-lg rounded-lg p-8">
         <div className="mb-10">
           <Custom />
         </div>
       </div>
       <div className="mb-10">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-          Privacy Policies
-        </h2>
         <PrivacyPolices />
       </div>
     </div>

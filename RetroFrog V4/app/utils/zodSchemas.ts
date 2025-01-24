@@ -10,3 +10,9 @@ export const registerSchema = z.object({
   passwordReg: z.string().min(5, 'Password must have at least five characters'),
   nameReg: z.string().min(1, 'You must fill this field'),
 });
+
+export const customSchema = z.object({
+  theme: z.string(),
+  background: z.string(),
+  fontFamily: z.string(),
+});

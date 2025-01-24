@@ -40,7 +40,9 @@ export default function Custom() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">Customize</h2>
+      <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">
+        Personalization
+      </h2>
 
       <div className="flex flex-col items-center gap-6 w-full p-6 rounded-lg text-center shadow-lg bg-primary border border-primary-reverse">
         <Form method="post" className="w-full" reloadDocument>

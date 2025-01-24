@@ -1,4 +1,3 @@
-import { LoaderFunction } from '@remix-run/node';
 import { NavLink, Outlet } from '@remix-run/react';
 import { useState } from 'react';
 import {
@@ -13,27 +12,10 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
-import { getSession } from '~/sessions';
-import prisma from '~/utils/prismaClient';
-
-export let loader: LoaderFunction = async ({ request }) => {
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-
-  const theme = session.get('theme') || 'dark';
-
-  const games = await prisma.game.findMany();
-  return { games, theme };
-};
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
-
-  // Obtener el tema actual
-  const theme = 'dark'; // Aquí deberías obtener dinámicamente el tema, igual que en Shop
-
-  const textClasses = theme === 'dark' ? 'white' : 'black'; // Cambiado a "text-white" para dark theme
 
   function toggleSidebar() {
     setIsCollapsed((prev) => !prev);
@@ -49,8 +31,7 @@ export default function HomePage() {
         <header className="sidebar-header">
           <button className="toggler" onClick={toggleSidebar}>
             <span>
-              <CollapseArrow iconFill={textClasses} />{' '}
-              {/* Se pasa la clase dinámica */}
+              <CollapseArrow />
             </span>
           </button>
           <a href="../home/main" className="header-logo border-primary-reverse">
@@ -66,8 +47,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="main" className="nav-link">
                 <span className="nav-icon">
-                  <HomeIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <HomeIcon />
                 </span>
                 <span className="nav-label">Home</span>
               </NavLink>
@@ -75,8 +55,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="shop" className="nav-link">
                 <span className="nav-icon">
-                  <ShopIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <ShopIcon />
                 </span>
                 <span className="nav-label">Shop</span>
               </NavLink>
@@ -84,8 +63,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="library" className="nav-link">
                 <span className="nav-icon">
-                  <GamesIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <GamesIcon />
                 </span>
                 <span className="nav-label">Games</span>
               </NavLink>
@@ -99,8 +77,7 @@ export default function HomePage() {
                 className="nav-link"
               >
                 <span className="nav-icon">
-                  <FavGamesIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <FavGamesIcon />
                 </span>
                 <span className="nav-label">Favorites</span>
               </NavLink>
@@ -108,8 +85,7 @@ export default function HomePage() {
             <li className="nav-item">
               <div className="nav-link" onClick={toggleMusic}>
                 <span className="nav-icon">
-                  <MusicIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <MusicIcon />
                 </span>
                 <span className="nav-label">Music</span>
               </div>
@@ -122,8 +98,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="user" className="nav-link">
                 <span className="nav-icon">
-                  <UserIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <UserIcon />
                 </span>
                 <span className="nav-label">Profile</span>
               </NavLink>
@@ -131,8 +106,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="settings" className="nav-link">
                 <span className="nav-icon">
-                  <SettingsIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <SettingsIcon />
                 </span>
                 <span className="nav-label">Settings</span>
               </NavLink>
@@ -140,8 +114,7 @@ export default function HomePage() {
             <li className="nav-item">
               <NavLink to="/logout" className="nav-link">
                 <span className="nav-icon">
-                  <LogOutIcon iconFill={textClasses} />{' '}
-                  {/* Se pasa la clase dinámica */}
+                  <LogOutIcon />
                 </span>
                 <span className="nav-label">Logout</span>
               </NavLink>

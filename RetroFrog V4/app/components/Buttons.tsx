@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import React from 'react';
 
 type ButtonProps = {
   textBtn: string;
@@ -9,9 +10,10 @@ type ButtonProps = {
 };
 
 type ButtonActionProps = {
-  textBtn: string;
+  textBtn: React.ReactNode; //Para permitir (Modal de boton like juegos)
   onClick: () => void;
   className?: string;
+  applyDefaultStyles?: boolean; // Nueva prop para controlar los estilos
 };
 
 type ButtonSimpleProps = {
@@ -45,29 +47,26 @@ export default function Button({
 
 export function ButtonAction({
   textBtn,
-
   onClick,
   className,
+  applyDefaultStyles = true,
 }: ButtonActionProps) {
   return (
     <button
       onClick={onClick}
-      className={classNames(
-        'w-full py-2 px-2 rounded-md font-bold transition duration-300',
-        'text-color hover:text-color-hover',
-        className,
-      )}
+      className={
+        applyDefaultStyles
+          ? `w-full py-2 px-2 rounded-md font-bold transition duration-300 
+             text-color hover:text-color-hover ${className}`
+          : className
+      }
     >
       {textBtn}
     </button>
   );
 }
 
-export function ButtonSimple({
-  textBtn,
-
-  className,
-}: ButtonSimpleProps) {
+export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
   return (
     <button
       className={classNames(

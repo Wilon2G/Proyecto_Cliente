@@ -30,17 +30,19 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   const darkModeStyles = `
-    --primary:#151a2d;
-    --primary-hover:#1f253d;
-    --primary-reverse:#ffffff;
-    --primary-hover-reverse:#f3f4f6;
-    --color:#e6e6e6;
-    --color-reverse:#1f253d;
-    --color-hover:#f3f4f6;
-    --icon-fill:#f5f5f5;
-    --icon-fill-hover:#151A2D;
-    --icon-bg-hover:#f5f5f5;
-  `;
+    --primary: #151a2d;
+    --primary-hover: #1f253d;
+    --primary-reverse: #ffffff;
+    --primary-hover-reverse: #f3f4f6;
+    --color: #e6e6e6;
+    --color-reverse: #1f253d;
+    --color-hover: #f3f4f6;
+    --icon-fill: #e6e6e6;
+    --icon-fill-hover: #ffffff;
+    --icon-bg-hover: rgba(255, 255, 255, 0.1);
+    --gradient-from: rgba(0, 0, 0, 0.4);
+    --gradient-to: rgba(0, 0, 0, 0.8);
+`;
 
   const lightModeStyles = `
     --primary:#ffffff;
@@ -50,9 +52,11 @@ export const loader: LoaderFunction = async ({ request }) => {
     --color:#1f253d;
     --color-reverse:#e6e6e6;
     --color-hover:#1f253d;
-    --icon-fill:#151A2D;
-    --icon-fill-hover:#f5f5f5;
-    --icon-bg-hover:#151A2D;
+    --icon-fill:#151A2D; 
+    --icon-fill-hover:#ffffff;
+    --icon-bg-hover:rgba(21, 26, 45, 0.6);
+    --gradient-from:rgba(255,255,255, 0.4);
+    --gradient-to:rgba(255,255,255, 0.8);
   `;
 
   const themeStyles = themeChoice === 'dark' ? darkModeStyles : lightModeStyles;

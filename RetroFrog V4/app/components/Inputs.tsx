@@ -1,12 +1,18 @@
 import classNames from 'classnames';
 
 export type InputProps = {
-  inputType: string;
+  inputType?: string;
   inputName: string;
   classname?: string;
+  labelStyle?: string;
 };
 
-export function InputForm({ inputType, classname, inputName }: InputProps) {
+export function InputForm({
+  inputType,
+  classname,
+  inputName,
+  labelStyle,
+}: InputProps) {
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
@@ -16,15 +22,15 @@ export function InputForm({ inputType, classname, inputName }: InputProps) {
   return (
     <>
       <label
-        className="block text-lg font-medium mb-2"
-        htmlFor={`${inputType}`}
+        className={classNames('block text-lg font-medium mb-2', labelStyle)}
+        htmlFor={`${inputName}`}
       >
-        {capitalizeFirstLetter(inputType)}:
+        {capitalizeFirstLetter(inputName)}:
       </label>
       <input
         type={`${inputType}`}
         name={`${inputName}`}
-        id={`${inputType}`}
+        id={`${inputName}`}
         autoComplete="off"
         className={classNames(
           'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
@@ -32,6 +38,7 @@ export function InputForm({ inputType, classname, inputName }: InputProps) {
           classname,
         )}
         placeholder={`Your ${inputType}`}
+        required
       />
     </>
   );
@@ -66,5 +73,39 @@ export function InputRange({
       value={value}
       onChange={onChange}
     />
+  );
+}
+
+export function InputTextarea({
+  classname,
+  inputName,
+  labelStyle,
+}: InputProps) {
+  function capitalizeFirstLetter(val: string) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  }
+
+  /**Aunque lo que pongas no sea text en el type, lo trata como text. username=text */
+
+  return (
+    <>
+      <label
+        className={classNames('block text-lg font-medium mb-2', labelStyle)}
+        htmlFor={`${inputName}`}
+      >
+        {capitalizeFirstLetter(inputName)}:
+      </label>
+      <textarea
+        name={`${inputName}`}
+        id={`${inputName}`}
+        autoComplete="off"
+        className={classNames(
+          'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
+          'border-color-reverse bg-primary-reverse text-color-reverse', //Cambios
+          classname,
+        )}
+        required
+      />
+    </>
   );
 }

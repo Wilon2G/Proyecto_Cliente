@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -71,9 +73,7 @@ body {
   @apply bg-gray-200;
 }
 
-.toggler:hover svg {
-  @apply fill-[#151A2D];
-}
+
 
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
@@ -99,7 +99,7 @@ body {
   @apply relative;
 
   & .nav-link:hover svg {
-    @apply fill-[#151A2D];
+    fill: var(--icon-fill-hover);
   }
 }
 
@@ -112,7 +112,8 @@ body {
 }
 
 .nav-link:hover {
-  @apply bg-gray-200 text-[#151A2D];
+  color: var(--color);
+  background-color: var(--icon-bg-hover);
 }
 
 .nav-icon {
@@ -283,4 +284,6 @@ body {
 
 .buy-button:hover {
   background-color: #45a049;
-} /* Asegúrate de que el swiper no se desborde */
+}
+
+/* Asegúrate de que el swiper no se desborde */
