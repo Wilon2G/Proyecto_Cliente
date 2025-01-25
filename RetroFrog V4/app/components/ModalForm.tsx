@@ -1,13 +1,12 @@
 import React from 'react';
-import { InputForm, InputTextarea } from './Inputs';
 import Button from './Buttons';
+import { InputForm, InputTextarea } from './Inputs';
 
 interface ModalFormProps {
   handleCloseModal: () => void;
   handleSubmitNewGame: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-//LOs errores los dice por nose que de accesibilidad
 export default function ModalForm({
   handleCloseModal,
   handleSubmitNewGame,
@@ -36,11 +35,52 @@ export default function ModalForm({
             inputName="tags"
             labelStyle="text-sm mt-4"
           />
+
           <InputForm
             inputType="color"
             inputName="color"
             labelStyle="text-sm mt-4"
           />
+
+          <div className="mt-4">
+            <label htmlFor="boxaFile" className="text-sm">
+              Cover (1:1)
+            </label>
+            <input
+              type="file"
+              id="boxaFile"
+              name="boxaFile"
+              accept=".zip,.rar,.exe,.iso" // Puedes ajustar los tipos de archivos permitidos
+              className="block w-full mt-1"
+            />
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="boxbFile" className="text-sm">
+              Back Cover (1:1)
+            </label>
+            <input
+              type="file"
+              id="boxbFile"
+              name="boxbFile"
+              accept=".zip,.rar,.exe,.iso"
+              className="block w-full mt-1"
+            />
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="lFile" className="text-sm">
+              Large Cover (1920x1080)
+            </label>
+            <input
+              type="file"
+              id="lFile"
+              name="lFile"
+              accept=".zip,.rar,.exe,.iso"
+              className="block w-full mt-1"
+            />
+          </div>
+
           <Button
             textBtn="Submit"
             typeBtn="submit"

@@ -21,12 +21,12 @@ export async function action({ request }: { request: Request }) {
       formData,
       logInSchema,
       async (data) => {
-        const userId = await checkUser(data.usernameLog, data.passwordLog);
+        const userId = await checkUser(data.username, data.password);
         if (!userId) {
           return {
             errors: {
               status: 400,
-              generalLog: 'User or password are incorrect',
+              general: 'User or password are incorrect',
             },
           };
         } else {
@@ -58,7 +58,7 @@ export async function action({ request }: { request: Request }) {
       formData,
       registerSchema,
       async (data) => {
-        const userExist = await userExists(data.usernameReg);
+        const userExist = await userExists(data.username);
         if (userExist) {
           return {
             errors: {
@@ -79,7 +79,7 @@ export async function action({ request }: { request: Request }) {
         }
 
         if (typeof window === 'undefined') {
-          const username = data.usernameReg;
+          const username = data.username;
           const newFileName = `${username}.png`;
           const uploadPath = './public/assets/icon/pfp/' + newFileName;
 
@@ -90,12 +90,12 @@ export async function action({ request }: { request: Request }) {
         try {
           const newUser = await db.user.create({
             data: {
-              username: data.usernameReg,
-              password: data.passwordReg,
-              name: data.nameReg,
-              email: data.emailReg,
-              sex: data.sexReg,
-              pfp: `/assets/icon/pfp/${data.usernameReg}.png`,
+              username: data.username,
+              password: data.password,
+              name: data.name,
+              email: data.email,
+              sex: data.sex,
+              pfp: `/assets/icon/pfp/${data.username}.png`,
               score: 0,
               theme: 'light',
             },
@@ -129,16 +129,13 @@ export default function LoginPage() {
   const actionData = useActionData<{
     errors?: {
       status: number;
-      generalLog?: string;
-      usernameLog?: string;
-      passwordLog?: string;
-      generalReg?: string;
-      usernameReg?: string;
-      passwordReg?: string;
-      nameReg?: string;
-      emailReg?: string;
-      sexReg?: string;
-      pfpReg?: string;
+      general?: string;
+      username?: string;
+      password?: string;
+      name?: string;
+      email?: string;
+      sex?: string;
+      pfp?: string;
     };
   }>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
@@ -188,12 +185,12 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameLog" />
-                <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
+                <InputForm inputType="username" inputName="username" />
+                <ErrorMessage>{actionData?.errors?.username}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordLog" />
-                <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
+                <InputForm inputType="password" inputName="password" />
+                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
               </div>
               <Button
                 textBtn="Log In"
@@ -202,7 +199,7 @@ export default function LoginPage() {
                 name="_action"
                 value="logIn"
               />
-              <ErrorMessage>{actionData?.errors?.generalLog}</ErrorMessage>
+              <ErrorMessage>{actionData?.errors?.general}</ErrorMessage>
             </form>
           </SlidePannel>
 
@@ -224,29 +221,29 @@ export default function LoginPage() {
               }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameReg" />
-                <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
+                <InputForm inputType="username" inputName="username" />
+                <ErrorMessage>{actionData?.errors?.username}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="passwordReg" />
-                <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
+                <InputForm inputType="password" inputName="password" />
+                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="name" inputName="nameReg" />
-                <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
+                <InputForm inputType="name" inputName="name" />
+                <ErrorMessage>{actionData?.errors?.name}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="email" inputName="emailReg" />
-                <ErrorMessage>{actionData?.errors?.emailReg}</ErrorMessage>
+                <InputForm inputType="email" inputName="email" />
+                <ErrorMessage>{actionData?.errors?.email}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="gender" inputName="sexReg" />
+                <InputForm inputType="gender" inputName="sex" />
                 <small>*(male/female/other)</small>
-                <ErrorMessage>{actionData?.errors?.sexReg}</ErrorMessage>
+                <ErrorMessage>{actionData?.errors?.sex}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="file" inputName="pfpReg" />
-                <ErrorMessage>{actionData?.errors?.pfpReg}</ErrorMessage>
+                <InputForm inputType="file" inputName="pfp" />
+                <ErrorMessage>{actionData?.errors?.pfp}</ErrorMessage>
               </div>
               <Button
                 textBtn="Sign up"
@@ -255,7 +252,7 @@ export default function LoginPage() {
                 name="_action"
                 value="singUp"
               />
-              <ErrorMessage>{actionData?.errors?.generalReg}</ErrorMessage>
+              <ErrorMessage>{actionData?.errors?.general}</ErrorMessage>
             </Form>
           </SlidePannel>
         </div>
