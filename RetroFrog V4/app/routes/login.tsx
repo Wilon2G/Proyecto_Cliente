@@ -1,4 +1,4 @@
-import { Form, useActionData } from '@remix-run/react';
+import { Form, redirect, useActionData } from '@remix-run/react';
 import classNames from 'classnames';
 import fs from 'fs';
 import React, { useState } from 'react';
@@ -6,10 +6,10 @@ import Button from '~/components/Buttons';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { InputForm } from '~/components/Inputs';
 import db from '~/db.server';
-import { userExists } from '~/models/user.server';
-import { getSession } from '~/sessions';
+import { checkUser, getThemes, userExists } from '~/models/user.server';
+import { commitSession, getSession } from '~/sessions';
 import validateForm from '~/utils/validation';
-import { registerSchema } from '~/utils/zodSchemas';
+import { logInSchema, registerSchema } from '~/utils/zodSchemas';
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -17,29 +17,42 @@ export async function action({ request }: { request: Request }) {
   const session = await getSession(cookieHeader);
 
   if (formData.get('_action') === 'logIn') {
-    const username = formData.get('usernameLog') as string | null;
-    if (!username) {
-      return new Response(
-        JSON.stringify({ errors: { generalLog: 'Username is required' } }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } },
-      );
-    }
-    const password = formData.get('passwordLog');
+    return validateForm(
+      formData,
+      logInSchema,
+      async (data) => {
+        const userId = await checkUser(data.usernameLog, data.passwordLog);
+        if (!userId) {
+          return {
+            errors: {
+              status: 400,
+              generalLog: 'User or password are incorrect',
+            },
+          };
+        } else {
+          session.set('userId', userId);
 
-    const userExistsCheck = await userExists(username);
-    if (!userExistsCheck) {
-      return new Response(
-        JSON.stringify({ errors: { generalLog: 'Invalid credentials' } }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } },
-      );
-    }
+          const themeData = await getThemes(userId);
 
-    return new Response(null, {
-      status: 302,
-      headers: {
-        Location: '/home/main',
+          if (themeData) {
+            session.set('theme', themeData[0]);
+            session.set('background', themeData[1]);
+            session.set('fontFamily', themeData[2]);
+          }
+          const cookie = await commitSession(session);
+          return redirect('/home/main', {
+            headers: {
+              'Set-Cookie': cookie,
+            },
+          });
+        }
       },
-    });
+      (errors) =>
+        new Response(JSON.stringify({ errors }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+    );
   } else {
     return validateForm(
       formData,
