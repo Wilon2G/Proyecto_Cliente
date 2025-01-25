@@ -79,3 +79,31 @@ export async function getUserId(request: Request) {
 
   return user.id;
 }
+//funcion pa nuevo usuario
+type Role = 'ADMIN' | 'USER'; // TIPO DE ROLES
+
+export async function createUser(userData: {
+  username: string;
+  password: string;
+  name: string;
+  email: string;
+  sex: string;
+  pfp: string;
+  score: number;
+  theme: string;
+  role: Role;
+}) {
+  return db.user.create({
+    data: {
+      username: userData.username,
+      password: userData.password,
+      name: userData.name,
+      email: userData.email,
+      sex: userData.sex,
+      pfp: userData.pfp,
+      score: userData.score,
+      theme: userData.theme,
+      role: userData.role,
+    },
+  });
+}

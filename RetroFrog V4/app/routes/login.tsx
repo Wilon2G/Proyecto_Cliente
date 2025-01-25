@@ -1,13 +1,15 @@
-import { Form, redirect, useActionData } from '@remix-run/react';
+import { Form, useActionData } from '@remix-run/react';
 import classNames from 'classnames';
+import fs from 'fs';
 import React, { useState } from 'react';
 import Button from '~/components/Buttons';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { InputForm } from '~/components/Inputs';
-import { checkUser, getThemes, userExists } from '~/models/user.server';
-import { commitSession, getSession } from '~/sessions';
+import db from '~/db.server';
+import { userExists } from '~/models/user.server';
+import { getSession } from '~/sessions';
 import validateForm from '~/utils/validation';
-import { logInSchema, registerSchema } from '~/utils/zodSchemas';
+import { registerSchema } from '~/utils/zodSchemas';
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -15,42 +17,29 @@ export async function action({ request }: { request: Request }) {
   const session = await getSession(cookieHeader);
 
   if (formData.get('_action') === 'logIn') {
-    return validateForm(
-      formData,
-      logInSchema,
-      async (data) => {
-        const userId = await checkUser(data.usernameLog, data.passwordLog);
-        if (!userId) {
-          return {
-            errors: {
-              status: 400,
-              generalLog: 'User or password are incorrect',
-            },
-          };
-        } else {
-          session.set('userId', userId);
+    const username = formData.get('usernameLog') as string | null;
+    if (!username) {
+      return new Response(
+        JSON.stringify({ errors: { generalLog: 'Username is required' } }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } },
+      );
+    }
+    const password = formData.get('passwordLog');
 
-          const themeData = await getThemes(userId);
+    const userExistsCheck = await userExists(username);
+    if (!userExistsCheck) {
+      return new Response(
+        JSON.stringify({ errors: { generalLog: 'Invalid credentials' } }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } },
+      );
+    }
 
-          if (themeData) {
-            session.set('theme', themeData[0]);
-            session.set('background', themeData[1]);
-            session.set('fontFamily', themeData[2]);
-          }
-          const cookie = await commitSession(session);
-          return redirect('/home/main', {
-            headers: {
-              'Set-Cookie': cookie,
-            },
-          });
-        }
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: '/home/main',
       },
-      (errors) =>
-        new Response(JSON.stringify({ errors }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }),
-    );
+    });
   } else {
     return validateForm(
       formData,
@@ -65,7 +54,55 @@ export async function action({ request }: { request: Request }) {
             },
           };
         }
-        return null;
+
+        const file = formData.get('pfpReg');
+        if (!(file instanceof File)) {
+          return {
+            errors: {
+              status: 400,
+              pfpReg: 'The uploaded file is not valid',
+            },
+          };
+        }
+
+        if (typeof window === 'undefined') {
+          const username = data.usernameReg;
+          const newFileName = `${username}.png`;
+          const uploadPath = './public/assets/icon/pfp/' + newFileName;
+
+          const buffer = await file.arrayBuffer();
+          fs.writeFileSync(uploadPath, Buffer.from(buffer));
+        }
+
+        try {
+          const newUser = await db.user.create({
+            data: {
+              username: data.usernameReg,
+              password: data.passwordReg,
+              name: data.nameReg,
+              email: data.emailReg,
+              sex: data.sexReg,
+              pfp: `/assets/icon/pfp/${data.usernameReg}.png`,
+              score: 0,
+              theme: 'light',
+            },
+          });
+
+          return new Response(null, {
+            status: 302,
+            headers: {
+              Location: '/login',
+            },
+          });
+        } catch (error) {
+          return {
+            errors: {
+              status: 500,
+              generalReg:
+                'An error occurred while creating the user. Please try again later.',
+            },
+          };
+        }
       },
       (errors) =>
         new Response(JSON.stringify({ errors }), {
@@ -75,7 +112,6 @@ export async function action({ request }: { request: Request }) {
     );
   }
 }
-
 export default function LoginPage() {
   const actionData = useActionData<{
     errors?: {
@@ -87,6 +123,9 @@ export default function LoginPage() {
       usernameReg?: string;
       passwordReg?: string;
       nameReg?: string;
+      emailReg?: string;
+      sexReg?: string;
+      pfpReg?: string;
     };
   }>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
@@ -166,6 +205,7 @@ export default function LoginPage() {
           >
             <Form
               method="post"
+              encType="multipart/form-data"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
               }`}
@@ -181,6 +221,19 @@ export default function LoginPage() {
               <div>
                 <InputForm inputType="name" inputName="nameReg" />
                 <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
+              </div>
+              <div>
+                <InputForm inputType="email" inputName="emailReg" />
+                <ErrorMessage>{actionData?.errors?.emailReg}</ErrorMessage>
+              </div>
+              <div>
+                <InputForm inputType="gender" inputName="sexReg" />
+                <small>*(male/female/other)</small>
+                <ErrorMessage>{actionData?.errors?.sexReg}</ErrorMessage>
+              </div>
+              <div>
+                <InputForm inputType="file" inputName="pfpReg" />
+                <ErrorMessage>{actionData?.errors?.pfpReg}</ErrorMessage>
               </div>
               <Button
                 textBtn="Sign up"
@@ -219,7 +272,6 @@ function SlidePannel({
   activePanel,
   onPanelChange,
 }: SlidePannelProps) {
-  //otherpanelID(Para el login es register y viceversa)
   const isActive = activePanel === panelId;
 
   return (
