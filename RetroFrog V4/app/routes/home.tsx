@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/node';
+import { NavLink, Outlet, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
 import {
   CollapseArrow,
@@ -12,10 +13,19 @@ import {
   UserIcon,
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
+import { requiredLoggedInUser } from '~/utils/auth.server';
+export let loader: LoaderFunction = async ({ request }) => {
+  const user = await requiredLoggedInUser(request);
+
+  return {
+    pfp: user?.pfp || '/assets/icon/pfp/default.jpg',
+  };
+};
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
+  const { pfp } = useLoaderData<{ pfp: string }>(); // Usamos el dato pasado por el loader
 
   function toggleSidebar() {
     setIsCollapsed((prev) => !prev);
@@ -24,7 +34,6 @@ export default function HomePage() {
   function toggleMusic() {
     setMusicState((prev) => !prev);
   }
-
   return (
     <>
       <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''} bg-primary`}>
@@ -34,12 +43,8 @@ export default function HomePage() {
               <CollapseArrow />
             </span>
           </button>
-          <a href="../home/main" className="header-logo border-primary-reverse">
-            <img
-              src="/assets/icon/pfp/default.jpg"
-              alt="User Profile"
-              draggable="false"
-            />
+          <a href="/home/main" className="header-logo border-primary-reverse">
+            <img src={pfp} alt="User Profile" draggable="false" />
           </a>
         </header>
         <nav className="sidebar-nav">
