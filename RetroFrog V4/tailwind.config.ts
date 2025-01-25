@@ -4,6 +4,9 @@ export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      animation: {
+        'spin-pulse': 'spin 3.5s linear infinite, pulse 2s infinite',
+      },
       colors: {
         primary: 'var(--primary)',
         'primary-hover': 'var(--primary-hover)',

@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/node';
+import { NavLink, Outlet, useNavigation } from '@remix-run/react';
 import { useState } from 'react';
 import {
   CollapseArrow,
@@ -11,7 +12,14 @@ import {
   ShopIcon,
   UserIcon,
 } from '~/components/IconsSVG';
+import LoadingFrog from '~/components/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
+import { requiredLoggedInUser } from '~/utils/auth.server';
+
+export const loader: LoaderFunction = async ({ request }) => {
+  requiredLoggedInUser(request);
+  return null;
+}
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -24,6 +32,10 @@ export default function HomePage() {
   function toggleMusic() {
     setMusicState((prev) => !prev);
   }
+
+  const navigation = useNavigation();
+
+  const isLoading = navigation.state === "loading";
 
   return (
     <>
@@ -122,9 +134,15 @@ export default function HomePage() {
           </ul>
         </nav>
       </aside>
+      
+      {isLoading ?(
+        <LoadingFrog></LoadingFrog>
+      ):(
       <div className="content h-full w-full">
         <Outlet />
       </div>
+      )}
+      
     </>
   );
 }
