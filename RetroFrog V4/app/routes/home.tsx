@@ -122,7 +122,7 @@ export default function HomePage() {
           </ul>
         </nav>
       </aside>
-      <div className="content h-full">
+      <div className="content h-full w-full">
         <Outlet />
       </div>
     </>
