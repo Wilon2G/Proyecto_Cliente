@@ -2,8 +2,8 @@ import { LoadingFrogIcon } from "./IconsSVG";
 
 export default function LoadingFrog(){
     return(
-    <div className='w-full h-full flex justify-center items-center '>
+    <div className='w-full h-screen flex justify-center items-center '>
           <LoadingFrogIcon></LoadingFrogIcon>
-        </div>
+    </div>
     );
 }
