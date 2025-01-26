@@ -12,9 +12,9 @@ export const registerSchema = z.object({
 });
 
 export const customSchema = z.object({
-  theme: z.string(),
-  background: z.string(),
-  fontFamily: z.string(),
+  theme: z.string().optional(),
+  background: z.string().optional(),
+  fontFamily: z.string().optional(),
 });
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;

@@ -132,7 +132,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       )}
     >
       <div className="flex flex-row items-center justify-center gap-2 w-full">
-        <VolumeIcon iconFill={'text-icon-fill'} />
+        <VolumeIcon />
         <InputRange value={volume} max={1} onChange={changeVolume} />
       </div>
 
@@ -169,7 +169,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             onClick={togglePlaylist}
             className="p-2 rounded-md transition duration-300 bg-icon-fill"
           >
-            <ChooseMusicIcon iconFill={'bg-icon-fill'} />
+            <ChooseMusicIcon />
           </button>
 
           <div className="flex gap-4">
@@ -177,17 +177,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               onClick={playPause}
               className="p-2 rounded-full transition duration-300 bg-icon-fill"
             >
-              {isPlaying ? (
-                <StopingMusic iconFill={'bg-icon-fill'} />
-              ) : (
-                <PlayingMusic iconFill={'bg-icon-fill'} />
-              )}
+              {isPlaying ? <StopingMusic /> : <PlayingMusic />}
             </button>
             <button
               onClick={toggleRepeat}
               className="p-2 rounded-full transition duration-300 bg-icon-fill"
             >
-              <ToggleMusic iconFill={'bg-icon-fill'} />
+              <ToggleMusic />
             </button>
           </div>
         </div>

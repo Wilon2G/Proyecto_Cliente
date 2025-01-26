@@ -18,6 +18,7 @@ export default {
         'color-reverse': 'var(--color-reverse)',
         'color-hover': 'var(--color-hover)',
         'icon-fill': 'var(--icon-fill)',
+        'icon-fill-reverse': 'var(--icon-fill-reverse)',
         'icon-fill-hover': 'var(--icon-fill-hover)',
         'icon-bg-hover': 'var(--icon-bg-hover)',
       },
