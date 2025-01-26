@@ -116,9 +116,13 @@ body {
   @apply flex items-center no-underline px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
 }
 
+.sidebar.collapsed .sidebar-nav{
+  height: 85%;
+}
+
 .sidebar-nav{
   @apply flex flex-col justify-between;
-  height: 85%;
+  height: 80%;
 }
 
 .nav-link:hover {
