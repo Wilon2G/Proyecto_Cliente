@@ -39,7 +39,7 @@ export default function HomePage() {
 
   return (
     <>
-      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''} bg-primary`}>
+      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''} my-5 bg-primary`}>
         <header className="sidebar-header">
           <button className="toggler" onClick={toggleSidebar}>
             <span>
@@ -106,6 +106,8 @@ export default function HomePage() {
               />
             </li>
           </ul>
+
+          
           <ul className="nav-list secondary-nav">
             <li className="nav-item">
               <NavLink to="user" className="nav-link">
@@ -138,7 +140,7 @@ export default function HomePage() {
       {isLoading ? (
         <LoadingFrog></LoadingFrog>
       ) : (
-        <div className="content h-full w-full">
+        <div className="content h-fit w-full">
           <Outlet />
         </div>
       )}
