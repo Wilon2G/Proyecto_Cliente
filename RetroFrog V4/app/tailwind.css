@@ -78,8 +78,6 @@ body {
   @apply bg-gray-200;
 }
 
-
-
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
 }
@@ -101,8 +99,6 @@ body {
 }
 
 .sidebar.collapsed .primary-nav {
-
-
   & .nav-link:hover svg {
     fill: var(--icon-fill-hover);
   }
@@ -117,12 +113,12 @@ body {
 }
 
 .sidebar.collapsed .sidebar-nav {
-  height: 82%;
+  height: 80%;
 }
 
 .sidebar-nav {
   @apply flex flex-col justify-between;
-  height: 80%;
+  height: 75%;
 }
 
 .nav-link:hover {

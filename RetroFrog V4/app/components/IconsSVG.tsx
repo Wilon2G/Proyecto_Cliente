@@ -302,7 +302,7 @@ export function ShopNowIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="size-6"
+      className="w-5 h-5 text-gray-400 bradius "
     >
       <path
         strokeLinecap="round"

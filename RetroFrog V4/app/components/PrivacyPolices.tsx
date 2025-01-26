@@ -19,10 +19,10 @@ function PrivacyPolices() {
 
       <div
         className={classNames(
-          `dropdown-content p-6 rounded-lg shadow-lg bg-slate-200
+          `dropdown-content p-6 rounded-lg shadow-lg 
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
                     ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`,
-          'bg-primary text-color-reverse',
+          'bg-color text-color-reverse',
         )}
       >
         <p className="mb-4">

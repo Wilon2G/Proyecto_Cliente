@@ -34,14 +34,14 @@ export const loader: LoaderFunction = async ({ request }) => {
     --primary-hover: #1F253D;
     --primary-reverse: #E0E0E0;
     --primary-hover-reverse: #D6D8DB;
-    --color: #CCCCCC;
+    --color: #B0B0B0;
     --color-reverse: #1F253D;
     --color-hover: #D6D8DB;
     --icon-fill: #CCCCCC;
     --icon-fill-reverse: #151A2D;
-    --icon-fill-hover: #E0E0E0;
-    --icon-bg-hover: rgba(224, 224, 224, 0.1);
-    --gradient-from: rgba(0, 0, 0, 0.4);
+    --icon-fill-hover: #FFFFFF;
+    --icon-bg-hover: rgba(224, 224, 224, 0.3);
+    --gradient-from: rgba(0, 0, 0, 0.6);
     --gradient-to: rgba(0, 0, 0, 0.8);
 `;
 
