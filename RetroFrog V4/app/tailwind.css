@@ -73,8 +73,6 @@ body {
   @apply bg-gray-200;
 }
 
-
-
 .sidebar.collapsed .toggler {
   @apply transition-all duration-500 ease-in-out self-center;
 }
@@ -286,4 +284,14 @@ body {
   background-color: #45a049;
 }
 
-/* Asegúrate de que el swiper no se desborde */
+.content {
+  transition: margin-left 0.3s ease;
+}
+
+.content.expanded {
+  margin-left: 100px;
+}
+
+.content.collapsed {
+  margin-left: 200px;
+}

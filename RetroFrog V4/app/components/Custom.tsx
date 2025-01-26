@@ -128,7 +128,7 @@ export default function Custom() {
             <Button
               textBtn="Save Changes"
               typeBtn="submit"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-6 py-2 rounded-md transition-all"
+              className="bg-indigo-500 hover:bg-indigo-700 text-white text-lg px-6 py-2 rounded-md transition-all"
             />
           </div>
         </Form>

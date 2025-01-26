@@ -1,4 +1,3 @@
-import { LoaderFunction } from '@remix-run/node';
 import { NavLink, Outlet, useLoaderData } from '@remix-run/react';
 import { useState } from 'react';
 import {
@@ -14,13 +13,14 @@ import {
 } from '~/components/IconsSVG';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
-export let loader: LoaderFunction = async ({ request }) => {
+
+export async function loader({ request }: any) {
   const user = await requiredLoggedInUser(request);
 
   return {
     pfp: user?.pfp || '/assets/icon/pfp/default.jpg',
   };
-};
+}
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -127,7 +127,9 @@ export default function HomePage() {
           </ul>
         </nav>
       </aside>
-      <div className="content h-full">
+      <div
+        className={`content h-full ${isCollapsed ? 'expanded' : 'collapsed'}`}
+      >
         <Outlet />
       </div>
     </>

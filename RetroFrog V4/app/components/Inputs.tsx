@@ -34,7 +34,7 @@ export function InputForm({
         autoComplete="off"
         className={classNames(
           'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-          'border-color-reverse bg-primary-reverse text-color-reverse', //Cambios
+          'border-color-reverse bg-primary text-color', //Cambios
           classname,
         )}
         placeholder={`Your ${inputType}`}

@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import classNames from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ChooseMusicIcon,
   PlayingMusic,
@@ -7,17 +8,16 @@ import {
   VolumeIcon,
 } from './IconsSVG';
 import { InputRange } from './Inputs';
-import classNames from 'classnames';
 
-//DUDAS CON ESTA INTERFAZ Y PQ MUSICPLAYER ES CONST Y NO FUNCTION
+// La interfaz MusicPlayerProps define las propiedades que el componente MusicPlayer puede recibir.
+// - `style` permite aplicar estilos en línea opcionalmente.
+// - `className` permite añadir clases CSS adicionales opcionalmente.
 interface MusicPlayerProps {
   style?: React.CSSProperties;
   className?: string;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({
-  className,
-}: MusicPlayerProps) => {
+export default function MusicPlayer({ className }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [isRepeating, setIsRepeating] = useState(false);
@@ -74,7 +74,6 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   };
 
   const changeSong = (src: string) => {
-    //Para prevenir ejecutar el mismo audio
     if (audioRef.current?.src.includes(src)) return;
 
     if (audioRef.current) {
@@ -132,7 +131,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       )}
     >
       <div className="flex flex-row items-center justify-center gap-2 w-full">
-        <VolumeIcon iconFill={'text-icon-fill'} />
+        <VolumeIcon />
         <InputRange value={volume} max={1} onChange={changeVolume} />
       </div>
 
@@ -146,7 +145,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <li
               key={index}
               className={classNames(
-                'text-sm p-2 cursor-pointer rounded-md transition duration-200',
+                'text-sm p-2 cursor-pointer transition duration-200 hover:bg-primary-hover',
                 `${
                   audioRef.current?.src.includes(song.src)
                     ? 'bg-primary-hover text-color-hover'
@@ -167,27 +166,23 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
         <div className="flex justify-between items-center w-full gap-4 mt-4">
           <button
             onClick={togglePlaylist}
-            className="p-2 rounded-md transition duration-300 bg-icon-fill"
+            className="p-2 rounded-md transition duration-300 hover:bg-primary-hover"
           >
-            <ChooseMusicIcon iconFill={'bg-icon-fill'} />
+            <ChooseMusicIcon />
           </button>
 
           <div className="flex gap-4">
             <button
               onClick={playPause}
-              className="p-2 rounded-full transition duration-300 bg-icon-fill"
+              className="p-2 rounded-full transition duration-300 hover:bg-primary-hover"
             >
-              {isPlaying ? (
-                <StopingMusic iconFill={'bg-icon-fill'} />
-              ) : (
-                <PlayingMusic iconFill={'bg-icon-fill'} />
-              )}
+              {isPlaying ? <StopingMusic /> : <PlayingMusic />}
             </button>
             <button
               onClick={toggleRepeat}
-              className="p-2 rounded-full transition duration-300 bg-icon-fill"
+              className="p-2 rounded-full transition duration-300 hover:bg-primary-hover"
             >
-              <ToggleMusic iconFill={'bg-icon-fill'} />
+              <ToggleMusic />
             </button>
           </div>
         </div>
@@ -206,6 +201,4 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       </div>
     </div>
   );
-};
-
-export default MusicPlayer;
+}
