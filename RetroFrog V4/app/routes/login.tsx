@@ -63,17 +63,17 @@ export async function action({ request }: { request: Request }) {
           return {
             errors: {
               status: 400,
-              generalReg: 'User Name is already registered, please Log In',
+              general: 'User Name is already registered, please Log In',
             },
           };
         }
 
-        const file = formData.get('pfpReg');
+        const file = formData.get('pfp');
         if (!(file instanceof File)) {
           return {
             errors: {
               status: 400,
-              pfpReg: 'The uploaded file is not valid',
+              pfp: 'The uploaded file is not valid',
             },
           };
         }
@@ -111,7 +111,7 @@ export async function action({ request }: { request: Request }) {
           return {
             errors: {
               status: 500,
-              generalReg:
+              general:
                 'An error occurred while creating the user. Please try again later.',
             },
           };
