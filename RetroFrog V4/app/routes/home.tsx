@@ -19,7 +19,7 @@ import { requiredLoggedInUser } from '~/utils/auth.server';
 export const loader: LoaderFunction = async ({ request }) => {
   requiredLoggedInUser(request);
   return null;
-}
+};
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -35,7 +35,7 @@ export default function HomePage() {
 
   const navigation = useNavigation();
 
-  const isLoading = navigation.state === "loading";
+  const isLoading = navigation.state === 'loading';
 
   return (
     <>
@@ -134,15 +134,14 @@ export default function HomePage() {
           </ul>
         </nav>
       </aside>
-      
-      {isLoading ?(
+
+      {isLoading ? (
         <LoadingFrog></LoadingFrog>
-      ):(
-      <div className="content h-full w-full">
-        <Outlet />
-      </div>
+      ) : (
+        <div className="content h-full w-full">
+          <Outlet />
+        </div>
       )}
-      
     </>
   );
 }

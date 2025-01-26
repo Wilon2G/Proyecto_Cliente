@@ -76,19 +76,21 @@ export async function action({ request }: { request: Request }) {
   }
 }
 
+type LoginActionData = {
+  errors?: {
+    status: number;
+    generalLog?: string;
+    usernameLog?: string;
+    passwordLog?: string;
+    generalReg?: string;
+    usernameReg?: string;
+    passwordReg?: string;
+    nameReg?: string;
+  };
+};
+
 export default function LoginPage() {
-  const actionData = useActionData<{
-    errors?: {
-      status: number;
-      generalLog?: string;
-      usernameLog?: string;
-      passwordLog?: string;
-      generalReg?: string;
-      usernameReg?: string;
-      passwordReg?: string;
-      nameReg?: string;
-    };
-  }>();
+  const actionData = useActionData<LoginActionData>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   const handlePanelChange = (panel: 'login' | 'register') => {

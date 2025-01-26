@@ -43,8 +43,8 @@ export default function HomePage() {
             Check out our latest sales!
           </h2>
           <p className="text-white text-lg">
-            Don’t miss out on amazing deals! Get up to 50% off on your favorite
-            retro games.
+            Don&#39;t miss out on amazing deals! Get up to 50% off on your
+            favorite retro games.
           </p>
 
           <button className="self-start bg-white text-orange-600 px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition-all">
