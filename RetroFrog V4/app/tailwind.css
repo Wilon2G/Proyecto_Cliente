@@ -273,6 +273,11 @@ body {
   color: #041c52;
 }
 
+/*-----Settings developers-----*/
+.swiper-wrapper{
+  width: 1px !important;
+}
+
 /*-------------------------buyButton--------------------------*/
 
 .buy-button {
