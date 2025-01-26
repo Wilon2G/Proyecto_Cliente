@@ -287,7 +287,7 @@ function SlidePannel({
   return (
     <div
       className={classNames(
-        `h-full flex-1 transition-all duration-500 ${
+        `h-full flex-1 transition-all duration-500  ${
           activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
         }   p-8 flex flex-col justify-center items-center cursor-pointer`,
         `${
@@ -307,7 +307,7 @@ function SlidePannel({
       role="button"
     >
       <div
-        className={`transition-all duration-1000 ${
+        className={`transition-all duration-1000  ${
           isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
         }`}
       >
@@ -322,7 +322,7 @@ function SlidePannel({
           !isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
         }`}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">{activeTitle}</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center ">{activeTitle}</h2>
       </div>
 
       {children}

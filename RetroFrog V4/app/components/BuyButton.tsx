@@ -1,19 +1,33 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 
-export default function BuyButton() {
+type BuyButtonProps = {
+  gameId: string; // ID del juego a desbloquear
+  userId: string; // ID del usuario
+  addGameToUser: (gameId: string, userId: string) => Promise<void>; // Método para añadir el juego
+};
+
+export default function BuyButton({
+  gameId,
+  userId,
+  addGameToUser,
+}: BuyButtonProps) {
   const [loading, setLoading] = useState(false);
   const [purchased, setPurchased] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (loading || purchased) return;
 
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await addGameToUser(gameId, userId); // Llama al método para añadir el juego
       setPurchased(true);
-    }, 2000);
+    } catch (error) {
+      console.error('Error al añadir el juego:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isDisabled = loading || purchased;
@@ -23,16 +37,14 @@ export default function BuyButton() {
       onClick={handleClick}
       className={classNames(
         'w-1/2 font-bold py-2 px-4 rounded-md transition duration-300',
-        'bg-amber-500 hover:bg-amber-600', //Se queda el color verde de base
         {
-          'buy-button': true,
-          loading: loading,
-          purchased: purchased,
+          'bg-amber-500 hover:bg-amber-600': !purchased,
+          'bg-green-500 cursor-not-allowed': purchased,
         },
       )}
       disabled={isDisabled}
     >
-      {purchased ? 'done' : loading ? 'wait...' : 'Buy'}
+      {purchased ? 'Done' : loading ? 'Wait...' : 'Buy'}
     </button>
   );
 }
