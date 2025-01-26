@@ -10,7 +10,6 @@ import {
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
 import { getSession } from '~/sessions';
-import { getCurrentUser } from '~/utils/auth.server';
 import prisma from '~/utils/prismaClient';
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -157,10 +156,14 @@ export default function Library() {
 
       {/**Form para añadir juego */}
       {isModalOpen && (
-        <ModalForm
-          handleCloseModal={handleCloseModal}
-          handleSubmitNewGame={handleSubmitNewGame}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear">
+          <div className="bg-white p-6 rounded-lg">
+            <ModalForm
+              handleCloseModal={handleCloseModal}
+              handleSubmitNewGame={handleSubmitNewGame}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
