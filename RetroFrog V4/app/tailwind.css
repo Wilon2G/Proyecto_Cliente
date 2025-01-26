@@ -6,7 +6,7 @@
 
 html,
 body {
-  @apply h-screen m-0 p-0;
+  @apply  m-0 p-0;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -20,7 +20,6 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  min-height: 100%;
   max-height: fit-content;
 }
 
