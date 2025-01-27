@@ -114,9 +114,7 @@ export default function Custom() {
             >
               <option value="open-sans">Open Sans</option>
               <option value="roboto">Roboto</option>
-              <option value="comic-sans">Comic Sans</option>
               <option value="arial">Arial</option>
-              <option value="press-start-2p">Press Start 2P</option>
               <option value="vt323">VT323</option>
               <option value="orbitron">Orbitron</option>
               <option value="bungee">Bungee</option>

@@ -6,7 +6,10 @@
 
 html,
 body {
-  @apply h-screen m-0 p-0;
+  @apply m-0 p-0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -17,6 +20,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+  max-height: fit-content;
 }
 
 .sidebar {
@@ -41,8 +45,9 @@ body {
   }
 }
 
+/* fixed */
 .sidebar {
-  @apply w-48 fixed top-4 left-4 rounded-xl h-[calc(100vh-32px)] overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
+  @apply w-48 ml-4 rounded-xl overflow-hidden items-center transition-[width] duration-300 ease-in-out z-50;
 }
 
 .sidebar.collapsed {
@@ -86,16 +91,14 @@ body {
 }
 
 .sidebar-nav .secondary-nav {
-  @apply relative w-full h-full top-44 transition-all ease-linear;
+  @apply w-full transition-all ease-linear;
 }
 
 .sidebar.collapsed .secondary-nav {
-  @apply top-52 transition-all ease-linear;
+  @apply transition-all ease-linear;
 }
 
 .sidebar.collapsed .primary-nav {
-  @apply relative;
-
   & .nav-link:hover svg {
     fill: var(--icon-fill-hover);
   }
@@ -107,6 +110,15 @@ body {
 
 .nav-link {
   @apply flex items-center no-underline px-3 py-3 rounded-lg gap-3 transition-all duration-300 ease-in-out;
+}
+
+.sidebar.collapsed .sidebar-nav {
+  height: 80%;
+}
+
+.sidebar-nav {
+  @apply flex flex-col justify-between;
+  height: 75%;
 }
 
 .nav-link:hover {
@@ -130,9 +142,13 @@ body {
   @apply opacity-0 hidden pointer-events-none;
 }
 
+
+
 .content {
-  @apply p-5 ml-24 flex flex-col;
+  @apply p-5 flex flex-col;
 }
+
+/*------Cosillas de juegos----------*/
 
 .gallery {
   display: grid;
@@ -265,6 +281,11 @@ body {
 
 .slide-button:hover {
   color: #041c52;
+}
+
+/*-----Settings developers-----*/
+.swiper-wrapper {
+  width: 1px !important;
 }
 
 /*-------------------------buyButton--------------------------*/

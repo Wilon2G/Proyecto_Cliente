@@ -12,6 +12,7 @@ export default {
       },
       animation: {
         appear: 'appear 0.5s ease-in-out',
+        'spin-pulse': 'spin 3.5s linear infinite, pulse 2s infinite',
       },
       colors: {
         primary: 'var(--primary)',
@@ -24,6 +25,7 @@ export default {
         'color-reverse': 'var(--color-reverse)',
         'color-hover': 'var(--color-hover)',
         'icon-fill': 'var(--icon-fill)',
+        'icon-fill-reverse': 'var(--icon-fill-reverse)',
         'icon-fill-hover': 'var(--icon-fill-hover)',
         'icon-bg-hover': 'var(--icon-bg-hover)',
       },

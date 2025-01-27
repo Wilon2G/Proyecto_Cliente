@@ -125,23 +125,20 @@ export async function action({ request }: { request: Request }) {
     );
   }
 }
+
 export default function LoginPage() {
   const actionData = useActionData<{
     errors?: {
       status: number;
-      general?: string;
-      username?: string;
-      password?: string;
-      name?: string;
-      email?: string;
-      sex?: string;
-      pfp?: string;
+      generalLog?: string;
+      usernameLog?: string;
+      passwordLog?: string;
+      generalReg?: string;
+      usernameReg?: string;
+      passwordReg?: string;
+      nameReg?: string;
     };
   }>();
-  const [showPassword, setShowPassword] = useState(true);
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   const handlePanelChange = (panel: 'login' | 'register') => {
@@ -151,8 +148,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="h-full flex justify-end">
-      <div className="h-full w-2/5 backdrop-blur-lg bg-primary">
+    <div className="h-full relative flex justify-end">
+      <div className="h-full w-2/5 fixed right-0 backdrop-blur-lg bg-primary">
         <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img
             src="/assets/icon/frog-logo3.png"

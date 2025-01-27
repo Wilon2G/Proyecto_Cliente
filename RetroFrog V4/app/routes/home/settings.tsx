@@ -30,6 +30,14 @@ export const action: ActionFunction = async ({ request }) => {
     formData,
     customSchema,
     async ({ theme, background, fontFamily }) => {
+      //Por si le pasamos algo opcional y algo no
+      theme = theme ?? session.get('theme') ?? 'dark';
+      background =
+        background ??
+        session.get('background') ??
+        'dark/assets/background/1-bg.png';
+      fontFamily = fontFamily ?? session.get('fontFamily') ?? 'arial';
+
       session.set('theme', theme);
       session.set('background', background);
       session.set('fontFamily', fontFamily);

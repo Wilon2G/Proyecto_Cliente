@@ -30,34 +30,36 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   const darkModeStyles = `
-    --primary: #151a2d;
-    --primary-hover: #1f253d;
-    --primary-reverse: #ffffff;
-    --primary-hover-reverse: #f3f4f6;
-    --color: #e6e6e6;
-    --color-reverse: #1f253d;
-    --color-hover: #f3f4f6;
-    --icon-fill: #e6e6e6;
-    --icon-fill-hover: #ffffff;
-    --icon-bg-hover: rgba(255, 255, 255, 0.1);
-    --gradient-from: rgba(0, 0, 0, 0.4);
+    --primary: #151A2D;
+    --primary-hover: #1F253D;
+    --primary-reverse: #E0E0E0;
+    --primary-hover-reverse: #D6D8DB;
+    --color: #B0B0B0;
+    --color-reverse: #1F253D;
+    --color-hover: #D6D8DB;
+    --icon-fill: #CCCCCC;
+    --icon-fill-reverse: #151A2D;
+    --icon-fill-hover: #FFFFFF;
+    --icon-bg-hover: rgba(224, 224, 224, 0.3);
+    --gradient-from: rgba(0, 0, 0, 0.6);
     --gradient-to: rgba(0, 0, 0, 0.8);
 `;
 
   const lightModeStyles = `
-    --primary:#ffffff;
-    --primary-hover:#f3f4f6;
-    --primary-reverse:#151a2d;
-    --primary-hover-reverse:#1f253d;
-    --color:#1f253d;
-    --color-reverse:#e6e6e6;
-    --color-hover:#1f253d;
-    --icon-fill:#151A2D; 
-    --icon-fill-hover:#ffffff;
-    --icon-bg-hover:rgba(21, 26, 45, 0.6);
-    --gradient-from:rgba(255,255,255, 0.4);
-    --gradient-to:rgba(255,255,255, 0.8);
-  `;
+    --primary: #F0F0F0;
+    --primary-hover: #D6D8DB;
+    --primary-reverse: #151A2D;
+    --primary-hover-reverse: #1F253D;
+    --color: #1F253D;
+    --color-reverse: #CCCCCC;
+    --color-hover: #1F253D;
+    --icon-fill: #1F253D;
+    --icon-fill-reverse: #F0F0F0;
+    --icon-fill-hover: #CCCCCC;
+    --icon-bg-hover: rgba(21, 26, 45, 0.6);
+    --gradient-from: rgba(240, 240, 240, 0.4);
+    --gradient-to: rgba(240, 240, 240, 0.8);
+`;
 
   const themeStyles = themeChoice === 'dark' ? darkModeStyles : lightModeStyles;
 

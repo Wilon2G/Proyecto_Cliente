@@ -1,5 +1,10 @@
-import { NavLink, Outlet, useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
+import {
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useNavigation,
+} from '@remix-run/react';
+import React, { useState } from 'react';
 import {
   CollapseArrow,
   FavGamesIcon,
@@ -11,6 +16,7 @@ import {
   ShopIcon,
   UserIcon,
 } from '~/components/IconsSVG';
+import LoadingFrog from '~/components/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 
@@ -34,9 +40,52 @@ export default function HomePage() {
   function toggleMusic() {
     setMusicState((prev) => !prev);
   }
+
+  const navigation = useNavigation();
+
+  const isLoading = navigation.state === 'loading';
+
+  const primaryLinks = [
+    {
+      path: 'main',
+      SVGIcon: <HomeIcon />,
+      iconName: 'Home',
+    },
+    {
+      path: 'shop',
+      SVGIcon: <ShopIcon />,
+      iconName: 'Shop',
+    },
+    {
+      path: 'library',
+      SVGIcon: <GamesIcon />,
+      iconName: 'Games',
+    },
+  ];
+
+  const secondaryLinks = [
+    {
+      path: 'user',
+      SVGIcon: <UserIcon />,
+      iconName: 'Profile',
+    },
+    {
+      path: 'settings',
+      SVGIcon: <SettingsIcon />,
+      iconName: 'Settings',
+    },
+    {
+      path: '/logout',
+      SVGIcon: <LogOutIcon />,
+      iconName: 'Logout',
+    },
+  ];
+
   return (
     <>
-      <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''} bg-primary`}>
+      <aside
+        className={`sidebar ${isCollapsed ? 'collapsed' : ''} my-5 bg-primary`}
+      >
         <header className="sidebar-header">
           <button className="toggler" onClick={toggleSidebar}>
             <span>
@@ -47,24 +96,18 @@ export default function HomePage() {
             <img src={pfp} alt="User Profile" draggable="false" />
           </a>
         </header>
+
         <nav className="sidebar-nav">
           <ul className="nav-list primary-nav">
-            <li className="nav-item">
-              <NavLink to="main" className="nav-link">
-                <span className="nav-icon">
-                  <HomeIcon />
-                </span>
-                <span className="nav-label">Home</span>
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="shop" className="nav-link">
-                <span className="nav-icon">
-                  <ShopIcon />
-                </span>
-                <span className="nav-label">Shop</span>
-              </NavLink>
-            </li>
+            {primaryLinks.map((link) => (
+              <NavLinkComp
+                key={link.path}
+                path={link.path}
+                SVGIcon={link.SVGIcon}
+                iconName={link.iconName}
+              />
+            ))}
+
             <li className="nav-item">
               <NavLink to="library" className="nav-link">
                 <span className="nav-icon">
@@ -73,6 +116,7 @@ export default function HomePage() {
                 <span className="nav-label">Games</span>
               </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 to={{
@@ -87,6 +131,7 @@ export default function HomePage() {
                 <span className="nav-label">Favorites</span>
               </NavLink>
             </li>
+
             <li className="nav-item">
               <div className="nav-link" onClick={toggleMusic}>
                 <span className="nav-icon">
@@ -99,39 +144,44 @@ export default function HomePage() {
               />
             </li>
           </ul>
+
           <ul className="nav-list secondary-nav">
-            <li className="nav-item">
-              <NavLink to="user" className="nav-link">
-                <span className="nav-icon">
-                  <UserIcon />
-                </span>
-                <span className="nav-label">Profile</span>
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="settings" className="nav-link">
-                <span className="nav-icon">
-                  <SettingsIcon />
-                </span>
-                <span className="nav-label">Settings</span>
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/logout" className="nav-link">
-                <span className="nav-icon">
-                  <LogOutIcon />
-                </span>
-                <span className="nav-label">Logout</span>
-              </NavLink>
-            </li>
+            {secondaryLinks.map((link) => (
+              <NavLinkComp
+                key={link.path}
+                path={link.path}
+                SVGIcon={link.SVGIcon}
+                iconName={link.iconName}
+              />
+            ))}
           </ul>
         </nav>
       </aside>
-      <div
-        className={`content h-full ${isCollapsed ? 'expanded' : 'collapsed'}`}
-      >
-        <Outlet />
-      </div>
+
+      {isLoading ? (
+        <LoadingFrog></LoadingFrog>
+      ) : (
+        <div className="content h-fit w-full">
+          <Outlet />
+        </div>
+      )}
     </>
+  );
+}
+
+type NavLinkCompProps = {
+  path: string;
+  SVGIcon: React.ReactElement;
+  iconName: string;
+};
+
+function NavLinkComp({ path, SVGIcon, iconName }: NavLinkCompProps) {
+  return (
+    <li className="nav-item">
+      <NavLink to={path} className="nav-link">
+        <span className="nav-icon">{SVGIcon}</span>
+        <span className="nav-label">{iconName}</span>
+      </NavLink>
+    </li>
   );
 }
