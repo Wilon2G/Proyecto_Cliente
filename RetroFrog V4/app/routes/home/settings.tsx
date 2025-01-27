@@ -42,7 +42,12 @@ export const action: ActionFunction = async ({ request }) => {
       session.set('background', background);
       session.set('fontFamily', fontFamily);
 
-      updateTheme(user.id, theme, background, fontFamily);
+      updateTheme(
+        user.id,
+        theme as string,
+        background as string,
+        fontFamily as string,
+      );
 
       return new Response(null, {
         headers: {
