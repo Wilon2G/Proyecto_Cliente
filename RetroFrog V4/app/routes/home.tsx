@@ -109,15 +109,6 @@ export default function HomePage() {
             ))}
 
             <li className="nav-item">
-              <NavLink to="library" className="nav-link">
-                <span className="nav-icon">
-                  <GamesIcon />
-                </span>
-                <span className="nav-label">Games</span>
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
               <NavLink
                 to={{
                   pathname: 'library',

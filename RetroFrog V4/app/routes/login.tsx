@@ -140,6 +140,10 @@ export default function LoginPage() {
     };
   }>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
+  const [showPassword, setShowPassword] = useState(true);
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handlePanelChange = (panel: 'login' | 'register') => {
     if (activePanel !== panel) {
