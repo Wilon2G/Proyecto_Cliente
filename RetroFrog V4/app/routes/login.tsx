@@ -138,6 +138,10 @@ export default function LoginPage() {
       pfp?: string;
     };
   }>();
+  const [showPassword, setShowPassword] = useState(true);
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
 
   const handlePanelChange = (panel: 'login' | 'register') => {
@@ -189,8 +193,38 @@ export default function LoginPage() {
                 <ErrorMessage>{actionData?.errors?.username}</ErrorMessage>
               </div>
               <div>
-                <InputForm inputType="password" inputName="password" />
-                <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
+                <div className="relative">
+                  <InputForm
+                    inputType={showPassword ? 'text' : 'password'}
+                    inputName="password"
+                    classname="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleTogglePasswordVisibility}
+                    className="absolute right-2 top-14 transform -translate-y-1/2"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path
+                        d={
+                          showPassword
+                            ? 'M23 1L1 23'
+                            : 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'
+                        }
+                      ></path>
+                    </svg>
+                  </button>
+                  <ErrorMessage>{actionData?.errors?.password}</ErrorMessage>
+                </div>
               </div>
               <Button
                 textBtn="Log In"
