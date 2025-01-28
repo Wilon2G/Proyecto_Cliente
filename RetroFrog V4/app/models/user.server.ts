@@ -87,7 +87,6 @@ export async function createUser(userData: {
   password: string;
   name: string;
   email: string;
-  sex: string;
   pfp: string;
   score: number;
   theme: string;
@@ -99,7 +98,7 @@ export async function createUser(userData: {
       password: userData.password,
       name: userData.name,
       email: userData.email,
-      sex: userData.sex,
+      sex: "",
       pfp: userData.pfp,
       score: userData.score,
       theme: userData.theme,

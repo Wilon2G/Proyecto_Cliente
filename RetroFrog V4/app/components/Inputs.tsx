@@ -13,19 +13,21 @@ export function InputForm({
   inputName,
   labelStyle,
 }: InputProps) {
+
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
 
   /**Aunque lo que pongas no sea text en el type, lo trata como text. username=text */
 
+
   return (
     <>
       <label
         className={classNames('block text-lg font-medium mb-2', labelStyle)}
-        htmlFor={`${inputName}`}
+        htmlFor={`${inputType}`}
       >
-        {capitalizeFirstLetter(inputName || '')}:
+        {capitalizeFirstLetter(inputType || '')}:
       </label>
       <input
         type={`${inputType}`}
@@ -38,7 +40,7 @@ export function InputForm({
           classname,
         )}
         placeholder={`Your ${inputType}`}
-        required
+        // required
       />
     </>
   );
@@ -51,6 +53,8 @@ type InputRangeProps = {
   step?: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+//=======================
 
 export function InputRange({
   classname,
@@ -75,6 +79,9 @@ export function InputRange({
     />
   );
 }
+
+
+//===================
 
 export function InputTextarea({
   classname,
