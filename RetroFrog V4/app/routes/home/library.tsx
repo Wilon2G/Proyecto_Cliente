@@ -1,7 +1,7 @@
 import { Game, User } from '@prisma/client';
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
-import React from 'react';
+import React, { useRef } from 'react';
 import { ButtonAction } from '~/components/Buttons';
 import GameComponent from '~/components/games/GameComponent';
 import {
@@ -95,6 +95,7 @@ export default function Library() {
   const fetcher = useFetcher();
   const [selectedGame, setSelectedGame] = React.useState<Game | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null); // Ref para manejar el audio
 
   const toggleFavorite = (gameId: string) => {
     fetcher.submit({ gameId }, { method: 'post' });
@@ -113,6 +114,20 @@ export default function Library() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+  const playMusic = (game: Game) => {
+    if (audioRef.current) {
+      audioRef.current.src =
+        '/assets/games/bgm/' + game.title.replace(/\s/g, '') + '.mp3'; // Ruta del archivo MP3 del juego
+      audioRef.current.play();
+    }
+  };
+
+  const stopMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Opcional: reiniciar el audio cuando se detenga
+    }
   };
 
   const handleSubmitNewGame = async (
@@ -140,13 +155,30 @@ export default function Library() {
             key={game.id}
             className="relative"
             onClick={() => handleOpenGameModal(game)}
+            onMouseEnter={() => playMusic(game)} // Iniciar música al hacer hover
+            onMouseLeave={stopMusic} // Detener música al salir del hover
           >
-            <img
-              src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
-              alt={`Cover of ${game.title}`}
-              draggable="false"
-              className="rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 select-none"
-            />
+            {/* Aquí se maneja el hover para cambiar la imagen */}
+            <div className="relative overflow-hidden rounded-md shadow-md transition-shadow duration-300 select-none">
+              <img
+                src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
+                alt={`Cover of ${game.title}`}
+                draggable="false"
+                className="w-full h-full object-cover transition-all duration-300 ease-in-out"
+                onMouseEnter={(e) => {
+                  e.currentTarget.src = `/assets/games/${game.title.replace(
+                    /\s/g,
+                    '',
+                  )}.gif`; // Cambio a GIF
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.src = `/assets/games/${game.title.replace(
+                    /\s/g,
+                    '',
+                  )}-boxa.png`; // Vuelve a la imagen estática
+                }}
+              />
+            </div>
             <ButtonAction
               onClick={() => toggleFavorite(game.id)}
               className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md"
@@ -189,6 +221,7 @@ export default function Library() {
           handleSubmitNewGame={handleSubmitNewGame}
         />
       )}
+      <audio ref={audioRef} />
     </div>
   );
 }

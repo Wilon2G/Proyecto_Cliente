@@ -1,4 +1,4 @@
-import React from 'react';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import React from 'react';
 
 import './tailwind.css';
 
@@ -42,7 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body
         className={
-          'min-h-full h-fit bg-image-bg font-primary-font text-color hover:text-color-hover'
+          'min-h-full h-fit bg-image-bg font-primary-font text-color hover:text-color-hover flex-col'
         }
       >
         {children}

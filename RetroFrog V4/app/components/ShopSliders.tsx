@@ -28,7 +28,7 @@ export function PpalSlider({ games }: SliderProps) {
               background: `url(/assets/games/${game.title.replace(
                 /\s/g,
                 '',
-              )}-boxa.png) no-repeat center center`,
+              )}-L.png) no-repeat center center`,
               backgroundSize: 'cover',
               height: '60vh',
             }}

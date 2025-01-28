@@ -34,6 +34,7 @@ model Game {
   description   String
   color         String
   tags          String
+  console          String
   Users         User[] @relation("UserGames")
   UsersFavorited User[] @relation("UserFavorites")
 }
