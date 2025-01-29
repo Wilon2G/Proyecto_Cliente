@@ -1,3 +1,4 @@
+import { LoaderFunction } from '@remix-run/node';
 import {
   NavLink,
   Outlet,
@@ -20,7 +21,7 @@ import LoadingFrog from '~/components/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 
-export async function loader({ request }: any) {
+export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
 
   return {

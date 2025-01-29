@@ -1,14 +1,13 @@
 import { z } from 'zod';
 
 export const logInSchema = z.object({
-  usernameLog: z
+  emailLog: z
     .string()
     .min(5, 'Your user name cannnot be less than five character'),
   passwordLog: z.string().min(5, 'Password must have at least five characters'),
 });
 
 export const registerSchema = z.object({
-  usernameReg: z.string().min(1, 'Your User Name must be your email'),
   passwordReg: z.string().min(5, 'Password must have at least five characters'),
   nameReg: z.string().min(1, 'You must fill this field'),
   emailReg: z.string().min(1, 'Email is required').email('Invalid email address'), // Añadido para validar el email

@@ -1,10 +1,10 @@
 import db from '~/db.server';
 import { getCurrentUser } from '~/utils/auth.server';
 
-export async function checkUser(username: string, password: string) {
+export async function checkUser(email: string, password: string) {
   const user = await db.user.findUnique({
     where: {
-      username: username,
+      email
     },
   });
   if (!user) {
@@ -17,10 +17,10 @@ export async function checkUser(username: string, password: string) {
   }
 }
 
-export async function userExists(username: string) {
+export async function userExists(email: string) {
   const user = await db.user.findUnique({
     where: {
-      username: username,
+      email
     },
   });
   if (!user) {
@@ -84,21 +84,15 @@ export async function getUserId(request: Request) {
 type Role = 'ADMIN' | 'USER'; // TIPO DE ROLES
 
 export async function createUser(userData: {
-  username: string;
   password: string;
   name: string;
   email: string;
 }) {
   return db.user.create({
     data: {
-      username: userData.username,
+      email: userData.email,
       password: userData.password,
       name: userData.name,
-      email: userData.email,
-      sex: "",
-      pfp: "",
-      score: 0,
-      theme: "",
       role: "USER",
     },
   });

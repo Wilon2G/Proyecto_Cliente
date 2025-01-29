@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
 export type InputProps = {
+  inputText?: string;
   inputType?: string;
   inputName: string;
   classname?: string;
@@ -8,6 +9,7 @@ export type InputProps = {
 };
 
 export function InputForm({
+  inputText,
   inputType,
   classname,
   inputName,
@@ -27,7 +29,7 @@ export function InputForm({
         className={classNames('block text-lg font-medium mb-2', labelStyle)}
         htmlFor={`${inputType}`}
       >
-        {capitalizeFirstLetter(inputType || '')}:
+        {capitalizeFirstLetter(inputText || inputType||'')}:
       </label>
       <input
         type={`${inputType}`}
@@ -39,7 +41,7 @@ export function InputForm({
           'border-color-reverse bg-primary text-color', //Cambios
           classname,
         )}
-        placeholder={`Your ${inputType}`}
+        placeholder={`Your ${inputText || inputType}`}
         // required
       />
     </>

@@ -1,15 +1,22 @@
-import { Form, redirect, useActionData } from '@remix-run/react';
+import { LoaderFunction } from '@remix-run/node';
+import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
 import classNames from 'classnames';
-import fs from 'fs';
 import React, { useState } from 'react';
 import Button from '~/components/Buttons';
 import { ErrorMessage } from '~/components/ErrorMessage';
+import { CloseEye, OpenEye } from '~/components/IconsSVG';
 import { InputForm } from '~/components/Inputs';
-import db from '~/db.server';
-import { checkUser, getThemes, userExists } from '~/models/user.server';
+import { checkUser, createUser, getThemes, userExists } from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
+import { requiredLoggedInUser, requiredLoggedOutUser } from '~/utils/auth.server';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '~/utils/zodSchemas';
+
+export const loader: LoaderFunction = async ({ request }) =>  {
+  await requiredLoggedOutUser(request);
+  
+  return null;
+}
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -21,7 +28,7 @@ export async function action({ request }: { request: Request }) {
       formData,
       logInSchema,
       async (data) => {
-        const userId = await checkUser(data.usernameLog, data.passwordLog);
+        const userId = await checkUser(data.emailLog, data.passwordLog);
         if (!userId) {
           return {
             errors: {
@@ -58,7 +65,7 @@ export async function action({ request }: { request: Request }) {
       formData,
       registerSchema,
       async (data) => {
-        const userExist = await userExists(data.usernameReg);
+        const userExist = await userExists(data.emailReg);
         if (userExist) {
           return {
             errors: {
@@ -68,53 +75,28 @@ export async function action({ request }: { request: Request }) {
           };
         }
 
-        const file = formData.get('pfp');
-        if (!(file instanceof File)) {
-          return {
-            errors: {
-              status: 400,
-              pfp: 'The uploaded file is not valid',
-            },
-          };
+        const newUser = await createUser({
+          password: data.passwordReg,
+          name: data.nameReg,
+          email: data.emailReg,
+        })
+        
+        if (!newUser) {
+        return {
+          errors: {
+            status: 400,
+            generalReg: 'Error in making the user, please try again later or contact the developers',
+          },
+        };
         }
 
-        if (typeof window === 'undefined') {
-          const username = data.usernameReg;
-          const newFileName = `${username}.png`;
-          const uploadPath = './public/assets/icon/pfp/' + newFileName;
+        return {
+          success: {
+            status: 200,
+            successReg: 'User registered correctly, please log in',
+          },
+        };
 
-          const buffer = await file.arrayBuffer();
-          fs.writeFileSync(uploadPath, Buffer.from(buffer));
-        }
-
-        try {
-          const newUser = await db.user.create({
-            data: {
-              username: data.usernameReg,
-              password: data.passwordReg,
-              name: data.nameReg,
-              email: data.emailReg,
-              pfp: `/assets/icon/pfp/${data.usernameReg}.png`,
-              score: 0,
-              theme: 'light',
-            },
-          });
-
-          return new Response(null, {
-            status: 302,
-            headers: {
-              Location: '/login',
-            },
-          });
-        } catch (error) {
-          return {
-            errors: {
-              status: 500,
-              general:
-                'An error occurred while creating the user. Please try again later.',
-            },
-          };
-        }
       },
       (errors) =>
         new Response(JSON.stringify({ errors }), {
@@ -130,13 +112,17 @@ export default function LoginPage() {
     errors?: {
       status: number;
       generalLog?: string;
-      usernameLog?: string;
+      emailLog?:string;
       passwordLog?: string;
       generalReg?: string;
       usernameReg?: string;
       passwordReg?: string;
       nameReg?: string;
-    };
+      emailReg?: string;
+    },
+    success?:{
+      successReg?:string;
+    }
   }>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const [showPassword, setShowPassword] = useState(true);
@@ -149,7 +135,6 @@ export default function LoginPage() {
       setActivePanel(panel);
     }
   };
-
   return (
     <div className="h-full relative flex justify-end">
       <div className="h-full w-2/5 fixed right-0 backdrop-blur-lg bg-primary">
@@ -173,6 +158,7 @@ export default function LoginPage() {
 
         <div className="flex w-full h-4/5">
           {/**LOGIN */}
+          
           <SlidePannel
             panelId="login"
             otherPanelId="register"
@@ -181,20 +167,22 @@ export default function LoginPage() {
             buttonText="Log In!"
             activePanel={activePanel}
             onPanelChange={handlePanelChange}
+            successMsg={actionData?.success?.successReg}
           >
+
             <form
               method="post"
-              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
-                activePanel === 'register' && 'opacity-0 scale-0 absolute'
-              }`}
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${activePanel === 'register' && 'opacity-0 scale-0 absolute'
+                }`}
             >
               <div>
-                <InputForm inputType="username" inputName="usernameLog" />
-                <ErrorMessage>{actionData?.errors?.usernameLog}</ErrorMessage>
+                <InputForm inputType="email" inputName="emailLog" />
+                <ErrorMessage>{actionData?.errors?.emailLog}</ErrorMessage>
               </div>
               <div>
                 <div className="relative">
                   <InputForm
+                  inputText='Password'
                     inputType={showPassword ? 'text' : 'password'}
                     inputName="passwordLog"
                     classname="pr-10"
@@ -204,24 +192,7 @@ export default function LoginPage() {
                     onClick={handleTogglePasswordVisibility}
                     className="absolute right-2 top-14 transform -translate-y-1/2"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path
-                        d={
-                          showPassword
-                            ? 'M23 1L1 23'
-                            : 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'
-                        }
-                      ></path>
-                    </svg>
+                  {showPassword  ? <CloseEye/>: <OpenEye/>}
                   </button>
                   <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
                 </div>
@@ -250,14 +221,16 @@ export default function LoginPage() {
             <Form
               method="post"
               encType="multipart/form-data"
-              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
-                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
-              }`}
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
+                }`} 
+                reloadDocument
             >
+
               <div>
-                <InputForm inputType="username" inputName="usernameReg" />
-                <ErrorMessage>{actionData?.errors?.usernameReg}</ErrorMessage>
+                <InputForm inputType="email" inputName="emailReg" />
+                <ErrorMessage>{actionData?.errors?.emailReg}</ErrorMessage>
               </div>
+
               <div>
                 <InputForm inputType="password" inputName="passwordReg" />
                 <ErrorMessage>{actionData?.errors?.passwordReg}</ErrorMessage>
@@ -266,16 +239,13 @@ export default function LoginPage() {
                 <InputForm inputType="name" inputName="nameReg" />
                 <ErrorMessage>{actionData?.errors?.nameReg}</ErrorMessage>
               </div>
-              <div>
-                <InputForm inputType="email" inputName="emailReg" />
-                <ErrorMessage>{actionData?.errors?.emailReg}</ErrorMessage>
-              </div>
+
               <Button
                 textBtn="Sign up"
                 typeBtn="submit"
                 className="bg-indigo-600 hover:bg-indigo-700 text-lg"
                 name="_action"
-                value="singUp"
+                value="signUp"
               />
               <ErrorMessage>{actionData?.errors?.generalReg}</ErrorMessage>
             </Form>
@@ -295,6 +265,7 @@ type SlidePannelProps = {
   children: React.ReactNode;
   activePanel: 'login' | 'register';
   onPanelChange: (panel: 'login' | 'register') => void;
+  successMsg?:string;
 };
 
 function SlidePannel({
@@ -306,24 +277,23 @@ function SlidePannel({
   children,
   activePanel,
   onPanelChange,
+  successMsg,
 }: SlidePannelProps) {
   const isActive = activePanel === panelId;
 
   return (
     <div
       className={classNames(
-        `h-full flex-1 transition-all duration-500  ${
-          activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
+        `h-full flex-1 transition-all duration-500  ${activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
         }   p-8 flex flex-col justify-center items-center cursor-pointer`,
-        `${
-          activePanel === otherPanelId
-            ? `bg-primary-hover text-color-hover`
-            : ``
+        `${activePanel === otherPanelId
+          ? `bg-primary-hover text-color-hover`
+          : ``
         }`,
       )}
       onClick={() => onPanelChange(panelId)}
       onKeyDown={(event) => {
-        if (event.key === ' ') {
+        if (event.key === 'Tab') {
           event.preventDefault();
           onPanelChange(otherPanelId);
         }
@@ -332,9 +302,8 @@ function SlidePannel({
       role="button"
     >
       <div
-        className={`transition-all duration-1000  ${
-          isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
-        }`}
+        className={`transition-all duration-1000  ${isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+          }`}
       >
         <p className="mb-4 font-bold text-base">{inactiveTitle}</p>
         <h2 className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2 border-color bg-primary hover:bg-primary-hover text-color hover:text-color-hover">
@@ -343,11 +312,10 @@ function SlidePannel({
       </div>
 
       <div
-        className={`transition-all duration-1000 ${
-          !isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
-        }`}
+        className={`transition-all duration-1000 ${!isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
+          }`}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center ">{activeTitle}</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center ">{activePanel === 'login' && successMsg ?successMsg: activeTitle}</h2>
       </div>
 
       {children}
