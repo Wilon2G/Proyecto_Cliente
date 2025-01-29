@@ -1,50 +1,47 @@
-import classNames from 'classnames';
+import { useFetcher } from '@remix-run/react';
 import { useState } from 'react';
 
 type BuyButtonProps = {
   gameId: string; // ID del juego a desbloquear
-  userId: string; // ID del usuario
-  addGameToUser: (gameId: string, userId: string) => Promise<void>; // Método para añadir el juego
+  isPurchased?: boolean;
 };
 
 export default function BuyButton({
   gameId,
-  userId,
-  addGameToUser,
+  isPurchased = false,
 }: BuyButtonProps) {
+  const fetcher = useFetcher();
+
   const [loading, setLoading] = useState(false);
-  const [purchased, setPurchased] = useState(false);
 
   const handleClick = async () => {
-    if (loading || purchased) return;
+    if (isPurchased) return; // No hacer nada si ya está comprado
 
     setLoading(true);
-
     try {
-      await addGameToUser(gameId, userId); // Llama al método para añadir el juego
-      setPurchased(true);
+      const response = await fetcher.submit({ gameId }, { method: 'post' });
+      if (response.success) {
+        isPurchased = true; // Si la compra es exitosa, marca como comprado
+      }
     } catch (error) {
-      console.error('Error al añadir el juego:', error);
+      // Manejar error en la compra
+      console.error('Error adding game to user', error);
     } finally {
       setLoading(false);
     }
   };
 
-  const isDisabled = loading || purchased;
-
   return (
     <button
       onClick={handleClick}
-      className={classNames(
-        'w-1/2 font-bold py-2 px-4 rounded-md transition duration-300',
-        {
-          'bg-amber-500 hover:bg-amber-600': !purchased,
-          'bg-green-500 cursor-not-allowed': purchased,
-        },
-      )}
-      disabled={isDisabled}
+      disabled={isPurchased || loading}
+      className={`px-4 py-2 text-white font-bold rounded ${
+        isPurchased
+          ? 'bg-gray-500 cursor-not-allowed'
+          : 'bg-blue-500 hover:bg-blue-700'
+      }`}
     >
-      {purchased ? 'Done' : loading ? 'Wait...' : 'Buy'}
+      {isPurchased ? 'Comprado' : loading ? 'Comprando...' : 'Comprar'}
     </button>
   );
 }

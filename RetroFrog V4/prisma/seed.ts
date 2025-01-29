@@ -325,7 +325,7 @@ async function main() {
     },
     {
       tags: 'Platformer',
-      title: 'Sonic & Knuckles',
+      title: 'Sonic and Knuckles',
       description:
         'Únete a Knuckles en su propia historia en el mundo de Sonic.',
       color: '#FF4500',
