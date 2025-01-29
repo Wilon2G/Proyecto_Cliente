@@ -1,5 +1,5 @@
 import { LoaderFunction } from '@remix-run/node';
-import { Form, redirect, useActionData, useLoaderData } from '@remix-run/react';
+import { Form, redirect, useActionData } from '@remix-run/react';
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import Button from '~/components/Buttons';
@@ -13,10 +13,7 @@ import {
   userExists,
 } from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
-import {
-  requiredLoggedInUser,
-  requiredLoggedOutUser,
-} from '~/utils/auth.server';
+import { requiredLoggedOutUser } from '~/utils/auth.server';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '~/utils/zodSchemas';
 
@@ -31,10 +28,12 @@ export async function action({ request }: { request: Request }) {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
 
-//Esto es para el backdoor de Prueba ===========
+  //Esto es para el backdoor de Prueba ===========
   if (formData.get('_action') === 'prueba') {
     console.log('ADVERTENCIA:');
-    console.log('Se está accediendo a la página con el usuario prueba, este usuario se salta las validaciones y solo debe utilizarse durante las pruebas.');
+    console.log(
+      'Se está accediendo a la página con el usuario prueba, este usuario se salta las validaciones y solo debe utilizarse durante las pruebas.',
+    );
     session.set('userId', 'cm6hmu5410001lc8o6vrkrejp');
     const cookie = await commitSession(session);
     return redirect('/home/main', {
@@ -43,7 +42,7 @@ export async function action({ request }: { request: Request }) {
       },
     });
   }
-//===============================================
+  //===============================================
 
   if (formData.get('_action') === 'logIn') {
     return validateForm(
@@ -62,13 +61,13 @@ export async function action({ request }: { request: Request }) {
           session.set('userId', userId);
 
           const themeData = await getThemes(userId);
-
           if (themeData) {
             session.set('theme', themeData[0]);
             session.set('background', themeData[1]);
             session.set('fontFamily', themeData[2]);
           }
           const cookie = await commitSession(session);
+
           return redirect('/home/main', {
             headers: {
               'Set-Cookie': cookie,
@@ -88,6 +87,7 @@ export async function action({ request }: { request: Request }) {
       registerSchema,
       async (data) => {
         const userExist = await userExists(data.emailReg);
+
         if (userExist) {
           return {
             errors: {
@@ -129,25 +129,28 @@ export async function action({ request }: { request: Request }) {
   }
 }
 
+type ActionDataType = {
+  errors?: {
+    status: number;
+    generalLog?: string;
+    emailLog?: string;
+    passwordLog?: string;
+    generalReg?: string;
+    usernameReg?: string;
+    passwordReg?: string;
+    nameReg?: string;
+    emailReg?: string;
+  };
+  success?: {
+    successReg?: string;
+  };
+};
+
 export default function LoginPage() {
-  const actionData = useActionData<{
-    errors?: {
-      status: number;
-      generalLog?: string;
-      emailLog?: string;
-      passwordLog?: string;
-      generalReg?: string;
-      usernameReg?: string;
-      passwordReg?: string;
-      nameReg?: string;
-      emailReg?: string;
-    };
-    success?: {
-      successReg?: string;
-    };
-  }>();
+  const actionData = useActionData<ActionDataType>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const [showPassword, setShowPassword] = useState(false);
+
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -157,10 +160,11 @@ export default function LoginPage() {
       setActivePanel(panel);
     }
   };
+
   return (
     <div className="h-full relative flex justify-end">
       {/**Este form es SOLO para acceder más rápido mientras hacemos pruebas, te inicia sesión automáticamente con el usuario prueba */}
-      <form className='fixed top-4 left-4' method="post">
+      <form className="fixed top-4 left-4" method="post">
         <Button
           textBtn="Back Door"
           typeBtn="submit"
@@ -329,7 +333,7 @@ function SlidePannel({
       )}
       onClick={() => onPanelChange(panelId)}
       onKeyDown={(event) => {
-        if (event.key === 'Tab') {
+        if (event.key === 'F2') {
           event.preventDefault();
           onPanelChange(otherPanelId);
         }

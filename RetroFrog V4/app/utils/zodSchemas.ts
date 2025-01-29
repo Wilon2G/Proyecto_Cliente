@@ -10,7 +10,10 @@ export const logInSchema = z.object({
 export const registerSchema = z.object({
   passwordReg: z.string().min(5, 'Password must have at least five characters'),
   nameReg: z.string().min(1, 'You must fill this field'),
-  emailReg: z.string().min(1, 'Email is required').email('Invalid email address'), // Añadido para validar el email
+  emailReg: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Invalid email address'), // Añadido para validar el email
 });
 
 export const customSchema = z.object({

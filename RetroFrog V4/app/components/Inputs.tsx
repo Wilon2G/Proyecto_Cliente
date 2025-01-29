@@ -6,6 +6,7 @@ export type InputProps = {
   inputName: string;
   classname?: string;
   labelStyle?: string;
+  defaultValue?: string;
 };
 
 export function InputForm({
@@ -14,14 +15,13 @@ export function InputForm({
   classname,
   inputName,
   labelStyle,
+  defaultValue,
 }: InputProps) {
-
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
 
   /**Aunque lo que pongas no sea text en el type, lo trata como text. username=text */
-
 
   return (
     <>
@@ -29,7 +29,7 @@ export function InputForm({
         className={classNames('block text-lg font-medium mb-2', labelStyle)}
         htmlFor={`${inputType}`}
       >
-        {capitalizeFirstLetter(inputText || inputType||'')}:
+        {capitalizeFirstLetter(inputText || inputType || '')}:
       </label>
       <input
         type={`${inputType}`}
@@ -42,7 +42,7 @@ export function InputForm({
           classname,
         )}
         placeholder={`Your ${inputText || inputType}`}
-        // required
+        defaultValue={`${defaultValue || ''}`}
       />
     </>
   );
@@ -81,7 +81,6 @@ export function InputRange({
     />
   );
 }
-
 
 //===================
 

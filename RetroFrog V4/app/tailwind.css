@@ -121,7 +121,7 @@ body {
   height: 75%;
 }
 
-.nav-link:hover {
+.nav-link:hover:not(#navToShop) {
   color: var(--color);
   background-color: var(--icon-bg-hover);
 }

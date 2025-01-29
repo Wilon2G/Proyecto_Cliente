@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <div className="p-6 bg-gray-500 bg-opacity-35 rounded-md h-fit">
       <header className="mb-8">
-        <h1 className="text-4xl font-semibold text-color">
+        <h1 className="text-4xl font-semibold text-color-reverse">
           Welcome, {name}!
         </h1>
       </header>
@@ -35,7 +35,7 @@ export default function HomePage() {
             favorite retro games.
           </p>
           <div className="flex justify-center content-center w-16 h-16 rounded-full border border-gray-300 shadow-lg">
-            <NavLink to="../shop" className="nav-link">
+            <NavLink to="../shop" className="nav-link" id="navToShop">
               <ShopNowIcon />
             </NavLink>
           </div>

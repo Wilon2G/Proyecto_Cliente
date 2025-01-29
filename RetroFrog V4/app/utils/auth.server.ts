@@ -34,12 +34,12 @@ export async function requiredLoggedInUser(request: Request) {
   return user;
 }
 
+/***********¿METER EN MODELO USER? */
 export async function setUser(
   userId: string,
   userData: {
     name: string;
     email: string;
-    sex: string;
     pfp: string;
     theme: string;
   },
@@ -74,7 +74,6 @@ export async function setUser(
       data: {
         name: userData.name,
         email: userData.email,
-        sex: userData.sex,
         pfp: userData.pfp, // El path actualizado de la imagen
         theme: userData.theme,
       },

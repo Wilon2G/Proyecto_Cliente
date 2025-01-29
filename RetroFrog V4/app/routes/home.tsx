@@ -27,7 +27,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return {
     pfp: user?.pfp || '/assets/icon/pfp/default.jpg',
   };
-}
+};
 
 export default function HomePage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
