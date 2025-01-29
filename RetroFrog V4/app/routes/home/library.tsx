@@ -1,7 +1,7 @@
 import { Game, User } from '@prisma/client';
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ButtonAction } from '~/components/Buttons';
 import GameComponent from '~/components/games/GameComponent';
 import {
@@ -141,7 +141,8 @@ export default function Library() {
   };
 
   const isAdmin = userRole; //No se usa
-
+  // Estado para controlar la imagen de fondo en hover
+  const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
     <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
       {/**Juegos */}
@@ -149,38 +150,52 @@ export default function Library() {
         const isFavorite = game.UsersFavorited.some(
           (user) => user.id === userId,
         );
-
+        const isHovered = hoveredGame === game.id;
         return (
           <div
             key={game.id}
             className="relative"
-            onClick={() => handleOpenGameModal(game)}
-            onMouseEnter={() => playMusic(game)}
-            onMouseLeave={stopMusic}
+            onMouseEnter={() => {
+              playMusic(game);
+              setHoveredGame(game.id);
+            }}
+            onMouseLeave={() => {
+              stopMusic();
+              setHoveredGame(null);
+            }}
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-shadow duration-300 select-none">
+              {/* Imagen de fondo */}
               <img
-                src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
+                src={`/assets/games/${game.title.replace(/\s/g, '')}${
+                  isHovered ? '.gif' : '-boxa.png'
+                }`}
                 alt={`Cover of ${game.title}`}
                 draggable="false"
                 className="w-full h-full object-cover transition-all duration-300 ease-in-out"
-                onMouseEnter={(e) => {
-                  e.currentTarget.src = `/assets/games/${game.title.replace(
-                    /\s/g,
-                    '',
-                  )}.gif`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.src = `/assets/games/${game.title.replace(
-                    /\s/g,
-                    '',
-                  )}-boxa.png`;
-                }}
               />
+
+              {/* Superposición con logo */}
+              {isHovered && (
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300">
+                  <img
+                    src={`/assets/games/${game.title.replace(
+                      /\s/g,
+                      '',
+                    )}-logo.png`}
+                    alt={`${game.title} logo`}
+                    className="max-w-[80%] max-h-[80%] object-contain"
+                  />
+                </div>
+              )}
             </div>
+
             <ButtonAction
-              onClick={() => toggleFavorite(game.id)}
-              className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-xl"
+              onClick={(e) => {
+                toggleFavorite(game.id);
+                e.stopPropagation();
+              }}
+              className="absolute top-2 right-2 bg-white bg-opacity-30  rounded-full p-1 shadow-xl"
               textBtn={
                 isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
               }
