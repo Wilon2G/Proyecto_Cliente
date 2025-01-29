@@ -11,33 +11,27 @@ async function main() {
   const users = await prisma.user.createMany({
     data: [
       {
-        username: 'adminUser',
         password: 'securepassword',
         name: 'Admin User',
         email: 'admin@example.com',
-        sex: 'M',
         score: 100,
         theme: 'dark',
         pfp: '/assets/icon/pfp/admin.jpg',
         role: 'ADMIN', // Usuario administrador
       },
       {
-        username: 'testUser1',
         password: 'testpassword',
         name: 'Test User 1',
         email: 'test1@example.com',
-        sex: 'F',
         score: 70,
         theme: 'light',
         pfp: '/assets/icon/pfp/test1.jpg',
         role: 'USER', // Usuario normal
       },
       {
-        username: 'testUser2',
         password: 'anotherpassword',
         name: 'Test User 2',
         email: 'test2@example.com',
-        sex: 'M',
         score: 30,
         theme: 'dark',
         pfp: '/assets/icon/pfp/test2.jpg',

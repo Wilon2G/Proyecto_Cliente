@@ -6,22 +6,44 @@ import Button from '~/components/Buttons';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { CloseEye, OpenEye } from '~/components/IconsSVG';
 import { InputForm } from '~/components/Inputs';
-import { checkUser, createUser, getThemes, userExists } from '~/models/user.server';
+import {
+  checkUser,
+  createUser,
+  getThemes,
+  userExists,
+} from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
-import { requiredLoggedInUser, requiredLoggedOutUser } from '~/utils/auth.server';
+import {
+  requiredLoggedInUser,
+  requiredLoggedOutUser,
+} from '~/utils/auth.server';
 import validateForm from '~/utils/validation';
 import { logInSchema, registerSchema } from '~/utils/zodSchemas';
 
-export const loader: LoaderFunction = async ({ request }) =>  {
+export const loader: LoaderFunction = async ({ request }) => {
   await requiredLoggedOutUser(request);
-  
+
   return null;
-}
+};
 
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
+
+//Esto es para el backdoor de Prueba ===========
+  if (formData.get('_action') === 'prueba') {
+    console.log('ADVERTENCIA:');
+    console.log('Se está accediendo a la página con el usuario prueba, este usuario se salta las validaciones y solo debe utilizarse durante las pruebas.');
+    session.set('userId', 'cm6hmu5410001lc8o6vrkrejp');
+    const cookie = await commitSession(session);
+    return redirect('/home/main', {
+      headers: {
+        'Set-Cookie': cookie,
+      },
+    });
+  }
+//===============================================
 
   if (formData.get('_action') === 'logIn') {
     return validateForm(
@@ -79,15 +101,16 @@ export async function action({ request }: { request: Request }) {
           password: data.passwordReg,
           name: data.nameReg,
           email: data.emailReg,
-        })
-        
+        });
+
         if (!newUser) {
-        return {
-          errors: {
-            status: 400,
-            generalReg: 'Error in making the user, please try again later or contact the developers',
-          },
-        };
+          return {
+            errors: {
+              status: 400,
+              generalReg:
+                'Error in making the user, please try again later or contact the developers',
+            },
+          };
         }
 
         return {
@@ -96,7 +119,6 @@ export async function action({ request }: { request: Request }) {
             successReg: 'User registered correctly, please log in',
           },
         };
-
       },
       (errors) =>
         new Response(JSON.stringify({ errors }), {
@@ -112,17 +134,17 @@ export default function LoginPage() {
     errors?: {
       status: number;
       generalLog?: string;
-      emailLog?:string;
+      emailLog?: string;
       passwordLog?: string;
       generalReg?: string;
       usernameReg?: string;
       passwordReg?: string;
       nameReg?: string;
       emailReg?: string;
-    },
-    success?:{
-      successReg?:string;
-    }
+    };
+    success?: {
+      successReg?: string;
+    };
   }>();
   const [activePanel, setActivePanel] = useState<'login' | 'register'>('login');
   const [showPassword, setShowPassword] = useState(true);
@@ -137,6 +159,18 @@ export default function LoginPage() {
   };
   return (
     <div className="h-full relative flex justify-end">
+      {/**Este form es SOLO para acceder más rápido mientras hacemos pruebas, te inicia sesión automáticamente con el usuario prueba */}
+      <form className='fixed top-4 left-4' method="post">
+        <Button
+          textBtn="Back Door"
+          typeBtn="submit"
+          className="bg-indigo-600 hover:bg-indigo-700 text-lg"
+          name="_action"
+          value="prueba"
+        />
+      </form>
+      {/**=====================================*/}
+
       <div className="h-full w-2/5 fixed right-0 backdrop-blur-lg bg-primary">
         <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img
@@ -158,7 +192,7 @@ export default function LoginPage() {
 
         <div className="flex w-full h-4/5">
           {/**LOGIN */}
-          
+
           <SlidePannel
             panelId="login"
             otherPanelId="register"
@@ -169,11 +203,11 @@ export default function LoginPage() {
             onPanelChange={handlePanelChange}
             successMsg={actionData?.success?.successReg}
           >
-
             <form
               method="post"
-              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${activePanel === 'register' && 'opacity-0 scale-0 absolute'
-                }`}
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
+                activePanel === 'register' && 'opacity-0 scale-0 absolute'
+              }`}
             >
               <div>
                 <InputForm inputType="email" inputName="emailLog" />
@@ -182,7 +216,7 @@ export default function LoginPage() {
               <div>
                 <div className="relative">
                   <InputForm
-                  inputText='Password'
+                    inputText="Password"
                     inputType={showPassword ? 'text' : 'password'}
                     inputName="passwordLog"
                     classname="pr-10"
@@ -192,7 +226,7 @@ export default function LoginPage() {
                     onClick={handleTogglePasswordVisibility}
                     className="absolute right-2 top-14 transform -translate-y-1/2"
                   >
-                  {showPassword  ? <CloseEye/>: <OpenEye/>}
+                    {showPassword ? <CloseEye /> : <OpenEye />}
                   </button>
                   <ErrorMessage>{actionData?.errors?.passwordLog}</ErrorMessage>
                 </div>
@@ -221,11 +255,11 @@ export default function LoginPage() {
             <Form
               method="post"
               encType="multipart/form-data"
-              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
-                }`} 
-                reloadDocument
+              className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
+                activePanel === 'login' ? 'opacity-0 scale-0 absolute' : ''
+              }`}
+              reloadDocument
             >
-
               <div>
                 <InputForm inputType="email" inputName="emailReg" />
                 <ErrorMessage>{actionData?.errors?.emailReg}</ErrorMessage>
@@ -265,7 +299,7 @@ type SlidePannelProps = {
   children: React.ReactNode;
   activePanel: 'login' | 'register';
   onPanelChange: (panel: 'login' | 'register') => void;
-  successMsg?:string;
+  successMsg?: string;
 };
 
 function SlidePannel({
@@ -284,11 +318,13 @@ function SlidePannel({
   return (
     <div
       className={classNames(
-        `h-full flex-1 transition-all duration-500  ${activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
+        `h-full flex-1 transition-all duration-500  ${
+          activePanel === 'register' ? `flex-[2]` : 'flex-[1]'
         }   p-8 flex flex-col justify-center items-center cursor-pointer`,
-        `${activePanel === otherPanelId
-          ? `bg-primary-hover text-color-hover`
-          : ``
+        `${
+          activePanel === otherPanelId
+            ? `bg-primary-hover text-color-hover`
+            : ``
         }`,
       )}
       onClick={() => onPanelChange(panelId)}
@@ -302,8 +338,9 @@ function SlidePannel({
       role="button"
     >
       <div
-        className={`transition-all duration-1000  ${isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
-          }`}
+        className={`transition-all duration-1000  ${
+          isActive && 'translate-y-[-50px] opacity-0 absolute top-[-200px]'
+        }`}
       >
         <p className="mb-4 font-bold text-base">{inactiveTitle}</p>
         <h2 className="text-lg font-bold mb-6 p-2 text-center transition-all duration-300 rounded-xl z-50 border-2 border-color bg-primary hover:bg-primary-hover text-color hover:text-color-hover">
@@ -312,10 +349,13 @@ function SlidePannel({
       </div>
 
       <div
-        className={`transition-all duration-1000 ${!isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
-          }`}
+        className={`transition-all duration-1000 ${
+          !isActive && 'translate-y-[50px] opacity-0 absolute top-[-200px]'
+        }`}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center ">{activePanel === 'login' && successMsg ?successMsg: activeTitle}</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center ">
+          {activePanel === 'login' && successMsg ? successMsg : activeTitle}
+        </h2>
       </div>
 
       {children}
