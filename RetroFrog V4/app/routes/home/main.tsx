@@ -8,17 +8,17 @@ import { ShopNowIcon } from '~/components/IconsSVG';
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
 
-  return user.username;
+  return user.name;
 };
 
 export default function HomePage() {
-  const username = useLoaderData<typeof loader>();
+  const name = useLoaderData<typeof loader>();
 
   return (
     <div className="p-6 bg-gray-500 bg-opacity-35 rounded-md h-fit">
       <header className="mb-8">
         <h1 className="text-4xl font-semibold text-color">
-          Welcome, {username}!
+          Welcome, {name}!
         </h1>
       </header>
       <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
