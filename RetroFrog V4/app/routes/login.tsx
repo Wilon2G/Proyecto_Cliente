@@ -152,7 +152,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="h-full relative flex justify-end">
+    <div className="h-full relative flex justify-center items-center bg-primary">
       <div className="h-full w-2/5 fixed right-0 backdrop-blur-lg bg-primary">
         <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img

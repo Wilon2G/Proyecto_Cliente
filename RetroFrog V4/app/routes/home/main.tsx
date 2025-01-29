@@ -1,9 +1,9 @@
 // HomePage.tsx
 import { LoaderFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
-import News from '../../components/News';
-import { requiredLoggedInUser } from '~/utils/auth.server';
 import { ShopNowIcon } from '~/components/IconsSVG';
+import { requiredLoggedInUser } from '~/utils/auth.server';
+import News from '../../components/News';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
@@ -15,7 +15,7 @@ export default function HomePage() {
   const username = useLoaderData<typeof loader>();
 
   return (
-    <div className="p-6 bg-gray-500 bg-opacity-35 rounded-md h-fit">
+    <>
       <header className="mb-8">
         <h1 className="text-4xl font-semibold text-color">
           Welcome, {username}!
@@ -41,6 +41,6 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }

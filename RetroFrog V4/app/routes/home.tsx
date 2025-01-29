@@ -77,7 +77,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex  items-center justify-between bg-primary p-4">
+      <header className="topbar flex  items-center justify-between bg-primary p-4 w-screen">
         <a href="/home/main" className="flex items-center">
           <img
             src={pfp}
@@ -131,7 +131,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <main className="content p-6">
+      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>

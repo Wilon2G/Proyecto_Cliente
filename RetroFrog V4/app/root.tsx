@@ -42,7 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body
         className={
-          'min-h-full h-fit bg-image-bg font-primary-font text-color hover:text-color-hover flex-col'
+          'min-h-full h-fit bg-image-bg font-primary-font text-color hover:text-color-hover flex-col justify-start'
         }
       >
         {children}

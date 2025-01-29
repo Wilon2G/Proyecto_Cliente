@@ -143,7 +143,7 @@ export default function Library() {
   const isAdmin = userRole; //No se usa
 
   return (
-    <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4 relative">
+    <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
       {/**Juegos */}
       {games?.map((game) => {
         const isFavorite = game.UsersFavorited.some(
@@ -155,11 +155,10 @@ export default function Library() {
             key={game.id}
             className="relative"
             onClick={() => handleOpenGameModal(game)}
-            onMouseEnter={() => playMusic(game)} // Iniciar música al hacer hover
-            onMouseLeave={stopMusic} // Detener música al salir del hover
+            onMouseEnter={() => playMusic(game)}
+            onMouseLeave={stopMusic}
           >
-            {/* Aquí se maneja el hover para cambiar la imagen */}
-            <div className="relative overflow-hidden rounded-md shadow-md transition-shadow duration-300 select-none">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-shadow duration-300 select-none">
               <img
                 src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
                 alt={`Cover of ${game.title}`}
@@ -169,19 +168,19 @@ export default function Library() {
                   e.currentTarget.src = `/assets/games/${game.title.replace(
                     /\s/g,
                     '',
-                  )}.gif`; // Cambio a GIF
+                  )}.gif`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.src = `/assets/games/${game.title.replace(
                     /\s/g,
                     '',
-                  )}-boxa.png`; // Vuelve a la imagen estática
+                  )}-boxa.png`;
                 }}
               />
             </div>
             <ButtonAction
               onClick={() => toggleFavorite(game.id)}
-              className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md"
+              className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-xl"
               textBtn={
                 isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
               }
