@@ -13,7 +13,7 @@ type SliderProps = {
 
 export function PpalSlider({ games, purchasedGames }: SliderProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 w-full">
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
@@ -61,7 +61,7 @@ export function PpalSlider({ games, purchasedGames }: SliderProps) {
 
 export function PopularGamesSlider({ games, purchasedGames }: SliderProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 w-full">
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
@@ -115,7 +115,7 @@ export function PopularGamesSlider({ games, purchasedGames }: SliderProps) {
 
 export function HotTopicsSlider({ games, purchasedGames }: SliderProps) {
   return (
-    <div>
+    <div className="w-full">
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}

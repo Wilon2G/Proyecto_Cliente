@@ -15,27 +15,20 @@ async function main() {
         name: 'Admin User',
         email: 'admin@example.com',
         score: 100,
-        theme: 'dark',
-        pfp: '/assets/icon/pfp/admin.jpg',
-        role: 'ADMIN', // Usuario administrador
+
+        role: 'ADMIN',
       },
       {
         password: 'testpassword',
         name: 'Test User 1',
         email: 'test1@example.com',
         score: 70,
-        theme: 'light',
-        pfp: '/assets/icon/pfp/test1.jpg',
-        role: 'USER', // Usuario normal
       },
       {
         password: 'anotherpassword',
         name: 'Test User 2',
         email: 'test2@example.com',
         score: 30,
-        theme: 'dark',
-        pfp: '/assets/icon/pfp/test2.jpg',
-        role: 'USER', // Usuario normal
       },
     ],
   });

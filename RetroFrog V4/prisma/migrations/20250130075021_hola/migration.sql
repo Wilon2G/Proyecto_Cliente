@@ -1,14 +1,12 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "sex" TEXT NOT NULL,
-    "score" INTEGER NOT NULL,
-    "theme" TEXT NOT NULL,
-    "pfp" TEXT NOT NULL,
+    "score" INTEGER NOT NULL DEFAULT 0,
+    "theme" TEXT NOT NULL DEFAULT 'dark:/assets/background/1-bg.png:arial',
+    "pfp" TEXT NOT NULL DEFAULT '/assets/icon/pfp/default.jpg',
     "registerDate" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "role" TEXT NOT NULL DEFAULT 'USER'
 );
@@ -40,7 +38,7 @@ CREATE TABLE "_UserFavorites" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_UserGames_AB_unique" ON "_UserGames"("A", "B");
