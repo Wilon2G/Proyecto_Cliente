@@ -220,14 +220,14 @@ export default function Library() {
         )}
         {/** Modal para ver juego */}
         {selectedGame && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none ">
             <button
               className="absolute top-7 right-7 bg-white bg-opacity-45 p-9 text-4xl text-white hover:text-red-500 rounded-3xl"
               onClick={handleCloseGameModal}
             >
               X
             </button>
-            <div className="flex bg-white bg-opacity-40 p-1 rounded-lg h-[685px] w-[896px] relative justify-center align-middle">
+            <div className="flex bg-white bg-opacity-40 p-1 rounded-lg h-[685px] w-[896px] relative justify-center align-middle sm:w-3/5">
               <GameComponent game={selectedGame} />
             </div>
           </div>

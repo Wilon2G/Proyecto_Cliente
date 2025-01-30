@@ -6,6 +6,7 @@ import {
   useNavigation,
 } from '@remix-run/react';
 import React, { useState } from 'react';
+import { TitleWrapper } from '~/components/Buttons';
 import {
   FavGamesIcon,
   GamesIcon,
@@ -14,11 +15,11 @@ import {
   MusicIcon,
   SettingsIcon,
   ShopIcon,
-  UserIcon,
 } from '~/components/IconsSVG';
 import LoadingFrog from '~/components/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
+//HAZ QUE PROFILE SEA UN DROPOUT QUE TENGA SETTINGS Y LOGOUT, Y QUE TODOS SEAN SOLO ICONOS Y CUANDO HAGAS HOVER APAREZCA SUAVEMENTE EL NOMBRE DE LA FUNCIONALIDAD DEBAJO
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
@@ -31,9 +32,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function HomePage() {
   const [musicState, setMusicState] = useState(false);
   const { pfp } = useLoaderData<{ pfp: string }>();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   function toggleMusic() {
     setMusicState((prev) => !prev);
+  }
+  function toggleMenu() {
+    setMenuOpen((prev) => !prev);
+  }
+  function toggleProfileDropdown() {
+    setProfileDropdown((prev) => !prev);
   }
 
   const navigation = useNavigation();
@@ -58,78 +67,93 @@ export default function HomePage() {
     },
   ];
 
-  const secondaryLinks = [
-    {
-      path: 'user',
-      SVGIcon: <UserIcon />,
-      iconName: 'Profile',
-    },
-    {
-      path: 'settings',
-      SVGIcon: <SettingsIcon />,
-      iconName: 'Settings',
-    },
-    {
-      path: '/logout',
-      SVGIcon: <LogOutIcon />,
-      iconName: 'Logout',
-    },
-  ];
-
   return (
     <>
-      <header className="topbar flex  items-center justify-between bg-primary p-4 ">
-        <a href="/home/main" className="flex items-center">
-          <img
-            src={pfp}
-            alt="User Profile"
-            className="rounded-full w-10 h-10 mr-4"
-            draggable="false"
-          />
+      <header className="topbar flex gap-4 items-center justify-between bg-primary-hover bg-opacity-10 p-4 w-full flex-wrap">
+        <a href="/home/main" className="flex items-center flex-col">
           <span className="text-color font-bold">Retrofrog</span>
         </a>
 
-        <nav className="flex items-center gap-8">
-          <ul className="flex gap-6">
+        <nav
+          className={`flex-grow flex justify-center ${
+            menuOpen ? 'block' : 'hidden'
+          } md:flex`}
+        >
+          <ul className="flex flex-wrap gap-3">
             {primaryLinks.map((link) => (
-              <NavLinkComp
-                key={link.path}
-                path={link.path}
-                SVGIcon={link.SVGIcon}
-                iconName={link.iconName}
-              />
+              <TitleWrapper title={link.iconName} key={link.path}>
+                <NavLinkComp {...link} />
+              </TitleWrapper>
             ))}
             <li>
-              <NavLink
-                to={{ pathname: 'library', search: '?filter=favorites' }}
-                className="flex items-center gap-2 text-color hover:underline"
-              >
-                <FavGamesIcon /> Favorites
-              </NavLink>
+              <TitleWrapper title="Library">
+                <NavLinkComp
+                  path="library"
+                  SVGIcon={<FavGamesIcon />}
+                  search="?filter=favorites"
+                />
+              </TitleWrapper>
             </li>
             <li>
-              <div
-                className="flex items-center gap-2 text-color cursor-pointer hover:underline"
-                onClick={toggleMusic}
-              >
-                <MusicIcon /> Music
+              <div>
+                <TitleWrapper title="Profile">
+                  <button
+                    onClick={toggleProfileDropdown}
+                    className="flex items-center"
+                  >
+                    <img
+                      src={pfp}
+                      alt="User Profile"
+                      className="rounded-full w-6 h-6"
+                      draggable="false"
+                    />
+                  </button>
+                </TitleWrapper>
+
+                {profileDropdown && (
+                  <ul className="absolute right-3 mt-6 w-fit bg-primary-hover rounded-lg shadow-lg p-2 flex flex-col items-center z-50">
+                    <li>
+                      <TitleWrapper title="Music player" dir="left">
+                        <div onClick={toggleMusic}>
+                          <MusicIcon />
+                        </div>
+                        <MusicPlayer
+                          className={musicState ? 'music-enter' : 'music-exit'}
+                        />
+                      </TitleWrapper>
+                    </li>
+                    <li>
+                      <TitleWrapper title="Settings" dir="left">
+                        <NavLink
+                          to={{ pathname: 'settings' }}
+                          className="flex items-center gap-2 text-color hover:underline"
+                        >
+                          <SettingsIcon />
+                        </NavLink>
+                      </TitleWrapper>
+                    </li>
+                    <li>
+                      <TitleWrapper title="Log out" dir="left">
+                        <NavLink
+                          to={{ pathname: '/logout' }}
+                          className="flex items-center gap-2 text-color hover:underline"
+                        >
+                          <LogOutIcon />
+                        </NavLink>
+                      </TitleWrapper>
+                    </li>
+                  </ul>
+                )}
               </div>
-              <MusicPlayer
-                className={musicState ? 'music-enter' : 'music-exit'}
-              />
             </li>
-          </ul>
-          <ul className="flex gap-6">
-            {secondaryLinks.map((link) => (
-              <NavLinkComp
-                key={link.path}
-                path={link.path}
-                SVGIcon={link.SVGIcon}
-                iconName={link.iconName}
-              />
-            ))}
           </ul>
         </nav>
+
+        <TitleWrapper title="Toggle Menu">
+          <button className="md:hidden text-white" onClick={toggleMenu}>
+            ☰
+          </button>
+        </TitleWrapper>
       </header>
 
       <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
@@ -142,17 +166,17 @@ export default function HomePage() {
 type NavLinkCompProps = {
   path: string;
   SVGIcon: React.ReactElement;
-  iconName: string;
+  search?: string; // Atributo opcional para filtros
 };
 
-function NavLinkComp({ path, SVGIcon, iconName }: NavLinkCompProps) {
+function NavLinkComp({ path, SVGIcon, search }: NavLinkCompProps) {
   return (
     <li>
       <NavLink
-        to={path}
+        to={{ pathname: path, search }}
         className="flex items-center gap-2 text-color hover:underline"
       >
-        {SVGIcon} {iconName}
+        {SVGIcon}
       </NavLink>
     </li>
   );
