@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function HomePage() {
   const [musicState, setMusicState] = useState(false);
-  const { pfp } = useLoaderData<{ pfp: string }>();
+  const { pfp } = useLoaderData<typeof loader>();
 
   function toggleMusic() {
     setMusicState((prev) => !prev);
@@ -78,19 +78,21 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex  items-center justify-between bg-primary p-4 ">
-        <a href="/home/main" className="flex items-center">
+      <header className="topbar flex  items-center justify-between bg-primary p-4 px-8 ">
+        <a href="/home/main" className="flex items-center ">
           <img
             src={pfp}
             alt="User Profile"
             className="rounded-full w-10 h-10 mr-4"
             draggable="false"
           />
-          <span className="text-color font-bold">Retrofrog</span>
+          <span className="text-color font-bold hidden md:block">
+            Retrofrog
+          </span>
         </a>
 
-        <nav className="flex items-center gap-8">
-          <ul className="flex gap-6">
+        <nav className="flex items-center justify-between gap-8 w-11/12 ml-8 ">
+          <ul className="flex gap-6 self-start">
             {primaryLinks.map((link) => (
               <NavLinkComp
                 key={link.path}
@@ -102,24 +104,34 @@ export default function HomePage() {
             <li>
               <NavLink
                 to={{ pathname: 'library', search: '?filter=favorites' }}
-                className="flex items-center gap-2 text-color hover:underline"
+                className="flex items-center gap-2 text-color "
               >
-                <FavGamesIcon /> Favorites
+                <span>
+                  <FavGamesIcon />
+                </span>
+                <span className="hidden md:block hover:text-icon-fill-hover">
+                  Favorites
+                </span>
               </NavLink>
             </li>
             <li>
               <div
-                className="flex items-center gap-2 text-color cursor-pointer hover:underline"
+                className="flex items-center gap-2 text-color cursor-pointer "
                 onClick={toggleMusic}
               >
-                <MusicIcon /> Music
+                <span>
+                  <MusicIcon />
+                </span>
+                <span className="hidden md:block hover:text-icon-fill-hover">
+                  Music
+                </span>
               </div>
               <MusicPlayer
                 className={musicState ? 'music-enter' : 'music-exit'}
               />
             </li>
           </ul>
-          <ul className="flex gap-6">
+          <ul className="flex gap-6 self-end">
             {secondaryLinks.map((link) => (
               <NavLinkComp
                 key={link.path}
@@ -132,7 +144,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
+      <main className="container mx-auto p-4 none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center  w-full px-4">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>
@@ -148,11 +160,11 @@ type NavLinkCompProps = {
 function NavLinkComp({ path, SVGIcon, iconName }: NavLinkCompProps) {
   return (
     <li>
-      <NavLink
-        to={path}
-        className="flex items-center gap-2 text-color hover:underline"
-      >
-        {SVGIcon} {iconName}
+      <NavLink to={path} className="flex items-center gap-2 text-color ">
+        <span>{SVGIcon}</span>
+        <span className="hidden md:block hover:text-icon-fill-hover">
+          {iconName}
+        </span>
       </NavLink>
     </li>
   );

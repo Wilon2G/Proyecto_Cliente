@@ -11,82 +11,47 @@ import {
   PlusGameIcon,
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
-import { getSession } from '~/sessions';
-import prisma from '~/utils/prismaClient';
+import {
+  addFavGame,
+  deleteFavGame,
+  getExistingFavGame,
+  getFavGamesUser,
+} from '~/models/games.server';
+import { getCurrentUser } from '~/utils/auth.server';
+
 //meter el modal de añadir juegos otra vez.
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter');
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-  const userId = session.get('userId');
 
-  //Meterlo a games.server.ts
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    include: {
-      GamesUnlocked: {
-        include: {
-          UsersFavorited: true,
-        },
-      },
-    },
-  });
+  const { user, games } = await getFavGamesUser(request, filter);
+  const userId = user?.id;
+  const userRole = user?.role;
 
-  const games =
-    filter === 'favorites'
-      ? user?.GamesUnlocked.filter((game) =>
-          game.UsersFavorited.some((user) => user.id === userId),
-        )
-      : user?.GamesUnlocked;
-
-  //const user = await getCurrentUser(request);
-
-  const userRole = user ? user.role : null;
   return { games, filter, userRole, userId };
 };
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const gameId = formData.get('gameId') as string;
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-  const userId = session.get('userId');
+  const user = await getCurrentUser(request);
+  const userId = user?.id as string;
 
   if (!gameId) {
     throw new Response('ID de juego no proporcionado', { status: 400 });
   }
 
-  //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE
-  const existingFavorite = await prisma.user.findFirst({
-    where: {
-      id: userId,
-      FavoriteGames: { some: { id: gameId } },
-    },
-  });
+  const existingFavorite = await getExistingFavGame(userId, gameId);
 
   if (existingFavorite) {
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        FavoriteGames: {
-          disconnect: { id: gameId },
-        },
-      },
-    });
+    await deleteFavGame(userId, gameId);
   } else {
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        FavoriteGames: {
-          connect: { id: gameId },
-        },
-      },
-    });
+    await addFavGame(userId, gameId);
   }
 
   return new Response(null, { status: 200 });
 };
+
 export default function Library() {
   const { games, userRole, userId } = useLoaderData<{
     games: (Game & { UsersFavorited: User[] })[];
@@ -116,6 +81,7 @@ export default function Library() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const playMusic = (game: Game) => {
     if (audioRef.current) {
       audioRef.current.src =
@@ -141,12 +107,13 @@ export default function Library() {
     handleCloseModal();
   };
 
-  const isAdmin = userRole; //No se usa
+  /* const isAdmin = userRole; //No se usa */
   // Estado para controlar la imagen de fondo en hover
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
+
   return (
     <>
-      <GameSearch></GameSearch>
+      <GameSearch />
       <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
         {/**Juegos */}
         {games?.map((game) => {

@@ -22,6 +22,7 @@ model User {
   pfp           String  @default("/assets/icon/pfp/default.jpg")
   registerDate  DateTime @default(now())
   role          Role     @default(USER) // Nuevo campo para rol del usuario
+
   GamesUnlocked Game[]   @relation("UserGames")
   FavoriteGames Game[]   @relation("UserFavorites")
 }
@@ -33,6 +34,7 @@ model Game {
   color         String
   tags          String
   console          String
+  
   Users         User[] @relation("UserGames")
   UsersFavorited User[] @relation("UserFavorites")
 }

@@ -2,9 +2,9 @@ export function CollapseArrow() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -17,11 +17,11 @@ export function HomeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
-      className="hover:fill-[var(--icon-fill-hover)]"
+      className="hover:fill-[var(--icon-fill-hover)] "
     >
       <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
     </svg>
@@ -32,9 +32,9 @@ export function ShopIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -47,9 +47,9 @@ export function GamesIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -61,10 +61,10 @@ export function GamesIcon() {
 export function FavGamesIcon() {
   return (
     <svg
-      height="24px"
+      height="1.75rem"
       opacity={1}
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -77,9 +77,9 @@ export function MusicIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -92,9 +92,9 @@ export function ChooseMusicIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -107,9 +107,9 @@ export function VolumeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -122,9 +122,9 @@ export function PlayingMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -137,9 +137,9 @@ export function StopingMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -152,9 +152,9 @@ export function ToggleMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -167,9 +167,9 @@ export function PreferencesIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -182,9 +182,9 @@ export function UserIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -197,9 +197,9 @@ export function SettingsIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -212,9 +212,9 @@ export function LogOutIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -302,7 +302,7 @@ export function ShopNowIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-5 h-5 text-gray-400 bradius "
+      className="w-5 h-5 text-black "
     >
       <path
         strokeLinecap="round"

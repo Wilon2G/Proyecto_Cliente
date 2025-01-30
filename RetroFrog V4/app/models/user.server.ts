@@ -4,7 +4,7 @@ import { getCurrentUser } from '~/utils/auth.server';
 export async function checkUser(email: string, password: string) {
   const user = await db.user.findUnique({
     where: {
-      email
+      email,
     },
   });
   if (!user) {
@@ -20,7 +20,7 @@ export async function checkUser(email: string, password: string) {
 export async function userExists(email: string) {
   const user = await db.user.findUnique({
     where: {
-      email
+      email,
     },
   });
   if (!user) {
@@ -81,7 +81,7 @@ export async function getUserId(request: Request) {
 }
 
 //funcion pa nuevo usuario
-type Role = 'ADMIN' | 'USER'; // TIPO DE ROLES
+/* type Role = 'ADMIN' | 'USER'; // TIPO DE ROLES */
 
 export async function createUser(userData: {
   password: string;
@@ -93,7 +93,20 @@ export async function createUser(userData: {
       email: userData.email,
       password: userData.password,
       name: userData.name,
-      role: "USER",
+      role: 'USER',
+    },
+  });
+}
+
+export async function getUserFavGames(id: string) {
+  return db.user.findUnique({
+    where: { id },
+    include: {
+      GamesUnlocked: {
+        include: {
+          UsersFavorited: true,
+        },
+      },
     },
   });
 }

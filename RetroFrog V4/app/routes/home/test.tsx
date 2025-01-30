@@ -11,7 +11,7 @@ import {
 } from '~/components/IconsSVG';
 import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
-//meter el modal de añadir juegos otra vez.
+
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter');

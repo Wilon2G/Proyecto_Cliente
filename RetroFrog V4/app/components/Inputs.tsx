@@ -21,8 +21,6 @@ export function InputForm({
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
 
-  /**Aunque lo que pongas no sea text en el type, lo trata como text. username=text */
-
   return (
     <>
       <label
@@ -43,6 +41,43 @@ export function InputForm({
         )}
         placeholder={`Your ${inputText || inputType}`}
         defaultValue={`${defaultValue || ''}`}
+      />
+    </>
+  );
+}
+
+export type InputChangeFxProps = {
+  placeholder: string;
+  inputType?: string;
+  inputName?: string;
+  classname?: string;
+  defaultValue?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export function InputChangeFx({
+  placeholder,
+  inputType,
+  classname,
+  inputName,
+  defaultValue,
+  onChange,
+}: InputChangeFxProps) {
+  return (
+    <>
+      <input
+        type={`${inputType}`}
+        name={`${inputName}`}
+        id={`${inputName}`}
+        autoComplete="off"
+        className={classNames(
+          'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
+          'border-color-reverse bg-primary text-color', //Cambios
+          classname,
+        )}
+        placeholder={`${placeholder}`}
+        defaultValue={`${defaultValue || ''}`}
+        onChange={onChange}
       />
     </>
   );

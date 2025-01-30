@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ButtonAction } from '~/components/Buttons';
+import { InputChangeFx } from '../Inputs';
 
 const consoles = ['NES', 'SNES', 'PlayStation', 'Xbox', 'PC']; // Consolas de ejemplo
 const tagsList = ['3D', '2D', 'Aventura', 'RPG', 'Acción', 'Plataformas'];
@@ -25,19 +26,21 @@ export default function GameSearch({ onSearch }: any) {
       <ButtonAction
         onClick={() => setShowSearch(!showSearch)}
         textBtn="Game search"
+        className="bg-primary"
       />
       {showSearch && (
         <div className="mt-4 p-4 bg-primary rounded-lg">
-          <input
-            type="text"
+          <InputChangeFx
+            inputType="text"
+            defaultValue={searchTerm}
             placeholder="Game search..."
-            value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="mb-2 p-2 rounded bg-primary-reverse text-color-reverse w-full"
+            classname="bg-primary-reverse text-color-reverse m-2"
           />
+
           <select
             onChange={(e) => setSelectedConsole(e.target.value)}
-            className="mb-2 p-2 rounded bg-primary-reverse text-color-reverse w-full"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none m-2 bg-primary-reverse text-color-reverse"
           >
             <option value="">All consoles</option>
             {consoles.map((console) => (
@@ -64,7 +67,7 @@ export default function GameSearch({ onSearch }: any) {
           <ButtonAction
             onClick={handleSearch}
             textBtn="Filtrar"
-            className="mt-2"
+            className="mt-2 bg-purple-500 text-fuchsia-200 hover:text-fuchsia-50"
           />
         </div>
       )}
