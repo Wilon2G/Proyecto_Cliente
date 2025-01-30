@@ -4,7 +4,6 @@ import { useFetcher, useLoaderData } from '@remix-run/react';
 import React, { useRef, useState } from 'react';
 import { ButtonAction } from '~/components/Buttons';
 import GameComponent from '~/components/games/GameComponent';
-import GameSearch from '~/components/games/GameSearch';
 import {
   FavoriteFillIcon,
   FavoriteNotFillIcon,
@@ -146,7 +145,6 @@ export default function Library() {
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
     <>
-      <GameSearch></GameSearch>
       <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
         {/**Juegos */}
         {games?.map((game) => {
@@ -193,17 +191,16 @@ export default function Library() {
                   </div>
                 )}
               </div>
-
               <ButtonAction
                 onClick={(e) => {
                   toggleFavorite(game.id);
-                  e.stopPropagation();
+                  e.stopPropagation(); // Evita que el evento se propague
                 }}
-                className="absolute top-2 right-2 bg-white bg-opacity-30  rounded-full p-1 shadow-xl"
+                className="absolute top-2 right-2 bg-white bg-opacity-30 rounded-full p-1 shadow-xl"
                 textBtn={
                   isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
                 }
-                applyDefaultStyles={false}
+                applyDefaultStyles={false} // Si esto está configurado como false, asegúrate de que no haya conflicto
               />
             </div>
           );

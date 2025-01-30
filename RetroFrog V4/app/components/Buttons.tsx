@@ -23,6 +23,8 @@ type ButtonSimpleProps = {
 type TitleWrapperProps = {
   children: React.ReactNode;
   title: string;
+  dir?: string;
+  className?: string;
 };
 
 export default function Button({
@@ -83,11 +85,29 @@ export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
     </button>
   );
 }
-export function TitleWrapper({ children, title }: TitleWrapperProps) {
+export function TitleWrapper({
+  children,
+  title,
+  dir = 'down',
+  className = '',
+}: TitleWrapperProps) {
   return (
-    <div className="relative flex flex-col items-center group">
+    <div
+      className={
+        'relative flex flex-col items-center group hover:bg-primary-hover p-3 rounded-md ' +
+        (className ? className : '')
+      }
+    >
       {children}
-      <div className="absolute top-full mt-1 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
+      <div
+        className={classNames(
+          'absolute  px-2 py-1 bg-primary-hover text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50',
+          {
+            'mt-1 top-full': dir === 'down',
+            'mr-1 right-full -mt-2': dir === 'left',
+          },
+        )}
+      >
         {title}
       </div>
     </div>
