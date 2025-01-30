@@ -17,9 +17,7 @@ export default function HomePage() {
   return (
     <>
       <header className="mb-8">
-        <h1 className="text-4xl font-semibold text-color-reverse">
-          Welcome, {name}!
-        </h1>
+        <h1 className="text-4xl font-semibold text-color">Welcome, {name}!</h1>
       </header>
       <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         <div className="col-span-1 xl:col-span-2">
@@ -27,10 +25,10 @@ export default function HomePage() {
         </div>
 
         <div className="self-start w-fit bg-gradient-to-r from-orange-400 to-yellow-300 p-8 rounded-lg shadow-lg flex flex-col justify-between space-y-4">
-          <h2 className="text-3xl font-semibold text-white">
+          <h2 className="text-3xl font-semibold text-color">
             Check out our latest sales!
           </h2>
-          <p className="text-white text-lg">
+          <p className="text-color text-lg">
             Don&#39;t miss out on amazing deals! Get up to 50% off on your
             favorite retro games.
           </p>

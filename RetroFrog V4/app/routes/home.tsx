@@ -78,7 +78,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex  items-center justify-between bg-primary p-4 w-screen">
+      <header className="topbar flex  items-center justify-between bg-primary p-4 ">
         <a href="/home/main" className="flex items-center">
           <img
             src={pfp}
@@ -86,7 +86,7 @@ export default function HomePage() {
             className="rounded-full w-10 h-10 mr-4"
             draggable="false"
           />
-          <span className="text-white font-bold">Retrofrog</span>
+          <span className="text-color font-bold">Retrofrog</span>
         </a>
 
         <nav className="flex items-center gap-8">
@@ -102,14 +102,14 @@ export default function HomePage() {
             <li>
               <NavLink
                 to={{ pathname: 'library', search: '?filter=favorites' }}
-                className="flex items-center gap-2 text-white hover:underline"
+                className="flex items-center gap-2 text-color hover:underline"
               >
                 <FavGamesIcon /> Favorites
               </NavLink>
             </li>
             <li>
               <div
-                className="flex items-center gap-2 text-white cursor-pointer hover:underline"
+                className="flex items-center gap-2 text-color cursor-pointer hover:underline"
                 onClick={toggleMusic}
               >
                 <MusicIcon /> Music
@@ -150,7 +150,7 @@ function NavLinkComp({ path, SVGIcon, iconName }: NavLinkCompProps) {
     <li>
       <NavLink
         to={path}
-        className="flex items-center gap-2 text-white hover:underline"
+        className="flex items-center gap-2 text-color hover:underline"
       >
         {SVGIcon} {iconName}
       </NavLink>

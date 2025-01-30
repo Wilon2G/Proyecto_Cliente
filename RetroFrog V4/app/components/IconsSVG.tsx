@@ -227,7 +227,7 @@ export function NyTitle() {
   return (
     <svg
       viewBox="0 0 184 25"
-      fill="#000"
+      style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       aria-hidden="true"
       height="50%"
       width="50%"

@@ -21,25 +21,25 @@ export default function GameSearch({ onSearch }: any) {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-color">
       <ButtonAction
         onClick={() => setShowSearch(!showSearch)}
-        textBtn="Buscar Juegos"
+        textBtn="Game search"
       />
       {showSearch && (
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg">
+        <div className="mt-4 p-4 bg-primary rounded-lg">
           <input
             type="text"
-            placeholder="Buscar juego..."
+            placeholder="Game search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="mb-2 p-2 rounded bg-gray-700 text-white w-full"
+            className="mb-2 p-2 rounded bg-primary-reverse text-color-reverse w-full"
           />
           <select
             onChange={(e) => setSelectedConsole(e.target.value)}
-            className="mb-2 p-2 rounded bg-gray-700 text-white w-full"
+            className="mb-2 p-2 rounded bg-primary-reverse text-color-reverse w-full"
           >
-            <option value="">Todas las Consolas</option>
+            <option value="">All consoles</option>
             {consoles.map((console) => (
               <option key={console} value={console}>
                 {console}
@@ -50,8 +50,10 @@ export default function GameSearch({ onSearch }: any) {
             {tagsList.map((tag) => (
               <button
                 key={tag}
-                className={`cursor-pointer m-1 px-2 py-1 rounded ${
-                  selectedTags.includes(tag) ? 'bg-blue-500' : 'bg-gray-600'
+                className={`cursor-pointer m-1 px-2 py-1 rounded  ${
+                  selectedTags.includes(tag)
+                    ? 'bg-primary-reverse text-color-reverse'
+                    : 'bg-primary-hover text-color '
                 }`}
                 onClick={() => toggleTag(tag)}
               >

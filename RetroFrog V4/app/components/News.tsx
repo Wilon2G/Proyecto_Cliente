@@ -2,8 +2,8 @@ import { NyTitle } from './IconsSVG';
 
 export default function News() {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+    <div className="bg-primary p-6 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-color mb-6">
         <NyTitle />
       </h1>
 
@@ -12,15 +12,15 @@ export default function News() {
         {newsData.map((news, index) => (
           <div
             key={index}
-            className="flex flex-col lg:flex-row gap-8 py-8 hover:bg-gray-50 transition-all"
+            className="flex flex-col lg:flex-row gap-8 py-8 hover:bg-primary-hover transition-all"
           >
             <div className="flex-1">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4 hover:text-blue-500 transition-all">
+              <h2 className="text-2xl font-semibold  mb-4 hover:text-blue-500 transition-all">
                 {news.title}
               </h2>
-              <p className="text-gray-700 mb-4">{news.content}</p>
+              <p className=" mb-4">{news.content}</p>
               {news.secondaryContent && (
-                <p className="text-gray-600 italic">{news.secondaryContent}</p>
+                <p className=" italic">{news.secondaryContent}</p>
               )}
             </div>
 

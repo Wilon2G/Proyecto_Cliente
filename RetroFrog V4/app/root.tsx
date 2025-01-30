@@ -40,11 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body
-        className={
-          'min-h-full h-fit bg-image-bg font-primary-font text-color hover:text-color-hover flex-col justify-start'
-        }
-      >
+      <body className={'  bg-image-bg font-primary-font text-color'}>
         {children}
         <ScrollRestoration />
         <Scripts />
