@@ -131,7 +131,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md">
+      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>
