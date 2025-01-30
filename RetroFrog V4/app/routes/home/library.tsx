@@ -11,47 +11,82 @@ import {
   PlusGameIcon,
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
-import {
-  addFavGame,
-  deleteFavGame,
-  getExistingFavGame,
-  getFavGamesUser,
-} from '~/models/games.server';
-import { getCurrentUser } from '~/utils/auth.server';
-
+import { getSession } from '~/sessions';
+import prisma from '~/utils/prismaClient';
 //meter el modal de añadir juegos otra vez.
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter');
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+  const userId = session.get('userId');
 
-  const { user, games } = await getFavGamesUser(request, filter);
-  const userId = user?.id;
-  const userRole = user?.role;
+  //Meterlo a games.server.ts
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      GamesUnlocked: {
+        include: {
+          UsersFavorited: true,
+        },
+      },
+    },
+  });
 
+  const games =
+    filter === 'favorites'
+      ? user?.GamesUnlocked.filter((game) =>
+          game.UsersFavorited.some((user) => user.id === userId),
+        )
+      : user?.GamesUnlocked;
+
+  //const user = await getCurrentUser(request);
+
+  const userRole = user ? user.role : null;
   return { games, filter, userRole, userId };
 };
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const gameId = formData.get('gameId') as string;
-  const user = await getCurrentUser(request);
-  const userId = user?.id as string;
+  const cookieHeader = request.headers.get('cookie');
+  const session = await getSession(cookieHeader);
+  const userId = session.get('userId');
 
   if (!gameId) {
     throw new Response('ID de juego no proporcionado', { status: 400 });
   }
 
-  const existingFavorite = await getExistingFavGame(userId, gameId);
+  //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE
+  const existingFavorite = await prisma.user.findFirst({
+    where: {
+      id: userId,
+      FavoriteGames: { some: { id: gameId } },
+    },
+  });
 
   if (existingFavorite) {
-    await deleteFavGame(userId, gameId);
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        FavoriteGames: {
+          disconnect: { id: gameId },
+        },
+      },
+    });
   } else {
-    await addFavGame(userId, gameId);
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        FavoriteGames: {
+          connect: { id: gameId },
+        },
+      },
+    });
   }
 
   return new Response(null, { status: 200 });
 };
-
 export default function Library() {
   const { games, userRole, userId } = useLoaderData<{
     games: (Game & { UsersFavorited: User[] })[];
@@ -81,7 +116,6 @@ export default function Library() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
   const playMusic = (game: Game) => {
     if (audioRef.current) {
       audioRef.current.src =
@@ -107,13 +141,12 @@ export default function Library() {
     handleCloseModal();
   };
 
-  /* const isAdmin = userRole; //No se usa */
+  const isAdmin = userRole; //No se usa
   // Estado para controlar la imagen de fondo en hover
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
-
   return (
     <>
-      <GameSearch />
+      <GameSearch></GameSearch>
       <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
         {/**Juegos */}
         {games?.map((game) => {
@@ -187,14 +220,14 @@ export default function Library() {
         )}
         {/** Modal para ver juego */}
         {selectedGame && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none ">
             <button
               className="absolute top-7 right-7 bg-white bg-opacity-45 p-9 text-4xl text-white hover:text-red-500 rounded-3xl"
               onClick={handleCloseGameModal}
             >
               X
             </button>
-            <div className="flex bg-white bg-opacity-40 p-1 rounded-lg h-[685px] w-[896px] relative justify-center align-middle">
+            <div className="flex bg-white bg-opacity-40 p-1 rounded-lg h-[685px] w-[896px] relative justify-center align-middle sm:w-3/5">
               <GameComponent game={selectedGame} />
             </div>
           </div>

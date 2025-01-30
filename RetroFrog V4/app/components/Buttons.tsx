@@ -20,6 +20,10 @@ type ButtonSimpleProps = {
   textBtn: string;
   className?: string;
 };
+type TitleWrapperProps = {
+  children: React.ReactNode;
+  title: string;
+};
 
 export default function Button({
   textBtn,
@@ -77,5 +81,15 @@ export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
     >
       {textBtn}
     </button>
+  );
+}
+export function TitleWrapper({ children, title }: TitleWrapperProps) {
+  return (
+    <div className="relative flex flex-col items-center group">
+      {children}
+      <div className="absolute top-full mt-1 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
+        {title}
+      </div>
+    </div>
   );
 }
