@@ -65,7 +65,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Settings() {
   return (
-    <div className="h-fit bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
+    <>
       <div className="w-full  px-4 mb-10">
         <Developers />
       </div>
@@ -77,6 +77,6 @@ export default function Settings() {
       <div className="mb-10">
         <PrivacyPolices />
       </div>
-    </div>
+    </>
   );
 }

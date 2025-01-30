@@ -7,7 +7,6 @@ import {
 } from '@remix-run/react';
 import React, { useState } from 'react';
 import {
-  CollapseArrow,
   FavGamesIcon,
   GamesIcon,
   HomeIcon,
@@ -30,13 +29,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function HomePage() {
-  const [isCollapsed, setIsCollapsed] = useState(true);
   const [musicState, setMusicState] = useState(false);
-  const { pfp } = useLoaderData<{ pfp: string }>(); // Usamos el dato pasado por el loader
-
-  function toggleSidebar() {
-    setIsCollapsed((prev) => !prev);
-  }
+  const { pfp } = useLoaderData<{ pfp: string }>();
 
   function toggleMusic() {
     setMusicState((prev) => !prev);
@@ -84,22 +78,19 @@ export default function HomePage() {
 
   return (
     <>
-      <aside
-        className={`sidebar ${isCollapsed ? 'collapsed' : ''} my-5 bg-primary`}
-      >
-        <header className="sidebar-header">
-          <button className="toggler" onClick={toggleSidebar}>
-            <span>
-              <CollapseArrow />
-            </span>
-          </button>
-          <a href="/home/main" className="header-logo border-primary-reverse">
-            <img src={pfp} alt="User Profile" draggable="false" />
-          </a>
-        </header>
+      <header className="topbar flex  items-center justify-between bg-primary p-4 w-screen">
+        <a href="/home/main" className="flex items-center">
+          <img
+            src={pfp}
+            alt="User Profile"
+            className="rounded-full w-10 h-10 mr-4"
+            draggable="false"
+          />
+          <span className="text-white font-bold">Retrofrog</span>
+        </a>
 
-        <nav className="sidebar-nav">
-          <ul className="nav-list primary-nav">
+        <nav className="flex items-center gap-8">
+          <ul className="flex gap-6">
             {primaryLinks.map((link) => (
               <NavLinkComp
                 key={link.path}
@@ -108,36 +99,27 @@ export default function HomePage() {
                 iconName={link.iconName}
               />
             ))}
-
-            <li className="nav-item">
+            <li>
               <NavLink
-                to={{
-                  pathname: 'library',
-                  search: '?filter=favorites',
-                }}
-                className="nav-link"
+                to={{ pathname: 'library', search: '?filter=favorites' }}
+                className="flex items-center gap-2 text-white hover:underline"
               >
-                <span className="nav-icon">
-                  <FavGamesIcon />
-                </span>
-                <span className="nav-label">Favorites</span>
+                <FavGamesIcon /> Favorites
               </NavLink>
             </li>
-
-            <li className="nav-item">
-              <div className="nav-link" onClick={toggleMusic}>
-                <span className="nav-icon">
-                  <MusicIcon />
-                </span>
-                <span className="nav-label">Music</span>
+            <li>
+              <div
+                className="flex items-center gap-2 text-white cursor-pointer hover:underline"
+                onClick={toggleMusic}
+              >
+                <MusicIcon /> Music
               </div>
               <MusicPlayer
                 className={musicState ? 'music-enter' : 'music-exit'}
               />
             </li>
           </ul>
-
-          <ul className="nav-list secondary-nav">
+          <ul className="flex gap-6">
             {secondaryLinks.map((link) => (
               <NavLinkComp
                 key={link.path}
@@ -148,15 +130,11 @@ export default function HomePage() {
             ))}
           </ul>
         </nav>
-      </aside>
+      </header>
 
-      {isLoading ? (
-        <LoadingFrog></LoadingFrog>
-      ) : (
-        <div className="content h-fit w-full">
-          <Outlet />
-        </div>
-      )}
+      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full px-4 self-center">
+        {isLoading ? <LoadingFrog /> : <Outlet />}
+      </main>
     </>
   );
 }
@@ -169,10 +147,12 @@ type NavLinkCompProps = {
 
 function NavLinkComp({ path, SVGIcon, iconName }: NavLinkCompProps) {
   return (
-    <li className="nav-item">
-      <NavLink to={path} className="nav-link">
-        <span className="nav-icon">{SVGIcon}</span>
-        <span className="nav-label">{iconName}</span>
+    <li>
+      <NavLink
+        to={path}
+        className="flex items-center gap-2 text-white hover:underline"
+      >
+        {SVGIcon} {iconName}
       </NavLink>
     </li>
   );

@@ -9,41 +9,31 @@
     />
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#333333" />
-    <title>webretro</title>
-    <meta
-      name="description"
-      content="RetroArch in your browser! Libretro cores compiled to WASM using emscripten, plus a custom UI."
-    />
+    <title>emulator</title>
+    <meta name="description" content="RetroArch in your browser! " />
     <meta name="robots" content="nofollow" />
     <meta name="og:title" content="webretro" />
     <meta name="og:type" content="website" />
     <meta name="og:image" content="assets/icons/icon204.png" />
-    <meta name="og:url" content="https://binbashbanana.github.io/webretro/" />
     <link rel="stylesheet" href="assets/base.css?v=6.5" />
     <link rel="stylesheet" href="assets/jswindow.css" />
     <link rel="shortcut icon" href="assets/icons/icon204.png" />
     <link rel="apple-touch-icon" href="assets/icons/iconm256.png" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="canonical" href="https://binbashbanana.github.io/webretro/" />
+
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/" />
   </head>
   <body>
     <div class="main" id="mainarea">
-      <div id="menubar">
+      <div id="menubar" class="select-none">
         <input type="checkbox" id="menuhider" />
         <label for="menuhider" class="menuhiderlabel"></label>
         <ul id="menu">
-          <li class="menuback">
-            <a href="." title="Back to core selection"></a>
-          </li>
           <li>
             Controls
             <ul>
               <li><a id="keybindsbutton" href="">Keybinds</a></li>
-              <li class="menu-long menu-nohover">
-                Please note that these are just the bindings that are set, but
-                in-game controls may vary.
-              </li>
+
               <li>
                 <a
                   href=""
@@ -72,19 +62,6 @@
                 >
               </li>
               <li><a id="savesbutton" href="">Recover Saves</a></li>
-              <li class="menu-long menu-nohover" style="width: 200px">
-                Please note that in order for the game to be saved, you must use
-                the save feature in-game (unless of course the game itself
-                autosaves), then press the save button here (Or autosave must
-                happen).
-                <b
-                  >These saves are only for in-game save files. If you want to
-                  be able to save at any time, use save states.</b
-                >
-                Saves and states are saved in your browser's indexedDB and are
-                automatically readied every time you visit the page. You only
-                need to use export and import for backups.
-              </li>
             </ul>
           </li>
           <li>
@@ -101,10 +78,6 @@
               <li class="pointer disabled" id="exportstate">Export State</li>
               <li class="pointer disabled" id="importstate">Import State</li>
               <li><a id="statesbutton" href="">Recover States</a></li>
-              <li class="menu-long menu-nohover" style="width: 200px">
-                You must save state before you export state; exported states are
-                not states from the time of exporting.
-              </li>
             </ul>
           </li>
           <li>
@@ -175,31 +148,7 @@
               <li class="pointer disabled" id="resetbutton2">Reset</li>
               <li class="pointer disabled" id="mousegrabbutton">Mouse Grab</li>
               <li class="pointer disabled" id="gamefocusbutton">Game Focus</li>
-              <li>
-                Cheats
-                <ul class="xlmenu">
-                  <li>How to apply a cheat code</li>
-                  <li>1. Open the Menu</li>
-                  <li>2. Scroll down</li>
-                  <li>3. Click "Cheats"</li>
-                  <li>4. Click "Add new cheat to bottom/top"</li>
-                  <li>5. Click the new cheat that you just created</li>
-                  <li>6. Click "Code"</li>
-                  <li>7. Enter/paste the cheat code</li>
-                  <li>8. When you are done, press enter</li>
-                  <li>9. Click "Enabled" (Set to ON)</li>
-                  <li>10. Go back to Cheats by clicking the bar on the top</li>
-                  <li>11. Click "Apply Changes"</li>
-                  <li>12. Exit the menu</li>
-                  <li class="disabled">(More coming soon)</li>
-                </ul>
-              </li>
-              <li>
-                Shaders
-                <ul>
-                  <li class="disabled">(Coming soon)</li>
-                </ul>
-              </li>
+
               <li id="pso">
                 Pre-start Options
                 <ul>
@@ -363,24 +312,15 @@
                   </li>
                 </ul>
               </li>
-              <li class="pointer" id="downloadstandalonebutton">
-                Download Standalone
-              </li>
-              <li>
-                <a
-                  href="https://github.com/BinBashBanana/webretro"
-                  target="_blank"
-                  >GitHub</a
-                >
-              </li>
+              <li class="disabled" id="downloadstandalonebutton"></li>
             </ul>
           </li>
           <li id="menubutton" class="disabled">Menu</li>
           <li id="pause" class="disabled">Pause</li>
         </ul>
       </div>
-      <h1 id="webretrotitle">webretro</h1>
-      <div id="ffd">
+      <h1 id="webretrotitle" class="disabled"></h1>
+      <div id="ffd" class="disabled">
         <div id="ffdcontent">
           <div id="coreselectarea">
             <h3>Select a Core</h3>
@@ -445,6 +385,7 @@
       <input type="button" id="startbutton" value="Start" />
       <div id="loadingdiv">
         <p class="loadingloading">Loading</p>
+        <img src="assets/icons/playandstop.gif" alt="" srcset="" />
         <p id="loadingtext"></p>
         <progress id="loadingbar" max="1"></progress>
       </div>
@@ -453,6 +394,7 @@
         <div id="resume">
           <div>
             <h1>Paused</h1>
+            <img src="assets/icons/playandstop.gif" alt="" srcset="" />
             <h3>Click to resume</h3>
           </div>
         </div>
@@ -483,10 +425,7 @@
           <div id="screenshotmanager">
             <div id="screenshotsdiv"></div>
             <div class="screenshotsbottom">
-              <h4>
-                Screenshots do not persist through page reloads! Download your
-                screenshots now!
-              </h4>
+              <h4>Download your screenshots now!</h4>
               <input
                 type="button"
                 id="downloadallscreenshots"

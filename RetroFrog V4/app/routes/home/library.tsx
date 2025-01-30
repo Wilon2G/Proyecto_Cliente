@@ -1,9 +1,10 @@
 import { Game, User } from '@prisma/client';
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ButtonAction } from '~/components/Buttons';
 import GameComponent from '~/components/games/GameComponent';
+import GameSearch from '~/components/games/GameSearch';
 import {
   FavoriteFillIcon,
   FavoriteNotFillIcon,
@@ -95,6 +96,7 @@ export default function Library() {
   const fetcher = useFetcher();
   const [selectedGame, setSelectedGame] = React.useState<Game | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null); // Ref para manejar el audio
 
   const toggleFavorite = (gameId: string) => {
     fetcher.submit({ gameId }, { method: 'post' });
@@ -114,6 +116,20 @@ export default function Library() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+  const playMusic = (game: Game) => {
+    if (audioRef.current) {
+      audioRef.current.src =
+        '/assets/games/bgm/' + game.title.replace(/\s/g, '') + '.mp3'; // Ruta del archivo MP3 del juego
+      audioRef.current.play();
+    }
+  };
+
+  const stopMusic = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Opcional: reiniciar el audio cuando se detenga
+    }
+  };
 
   const handleSubmitNewGame = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -126,69 +142,105 @@ export default function Library() {
   };
 
   const isAdmin = userRole; //No se usa
-
+  // Estado para controlar la imagen de fondo en hover
+  const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
-    <div className="gallery grid grid-cols-2 md:grid-cols-4 gap-4 p-4 relative">
-      {/**Juegos */}
-      {games?.map((game) => {
-        const isFavorite = game.UsersFavorited.some(
-          (user) => user.id === userId,
-        );
+    <>
+      <GameSearch></GameSearch>
+      <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6 p-4 relative  rounded-2xl">
+        {/**Juegos */}
+        {games?.map((game) => {
+          const isFavorite = game.UsersFavorited.some(
+            (user) => user.id === userId,
+          );
+          const isHovered = hoveredGame === game.id;
+          return (
+            <div
+              key={game.id}
+              className="relative"
+              onMouseEnter={() => {
+                playMusic(game);
+                setHoveredGame(game.id);
+              }}
+              onMouseLeave={() => {
+                stopMusic();
+                setHoveredGame(null);
+              }}
+            >
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-shadow duration-300 select-none">
+                {/* Imagen de fondo */}
+                <img
+                  src={`/assets/games/${game.title.replace(/\s/g, '')}${
+                    isHovered ? '.gif' : '-boxa.png'
+                  }`}
+                  alt={`Cover of ${game.title}`}
+                  draggable="false"
+                  className="w-full h-full object-cover transition-all duration-300 ease-in-out"
+                />
 
-        return (
+                {/* Superposición con logo */}
+                {isHovered && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300">
+                    <img
+                      src={`/assets/games/${game.title.replace(
+                        /\s/g,
+                        '',
+                      )}-logo.png`}
+                      alt={`${game.title} logo`}
+                      className="max-w-[80%] max-h-[80%] object-contain"
+                      onClick={() => handleOpenGameModal(game)}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <ButtonAction
+                onClick={(e) => {
+                  toggleFavorite(game.id);
+                  e.stopPropagation();
+                }}
+                className="absolute top-2 right-2 bg-white bg-opacity-30  rounded-full p-1 shadow-xl"
+                textBtn={
+                  isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
+                }
+                applyDefaultStyles={false}
+              />
+            </div>
+          );
+        })}
+
+        {/**Opcion añadir juego */}
+        {userRole === 'ADMIN' && (
           <div
-            key={game.id}
-            className="relative"
-            onClick={() => handleOpenGameModal(game)}
+            onClick={handleOpenModal}
+            className="flex items-center justify-center border-2 border-dashed border-gray-400 rounded-md cursor-pointer hover:bg-gray-100 transition-colors"
           >
-            <img
-              src={`/assets/games/${game.title.replace(/\s/g, '')}-boxa.png`}
-              alt={`Cover of ${game.title}`}
-              draggable="false"
-              className="rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 select-none"
-            />
-            <ButtonAction
-              onClick={() => toggleFavorite(game.id)}
-              className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md"
-              textBtn={
-                isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
-              }
-              applyDefaultStyles={false}
-            />
+            <PlusGameIcon />
           </div>
-        );
-      })}
-
-      {/**Opcion añadir juego */}
-      {userRole === 'ADMIN' && (
-        <div
-          onClick={handleOpenModal}
-          className="flex items-center justify-center border-2 border-dashed border-gray-400 rounded-md cursor-pointer hover:bg-gray-100 transition-colors"
-        >
-          <PlusGameIcon />
-        </div>
-      )}
-      {/** Modal para ver juego */}
-      {selectedGame && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none">
-          <div className="flex bg-white p-6 rounded-lg h-3/4 w-3/4 relative justify-center align-middle">
+        )}
+        {/** Modal para ver juego */}
+        {selectedGame && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center animate-appear select-none">
             <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              className="absolute top-7 right-7 bg-white bg-opacity-45 p-9 text-4xl text-white hover:text-red-500 rounded-3xl"
               onClick={handleCloseGameModal}
             >
-              ×
+              X
             </button>
-            <GameComponent game={selectedGame} />
+            <div className="flex bg-white bg-opacity-40 p-1 rounded-lg h-[685px] w-[896px] relative justify-center align-middle">
+              <GameComponent game={selectedGame} />
+            </div>
           </div>
-        </div>
-      )}
-      {/**Form para añadir juego */}
-      {isModalOpen && (
-        <ModalForm
-          handleCloseModal={handleCloseModal}
-          handleSubmitNewGame={handleSubmitNewGame}
-        />
-      )}
-    </div>
+        )}
+        {/**Form para añadir juego */}
+        {isModalOpen && (
+          <ModalForm
+            handleCloseModal={handleCloseModal}
+            handleSubmitNewGame={handleSubmitNewGame}
+          />
+        )}
+        <audio ref={audioRef} />
+      </div>
+    </>
   );
 }
