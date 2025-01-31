@@ -6,8 +6,8 @@ We are a group of four web development students on a mission to master full-stac
 
    <p align="left">
       
-   <img alt="total stars" title="Total stars on GitHub" src="https://custom-icon-badges.demolab.com/github/stars/Wilon2G/Proyecto_Cliente/stargazers?color=55960c&style=for-the-badge&labelColor=488207&logo=star"/>
-         
+   <img alt="Total stars" title="Total stars on GitHub" src="https://custom-icon-badges.demolab.com/github/stars/Wilon2G/Proyecto_Cliente/stargazers?color=55960c&style=for-the-badge&labelColor=488207&logo=star"/>
+
    </p>
 
 ---
