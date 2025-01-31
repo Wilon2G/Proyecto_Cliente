@@ -3,6 +3,7 @@ import {
   NavLink,
   Outlet,
   useLoaderData,
+  useLocation,
   useNavigation,
 } from '@remix-run/react';
 import classNames from 'classnames';
@@ -79,6 +80,9 @@ export default function HomePage() {
       iconName: 'Favorites',
     },
   ];
+  const location = useLocation();
+  const isSearchable =
+    location.pathname === '/home/library' || location.pathname === '/home/shop';
 
   return (
     <>
@@ -100,7 +104,7 @@ export default function HomePage() {
                 onClick={toggleSearch}
                 title="Search"
                 className={` ${
-                  menuOpen
+                  menuOpen && isSearchable
                     ? 'scale-100 transition-all ease-in-out'
                     : 'scale-0 transition-all ease-in-out'
                 } `}
@@ -140,9 +144,9 @@ export default function HomePage() {
                   className={classNames(
                     'absolute right-3 mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-20',
                     {
-                      'opacity-100 translate-x-0 transition-all ease-in-out visible ':
+                      'opacity-100 translate-x-0 transition-all ease-in-out visible scale-100':
                         profileDropdown,
-                      'opacity-0 -z-50 translate-x-2 transition-all ease-in-out invisible':
+                      'opacity-0 -z-50 translate-x-2 transition-all ease-in-out invisible scale-x-110 scale-y-50':
                         !profileDropdown,
                     },
                   )}
@@ -200,23 +204,19 @@ export default function HomePage() {
           )}
         />
       </header>
-      {search ? (
-        <div
-          className={classNames(
-            'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
-            {
-              'opacity-100 -translate-y-2 transition-all ease-in-out visible':
-                search,
-              'opacity-0 -translate-y-5 transition-all ease-in-out invisible ':
-                !search,
-            },
-          )}
-        >
-          <GameSearch></GameSearch>
-        </div>
-      ) : (
-        ''
-      )}
+      <div
+        className={classNames(
+          'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
+          {
+            'opacity-100 translate-y-2 transition-all ease-in-out visible scale-100':
+              search && isSearchable,
+            'opacity-0 -translate-y-2 transition-all ease-in-out invisible scale-x-50 scale-y-110 ':
+              !search || !isSearchable,
+          },
+        )}
+      >
+        <GameSearch></GameSearch>
+      </div>
 
       <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full h-full px-4 self-center m-9 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
