@@ -72,6 +72,12 @@ export default function HomePage() {
       SVGIcon: <GamesIcon />,
       iconName: 'Games',
     },
+    {
+      path: 'library',
+      SVGIcon: <FavGamesIcon />,
+      search: '?filter=favorites',
+      iconName: 'Favorites',
+    },
   ];
 
   return (
@@ -90,34 +96,21 @@ export default function HomePage() {
         >
           <ul className="flex  flex-wrap gap-2">
             <li>
-              <TitleWrapper title="Search">
-                <button onClick={toggleSearch} className="flex items-center">
-                  <SearchIcon></SearchIcon>
+              <TitleWrapper onClick={toggleSearch} title="Search">
+                <button className="flex items-center">
+                  <SearchIcon />
                 </button>
               </TitleWrapper>
             </li>
+
             {primaryLinks.map((link) => (
-              <TitleWrapper key={link.path} title={link.iconName}>
-                <NavLinkComp {...link} />
-              </TitleWrapper>
+              <NavLinkComp key={link.iconName} {...link} />
             ))}
-            <li>
-              <TitleWrapper title="Library">
-                <NavLinkComp
-                  path="library"
-                  SVGIcon={<FavGamesIcon />}
-                  search="?filter=favorites"
-                />
-              </TitleWrapper>
-            </li>
 
             <li>
               <div>
-                <TitleWrapper title="Profile">
-                  <button
-                    onClick={toggleProfileDropdown}
-                    className="flex items-center"
-                  >
+                <TitleWrapper onClick={toggleProfileDropdown} title="Profile">
+                  <button className="flex items-center">
                     <img
                       src={pfp}
                       alt="User Profile"
@@ -133,42 +126,45 @@ export default function HomePage() {
                     {
                       'opacity-100 translate-x-0 transition-all ease-in-out ':
                         profileDropdown,
-                      'opacity-0 translate-x-2 transition-all ease-in-out':
+                      'opacity-0 -z-50 translate-x-2 transition-all ease-in-out':
                         !profileDropdown,
                     },
                   )}
                 >
                   <li>
-                    <TitleWrapper title="Music player" dir="left">
-                      <div onClick={toggleMusic}>
-                        <MusicIcon />
-                      </div>
+                    <TitleWrapper
+                      onClick={toggleMusic}
+                      title="Music player"
+                      dir="left"
+                    >
+                      <MusicIcon />
                     </TitleWrapper>
                   </li>
                   <li>
-                    <TitleWrapper title="User" dir="left">
-                      <NavLink to={{ pathname: '/home/user' }}>
+                    <NavLink to={{ pathname: '/home/user' }}>
+                      <TitleWrapper title="User" dir="left">
                         <UserIcon />
-                      </NavLink>
-                    </TitleWrapper>
+                      </TitleWrapper>
+                    </NavLink>
                   </li>
                   <li>
-                    <TitleWrapper title="Settings" dir="left">
-                      <NavLink to={{ pathname: 'settings' }}>
+                    <NavLink to={{ pathname: 'settings' }}>
+                      <TitleWrapper title="Settings" dir="left">
                         <SettingsIcon />
-                      </NavLink>
-                    </TitleWrapper>
+                      </TitleWrapper>
+                    </NavLink>
                   </li>
                   <li>
-                    <TitleWrapper title="Log out" dir="left">
-                      <NavLink to={{ pathname: '/logout' }}>
+                    <NavLink to={{ pathname: '/logout' }}>
+                      <TitleWrapper title="Log out" dir="left">
                         <LogOutIcon />
-                      </NavLink>
-                    </TitleWrapper>
+                      </TitleWrapper>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
             </li>
+
           </ul>
         </nav>
         <TitleWrapper
@@ -189,17 +185,20 @@ export default function HomePage() {
           )}
         />
       </header>
-      <div
-        className={classNames(
-          'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
-          {
-            'opacity-100 -translate-y-2 transition-all ease-in-out': search,
-            'opacity-0 -translate-y-5 transition-all ease-in-out ': !search,
-          },
-        )}
-      >
-        <GameSearch></GameSearch>
-      </div>
+      {search?
+      (<div
+      className={classNames(
+        'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
+        {
+          'opacity-100 -translate-y-2 transition-all ease-in-out': search,
+          'opacity-0 -translate-y-5 transition-all ease-in-out ': !search,
+        },
+      )}
+    >
+      <GameSearch></GameSearch>
+    </div>):""
+      }
+      
       <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full h-full px-4 self-center m-9 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
@@ -211,15 +210,18 @@ type NavLinkCompProps = {
   path: string;
   SVGIcon: React.ReactElement;
   search?: string; // Atributo opcional para filtros
+  iconName: string;
 };
 
-function NavLinkComp({ path, SVGIcon, search }: NavLinkCompProps) {
+function NavLinkComp({ path, SVGIcon, search, iconName }: NavLinkCompProps) {
   return (
-    <NavLink
-      to={{ pathname: path, search }}
-      className="flex items-center gap-2 text-color hover:underline"
-    >
-      {SVGIcon}
-    </NavLink>
+    <li>
+      <NavLink
+        to={{ pathname: path, search }}
+        className="w-full flex items-center gap-2 text-color hover:underline"
+      >
+        <TitleWrapper title={iconName}>{SVGIcon}</TitleWrapper>
+      </NavLink>
+    </li>
   );
 }
