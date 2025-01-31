@@ -6,7 +6,7 @@ import {
   useNavigation,
 } from '@remix-run/react';
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TitleWrapper } from '~/components/Buttons';
 import GameSearch from '~/components/games/GameSearch';
 import {
@@ -23,7 +23,6 @@ import {
 import LoadingFrog from '~/components/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
-//HAZ QUE PROFILE SEA UN DROPOUT QUE TENGA SETTINGS Y LOGOUT, Y QUE TODOS SEAN SOLO ICONOS Y CUANDO HAGAS HOVER APAREZCA SUAVEMENTE EL NOMBRE DE LA FUNCIONALIDAD DEBAJO
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
@@ -39,6 +38,16 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(true);
   const [profileDropdown, setProfileDropdown] = useState(false);
   const [search, setSearch] = useState(false);
+  const [shouldRender, setShouldRender] = useState(menuOpen);
+
+  useEffect(() => {
+    if (menuOpen) {
+      setShouldRender(true);
+    } else {
+      const timeout = setTimeout(() => setShouldRender(false), 300); // 300ms igual a la duración de la transición
+      return () => clearTimeout(timeout);
+    }
+  }, [menuOpen]);
 
   function toggleMusic() {
     setMusicState((prev) => !prev);
@@ -82,91 +91,91 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex gap-4 items-center justify-between bg-primary bg-opacity-10 p-4 w-full flex-wrap select-none">
+      <header className="topbar flex gap-4 items-center justify-between bg-primary bg-opacity-10 p-4 w-full h-20 flex-wrap select-none">
         <a href="/home/main" className="flex items-center flex-col">
           <span className="text-color font-bold">Retrofrog</span>
         </a>
-
-        <nav
-          className={`flex-grow flex justify-center ${
-            menuOpen
-              ? 'opacity-100 transition-all ease-in-out'
-              : 'opacity-0 transition-all ease-in-out'
-          } md:flex`}
-        >
-          <ul className="flex  flex-wrap gap-2">
-            <li>
-              <TitleWrapper onClick={toggleSearch} title="Search">
-                <button className="flex items-center">
-                  <SearchIcon />
-                </button>
-              </TitleWrapper>
-            </li>
-
-            {primaryLinks.map((link) => (
-              <NavLinkComp key={link.iconName} {...link} />
-            ))}
-
-            <li>
-              <div>
-                <TitleWrapper onClick={toggleProfileDropdown} title="Profile">
+        {shouldRender && (
+          <nav
+            className={`flex-grow flex justify-center ${
+              menuOpen
+                ? 'opacity-100 transition-all ease-in-out'
+                : 'opacity-0 transition-all ease-in-out'
+            } md:flex`}
+          >
+            <ul className="flex  flex-wrap gap-2">
+              <li>
+                <TitleWrapper onClick={toggleSearch} title="Search">
                   <button className="flex items-center">
-                    <img
-                      src={pfp}
-                      alt="User Profile"
-                      className="rounded-full w-7 h-7 "
-                      draggable="false"
-                    />
+                    <SearchIcon />
                   </button>
                 </TitleWrapper>
+              </li>
 
-                <ul
-                  className={classNames(
-                    'absolute right-3 mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-20',
-                    {
-                      'opacity-100 translate-x-0 transition-all ease-in-out ':
-                        profileDropdown,
-                      'opacity-0 -z-50 translate-x-2 transition-all ease-in-out':
-                        !profileDropdown,
-                    },
-                  )}
-                >
-                  <li>
-                    <TitleWrapper
-                      onClick={toggleMusic}
-                      title="Music player"
-                      dir="left"
-                    >
-                      <MusicIcon />
-                    </TitleWrapper>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: '/home/user' }}>
-                      <TitleWrapper title="User" dir="left">
-                        <UserIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: 'settings' }}>
-                      <TitleWrapper title="Settings" dir="left">
-                        <SettingsIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: '/logout' }}>
-                      <TitleWrapper title="Log out" dir="left">
-                        <LogOutIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-            </li>
+              {primaryLinks.map((link) => (
+                <NavLinkComp key={link.iconName} {...link} />
+              ))}
 
-          </ul>
-        </nav>
+              <li>
+                <div>
+                  <TitleWrapper onClick={toggleProfileDropdown} title="Profile">
+                    <button className="flex items-center">
+                      <img
+                        src={pfp}
+                        alt="User Profile"
+                        className="rounded-full w-7 h-7 "
+                        draggable="false"
+                      />
+                    </button>
+                  </TitleWrapper>
+
+                  <ul
+                    className={classNames(
+                      'absolute right-3 mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-20',
+                      {
+                        'opacity-100 translate-x-0 transition-all ease-in-out ':
+                          profileDropdown,
+                        'opacity-0 -z-50 translate-x-2 transition-all ease-in-out':
+                          !profileDropdown,
+                      },
+                    )}
+                  >
+                    <li>
+                      <TitleWrapper
+                        onClick={toggleMusic}
+                        title="Music player"
+                        dir="left"
+                      >
+                        <MusicIcon />
+                      </TitleWrapper>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: '/home/user' }}>
+                        <TitleWrapper title="User" dir="left">
+                          <UserIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: 'settings' }}>
+                        <TitleWrapper title="Settings" dir="left">
+                          <SettingsIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: '/logout' }}>
+                        <TitleWrapper title="Log out" dir="left">
+                          <LogOutIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        )}
         <TitleWrapper
           title="Toggle menu"
           className="md:hidden"
@@ -185,20 +194,22 @@ export default function HomePage() {
           )}
         />
       </header>
-      {search?
-      (<div
-      className={classNames(
-        'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
-        {
-          'opacity-100 -translate-y-2 transition-all ease-in-out': search,
-          'opacity-0 -translate-y-5 transition-all ease-in-out ': !search,
-        },
+      {search ? (
+        <div
+          className={classNames(
+            'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
+            {
+              'opacity-100 -translate-y-2 transition-all ease-in-out': search,
+              'opacity-0 -translate-y-5 transition-all ease-in-out ': !search,
+            },
+          )}
+        >
+          <GameSearch></GameSearch>
+        </div>
+      ) : (
+        ''
       )}
-    >
-      <GameSearch></GameSearch>
-    </div>):""
-      }
-      
+
       <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full h-full px-4 self-center m-9 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
