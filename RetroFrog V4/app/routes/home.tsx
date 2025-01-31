@@ -36,7 +36,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function HomePage() {
   const [musicState, setMusicState] = useState(false);
   const { pfp } = useLoaderData<{ pfp: string }>();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
   const [profileDropdown, setProfileDropdown] = useState(false);
   const [search, setSearch] = useState(false);
 
@@ -171,10 +171,12 @@ export default function HomePage() {
             </li>
           </ul>
         </nav>
-        <TitleWrapper title="Toggle menu" className="md:hidden">
-          <button className="md:hidden  color-primary" onClick={toggleMenu}>
-            ☰
-          </button>
+        <TitleWrapper
+          title="Toggle menu"
+          className="md:hidden"
+          onClick={toggleMenu}
+        >
+          <button className="md:hidden  color-primary">☰</button>
         </TitleWrapper>
         <MusicPlayer
           className={classNames(

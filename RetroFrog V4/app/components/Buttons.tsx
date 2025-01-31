@@ -25,6 +25,7 @@ type TitleWrapperProps = {
   title: string;
   dir?: string;
   className?: string;
+  onClick?: Function;
 };
 
 export default function Button({
@@ -90,6 +91,7 @@ export function TitleWrapper({
   title,
   dir = 'down',
   className = '',
+  onClick,
 }: TitleWrapperProps) {
   return (
     <div
@@ -97,6 +99,7 @@ export function TitleWrapper({
         'relative flex flex-col items-center group hover:bg-primary-hover p-3 rounded-md ' +
         (className ? className : '')
       }
+      onClick={onClick}
     >
       {children}
       <div
