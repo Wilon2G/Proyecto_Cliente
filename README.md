@@ -1,66 +1,33 @@
-# Idea: Pagina web de arcade de videojuegos retro
+# 🐸 RetroFrog
 
-## Lista de juegos: 
-- Simon dice (Gon)
-- Tic-tac-toe  
-- Tetris  
-- Space invaders  
-- Cuatro en raya  
-- Súper amigo italiano  
-- Mario kart  
-- Cookie clicker  
-- Trivia  
-- Piedra Papel Tijeras  
-- ant smasher  
-- Flappy bird  
-- noodle jump  
-- minecraft  
-- dokey-kong  
- 
-## Lista de consolas:  
-Nintendo: nes, snes, n64, gamecube  
-Playstation: psx.  
-Sega: Megadrive.  
-No-entiendo: GameScript
+**`A complete proyect dedicated to learnig `**
 
-# Organizacion
-1º Pantalla de Login.  
-2ª Si es el primer login explir dinamica.  
-3º Una vez explicado o si has iniciado antes dar la opcion de 3 primeros juegos.  
-4º Cada juego por niveles o hasta puntacion limite, que cuando lo consigues te recompensan con monedas para desbloquear mas juegos y/o personalizar pagina  
+We are a group of four web development students on a mission to master full-stack development. This project showcases our learning process, starting with a simple frontend using HTML, CSS, and JavaScript in the first version. As we progress, we'll evolve it into a fully functional Remix application, incorporating Sass and deploying it successfully.
 
-## Componentes/Layouts  
-- Pagina inicio de sesion (+Comprobacion usuario y ver si existe y login)  Gonzalo
-- Pagina inicio (Biblioteca de juegos con puntuacion actual y monedas)  Guille
-- Area personal (De cambio de contraseña cerrar sesion...etc)  Favio
-- Cada pantalla de juego  Todos
+   <p align="left">
+      
+     <a href="https://github.com/ForrestKnight?tab=followers">
+         <img alt="forks" title="Fork our project" src="https://github.com/Wilon2G/Proyecto_Cliente/forks"/></a>
+      <a href="https://github.com/Wilon2G/Proyecto_Cliente/stargazers">
+         <img alt="total stars" title="Total stars on GitHub" src="https://custom-icon-badges.demolab.com/github/stars/ForrestKnight?color=55960c&style=for-the-badge&labelColor=488207&logo=star"/></a>
+   </p>
 
-## JSON de usuarios  
-Usuario:  
-- Nombre de usuario  
-- Contraseña  
-- Nombre real  
-- Correo  
-- Puntacion/Monedas  
-- Personalizacion [Otro objeto con sus caracteristicas, juegos...]
+---
 
-# Links  
-#### Clicker
-https://github.com/AlejandroGonzalezNavarro/Clicker_Aldea
-#### Paleta  
-https://lospec.com/palette-list/jehkoba64
+### 🧰 Languages and Tools
 
+<img align="left" alt="TypeScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" />
+<img align="left" alt="Git" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
+<img align="left" alt="Linux" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" />
+<img align="left" alt="HTML" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
+<img align="left" alt="CSS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" />
+<img align="left" alt="JavaScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+<img align="left" alt="React" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+<img align="left" alt="NodeJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+<img align="left" alt="GitHub" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+<img align="left" alt="Bash" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" />
+<img align="left" alt="Bash" width="30px" style="padding-right:10px;" src="https://img.jsdelivr.com/github.com/sass.png" />
 
-# Repartición de tareas 
-- Login y Register: solo diseño 
-- Base de datos: sql lite obv 
-- Home: es el header ponerlo bonico
-- main: news y relleno
-- library: migrar los juegos del ant proy
-- shop: same que library 
-- userProfile: mod y personalizar
+<br />
 
-# Pendiente V4
-- Esta semana: Login terminado + Juegos + Favoritos
-- Siguiente semana: Sesiones + Pending UI + Cifrado cookies + Favoritos + Buscador
-
+#
