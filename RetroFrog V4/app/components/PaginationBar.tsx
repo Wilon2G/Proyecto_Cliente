@@ -32,7 +32,6 @@ export default function PaginationBar({ total }: { total: number }) {
       newSearchParams.set(key, String(value));
     }
     // Print string manually to avoid over-encoding the URL
-    // Browsers are ok with $ nowadays
     // optional: return newSearchParams.toString()
     return Array.from(newSearchParams.entries())
       .map(([key, value]) =>
@@ -71,7 +70,9 @@ export default function PaginationBar({ total }: { total: number }) {
           }}
           preventScrollReset
           prefetch="intent"
-          className="text-neutral-600"
+          className={`text-neutral-600 ${
+            !canPageBackwards ? 'pointer-events-none opacity-50' : ''
+          }`}
         >
           <span className="sr-only"> First page</span>
           <DoubleLeftArrow />
@@ -87,7 +88,9 @@ export default function PaginationBar({ total }: { total: number }) {
           }}
           preventScrollReset
           prefetch="intent"
-          className="text-neutral-600"
+          className={`text-neutral-600 ${
+            !canPageBackwards ? 'pointer-events-none opacity-50' : ''
+          }`}
         >
           <span className="sr-only"> Previous page</span>
           <LeftArrow></LeftArrow>
@@ -95,12 +98,12 @@ export default function PaginationBar({ total }: { total: number }) {
       </TitleWrapper>
 
       {pageNumbers.map((pageNumber) => {
-        const pageSkip = pageNumber * $top;
+        const pageSkip = (pageNumber - 1) * $top;
         const isCurrentPage = pageNumber === currentPage;
-        return isCurrentPage ? (
-          <></>
-        ) : (
+
+        return (
           <Link
+            key={pageNumber}
             to={{
               search: setSearchParamsString(searchParams, {
                 $skip: pageSkip,
@@ -108,7 +111,13 @@ export default function PaginationBar({ total }: { total: number }) {
             }}
             preventScrollReset
             prefetch="intent"
-            className="w-8 h-8 flex items-center justify-center rounded-md text-primary-reverse hover:bg-neutral-200 transition"
+            aria-current={isCurrentPage ? 'page' : undefined} // Indica la página actual para accesibilidad
+            className={`w-8 h-8 flex items-center justify-center rounded-md transition
+        ${
+          isCurrentPage
+            ? 'bg-primary text-white font-bold pointer-events-none'
+            : 'text-primary-reverse hover:bg-neutral-200'
+        }`}
           >
             {pageNumber}
           </Link>
@@ -124,7 +133,9 @@ export default function PaginationBar({ total }: { total: number }) {
           }}
           preventScrollReset
           prefetch="intent"
-          className="text-neutral-600"
+          className={`text-neutral-600 ${
+            !canPageForwards ? 'pointer-events-none opacity-50' : ''
+          }`}
         >
           <span className="sr-only"> Next page</span>
           <RightArrow></RightArrow>
@@ -140,7 +151,7 @@ export default function PaginationBar({ total }: { total: number }) {
           }}
           preventScrollReset
           prefetch="intent"
-          className="text-neutral-600"
+          className={!canPageForwards ? 'pointer-events-none opacity-50' : ''}
         >
           <span className="sr-only"> Last page</span>
           <DoubleRightArrow />

@@ -11,7 +11,7 @@ type ButtonProps = {
 
 type ButtonActionProps = {
   textBtn: React.ReactNode; //Para permitir (Modal de boton like juegos)
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   applyDefaultStyles?: boolean; // Nueva prop para controlar los estilos
 };
@@ -25,7 +25,7 @@ type TitleWrapperProps = {
   title: string;
   dir?: string;
   className?: string;
-  onClick?: Function;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export default function Button({
@@ -95,16 +95,16 @@ export function TitleWrapper({
 }: TitleWrapperProps) {
   return (
     <div
-      className={
-        'relative flex flex-col items-center group hover:bg-primary-hover p-3 rounded-md ' +
-        (className ? className : '')
-      }
+      className={classNames(
+        'relative flex flex-col items-center group hover:bg-primary-hover active:scale-95 transition-transform duration-150 p-3 rounded-md',
+        className,
+      )}
       onClick={onClick}
     >
       {children}
       <div
         className={classNames(
-          'absolute  px-2 py-1 bg-primary-hover text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50',
+          'absolute  px-2 py-1 bg-primary-hover text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 ',
           {
             'mt-1 top-full': dir === 'down',
             'mr-1 right-full -mt-2': dir === 'left',

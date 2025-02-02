@@ -38,8 +38,8 @@ export default function UserProfile() {
   const { user } = useLoaderData<typeof loader>();
 
   return (
-    <div className="p-8 bg-primary bg-opacity-60 rounded-md shadow-lg w-full max-w-2xl mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-6 text-center">User Profile</h1>
+    <div className="p-4 bg-primary bg-opacity-60 rounded-md shadow-lg w-full max-w-2xl mx-auto">
+      <h1 className="text-3xl font-bold mb-2 text-center">User Profile</h1>
 
       <Form method="post" encType="multipart/form-data">
         <input type="hidden" name="userId" value={user.id} />
@@ -47,7 +47,7 @@ export default function UserProfile() {
           <img
             src={user.pfp}
             alt="Profile Picture"
-            className="w-32 h-32 rounded-full mb-6 border-4 border-primary-reverse shadow-md"
+            className="w-32 h-32 rounded-full mb-2 border-4 border-primary-reverse shadow-md"
           />
 
           <div className="w-full flex flex-col gap-4">

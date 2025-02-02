@@ -31,6 +31,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const darkModeStyles = `
     --primary: #151A2D;
+    --primary-trans: rgba(21,26,45,0.8);
     --primary-hover: #1F253D;
     --primary-reverse: #E0E0E0;
     --primary-hover-reverse: #D6D8DB;
@@ -47,6 +48,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const lightModeStyles = `
     --primary: #F0F0F0;
+    --primary-trans: rgba(21,26,45,0.8);
     --primary-hover: #D6D8DB;
     --primary-reverse: #151A2D;
     --primary-hover-reverse: #1F253D;

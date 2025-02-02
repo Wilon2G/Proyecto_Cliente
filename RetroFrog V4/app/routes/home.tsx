@@ -15,6 +15,7 @@ import {
   GamesIcon,
   HomeIcon,
   LogOutIcon,
+  MenuIcon,
   MusicIcon,
   SearchIcon,
   SettingsIcon,
@@ -94,27 +95,25 @@ export default function HomePage() {
           className={`flex-grow flex justify-center ${
             menuOpen
               ? 'opacity-100 transition-all ease-in-out visible'
-              : 'opacity-0 transition-all ease-in-out invisible'
+              : 'opacity-0 transition-all ease-in-out invisible '
           } md:flex`}
         >
           <ul className="flex  flex-wrap gap-2">
-            {menuOpen && isSearchable && (
-              <li>
-                <TitleWrapper
-                  onClick={toggleSearch}
-                  title="Search"
-                  className={` ${
-                    menuOpen && isSearchable
-                      ? 'scale-100 transition-all ease-in-out'
-                      : 'scale-0 transition-all ease-in-out'
-                  } `}
-                >
-                  <button className="flex items-center">
-                    <SearchIcon />
-                  </button>
-                </TitleWrapper>
-              </li>
-            )}
+            <li>
+              <TitleWrapper
+                onClick={toggleSearch}
+                title="Search"
+                className={` ${
+                  menuOpen && isSearchable
+                    ? 'scale-100 transition-all ease-in-out'
+                    : 'scale-0 transition-all ease-in-out'
+                } `}
+              >
+                <button className="flex items-center">
+                  <SearchIcon />
+                </button>
+              </TitleWrapper>
+            </li>
 
             {primaryLinks.map((link) => (
               <NavLinkComp key={link.iconName} {...link} menuOpen={menuOpen} />
@@ -187,19 +186,18 @@ export default function HomePage() {
             </li>
           </ul>
         </nav>
-        <TitleWrapper
-          title="Toggle menu"
-          className="md:hidden"
-          onClick={toggleMenu}
-        >
-          <button className="md:hidden  color-primary">☰</button>
+        <TitleWrapper title="Toggle menu" onClick={toggleMenu}>
+          <button>
+            <MenuIcon />
+          </button>
         </TitleWrapper>
         <MusicPlayer
           className={classNames(
             {
-              'opacity-100 translate-y-0 transition-all ease-in-out':
+              'opacity-100 translate-y-0 transition-all ease-in-out visible':
                 musicState,
-              'opacity-0 translate-y-5 transition-all ease-in-out': !musicState,
+              'opacity-0 translate-y-5 transition-all ease-in-out invisible':
+                !musicState,
             },
             'bottom-2',
           )}
@@ -216,10 +214,10 @@ export default function HomePage() {
           },
         )}
       >
-        <GameSearch></GameSearch>
+        <GameSearch />
       </div>
 
-      <main className="container mx-auto p-4 select-none shadow-lg bg-gray-500 bg-opacity-60 rounded-md flex flex-col items-center py-12 w-full h-full px-4 self-center m-9 -z-30">
+      <main className="container mx-auto p-2 select-none shadow-lg  border-2 border-primary rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-9 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>
