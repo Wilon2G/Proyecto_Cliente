@@ -456,6 +456,7 @@ export function RightArrow() {
       viewBox="0 -960 960 960"
       width="24px"
       fill="currentColor"
+      className="fill-primary-reverse"
     >
       <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
     </svg>
@@ -469,6 +470,7 @@ export function LeftArrow() {
       viewBox="0 -960 960 960"
       width="24px"
       fill="currentColor"
+      className="fill-primary-reverse"
     >
       <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
     </svg>
@@ -482,6 +484,7 @@ export function DoubleLeftArrow() {
       viewBox="0 -960 960 960"
       width="24px"
       fill="currentColor"
+      className="fill-primary-reverse"
     >
       <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
     </svg>
@@ -495,6 +498,7 @@ export function DoubleRightArrow() {
       viewBox="0 -960 960 960"
       width="24px"
       fill="currentColor"
+      className="fill-primary-reverse"
     >
       <path d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z" />
     </svg>

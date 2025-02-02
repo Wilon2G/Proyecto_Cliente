@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from '@remix-run/react';
-import Button, { TitleWrapper } from './Buttons';
+import { TitleWrapper } from './Buttons';
 import {
   DoubleLeftArrow,
   DoubleRightArrow,
@@ -97,31 +97,21 @@ export default function PaginationBar({ total }: { total: number }) {
       {pageNumbers.map((pageNumber) => {
         const pageSkip = pageNumber * $top;
         const isCurrentPage = pageNumber === currentPage;
-        return (
-          <TitleWrapper title="niggers" key={pageNumber}>
-            {isCurrentPage ? (
-              <Button
-                size="xs"
-                variant="ghost"
-                className="w-8 h-8 grid place-items-center bg-neutral-300 text-sm text-black rounded-md shadow"
-              >
-                <span>{pageNumber}</span>
-              </Button>
-            ) : (
-              <Link
-                to={{
-                  search: setSearchParamsString(searchParams, {
-                    $skip: pageSkip,
-                  }),
-                }}
-                preventScrollReset
-                prefetch="intent"
-                className="w-8 h-8 flex items-center justify-center rounded-md text-neutral-600 hover:bg-neutral-200 transition"
-              >
-                {pageNumber}
-              </Link>
-            )}
-          </TitleWrapper>
+        return isCurrentPage ? (
+          <></>
+        ) : (
+          <Link
+            to={{
+              search: setSearchParamsString(searchParams, {
+                $skip: pageSkip,
+              }),
+            }}
+            preventScrollReset
+            prefetch="intent"
+            className="w-8 h-8 flex items-center justify-center rounded-md text-primary-reverse hover:bg-neutral-200 transition"
+          >
+            {pageNumber}
+          </Link>
         );
       })}
 
