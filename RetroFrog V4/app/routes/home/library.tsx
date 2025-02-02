@@ -10,6 +10,7 @@ import {
   PlusGameIcon,
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
+import PaginationBar from '~/components/PaginationBar';
 import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
 //meter el modal de añadir juegos otra vez.
@@ -31,13 +32,16 @@ export const loader: LoaderFunction = async ({ request }) => {
       },
     },
   });
+  // paginacion para remix
+  const $top = Number(url.searchParams.get('$top')) || 10;
+  const $skip = Number(url.searchParams.get('$skip')) || 0;
 
   const games =
     filter === 'favorites'
       ? user?.GamesUnlocked.filter((game) =>
           game.UsersFavorited.some((user) => user.id === userId),
         )
-      : user?.GamesUnlocked;
+      : user?.GamesUnlocked.slice($skip, $skip + $top);
 
   //const user = await getCurrentUser(request);
 
@@ -238,6 +242,7 @@ export default function Library() {
         )}
         <audio ref={audioRef} />
       </div>
+      <PaginationBar total={10}></PaginationBar>
     </>
   );
 }
