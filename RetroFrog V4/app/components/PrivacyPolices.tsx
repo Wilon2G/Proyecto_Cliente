@@ -10,7 +10,7 @@ function PrivacyPolices() {
   };
 
   return (
-    <div className="dropdown h-fit">
+    <div className="dropdown h-fit w-1/2">
       <ButtonAction
         textBtn="Review our privacy policies"
         onClick={toggleDropdown}
@@ -21,7 +21,7 @@ function PrivacyPolices() {
         className={classNames(
           `dropdown-content p-6 rounded-lg shadow-lg 
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
-                    ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`,
+                    ${isOpen ? ' opacity-100 h-80' : 'scale-y-0 h-0'}`,
           'bg-color text-color-reverse',
         )}
       >

@@ -46,7 +46,7 @@ export default function Developers() {
 
   return (
     <>
-      <div className="w-full mx-auto p-4">
+      <div className="w-full mx-auto ">
         <Swiper
           modules={[EffectCoverflow]}
           spaceBetween={10}
@@ -55,9 +55,9 @@ export default function Developers() {
           effect="coverflow"
           centeredSlides={true}
           coverflowEffect={{
-            rotate: 30,
+            rotate: 20,
             stretch: 10,
-            depth: 500,
+            depth: 1500,
             modifier: 1,
             slideShadows: false,
           }}

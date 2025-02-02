@@ -1,6 +1,7 @@
-import { Form, useActionData } from '@remix-run/react';
+import { Form, useActionData, useLocation } from '@remix-run/react';
 import Button from './Buttons';
 import { ErrorMessage } from './ErrorMessage';
+import PaginationBar from './PaginationBar';
 
 //Para los errors
 export interface ActionData {
@@ -37,47 +38,78 @@ const backgrounds = [
 // Este es el componente Custom donde seleccionas la fuente
 export default function Custom() {
   const actionData = useActionData<ActionData>();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const $skip = Number(params.get('$skip')) || 0; // Obtiene el valor de skip, si no existe asigna 0
+  const $top = Number(params.get('$top')) || 6; // Obtiene el valor de top, si no existe asigna 10
+  const backgroundsToShow = backgrounds.slice($skip, $skip + $top);
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">
-        Personalization
-      </h2>
+      <div className="flex flex-col items-center gap-6 w-full p-2 rounded-lg text-center shadow-lg bg-primary ">
+        <h2 className="text-2xl font-semibold mt-1 mb-1 text-color">
+          Personalization
+        </h2>
 
-      <div className="flex flex-col items-center gap-6 w-full p-6 rounded-lg text-center shadow-lg bg-primary border border-primary-reverse">
         <Form method="post" className="w-full" reloadDocument>
           {/* Tema oscuro-claro */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
-            <label htmlFor="theme" className="text-lg font-medium">
-              Select Theme
-            </label>
-            <div className="flex gap-4">
-              <div>
-                <input type="radio" name="theme" id="themeDark" value="dark" />
-                <label htmlFor="themeDark" className="ml-2">
-                  Dark
-                </label>
+          <div className="flex flex-row justify-center border border-primary-reverse rounded-md p-2">
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full border ">
+              <label htmlFor="theme" className="text-lg font-medium">
+                Select Theme
+              </label>
+              <div className="flex gap-4">
+                <div>
+                  <input
+                    type="radio"
+                    name="theme"
+                    id="themeDark"
+                    value="dark"
+                  />
+                  <label htmlFor="themeDark" className="ml-2">
+                    Dark
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="theme"
+                    id="themeLight"
+                    value="light"
+                  />
+                  <label htmlFor="themeLight" className="ml-2">
+                    Light
+                  </label>
+                </div>
               </div>
-              <div>
-                <input
-                  type="radio"
-                  name="theme"
-                  id="themeLight"
-                  value="light"
-                />
-                <label htmlFor="themeLight" className="ml-2">
-                  Light
-                </label>
-              </div>
+              <ErrorMessage>{actionData?.errors?.theme}</ErrorMessage>
             </div>
-            <ErrorMessage>{actionData?.errors?.theme}</ErrorMessage>
+            {/* Fuente */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 ">
+              <label htmlFor="fontFamily" className="text-lg font-medium">
+                Select Font
+              </label>
+              <select
+                name="fontFamily"
+                id="fontFamily"
+                className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300 border-color-reverse bg-primary-reverse text-color-reverse"
+              >
+                <option value="open-sans">Open Sans</option>
+                <option value="roboto">Roboto</option>
+                <option value="arial">Arial</option>
+                <option value="vt323">VT323</option>
+                <option value="orbitron">Orbitron</option>
+                <option value="bungee">Bungee</option>
+              </select>
+              <ErrorMessage>{actionData?.errors?.fontFamily}</ErrorMessage>
+            </div>
           </div>
 
           {/* Fondo de pantalla */}
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-2 border border-primary-reverse">
             <h3 className="text-lg font-medium">Select Background Image</h3>
-            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {backgrounds.map((bg, index) => (
+            <ul className="grid sm:grid-cols-6 gap-8">
+              {backgroundsToShow.map((bg, index) => (
                 <li key={index} className="flex flex-col items-center">
                   <input
                     type="radio"
@@ -99,27 +131,8 @@ export default function Custom() {
                 </li>
               ))}
             </ul>
+            <PaginationBar total={backgrounds.length} />
             <ErrorMessage>{actionData?.errors?.background}</ErrorMessage>
-          </div>
-
-          {/* Fuente */}
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <label htmlFor="fontFamily" className="text-lg font-medium">
-              Select Font
-            </label>
-            <select
-              name="fontFamily"
-              id="fontFamily"
-              className="p-2 rounded-md border focus:outline-none focus:ring focus:ring-blue-300 border-color-reverse bg-primary-reverse text-color-reverse"
-            >
-              <option value="open-sans">Open Sans</option>
-              <option value="roboto">Roboto</option>
-              <option value="arial">Arial</option>
-              <option value="vt323">VT323</option>
-              <option value="orbitron">Orbitron</option>
-              <option value="bungee">Bungee</option>
-            </select>
-            <ErrorMessage>{actionData?.errors?.fontFamily}</ErrorMessage>
           </div>
 
           <div className="mt-6">

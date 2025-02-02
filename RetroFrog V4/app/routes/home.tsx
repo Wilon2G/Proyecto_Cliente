@@ -103,11 +103,12 @@ export default function HomePage() {
               <TitleWrapper
                 onClick={toggleSearch}
                 title="Search"
-                className={` ${
-                  menuOpen && isSearchable
-                    ? 'scale-100 transition-all ease-in-out'
-                    : 'scale-0 transition-all ease-in-out'
-                } `}
+                className={
+                  (menuOpen && isSearchable
+                    ? 'scale-100 transition-all ease-in-out '
+                    : 'scale-0 transition-all ease-in-out ') +
+                  (search ? 'border border-primary-hover-reverse' : '')
+                }
               >
                 <button className="flex items-center">
                   <SearchIcon />
@@ -124,11 +125,14 @@ export default function HomePage() {
                 <TitleWrapper
                   onClick={toggleProfileDropdown}
                   title="Profile"
-                  className={` ${
-                    menuOpen
+                  className={
+                    (menuOpen
                       ? 'scale-100 transition-all ease-in-out'
-                      : 'scale-0 transition-all ease-in-out'
-                  } `}
+                      : 'scale-0 transition-all ease-in-out') +
+                    (profileDropdown
+                      ? 'border border-primary-hover-reverse'
+                      : '')
+                  }
                 >
                   <button className="flex items-center">
                     <img
@@ -205,11 +209,11 @@ export default function HomePage() {
       </header>
       <div
         className={classNames(
-          'absolute left-1/2 transform -translate-x-1/2  m-auto mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-50',
+          'absolute left-1/2 transform -translate-x-1/2 w-fit bg-primary rounded-lg shadow-lg p-3 flex flex-col items-center z-50',
           {
-            'opacity-100 translate-y-2 transition-all ease-in-out visible scale-100':
+            'opacity-100 translate-y-[40vh] transition-all ease-in-out visible scale-100':
               search && isSearchable,
-            'opacity-0 -translate-y-2 transition-all ease-in-out invisible scale-x-50 scale-y-110 ':
+            'opacity-0 translate-y-[50vh] transition-all ease-in-out invisible scale-x-50 scale-y-110 ':
               !search || !isSearchable,
           },
         )}
@@ -217,7 +221,7 @@ export default function HomePage() {
         <GameSearch />
       </div>
 
-      <main className="container mx-auto p-2 select-none shadow-lg  border-2 border-primary rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-9 -z-30">
+      <main className="container mx-auto p-2 select-none shadow-lg  border-2 border-primary rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-2 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>
