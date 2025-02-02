@@ -98,21 +98,23 @@ export default function HomePage() {
           } md:flex`}
         >
           <ul className="flex  flex-wrap gap-2">
-            <li>
-              <TitleWrapper
-                onClick={toggleSearch}
-                title="Search"
-                className={` ${
-                  menuOpen && isSearchable
-                    ? 'scale-100 transition-all ease-in-out'
-                    : 'scale-0 transition-all ease-in-out'
-                } `}
-              >
-                <button className="flex items-center">
-                  <SearchIcon />
-                </button>
-              </TitleWrapper>
-            </li>
+            {menuOpen && isSearchable && (
+              <li>
+                <TitleWrapper
+                  onClick={toggleSearch}
+                  title="Search"
+                  className={` ${
+                    menuOpen && isSearchable
+                      ? 'scale-100 transition-all ease-in-out'
+                      : 'scale-0 transition-all ease-in-out'
+                  } `}
+                >
+                  <button className="flex items-center">
+                    <SearchIcon />
+                  </button>
+                </TitleWrapper>
+              </li>
+            )}
 
             {primaryLinks.map((link) => (
               <NavLinkComp key={link.iconName} {...link} menuOpen={menuOpen} />
