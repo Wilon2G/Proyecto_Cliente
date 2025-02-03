@@ -30,6 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
     formData,
     customSchema,
     async ({ theme, background, fontFamily }) => {
+      //Por si le pasamos algo opcional y algo no
       theme = theme ?? session.get('theme') ?? 'dark';
       background =
         background ??
@@ -65,13 +66,19 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Settings() {
   return (
     <>
-      <div className="w-full  px-4 mb-2">
+      <div className="w-full  px-4 mb-10">
         <Developers />
       </div>
-      <div className="w-4/5 bg-primary shadow-lg rounded-lg p-4 flex flex-row">
-        <Custom />
+      <div className="w-4/5 bg-primary shadow-lg rounded-lg p-8">
+        <div className="mb-10">
+          <Custom />
+        </div>
+      </div>
+      <div className="mb-10">
         <PrivacyPolices />
       </div>
+    
     </>
+    
   );
 }
