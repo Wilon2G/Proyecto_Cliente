@@ -87,8 +87,15 @@ export default function HomePage() {
   return (
     <>
       <header className="topbar flex gap-4 items-center justify-between bg-primary bg-opacity-10 p-4 w-full flex-wrap select-none">
-        <a href="/home/main" className="flex items-center flex-col">
-          <span className="text-primary-reverse font-bold">Retrofrog</span>
+        <a href="/home/main" className="flex items-center flex-row gap-3">
+          <img
+            src="/assets/icon/frog-logo3.png"
+            alt="Frog Logo"
+            className="w-20 h-auto"
+          />
+          <span className="text-primary-reverse font-bold text-2xl">
+            Retrofrog
+          </span>
         </a>
 
         <nav
