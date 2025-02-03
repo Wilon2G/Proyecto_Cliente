@@ -81,9 +81,10 @@ export function PopularGamesSlider({ games, purchasedGames }: SliderProps) {
           return (
             <SwiperSlide
               key={game.id}
-              className="rounded-lg bg-primary p-4 border-icon-fill shadow-lg bg-opacity-70 hover:shadow-xl transition-shadow"
+            
+              className="slider-slide rounded-lg  bg-primary p-4 border-icon-fill shadow-lg bg-opacity-70 hover:shadow-xl transition-shadow"
             >
-              <div className="text-center">
+              <div className="text-center ">
                 <img
                   src={`/assets/games/${game.title.replace(
                     /\s/g,

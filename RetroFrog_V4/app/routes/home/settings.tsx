@@ -77,6 +77,8 @@ export default function Settings() {
       <div className="mb-10">
         <PrivacyPolices />
       </div>
+    
     </>
+    
   );
 }

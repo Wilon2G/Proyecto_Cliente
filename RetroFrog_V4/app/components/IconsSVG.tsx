@@ -2,13 +2,27 @@ export function CollapseArrow() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
       <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+    </svg>
+  );
+}
+export function SearchIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.75rem"
+      viewBox="0 -960 960 960"
+      width="1.75rem"
+      style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
+      fill="currentColor"
+    >
+      <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
     </svg>
   );
 }
@@ -17,11 +31,11 @@ export function HomeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
-      className="hover:fill-[var(--icon-fill-hover)]"
+      className="hover:fill-[var(--icon-fill-hover)] "
     >
       <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
     </svg>
@@ -32,9 +46,9 @@ export function ShopIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -47,9 +61,9 @@ export function GamesIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -61,10 +75,10 @@ export function GamesIcon() {
 export function FavGamesIcon() {
   return (
     <svg
-      height="24px"
+      height="1.75rem"
       opacity={1}
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -77,9 +91,9 @@ export function MusicIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -92,9 +106,9 @@ export function ChooseMusicIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -107,9 +121,9 @@ export function VolumeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -122,9 +136,9 @@ export function PlayingMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -137,9 +151,9 @@ export function StopingMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -152,9 +166,9 @@ export function ToggleMusic() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -167,9 +181,9 @@ export function PreferencesIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -182,9 +196,9 @@ export function UserIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -197,9 +211,9 @@ export function SettingsIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -212,9 +226,9 @@ export function LogOutIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height="1.75rem"
       viewBox="0 -960 960 960"
-      width="24px"
+      width="1.75rem"
       style={{ fill: 'var(--icon-fill)', transition: 'fill 0.3s ease' }}
       className="hover:fill-[var(--icon-fill-hover)]"
     >
@@ -302,7 +316,7 @@ export function ShopNowIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-5 h-5 text-gray-400 bradius "
+      className="w-5 h-5 text-black "
     >
       <path
         strokeLinecap="round"
@@ -391,6 +405,34 @@ export function LoadingFrogIcon() {
     </svg>
   );
 }
+export function MenuIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#EFEFEF"
+      className="fill-primary-reverse"
+    >
+      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+    </svg>
+  );
+}
+export function ExitIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="2rem"
+      viewBox="0 -960 960 960"
+      width="2rem"
+      fill="#EFEFEF"
+      className="fill-primary-reverse"
+    >
+      <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+    </svg>
+  );
+}
 
 export function OpenEye() {
   return (
@@ -431,6 +473,62 @@ export function CloseEye() {
         strokeLinejoin="round"
         d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
       />
+    </svg>
+  );
+}
+export function RightArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.75rem"
+      viewBox="0 -960 960 960"
+      width="1.75rem"
+      fill="currentColor"
+      className="fill-primary-reverse"
+    >
+      <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+    </svg>
+  );
+}
+export function LeftArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.75rem"
+      viewBox="0 -960 960 960"
+      width="1.75rem"
+      fill="currentColor"
+      className="fill-primary-reverse"
+    >
+      <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+    </svg>
+  );
+}
+export function DoubleLeftArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.75rem"
+      viewBox="0 -960 960 960"
+      width="1.75rem"
+      fill="currentColor"
+      className="fill-primary-reverse"
+    >
+      <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
+    </svg>
+  );
+}
+export function DoubleRightArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.75rem"
+      viewBox="0 -960 960 960"
+      width="1.75rem"
+      fill="currentColor"
+      className="fill-primary-reverse"
+    >
+      <path d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z" />
     </svg>
   );
 }

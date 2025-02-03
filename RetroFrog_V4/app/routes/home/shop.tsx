@@ -5,7 +5,8 @@ import {
   PopularGamesSlider,
   PpalSlider,
 } from '~/components/ShopSliders';
-import { getSession } from '~/sessions';
+import { buyNewGame, getGamesUser } from '~/models/games.server';
+import { getCurrentUser } from '~/utils/auth.server';
 import prisma from '~/utils/prismaClient';
 
 export interface Game {
@@ -15,6 +16,7 @@ export interface Game {
   color: string;
   tags: string;
 }
+
 export const action: ActionFunction = async ({ request }) => {
   const formData = new URLSearchParams(await request.text());
   const gameId = formData.get('gameId'); // ID del juego que se va a comprar
@@ -27,9 +29,8 @@ export const action: ActionFunction = async ({ request }) => {
     });
   }
 
-  const cookieHeader = request.headers.get('cookie');
-  const session = await getSession(cookieHeader);
-  const userId = session.get('userId'); // ID del usuario desde la sesión
+  const user = await getCurrentUser(request);
+  const userId = user?.id as string;
 
   if (!userId) {
     return new Response(JSON.stringify({ error: 'User not logged in' }), {
@@ -40,14 +41,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   try {
     // Actualizar la base de datos usando Prisma
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        GamesUnlocked: {
-          connect: [{ id: gameId }], // Conectar el juego al usuario
-        },
-      },
-    });
+    await buyNewGame(userId, gameId);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
@@ -63,39 +57,32 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const games = await prisma.game.findMany();
-  const cookieHeader = request.headers.get('cookie');
-
-  const session = await getSession(cookieHeader);
-
-  const userId = session.get('userId');
+  const user = await getCurrentUser(request);
+  const userId = user?.id as string;
 
   let purchasedGames: string[] = [];
 
   if (userId) {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      include: { GamesUnlocked: true },
-    });
+    const user = await getGamesUser(userId);
 
     purchasedGames = user?.GamesUnlocked.map((game) => game.id) || [];
   }
+
   return { games, userId, purchasedGames };
 };
 
+type gameShop = { games: Game[]; userId: string; purchasedGames: string[] };
+
 export default function Shop() {
-  const { games, userId, purchasedGames } = useLoaderData<{
-    games: Game[];
-    userId: string;
-    purchasedGames: string[];
-  }>();
+  const { games, purchasedGames } = useLoaderData<gameShop>();
   return (
     <>
       <PpalSlider games={games} purchasedGames={purchasedGames} />
 
-      <h2 className={`text-2xl font-bold mb-4 `}>Popular Games</h2>
+      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>Popular Games</h2>
       <PopularGamesSlider games={games} purchasedGames={purchasedGames} />
 
-      <h2 className={`text-2xl font-bold mb-4 `}>More Hot topic</h2>
+      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>More Hot topic</h2>
       <HotTopicsSlider games={games} purchasedGames={purchasedGames} />
     </>
   );

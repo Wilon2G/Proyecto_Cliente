@@ -34,7 +34,7 @@ export async function action({ request }: { request: Request }) {
     console.log(
       'Se está accediendo a la página con el usuario prueba, este usuario se salta las validaciones y solo debe utilizarse durante las pruebas.',
     );
-    session.set('userId', 'cm6hmu5410001lc8o6vrkrejp');
+    session.set('userId', 'cm6l3cgta0002m9x86p766ilf');
     const cookie = await commitSession(session);
     return redirect('/home/main', {
       headers: {
