@@ -1,4 +1,3 @@
-// HomePage.tsx
 import { LoaderFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
 import { ShopNowIcon } from '~/components/IconsSVG';

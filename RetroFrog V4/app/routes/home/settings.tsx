@@ -30,7 +30,6 @@ export const action: ActionFunction = async ({ request }) => {
     formData,
     customSchema,
     async ({ theme, background, fontFamily }) => {
-      //Por si le pasamos algo opcional y algo no
       theme = theme ?? session.get('theme') ?? 'dark';
       background =
         background ??

@@ -238,7 +238,7 @@ export default function HomePage() {
 type NavLinkCompProps = {
   path: string;
   SVGIcon: React.ReactElement;
-  search?: string; // Atributo opcional para filtros
+  search?: string;
   iconName: string;
   menuOpen?: boolean;
 };

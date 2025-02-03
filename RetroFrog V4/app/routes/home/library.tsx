@@ -16,7 +16,6 @@ import PaginationBar from '~/components/PaginationBar';
 import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
 
-//meter el modal de añadir juegos otra vez.
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const filter = url.searchParams.get('filter');
@@ -27,7 +26,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   const consoleFilter = url.searchParams.get('console') || 'All consoles';
   const tags = url.searchParams.getAll('tags');
 
-  // Get user and their unlocked games
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: {
@@ -66,7 +64,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   );
 
   const gamesToReturn = filteredGames.slice(skip, skip + top);
-  // Get total number of games unlocked by the user (for pagination)
+
   const totalGamesUnlocked = filteredGames.length;
 
   const userRole = user ? user.role : null;
@@ -84,7 +82,7 @@ export const action: ActionFunction = async ({ request }) => {
     throw new Response('ID de juego no proporcionado', { status: 400 });
   }
 
-  //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE
+  //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE -- pendiente
   const existingFavorite = await prisma.user.findFirst({
     where: {
       id: userId,
@@ -173,8 +171,6 @@ export default function Library() {
     handleCloseModal();
   };
 
-  const isAdmin = userRole; //No se usa
-  // Estado para controlar la imagen de fondo en hover
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
     <>
@@ -309,10 +305,12 @@ const filterGames = (
 
     const matchesConsole =
       consoleFilter && consoleFilter !== 'All consoles'
-        ? game.console.split(':').some(
-            (console) =>
-              console.trim().toLowerCase() === consoleFilter.toLowerCase(), // Strictly matches the console name
-          )
+        ? game.console
+            .split(':')
+            .some(
+              (console) =>
+                console.trim().toLowerCase() === consoleFilter.toLowerCase(),
+            )
         : true;
 
     const matchesTags =
