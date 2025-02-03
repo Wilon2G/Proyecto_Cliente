@@ -27,7 +27,7 @@ const backgrounds = [
   '/assets/background/10-bg.png',
   '/assets/background/11-bg.png',
   '/assets/background/12-bg.png',
-  '/assets/background/13-bg.png',
+  
   '/assets/background/14-bg.png',
   '/assets/background/15-bg.png',
   '/assets/background/16-bg.png',
@@ -76,7 +76,7 @@ export default function Custom() {
           {/* Fondo de pantalla */}
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-lg font-medium">Select Background Image</h3>
-            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <ul className="grid grid-cols-2 sm:grid-cols-8 gap-4 mb-4">
               {backgrounds.map((bg, index) => (
                 <li key={index} className="flex flex-col items-center">
                   <input
