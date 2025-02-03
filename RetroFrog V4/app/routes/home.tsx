@@ -86,8 +86,9 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex gap-4 items-center justify-between bg-primary bg-opacity-10 p-4 w-full flex-wrap select-none">
-        <a href="/home/main" className="flex items-center flex-row gap-3">
+      <header className="topbar flex flex-col  bg-primary bg-opacity-10 p-4 w-full  ">
+        <div className='flex gap-4 items-center justify-between  flex-wrap select-none'>
+        <a href="/home/main" className="flex items-center  flex-row gap-3">
           <img
             src="/assets/icon/frog-logo3.png"
             alt="Frog Logo"
@@ -99,7 +100,7 @@ export default function HomePage() {
         </a>
 
         <nav
-          className={`flex-grow flex justify-center ${
+          className={` flex ${
             menuOpen
               ? 'opacity-100 transition-all ease-in-out visible'
               : 'opacity-0 transition-all ease-in-out invisible '
@@ -197,7 +198,8 @@ export default function HomePage() {
             </li>
           </ul>
         </nav>
-        <TitleWrapper title="Toggle menu" onClick={toggleMenu}>
+
+        <TitleWrapper title="Toggle menu" onClick={toggleMenu} className='' > 
           <button>
             <MenuIcon />
           </button>
@@ -213,22 +215,21 @@ export default function HomePage() {
             'bottom-2',
           )}
         />
-      </header>
-      <div
-        className={classNames(
-          'absolute left-1/2 transform -translate-x-1/2 w-fit bg-primary rounded-lg shadow-lg p-3 flex flex-col items-center z-50',
-          {
-            'opacity-100 translate-y-[40vh] transition-all ease-in-out visible scale-100':
-              search && isSearchable,
-            'opacity-0 translate-y-[50vh] transition-all ease-in-out invisible scale-x-50 scale-y-110 ':
-              !search || !isSearchable,
-          },
-        )}
-      >
-        <GameSearch />
-      </div>
+        </div>
+        
 
-      <main className="container mx-auto p-2 select-none shadow-lg  border-2 border-primary rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-2 -z-30">
+
+        {/**Esto es el temita de la búsqueda ============ */}
+        {search && isSearchable ?(
+        <div
+        className=' w-fit bg-primary self-center rounded-lg shadow-lg p-3 flex flex-col items-center '>
+        <GameSearch />
+      </div> ):""}
+
+      </header>
+      
+
+      <main className="container mx-auto p-2 select-none shadow-lg bg-gray-100 bg-opacity-30 rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-2 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>

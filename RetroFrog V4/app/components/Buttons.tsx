@@ -104,7 +104,7 @@ export function TitleWrapper({
       {children}
       <div
         className={classNames(
-          'absolute  px-2 py-1 bg-primary-hover text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 ',
+          'absolute z-50 px-2 py-1 bg-primary-hover text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 ',
           {
             'mt-1 top-full': dir === 'down',
             'mr-1 right-full -mt-2': dir === 'left',

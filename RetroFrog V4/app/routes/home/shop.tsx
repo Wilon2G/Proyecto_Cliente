@@ -79,10 +79,10 @@ export default function Shop() {
     <>
       <PpalSlider games={games} purchasedGames={purchasedGames} />
 
-      <h2 className={`text-2xl font-bold mb-4 `}>Popular Games</h2>
+      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>Popular Games</h2>
       <PopularGamesSlider games={games} purchasedGames={purchasedGames} />
 
-      <h2 className={`text-2xl font-bold mb-4 `}>More Hot topic</h2>
+      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>More Hot topic</h2>
       <HotTopicsSlider games={games} purchasedGames={purchasedGames} />
     </>
   );
