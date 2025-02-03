@@ -127,7 +127,7 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
     <div
       className={classNames(
         `h-fit w-72 max-w-md rounded-xl shadow-lg p-4 flex flex-col items-center fixed right-2 bottom-4 gap-4 transition-all z-50 ${className}`,
-        'bg-primary-hover text-color',
+        'bg-primary text-color',
       )}
     >
       <div className="flex flex-row items-center justify-center gap-2 w-full">
@@ -145,11 +145,11 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
             <li
               key={index}
               className={classNames(
-                'text-sm p-2 cursor-pointer transition duration-200 hover:bg-primary',
+                'text-sm p-2 cursor-pointer transition duration-200 hover:bg-primary-hover',
                 `${
                   audioRef.current?.src.includes(song.src)
-                    ? 'bg-primary text-color'
-                    : 'bg-primary-hover text-color-hover'
+                    ? 'bg-primary-hover text-color-hover'
+                    : 'bg-primary text-color'
                 }`,
               )}
               onClick={() => changeSong(song.src)}
@@ -166,7 +166,7 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
         <div className="flex justify-between items-center w-full gap-4 mt-4">
           <button
             onClick={togglePlaylist}
-            className="p-2 rounded-md transition duration-300 hover:bg-primary"
+            className="p-2 rounded-md transition duration-300 hover:bg-primary-hover"
           >
             <ChooseMusicIcon />
           </button>
@@ -174,13 +174,13 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
           <div className="flex gap-4">
             <button
               onClick={playPause}
-              className="p-2 rounded-full transition duration-300 hover:bg-primary"
+              className="p-2 rounded-full transition duration-300 hover:bg-primary-hover"
             >
               {isPlaying ? <StopingMusic /> : <PlayingMusic />}
             </button>
             <button
               onClick={toggleRepeat}
-              className="p-2 rounded-full transition duration-300 hover:bg-primary"
+              className="p-2 rounded-full transition duration-300 hover:bg-primary-hover"
             >
               <ToggleMusic />
             </button>
