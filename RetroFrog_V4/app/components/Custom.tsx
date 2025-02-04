@@ -18,23 +18,21 @@ const backgrounds = [
   '/assets/background/1-bg.png',
   '/assets/background/2-bg.png',
   '/assets/background/3-bg.png',
-  '/assets/background/4-bg.png',
+  '/assets/background/4-bg.jpg',
   '/assets/background/5-bg.png',
-  '/assets/background/6-bg.png',
+  '/assets/background/6-bg.jpg',
   '/assets/background/7-bg.png',
   '/assets/background/8-bg.png',
-  '/assets/background/9-bg.png',
-  '/assets/background/10-bg.png',
+  '/assets/background/9-bg.jpg',
+  '/assets/background/10-bg.jpg',
   '/assets/background/11-bg.png',
   '/assets/background/12-bg.png',
-  
-  '/assets/background/14-bg.png',
-  '/assets/background/15-bg.png',
-  '/assets/background/16-bg.png',
-  '/assets/background/17-bg.png',
+  '/assets/background/13-bg.jpg',
+  '/assets/background/14-bg.jpg',
+  '/assets/background/15-bg.jpg',
+  '/assets/background/16-bg.jpg',
 ];
 
-// Este es el componente Custom donde seleccionas la fuente
 export default function Custom() {
   const actionData = useActionData<ActionData>();
 
@@ -76,7 +74,7 @@ export default function Custom() {
           {/* Fondo de pantalla */}
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-lg font-medium">Select Background Image</h3>
-            <ul className="grid grid-cols-2 sm:grid-cols-8 gap-4 mb-4">
+            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {backgrounds.map((bg, index) => (
                 <li key={index} className="flex flex-col items-center">
                   <input
@@ -93,7 +91,7 @@ export default function Custom() {
                     <img
                       src={bg}
                       alt={`Background ${index}`}
-                      className="w-full h-full object-cover"
+                      className="w-20 h-20 sm:w-28 sm:h-28 object-cover"
                     />
                   </label>
                 </li>

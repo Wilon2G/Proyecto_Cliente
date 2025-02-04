@@ -14,7 +14,7 @@ function PrivacyPolices() {
       <ButtonAction
         textBtn="Review our privacy policies"
         onClick={toggleDropdown}
-        className="text-2xl font-semibold mt-1 mb-1 transition-colors text-color-reverse"
+        className="text-2xl font-semibold mt-1 mb-1 transition-colors text-color"
       />
 
       <div
@@ -22,7 +22,7 @@ function PrivacyPolices() {
           `dropdown-content p-6 rounded-lg shadow-lg 
                   duration-300 ease-in-out overflow-scroll overflow-x-hidden text-left
                     ${isOpen ? ' opacity-100 h-96' : 'scale-y-0 h-0'}`,
-          'bg-color text-color-reverse',
+          'bg-primary text-color',
         )}
       >
         <p className="mb-4">

@@ -16,9 +16,7 @@ export default function HomePage() {
   return (
     <>
       <header className="mb-8">
-        <h1 className="text-4xl font-semibold text-color-reverse">
-          Welcome, {name}!
-        </h1>
+        <h1 className="text-4xl font-semibold text-black">Welcome, {name}!</h1>
       </header>
       <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         <div className="col-span-1 xl:col-span-2">
