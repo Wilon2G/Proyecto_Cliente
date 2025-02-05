@@ -18,8 +18,8 @@ model User {
   name          String
   email         String  @unique
   score         Int @default(0)
-  theme         String  @default("dark:/assets/background/1-bg.png:arial")
-  pfp           String  @default("/assets/icon/pfp/default.jpg")
+  theme         String  @default("dark:/assets/background/1-bg.avif:arial")
+  pfp           String  @default("/assets/icon/pfp/default.avif")
   registerDate  DateTime @default(now())
   role          Role     @default(USER) // Nuevo campo para rol del usuario
 

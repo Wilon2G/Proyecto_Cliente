@@ -32,7 +32,12 @@ export default function HomePage() {
             favorite retro games.
           </p>
           <div className="flex justify-center content-center w-16 h-16 rounded-full border border-gray-300 shadow-lg">
-            <NavLink to="../shop" className="nav-link" id="navToShop">
+            <NavLink
+              to="../shop"
+              title="shop-link"
+              className="nav-link"
+              id="navToShop"
+            >
               <ShopNowIcon />
             </NavLink>
           </div>

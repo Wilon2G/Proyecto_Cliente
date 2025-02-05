@@ -14,7 +14,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   return {
     theme: session.get('theme') || 'dark',
-    background: session.get('background') || '/assets/background/1-bg.png',
+    background: session.get('background') || '/assets/background/1-bg.avif',
     fontFamily: session.get('fontFamily') || 'arial',
   };
 };
@@ -35,7 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
       background =
         background ??
         session.get('background') ??
-        'dark/assets/background/1-bg.png';
+        'dark/assets/background/1-bg.avif';
       fontFamily = fontFamily ?? session.get('fontFamily') ?? 'arial';
 
       session.set('theme', theme);

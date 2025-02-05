@@ -178,15 +178,15 @@ export default function LoginPage() {
       <div className="h-full w-2/5 fixed right-0 backdrop-blur-lg bg-primary">
         <div className="w-full h-1/5 p-6 flex items-center hover:bg-primary-hover">
           <img
-            src="/assets/icon/frog-logo3.png"
+            src="/assets/icon/frog-logo3.avif"
             alt="Frog Logo"
             className="w-32 h-auto mr-5"
           />
           <div className="w-full">
             <h1 className="text-6xl">Retrofrog</h1>
-            <h3 className="text-xl">
+            <h2 className="text-xl">
               Welcome to the first online arcade experience
-            </h3>
+            </h2>
             <p>
               Login to discover our full catalog or Signup if you don&apos;t
               have an account
@@ -229,6 +229,7 @@ export default function LoginPage() {
                     type="button"
                     onClick={handleTogglePasswordVisibility}
                     className="absolute right-2 top-14 transform -translate-y-1/2"
+                    title="showpassword"
                   >
                     {showPassword ? <CloseEye /> : <OpenEye />}
                   </button>

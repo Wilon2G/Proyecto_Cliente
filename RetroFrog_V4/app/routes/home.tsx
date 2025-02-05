@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);
 
   return {
-    pfp: user?.pfp || '/assets/icon/pfp/default.jpg',
+    pfp: user?.pfp || '/assets/icon/pfp/default.avif',
   };
 };
 
@@ -87,147 +87,149 @@ export default function HomePage() {
   return (
     <>
       <header className="topbar flex flex-col  bg-primary bg-opacity-10 p-4 w-full  ">
-        <div className='flex gap-4 items-center justify-between  flex-wrap select-none'>
-        <a href="/home/main" className="flex items-center  flex-row gap-3">
-          <img
-            src="/assets/icon/frog-logo3.png"
-            alt="Frog Logo"
-            className="w-20 h-auto"
-          />
-          <span className="text-primary-reverse font-bold text-2xl">
-            Retrofrog
-          </span>
-        </a>
+        <div className="flex gap-4 items-center justify-between  flex-wrap select-none">
+          <a href="/home/main" className="flex items-center  flex-row gap-3">
+            <img
+              src="/assets/icon/frog-logo3.avif"
+              alt="Frog Logo"
+              className="w-20  h-20"
+            />
+            <span className="text-primary-reverse font-bold text-2xl">
+              Retrofrog
+            </span>
+          </a>
 
-        <nav
-          className={` flex ${
-            menuOpen
-              ? 'opacity-100 transition-all ease-in-out visible'
-              : 'opacity-0 transition-all ease-in-out invisible '
-          } md:flex`}
-        >
-          <ul className="flex  flex-wrap gap-2">
-            <li>
-              <TitleWrapper
-                onClick={toggleSearch}
-                title="Search"
-                className={
-                  (menuOpen && isSearchable
-                    ? 'scale-100 transition-all ease-in-out '
-                    : 'scale-0 transition-all ease-in-out ') +
-                  (search ? 'border border-primary-hover-reverse' : '')
-                }
-              >
-                <button className="flex items-center">
-                  <SearchIcon />
-                </button>
-              </TitleWrapper>
-            </li>
-
-            {primaryLinks.map((link) => (
-              <NavLinkComp key={link.iconName} {...link} menuOpen={menuOpen} />
-            ))}
-
-            <li>
-              <div>
+          <nav
+            className={` flex ${
+              menuOpen
+                ? 'opacity-100 transition-all ease-in-out visible'
+                : 'opacity-0 transition-all ease-in-out invisible '
+            } md:flex`}
+          >
+            <ul className="flex  flex-wrap gap-2">
+              <li>
                 <TitleWrapper
-                  onClick={toggleProfileDropdown}
-                  title="Profile"
+                  onClick={toggleSearch}
+                  title="Search"
                   className={
-                    (menuOpen
-                      ? 'scale-100 transition-all ease-in-out'
-                      : 'scale-0 transition-all ease-in-out') +
-                    (profileDropdown
-                      ? 'border border-primary-hover-reverse'
-                      : '')
+                    (menuOpen && isSearchable
+                      ? 'scale-100 transition-all ease-in-out '
+                      : 'scale-0 transition-all ease-in-out ') +
+                    (search ? 'border border-primary-hover-reverse' : '')
                   }
                 >
                   <button className="flex items-center">
-                    <img
-                      src={pfp}
-                      alt="User Profile"
-                      className="rounded-full w-7 h-7 "
-                      draggable="false"
-                    />
+                    <SearchIcon />
                   </button>
                 </TitleWrapper>
+              </li>
 
-                <ul
-                  className={classNames(
-                    'absolute right-3 mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-20',
-                    {
-                      'opacity-100 translate-x-0 transition-all ease-in-out visible scale-100':
-                        profileDropdown,
-                      'opacity-0 -z-50 translate-x-2 transition-all ease-in-out invisible scale-x-110 scale-y-50':
-                        !profileDropdown,
-                    },
-                  )}
-                >
-                  <li>
-                    <TitleWrapper
-                      onClick={toggleMusic}
-                      title="Music player"
-                      dir="left"
-                    >
-                      <MusicIcon />
-                    </TitleWrapper>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: '/home/user' }}>
-                      <TitleWrapper title="User" dir="left">
-                        <UserIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: 'settings' }}>
-                      <TitleWrapper title="Settings" dir="left">
-                        <SettingsIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={{ pathname: '/logout' }}>
-                      <TitleWrapper title="Log out" dir="left">
-                        <LogOutIcon />
-                      </TitleWrapper>
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </nav>
+              {primaryLinks.map((link) => (
+                <NavLinkComp
+                  key={link.iconName}
+                  {...link}
+                  menuOpen={menuOpen}
+                />
+              ))}
 
-        <TitleWrapper title="Toggle menu" onClick={toggleMenu} className='' > 
-          <button>
-            <MenuIcon />
-          </button>
-        </TitleWrapper>
-        <MusicPlayer
-          className={classNames(
-            {
-              'opacity-100 translate-y-0 transition-all ease-in-out visible':
-                musicState,
-              'opacity-0 translate-y-5 transition-all ease-in-out invisible':
-                !musicState,
-            },
-            'bottom-2',
-          )}
-        />
+              <li>
+                <div>
+                  <TitleWrapper
+                    onClick={toggleProfileDropdown}
+                    title="Profile"
+                    className={
+                      (menuOpen
+                        ? 'scale-100 transition-all ease-in-out'
+                        : 'scale-0 transition-all ease-in-out') +
+                      (profileDropdown
+                        ? 'border border-primary-hover-reverse'
+                        : '')
+                    }
+                  >
+                    <button className="flex items-center">
+                      <img
+                        src={pfp}
+                        alt="User Profile"
+                        className="rounded-full w-7 h-7 "
+                        draggable="false"
+                      />
+                    </button>
+                  </TitleWrapper>
+
+                  <ul
+                    className={classNames(
+                      'absolute right-3 mt-6 w-fit bg-primary rounded-lg shadow-lg p-2 flex flex-col items-center z-20',
+                      {
+                        'opacity-100 translate-x-0 transition-all ease-in-out visible scale-100':
+                          profileDropdown,
+                        'opacity-0 -z-50 translate-x-2 transition-all ease-in-out invisible scale-x-110 scale-y-50':
+                          !profileDropdown,
+                      },
+                    )}
+                  >
+                    <li>
+                      <TitleWrapper
+                        onClick={toggleMusic}
+                        title="Music player"
+                        dir="left"
+                      >
+                        <MusicIcon />
+                      </TitleWrapper>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: '/home/user' }}>
+                        <TitleWrapper title="User" dir="left">
+                          <UserIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: 'settings' }}>
+                        <TitleWrapper title="Settings" dir="left">
+                          <SettingsIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={{ pathname: '/logout' }}>
+                        <TitleWrapper title="Log out" dir="left">
+                          <LogOutIcon />
+                        </TitleWrapper>
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <TitleWrapper title="Toggle menu" onClick={toggleMenu} className="">
+            <button title="togglemenu">
+              <MenuIcon />
+            </button>
+          </TitleWrapper>
+          <MusicPlayer
+            className={classNames(
+              {
+                'opacity-100 translate-y-0 transition-all ease-in-out visible':
+                  musicState,
+                'opacity-0 translate-y-5 transition-all ease-in-out invisible':
+                  !musicState,
+              },
+              'bottom-2',
+            )}
+          />
         </div>
-        
-
 
         {/**Esto es el temita de la búsqueda ============ */}
-        {search && isSearchable ?(
-        <div
-        className=' w-fit bg-primary self-center rounded-lg shadow-lg p-3 flex flex-col items-center '>
-        <GameSearch />
-      </div> ):""}
-
+        {search && isSearchable ? (
+          <div className=" w-fit bg-primary self-center rounded-lg shadow-lg p-3 flex flex-col items-center ">
+            <GameSearch />
+          </div>
+        ) : (
+          ''
+        )}
       </header>
-      
 
       <main className="container mx-auto p-2 select-none shadow-lg bg-gray-100 bg-opacity-30 rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-2 -z-30">
         {isLoading ? <LoadingFrog /> : <Outlet />}

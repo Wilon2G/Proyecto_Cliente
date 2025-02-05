@@ -43,7 +43,7 @@ export default function Button({
       className={classNames(
         'w-full py-2 px-4 rounded-md font-bold transition duration-300',
         'bg-green-600 hover:bg-green-700',
-        'text-color hover:text-color-hover',
+        'text-white hover:text-color-hover',
         className,
       )}
     >

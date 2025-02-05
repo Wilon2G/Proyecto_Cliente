@@ -1,8 +1,8 @@
 import { vitePlugin as remix } from '@remix-run/dev';
 import { createRoutesFromFolders } from '@remix-run/v1-route-convention';
 import { defineConfig } from 'vite';
+import compression from 'vite-plugin-compression';
 import tsconfigPaths from 'vite-tsconfig-paths';
-
 declare module '@remix-run/node' {
   interface Future {
     v3_singleFetch: true;
@@ -11,6 +11,14 @@ declare module '@remix-run/node' {
 
 export default defineConfig({
   plugins: [
+    compression({ algorithm: 'brotliCompress', ext: '.br' }),
+    compression({ algorithm: 'gzip', ext: '.gz' }),
+    compression({
+      verbose: true,
+      disable: false,
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    }),
     remix({
       ignoredRouteFiles: ['**/.*'],
       routes(defineRoutes) {

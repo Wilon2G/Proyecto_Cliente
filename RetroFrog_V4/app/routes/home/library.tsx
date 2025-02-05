@@ -37,7 +37,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     },
   });
 
-  const top = Number(url.searchParams.get('$top')) || 10;
+  const top = Number(url.searchParams.get('$top')) || 8;
   const skip = Number(url.searchParams.get('$skip')) || 0;
 
   const allUnlockedGames = await prisma.game.findMany({
@@ -174,7 +174,7 @@ export default function Library() {
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
     <>
-      <div className="gallery grid sm:grid-cols-3 md:grid-cols-5 gap-6  relative  rounded-2xl">
+      <div className="gallery grid sm:grid-cols-3 md:grid-cols-4 gap-6  relative  rounded-2xl">
         {/**Juegos */}
         {gamesToReturn.map((game) => {
           const isFavorite = game.UsersFavorited.some(
@@ -198,7 +198,7 @@ export default function Library() {
                 {/* Imagen de fondo */}
                 <img
                   src={`/assets/games/${game.title.replace(/\s/g, '')}${
-                    isHovered ? '.gif' : '-boxa.png'
+                    isHovered ? '.avif' : '-boxa.avif'
                   }`}
                   alt={`Cover of ${game.title}`}
                   draggable="false"
@@ -212,7 +212,7 @@ export default function Library() {
                       src={`/assets/games/${game.title.replace(
                         /\s/g,
                         '',
-                      )}-logo.png`}
+                      )}-logo.avif`}
                       alt={`${game.title} logo`}
                       className="max-w-[80%] max-h-[80%] object-contain"
                       onClick={() => handleOpenGameModal(game)}
