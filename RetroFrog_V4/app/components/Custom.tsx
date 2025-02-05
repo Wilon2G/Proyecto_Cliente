@@ -13,25 +13,26 @@ export interface ActionData {
     fontFamily?: string;
   };
 }
-
+const bgdir = '/assets/background/';
 const backgrounds = [
-  '/assets/background/1-bg.png',
-  '/assets/background/2-bg.png',
-  '/assets/background/3-bg.png',
-  '/assets/background/4-bg.jpg',
-  '/assets/background/5-bg.png',
-  '/assets/background/6-bg.jpg',
-  '/assets/background/7-bg.png',
-  '/assets/background/8-bg.png',
-  '/assets/background/9-bg.jpg',
-  '/assets/background/10-bg.jpg',
-  '/assets/background/11-bg.png',
-  '/assets/background/12-bg.png',
-  '/assets/background/13-bg.jpg',
-  '/assets/background/14-bg.jpg',
-  '/assets/background/15-bg.jpg',
-  '/assets/background/16-bg.jpg',
+  '1-bg',
+  '2-bg',
+  '3-bg',
+  '4-bg',
+  '5-bg',
+  '6-bg',
+  '7-bg',
+  '8-bg',
+  '9-bg',
+  '10-bg',
+  '11-bg',
+  '12-bg',
+  '13-bg',
+  '14-bg',
+  '15-bg',
+  '16-bg',
 ];
+const ext = '.jpg';
 
 export default function Custom() {
   const actionData = useActionData<ActionData>();
@@ -81,7 +82,7 @@ export default function Custom() {
                     type="radio"
                     name="background"
                     id={`bg${index}`}
-                    value={bg}
+                    value={bgdir + bg + ext}
                     className="hidden peer"
                   />
                   <label
@@ -89,7 +90,7 @@ export default function Custom() {
                     className="block w-24 h-24 rounded-md overflow-hidden border-2 border-transparent peer-checked:border-blue-500"
                   >
                     <img
-                      src={bg}
+                      src={bgdir + bg + '-sm' + ext}
                       alt={`Background ${index}`}
                       className="w-20 h-20 sm:w-28 sm:h-28 object-cover"
                     />
