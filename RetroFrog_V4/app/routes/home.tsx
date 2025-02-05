@@ -118,7 +118,7 @@ export default function HomePage() {
                     (search ? 'border border-primary-hover-reverse' : '')
                   }
                 >
-                  <button className="flex items-center">
+                  <button className="flex items-center" title="search">
                     <SearchIcon />
                   </button>
                 </TitleWrapper>
@@ -146,7 +146,7 @@ export default function HomePage() {
                         : '')
                     }
                   >
-                    <button className="flex items-center">
+                    <button className="flex items-center" title="user-profile">
                       <img
                         src={pfp}
                         alt="User Profile"

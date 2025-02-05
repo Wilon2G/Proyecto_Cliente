@@ -1,10 +1,6 @@
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import {
-  HotTopicsSlider,
-  PopularGamesSlider,
-  PpalSlider,
-} from '~/components/ShopSliders';
+import { ShopSlider } from '~/components/ShopSliders';
 import { buyNewGame, getGamesUser } from '~/models/games.server';
 import { getCurrentUser } from '~/utils/auth.server';
 import prisma from '~/utils/prismaClient';
@@ -77,13 +73,33 @@ export default function Shop() {
   const { games, purchasedGames } = useLoaderData<gameShop>();
   return (
     <>
-      <PpalSlider games={games} purchasedGames={purchasedGames} />
+      <ShopSlider
+        games={games}
+        purchasedGames={purchasedGames}
+        slidesPerView={3}
+        variant="principal"
+      />
 
-      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>Popular Games</h2>
-      <PopularGamesSlider games={games} purchasedGames={purchasedGames} />
+      <h2 className="text-2xl font-bold mb-4 text-color-reverse">
+        Popular Games
+      </h2>
+      <ShopSlider
+        games={games}
+        purchasedGames={purchasedGames}
+        slidesPerView={5}
+        variant="popular"
+        breakpoints={[2, 4, 5, 6]}
+      />
 
-      <h2 className={`text-2xl font-bold mb-4 text-color-reverse `}>More Hot topic</h2>
-      <HotTopicsSlider games={games} purchasedGames={purchasedGames} />
+      <h2 className="text-2xl font-bold mb-4 text-color-reverse">
+        More Hot Topics
+      </h2>
+      <ShopSlider
+        games={games}
+        purchasedGames={purchasedGames}
+        slidesPerView={4}
+        variant="hotTopics"
+      />
     </>
   );
 }

@@ -12,21 +12,21 @@ export default function Developers() {
       title: 'Favio-Cesar',
       description: 'Graphic design enthusiast and web application developer.',
       gitlink: 'https://github.com/Favio-Cesar',
-      route: '/assets/icon/pfp/favio138.png',
+      route: '/assets/icon/pfp/favio138.avif',
     },
     {
       tag: 'Web Developer',
       title: 'Wilon2G',
       description: 'Sound technician and skilled programmer.',
       gitlink: 'https://github.com/Wilon2G',
-      route: '/assets/icon/pfp/wilon2g.jpeg',
+      route: '/assets/icon/pfp/wilon2g.avif',
     },
     {
       tag: 'Get to know our first class developers',
       title: 'RetroFrog',
       description: 'The first online-arcade experience.',
       gitlink: 'https://github.com/Wilon2G/Proyecto_Cliente.git',
-      route: '/assets/icon/frog-logo3.png',
+      route: '/assets/icon/frog-logo3.avif',
     },
     {
       tag: 'Web Developer',
@@ -40,7 +40,7 @@ export default function Developers() {
       title: 'GitSaulo',
       description: 'Professional RPG game developer.',
       gitlink: 'https://github.com/gitsaulo',
-      route: '/assets/icon/pfp/gitsaulo.jpeg',
+      route: '/assets/icon/pfp/gitsaulo.avif',
     },
   ];
 
