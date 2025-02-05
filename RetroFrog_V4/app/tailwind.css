@@ -30,7 +30,10 @@ body {
   -ms-user-select: none;
   opacity: 0.99;
 }
-
+/* Utilize hardware acceleration for Swiper */
+.swiper-slide {
+  transform: translate3d(0, 0, 0);
+}
 @keyframes moveBlobs {
   0% {
     transform: translate(0, 0) scale(1);

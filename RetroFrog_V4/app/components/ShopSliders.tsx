@@ -27,14 +27,14 @@ export function PpalSlider({ games, purchasedGames }: SliderProps) {
           return (
             <SwiperSlide
               key={game.id}
-              className="relative rounded-lg overflow-hidden shadow-lg border-icon-fill"
+              className="swiper-slide relative rounded-lg overflow-hidden shadow-lg border-icon-fill"
               style={{
                 background: `url(/assets/games/${game.title.replace(
                   /\s/g,
                   '',
-                )}-L.png) no-repeat center center`,
+                )}-L.avif) no-repeat center center`,
                 backgroundSize: 'cover',
-                height: '60vh',
+                minHeight: '500px',
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-t bg-opacity-70 from-gradient-from to-gradient-to flex flex-col justify-end p-6">
@@ -82,22 +82,25 @@ export function PopularGamesSlider({ games, purchasedGames }: SliderProps) {
             <SwiperSlide
               key={game.id}
               className="h-40 rounded-lg bg-primary p-4 shadow-lg bg-opacity-70 hover:shadow-xl transition-shadow"
+              style={{ height: '400px' }}
             >
               <div className="text-center ">
                 <img
                   src={`/assets/games/${game.title.replace(
                     /\s/g,
                     '',
-                  )}-boxa.png`}
+                  )}-boxa.avif`}
                   alt={game.title}
-                  className="h-40 w-auto mx-auto mb-4 rounded"
+                  className="h-40 w-40 mx-auto mb-4 rounded"
+                  width={160}
+                  height={160}
                 />
                 <h3 className="text-sm">{game.tags}</h3>
                 <h2 className="text-lg font-semibold mb-2">{game.title}</h2>
                 <p className="text-sm mb-4">{game.description}</p>
                 <div className="mt-auto">
                   {isPurchased ? (
-                    <span className="text-green-500 font-bold">
+                    <span className="text-green-500 font-bold ">
                       ✅ Comprado
                     </span>
                   ) : (
@@ -134,9 +137,9 @@ export function HotTopicsSlider({ games, purchasedGames }: SliderProps) {
                 background: `url(/assets/games/${game.title.replace(
                   /\s/g,
                   '',
-                )}-boxa.png) no-repeat center center`,
+                )}-boxa.avif) no-repeat center center`,
                 backgroundSize: 'cover',
-                height: '50vh',
+                height: '300px',
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-t bg-opacity-70 from-gradient-from to-gradient-to p-6">

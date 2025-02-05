@@ -101,7 +101,7 @@ async function main() {
     },
     {
       tags: 'RPG',
-      title: 'Legend of Zelda a Link to the Past',
+      title: 'Legend of Zelda A Link to the Past',
       description: 'Explore dungeons and save Hyrule.',
       color: '#FFD700',
       console: 'SNES:sfc:snes9x',
