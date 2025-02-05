@@ -32,7 +32,7 @@ const backgrounds = [
   '15-bg',
   '16-bg',
 ];
-const ext = '.jpg';
+const ext = '.avif';
 
 export default function Custom() {
   const actionData = useActionData<ActionData>();
