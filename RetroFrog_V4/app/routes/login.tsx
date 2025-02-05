@@ -238,7 +238,7 @@ export default function LoginPage() {
               <Button
                 textBtn="Log In"
                 typeBtn="submit"
-                className="bg-indigo-600 hover:bg-indigo-700 text-lg"
+                className="bg-indigo-600 hover:bg-indigo-700 text-lg text-white"
                 name="_action"
                 value="logIn"
               />
@@ -281,7 +281,7 @@ export default function LoginPage() {
               <Button
                 textBtn="Sign up"
                 typeBtn="submit"
-                className="bg-indigo-600 hover:bg-indigo-700 text-lg"
+                className="bg-indigo-600 hover:bg-indigo-700 text-lg text-white"
                 name="_action"
                 value="signUp"
               />
