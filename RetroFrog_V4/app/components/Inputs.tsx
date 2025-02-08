@@ -25,7 +25,7 @@ export function InputForm({
     <>
       <label
         className={classNames('block text-lg font-medium mb-2', labelStyle)}
-        htmlFor={`${inputType}`}
+        htmlFor={`${inputName}`}
       >
         {capitalizeFirstLetter(inputText || inputType || '')}:
       </label>
