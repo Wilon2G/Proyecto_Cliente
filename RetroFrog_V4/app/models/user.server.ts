@@ -1,7 +1,6 @@
+import bcrypt from 'bcryptjs';
 import db from '~/db.server';
 import { getCurrentUser } from '~/utils/auth.server';
-import bcrypt from "bcryptjs";
-
 
 export async function checkUser(email: string, password: string) {
   const user = await db.user.findUnique({
@@ -93,7 +92,6 @@ export async function createUser(userData: {
   name: string;
   email: string;
 }) {
-
   const saltRounds = 10; // Esto es la cantidad de veces que se hashea la contraseña, lo he puesto a diez pero no sé si es mejor menos por tema velocidad...
   const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
 
@@ -119,8 +117,6 @@ export async function getUserFavGames(id: string) {
     },
   });
 }
-
-
 
 /*
 Notas para la presentación:
