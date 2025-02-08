@@ -10,6 +10,7 @@
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
     "test": "npx playwright test",
+    "test-ui": "npx playwright test --ui",
     "test-report": "npx playwright show-report"
   },
   "dependencies": {
