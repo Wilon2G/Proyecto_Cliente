@@ -207,8 +207,9 @@ export default function LoginPage() {
             onPanelChange={handlePanelChange}
             successMsg={actionData?.success?.successReg}
           >
-            <form
+            <Form
               method="post"
+              encType="multipart/form-data"
               className={`space-y-6 w-full max-w-sm transition-all duration-500 ${
                 activePanel === 'register' && 'opacity-0 scale-0 absolute'
               }`}
@@ -244,7 +245,7 @@ export default function LoginPage() {
                 value="logIn"
               />
               <ErrorMessage>{actionData?.errors?.generalLog}</ErrorMessage>
-            </form>
+            </Form>
           </SlidePannel>
 
           {/**REGISTER */}
