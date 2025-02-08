@@ -16,7 +16,7 @@ export default defineConfig({
     /*Si todas tus pruebas comienzan navegando a la misma URL base (por ejemplo, http://127.0.0.1:3000), puedes configurar baseURL en la sección use. Esto simplifica las llamadas a page.goto('/')
     // Luego, en tus pruebas, puedes usar rutas relativas:
     // await page.goto('/about'); // Navega a http://127.0.0.1:3000/about*/
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'http://127.0.0.1:5174',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -44,10 +44,11 @@ export default defineConfig({
       use: { ...devices['iPhone 12'] },
     },
   ],
-  //configurar la sección webServer para que Playwright inicie automáticamente tu servidor de desarrollo antes de ejecutar las pruebas
-  webServer: {
+  //configurar la sección webServer para que Playwright inicie automáticamente tu servidor de desarrollo antes de ejecutar las pruebas.
+  //LO HE COMENTADO PQ NO FUNCIONABA
+  /* webServer: {
     command: 'npm run dev',
-    url: 'http://127.0.0.1:3000',
+    url: 'http://127.0.0.1:5174',
     reuseExistingServer: !process.env.CI,
-  },
+  }, */
 });

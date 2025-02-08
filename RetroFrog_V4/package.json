@@ -8,7 +8,9 @@
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test": "npx playwright test",
+    "test-report": "npx playwright show-report"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
@@ -27,9 +29,9 @@
   "devDependencies": {
     "@playwright/test": "^1.50.1",
     "@remix-run/dev": "^2.15.0",
+    "@types/node": "^22.7.5",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
-    "@types/node": "^22.7.5",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
