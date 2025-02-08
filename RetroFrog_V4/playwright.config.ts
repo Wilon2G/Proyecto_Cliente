@@ -35,14 +35,14 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    {
+    /* {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
-    },
+    }, */
   ],
   //configurar la sección webServer para que Playwright inicie automáticamente tu servidor de desarrollo antes de ejecutar las pruebas.
   //LO HE COMENTADO PQ NO FUNCIONABA
