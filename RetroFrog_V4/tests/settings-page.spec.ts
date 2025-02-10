@@ -16,21 +16,22 @@ test.describe('Settings Page', () => {
   });
 
   test('has correct URL', async ({ page }) => {
-    await expect(page).toHaveURL('http://localhost:5173/home/main');
+    await expect(page).toHaveURL('http://localhost:5173/home/settings');
   });
 
   test('can select background', async ({ page }) => {
     await expect(page).toHaveURL('http://localhost:5173/home/settings');
 
-    const backgrounds = page.locator(
-      'input[name="background"][type="radio"][id="bg2"]',
-    );
+    const backgrounds = page.locator('label[for="bg2"]');
 
-    await backgrounds.check;
+    await backgrounds.check();
+    console.log(backgrounds);
+
     const settingButton = page.locator(
       'button[type="submit"]:has-text("Save Changes")',
     );
-    await settingButton.waitFor({ state: 'visible' });
+    console.log(settingButton);
+
     await settingButton.click();
 
     const root = page.locator(':root');
@@ -39,6 +40,6 @@ test.describe('Settings Page', () => {
       getComputedStyle(el).getPropertyValue('--bgImage').trim(),
     );
 
-    expect(bgImageValue).toBe('url(/assets/background/3-bg.avif)');
+    expect(bgImageValue).toBe('url(/assets/background/2-bg.avif)');
   });
 });

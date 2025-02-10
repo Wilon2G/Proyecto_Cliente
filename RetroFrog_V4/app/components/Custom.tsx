@@ -76,27 +76,30 @@ export default function Custom() {
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-lg font-medium">Select Background Image</h3>
             <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {backgrounds.map((bg, index) => (
-                <li key={index} className="flex flex-col items-center">
-                  <input
-                    type="radio"
-                    name="background"
-                    id={`bg${index}`}
-                    value={bgdir + bg + ext}
-                    className="hidden peer"
-                  />
-                  <label
-                    htmlFor={`bg${index}`}
-                    className="block w-24 h-24 rounded-md overflow-hidden border-2 border-transparent peer-checked:border-blue-500"
-                  >
-                    <img
-                      src={bgdir + bg + '-sm' + ext}
-                      alt={`Background ${index}`}
-                      className="w-20 h-20 sm:w-28 sm:h-28 object-cover"
+              {backgrounds.map((bg, index) => {
+                let realIndex = index + 1;
+                return (
+                  <li key={index} className="flex flex-col items-center">
+                    <input
+                      type="radio"
+                      name="background"
+                      id={`bg${realIndex}`}
+                      value={bgdir + bg + ext}
+                      className="hidden peer"
                     />
-                  </label>
-                </li>
-              ))}
+                    <label
+                      htmlFor={`bg${realIndex}`}
+                      className="block w-24 h-24 rounded-md overflow-hidden border-2 border-transparent peer-checked:border-blue-500"
+                    >
+                      <img
+                        src={bgdir + bg + '-sm' + ext}
+                        alt={`Background ${realIndex}`}
+                        className="w-20 h-20 sm:w-28 sm:h-28 object-cover"
+                      />
+                    </label>
+                  </li>
+                );
+              })}
             </ul>
             <ErrorMessage>{actionData?.errors?.background}</ErrorMessage>
           </div>
