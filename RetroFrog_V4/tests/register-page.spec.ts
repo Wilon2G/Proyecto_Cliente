@@ -41,7 +41,7 @@ test.describe('Register Page', () => {
     await expect(page).toHaveURL('http://localhost:5173/home/main');
   });
 
-  test('Incorrect new register', async ({ page }) => {});
+  //test('Incorrect new register');
 
   //test('Register user already existing');
 });

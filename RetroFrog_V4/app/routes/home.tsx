@@ -88,7 +88,7 @@ export default function HomePage() {
     <>
       <header className="topbar flex flex-col  bg-primary bg-opacity-10 p-4 w-full  ">
         <div className="flex gap-4 items-center justify-between  flex-wrap select-none">
-          <a href="/home/main" className="flex items-center  flex-row gap-3">
+          <a href="/home/main" className="flex items-center flex-row gap-3">
             <img
               src="/assets/icon/frog-logo3.avif"
               alt="Frog Logo"
@@ -146,11 +146,11 @@ export default function HomePage() {
                         : '')
                     }
                   >
-                    <button className="flex items-center" title="user-profile">
+                    <button className="flex items-center " title="user-profile">
                       <img
                         src={pfp}
                         alt="User Profile"
-                        className="rounded-full w-7 h-7 "
+                        className="rounded-full w-8 h-8 border-2 border-icon-fill"
                         draggable="false"
                       />
                     </button>
