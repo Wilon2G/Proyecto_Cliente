@@ -68,8 +68,12 @@ export function ErrorBoundary() {
         <Links />
         <title>Oh nooooo!</title>
       </head>
-      <body className="flex h-screen items-center justify-center bg-primary text-color">
-        <div className="text-center p-6 rounded-lg shadow-lg border border-primary-hover bg-primary-trans">
+      <body className="flex h-screen items-center justify-center bg-primary text-color"
+        style={{ backgroundImage: "url('https://i.natgeofe.com/n/7d2f6a68-0611-44c1-97d9-7a82f21ab52f/01-waq-weird-digits-qcaz_2018_04_24_47424.jpg')",height:"100vh" }}
+      >
+        <div className="text-center  p-6 shadow-lg border border-primary-hover rounded-md text-color bg-primary"
+        
+        >
           <h1 className="text-6xl font-bold text-primary-reverse animate-bounce">
             🎮 Oops! Game Over! 🎮
           </h1>
