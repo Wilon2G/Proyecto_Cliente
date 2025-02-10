@@ -3,14 +3,18 @@ import { expect, test } from '@playwright/test';
 test.describe('Settings Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:5173/');
+
     const emailInput = page.locator('input[name="emailLog"]');
     await emailInput.waitFor();
     await emailInput.fill('admin@example.com');
+
     const passwordInput = page.locator('input[name="passwordLog"]');
     await passwordInput.waitFor();
     await passwordInput.fill('securepassword');
+
     const loginButton = page.locator('button[name="_action"][value="logIn"]');
     await loginButton.click();
+
     await page.waitForURL('http://localhost:5173/home/main');
     await page.goto('http://localhost:5173/home/settings');
   });
