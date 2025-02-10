@@ -77,7 +77,7 @@ export default function Custom() {
             <h3 className="text-lg font-medium">Select Background Image</h3>
             <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {backgrounds.map((bg, index) => {
-                let realIndex = index + 1;
+                const realIndex = index + 1;
                 return (
                   <li key={index} className="flex flex-col items-center">
                     <input

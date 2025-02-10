@@ -23,6 +23,31 @@ body {
   max-height: fit-content;
 }
 
+/* Fondo con GIF solo cuando ocurre un error */
+.error-page {
+  background: url('/path-to-error-background.gif') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Contenedor del error para asegurarse de que cubre toda la pantalla */
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagen de fondo específica para el error */
+.error-background {
+  background: url('/path-to-error-image.png') no-repeat center;
+  background-size: contain;
+  width: 100%;
+  height: 400px;
+}
+
+
 .sidebar {
   user-select: none;
   -webkit-user-select: none;
@@ -30,10 +55,12 @@ body {
   -ms-user-select: none;
   opacity: 0.99;
 }
+
 /* Utilize hardware acceleration for Swiper */
 .swiper-slide {
   transform: translate3d(0, 0, 0);
 }
+
 @keyframes moveBlobs {
   0% {
     transform: translate(0, 0) scale(1);

@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
   useRouteError,
 } from '@remix-run/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './tailwind.css';
 
@@ -43,7 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className={'  bg-image-bg font-primary-font text-color'}>
+      <body className="bg-image-bg font-primary-font text-color">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -58,52 +58,101 @@ export default function App() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
+  const statusCode = isRouteErrorResponse(error) ? error.status : 500;
+  const statusMessage = isRouteErrorResponse(error)
+    ? error.statusText
+    : 'Something went wrong!';
 
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" style={{ height: '100%' }}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <title>Oh nooooo!</title>
+        <title>Error {statusCode}</title>
       </head>
-      <body className="flex h-screen items-center justify-center bg-primary text-color"
-        style={{ backgroundImage: "url('https://i.natgeofe.com/n/7d2f6a68-0611-44c1-97d9-7a82f21ab52f/01-waq-weird-digits-qcaz_2018_04_24_47424.jpg')",height:"100vh" }}
+      <body
+        style={{
+          fontFamily: 'arial',
+          color: 'var(--color)',
+        }}
       >
-        <div className="text-center  p-6 shadow-lg border border-primary-hover rounded-md text-color bg-primary"
-        
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem',
+          }}
         >
-          <h1 className="text-6xl font-bold text-primary-reverse animate-bounce">
-            🎮 Oops! Game Over! 🎮
-          </h1>
-          {isRouteErrorResponse(error) ? (
-            <>
-              <p className="text-2xl mt-2">
-                {error.status} - {error.statusText}
-              </p>
-              <p className="mt-4 text-color-hover">
-                Looks like you hit a bug! 🐛
-              </p>
-              <p className="text-sm italic text-color">{error.data.message}</p>
-            </>
-          ) : (
-            <>
-              <p className="text-2xl mt-2">
-                Something unexpected happened... 🤯
-              </p>
-              {error instanceof Error ? (
-                <p className="text-sm italic text-color">{error.message}</p>
-              ) : null}
-            </>
-          )}
-          <Link
-            to="/home/main"
-            className="inline-block mt-6 px-4 py-2 bg-primary-hover-reverse text-primary rounded-lg shadow-md hover:bg-primary-reverse transition"
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              background: 'var(--primary)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '1rem',
+              padding: '2rem',
+              boxShadow: '0 4px 6px rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              gap: '1.5rem',
+            }}
           >
-            🕹️ Try Again!
-          </Link>
+            {isRouteErrorResponse(error) ? (
+              <>
+                <h1>
+                  🎮 {error.status} - {error.statusText} 🎮
+                </h1>
+                <p>You are seeing this page because an error occurred. 🐛</p>
+                <p>{error.data.message}</p>
+              </>
+            ) : (
+              <>
+                <h1>🎮 Whoops! 🎮</h1>
+                <p>
+                  You are seeing this page because an unexpected error occurred.
+                </p>
+                {error instanceof Error ? <p>{error.message}</p> : null}
+              </>
+            )}
+
+            <div style={{ marginTop: '2rem', animation: 'wiggle 1s infinite' }}>
+              <img
+                src="../public/assets/gif/cryFrogError.gif"
+                alt="Crying Frog"
+                style={{
+                  margin: '0 auto',
+                  borderRadius: '0.75rem',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                }}
+                width="400px"
+              />
+            </div>
+
+            <Link
+              to="/login"
+              style={{
+                marginTop: '2rem',
+                display: 'inline-block',
+                padding: '0.75rem 1.5rem',
+                background: 'var(--icon-fill)',
+                color: 'var(--icon-fill-reverse)',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                transition: 'transform 0.2s, background 0.2s',
+                cursor: 'pointer',
+              }}
+            >
+              🕹️ Go to Login
+            </Link>
+          </div>
         </div>
+        <Scripts />
+        <ScrollRestoration />
       </body>
     </html>
   );
