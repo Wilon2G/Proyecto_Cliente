@@ -2,7 +2,7 @@
 
 **`A Complete Project Dedicated to Learning `**
 
-We are a group of four web development students on a mission to master full-stack development. This project showcases our learning process, starting with a simple frontend using HTML, CSS, and JavaScript in the first version. As we progress, we'll evolve it into a fully functional Remix application, incorporating Sass and deploying it successfully.
+We are a group of four web development students on a mission to master full-stack development. This project showcases our learning process, starting with a simple frontend using HTML, CSS, and JavaScript in the first version. As we progress, we'll evolve it into a fully functional Remix application, incorporating Sass and tailwind and deploying it successfully.
 
    <p align="left">
    <a href="https://github.com/Wilon2G/Proyecto_Cliente/stargazers">
