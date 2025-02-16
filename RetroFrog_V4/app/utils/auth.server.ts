@@ -5,6 +5,40 @@ import db from '~/db.server';
 import { getUserById } from '~/models/user.server';
 import { getSession } from '~/sessions';
 
+/**
+ * Crea un helper en utils/auth.ts para verificar si el usuario es admin:
+ * 
+ * import { getSession } from "~/session.server";
+
+export async function requireAdmin(request: Request) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const user = session.get("user");
+
+  if (!user || user.role !== "ADMIN") {
+    throw new Response("No autorizado", { status: 403 });
+  }
+
+  return user;
+}
+
+Uso en una acción restringida (ejemplo: borrar un post)
+
+import { requireAdmin } from "~/utils/auth";
+import { prisma } from "~/utils/db.server";
+
+export async function action({ request }: ActionFunctionArgs) {
+  const user = await requireAdmin(request); // Verifica si es admin
+
+  const formData = await request.formData();
+  const postId = formData.get("postId");
+
+  await prisma.post.delete({ where: { id: Number(postId) } });
+
+  return redirect("/dashboard");
+}
+
+ */
+
 export async function getCurrentUser(request: Request) {
   const cookieHeader = request.headers.get('cookie');
   const session = await getSession(cookieHeader);
