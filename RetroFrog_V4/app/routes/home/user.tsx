@@ -1,38 +1,71 @@
-import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
-import classNames from 'classnames';
+import fs from 'fs';
+import path from 'path';
 import Button from '~/components/Buttons';
 import { InputForm } from '~/components/Inputs';
-import { requiredLoggedInUser, setUser } from '~/utils/auth.server';
+import { requiredLoggedInUser } from '~/utils/auth.server';
+import prisma from '~/utils/prismaClient';
 
-export const loader: LoaderFunction = async ({ request }) => {
+// Configuración de la ruta donde se guardarán las imágenes
+const UPLOAD_DIR = path.join(process.cwd(), 'public/assets/icon/pfp/');
+
+export async function loader({ request }: { request: Request }) {
   const user = await requiredLoggedInUser(request);
+  return { user };
+}
 
-  return new Response(JSON.stringify({ user }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
-
-export const action: ActionFunction = async ({ request }) => {
-  const formData = new URLSearchParams(await request.text());
+export async function action({ request }: { request: Request }) {
+  const formData = new FormData(await request.formData());
 
   const userId = formData.get('userId');
   const name = formData.get('name');
   const email = formData.get('email');
-  const pfp = formData.get('pfp');
   const theme = formData.get('theme');
+  const sex = formData.get('sex');
 
-  if (userId && name && email && pfp && theme) {
-    await setUser(userId, { name, email, pfp, theme });
-    return redirect(`/home/user`);
+  // Procesar archivo subido (si existe)
+  const file = formData.get('pfp');
+  let pfpUrl = '';
+
+  if (file && file instanceof Blob) {
+    // Generar un nombre único para la imagen usando el userId y la fecha actual
+    const fileExtension = path.extname(file.name);
+    const fileName = `${userId}-${Date.now()}${fileExtension}`;
+    const filePath = path.join(UPLOAD_DIR, fileName);
+
+    // Crear directorio si no existe
+    if (!fs.existsSync(UPLOAD_DIR)) {
+      fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    }
+
+    // Mover el archivo a la carpeta de imágenes
+    const buffer = await file.arrayBuffer();
+    fs.writeFileSync(filePath, Buffer.from(buffer));
+
+    // Establecer la URL de la imagen
+    pfpUrl = `/assets/icon/pfp/${fileName}`;
   }
 
-  return new Response(JSON.stringify({ error: 'Error updating user' }), {
-    status: 400,
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
+  if (userId && name && email && theme && sex) {
+    try {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          name,
+          email,
+          pfp: pfpUrl || undefined, // Usar URL de la imagen subida
+          theme,
+          sex,
+        },
+      });
+      return {};
+    } catch (error) {
+      return { error: 'Error updating user' };
+    }
+  }
+
+  return { error: 'Missing fields' };
+}
 
 export default function UserProfile() {
   const { user } = useLoaderData<typeof loader>();
@@ -75,10 +108,7 @@ export default function UserProfile() {
                 <select
                   name="sex"
                   defaultValue={user.sex}
-                  className={classNames(
-                    'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-                    'border-color-reverse bg-primary-reverse text-color-reverse',
-                  )}
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none border-color-reverse bg-primary-reverse text-color-reverse"
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -88,12 +118,14 @@ export default function UserProfile() {
             </div>
 
             <div>
-              <InputForm
-                inputType="file"
-                inputName="pfp"
-                inputText="Profile Picture URL:"
-                classname="bg-primary-reverse text-color-reverse"
-              />
+              <label className="block text-lg font-medium mb-2 ">
+                Profile Picture:
+                <input
+                  type="file"
+                  name="pfp"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none border-color-reverse bg-primary-reverse text-color-reverse"
+                />
+              </label>
             </div>
 
             <div className="flex justify-end gap-4 mt-4">
