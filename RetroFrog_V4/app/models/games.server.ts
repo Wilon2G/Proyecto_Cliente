@@ -1,15 +1,14 @@
 import db from '~/db.server';
 import { getCurrentUser } from '~/utils/auth.server';
-import prisma from '~/utils/prismaClient';
 
 export async function getAllGames() {
-  return prisma.game.findMany();
+  return db.game.findMany();
 }
 
 //¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function addGameToUser(userId: string, gameId: string) {
   try {
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { id: userId },
       include: { GamesUnlocked: true },
     });
@@ -25,7 +24,7 @@ export async function addGameToUser(userId: string, gameId: string) {
     }
 
     // Agregar el juego a la lista de GamesUnlocked
-    await prisma.user.update({
+    await db.user.update({
       where: { id: userId },
       data: {
         GamesUnlocked: {
@@ -48,7 +47,7 @@ export async function getGamesUser(id: string) {
 }
 
 export async function existingFavoriteGame(userId: string, gameId: string) {
-  return prisma.user.findFirst({
+  return db.user.findFirst({
     where: {
       id: userId,
       FavoriteGames: { some: { id: gameId } },
@@ -56,8 +55,8 @@ export async function existingFavoriteGame(userId: string, gameId: string) {
   });
 }
 
-/* export async function disconnectFavGame(userId: string, gameId: string) {
-  prisma.user.update({
+export async function disconnectFavGame(userId: string, gameId: string) {
+  await db.user.update({
     where: { id: userId },
     data: {
       FavoriteGames: {
@@ -68,7 +67,7 @@ export async function existingFavoriteGame(userId: string, gameId: string) {
 }
 
 export async function connectFavGame(userId: string, gameId: string) {
-  prisma.user.update({
+  await db.user.update({
     where: { id: userId },
     data: {
       FavoriteGames: {
@@ -76,10 +75,10 @@ export async function connectFavGame(userId: string, gameId: string) {
       },
     },
   });
-} */
+}
 
 export async function allFavGames(userId: string, filter: string | null) {
-  return prisma.game.findMany({
+  return db.game.findMany({
     where: {
       Users: {
         some: { id: userId },
@@ -165,7 +164,7 @@ export async function getUserFavGames(id: string) {
 }
 
 export async function buyNewGame(id: string, gameId: string) {
-  return prisma.user.update({
+  return db.user.update({
     where: { id },
     data: {
       GamesUnlocked: {

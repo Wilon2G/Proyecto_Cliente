@@ -3,8 +3,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import BuyButton from '~/components/BuyButton';
+
 import { Game } from '~/routes/home/shop';
+import { BuyButton } from '../general/Buttons';
 
 type SliderProps = {
   games: Game[];

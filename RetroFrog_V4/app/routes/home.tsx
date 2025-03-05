@@ -23,7 +23,7 @@ import {
   UserIcon,
 } from '~/components/general/IconsSVG';
 import LoadingFrog from '~/components/general/LoadingFrog';
-import MusicPlayer from '~/components/MusicPlayer';
+import MusicPlayer from '~/components/general/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 
 export const loader: LoaderFunction = async ({ request }) => {

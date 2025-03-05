@@ -100,13 +100,6 @@ async function main() {
       console: 'SNES:sfc:snes9x',
     },
     {
-      tags: 'RPG',
-      title: 'Legend of Zelda A Link to the Past',
-      description: 'Explore dungeons and save Hyrule.',
-      color: '#FFD700',
-      console: 'SNES:sfc:snes9x',
-    },
-    {
       tags: 'Adventure',
       title: 'Legend of Zelda Links Awakening',
       description: 'Uncover the secrets of Koholint Island.',

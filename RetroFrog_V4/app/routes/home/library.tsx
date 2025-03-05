@@ -11,15 +11,16 @@ import {
   FavoriteNotFillIcon,
   PlusGameIcon,
 } from '~/components/general/IconsSVG';
-import ModalForm from '~/components/ModalForm';
-import PaginationBar from '~/components/PaginationBar';
+import ModalForm from '~/components/shop/ModalForm';
+import PaginationBar from '~/components/shop/PaginationBar';
 import {
   allFavGames,
+  connectFavGame,
+  disconnectFavGame,
   existingFavoriteGame,
   getGamesUser,
 } from '~/models/games.server';
 import { getSession } from '~/sessions';
-import prisma from '~/utils/prismaClient';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -64,27 +65,12 @@ export const action: ActionFunction = async ({ request }) => {
     throw new Response('ID de juego no proporcionado', { status: 400 });
   }
 
-  //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE -- pendiente
   const existingFavorite = await existingFavoriteGame(userId, gameId);
 
   if (existingFavorite) {
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        FavoriteGames: {
-          disconnect: { id: gameId },
-        },
-      },
-    });
+    disconnectFavGame(userId, gameId);
   } else {
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        FavoriteGames: {
-          connect: { id: gameId },
-        },
-      },
-    });
+    connectFavGame(userId, gameId);
   }
 
   return new Response(null, { status: 200 });

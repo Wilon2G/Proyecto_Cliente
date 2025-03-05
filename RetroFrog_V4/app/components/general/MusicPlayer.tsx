@@ -6,8 +6,8 @@ import {
   StopingMusic,
   ToggleMusic,
   VolumeIcon,
-} from './general/IconsSVG';
-import { InputRange } from './general/Inputs';
+} from './IconsSVG';
+import { InputRange } from './Inputs';
 
 interface MusicPlayerProps {
   style?: React.CSSProperties;

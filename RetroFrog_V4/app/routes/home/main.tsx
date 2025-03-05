@@ -1,8 +1,8 @@
 import { LoaderFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
 import { ShopNowIcon } from '~/components/general/IconsSVG';
+import News from '~/components/general/News';
 import { requiredLoggedInUser } from '~/utils/auth.server';
-import News from '../../components/News';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await requiredLoggedInUser(request);

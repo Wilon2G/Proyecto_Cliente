@@ -4,7 +4,7 @@ import {
   DoubleRightArrow,
   LeftArrow,
   RightArrow,
-} from './general/IconsSVG';
+} from '../general/IconsSVG';
 
 export default function PaginationBar({ total }: { total: number }) {
   const [searchParams] = useSearchParams();
@@ -30,8 +30,7 @@ export default function PaginationBar({ total }: { total: number }) {
       }
       newSearchParams.set(key, String(value));
     }
-    // Print string manually to avoid over-encoding the URL
-    // optional: return newSearchParams.toString()
+
     return Array.from(newSearchParams.entries())
       .map(([key, value]) =>
         value ? `${key}=${encodeURIComponent(value)}` : key,

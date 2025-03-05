@@ -1,6 +1,6 @@
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { ShopSlider } from '~/components/ShopSliders';
+import { ShopSlider } from '~/components/shop/ShopSliders';
 import { buyNewGame, getAllGames, getGamesUser } from '~/models/games.server';
 import { getCurrentUser } from '~/utils/auth.server';
 
@@ -16,7 +16,6 @@ export const action: ActionFunction = async ({ request }) => {
   const formData = new URLSearchParams(await request.text());
   const gameId = formData.get('gameId'); // ID del juego que se va a comprar
 
-  // Verificar que el gameId esté presente
   if (!gameId) {
     return new Response(JSON.stringify({ error: 'No gameId provided' }), {
       status: 400,
