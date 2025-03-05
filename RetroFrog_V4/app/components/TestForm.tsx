@@ -29,12 +29,14 @@ export default function Home() {
     },
   });
 
+  //Se puede quitar el console.log???
   const onSubmit = async (data: ContactFormData) => {
     console.log(data);
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      {/**Pq hay un form dentro de Form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className={cn('flex md:flex-row w-[100%] gap-4 flex-col')}>
@@ -63,6 +65,7 @@ export default function Home() {
                     </div>
                   )}
                 </div>
+
                 <FormField
                   control={form.control}
                   name="adImage"
@@ -89,7 +92,7 @@ export default function Home() {
                           >
                             <BsPaperclip />
                             <span className="whitespace-nowrap">
-                              choose your image
+                              Choose your image
                             </span>
                           </label>
                         </Button>
@@ -106,7 +109,7 @@ export default function Home() {
           <div className={cn('flex w-[100%] gap-4 justify-end')}>
             <div className="space-y-2">
               <Button className="gap-1 py-4 px-4" type="submit">
-                <span>SUBMIT</span>
+                <span>Submit</span>
                 <IoSendOutline />
               </Button>
             </div>

@@ -1,9 +1,8 @@
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { ShopSlider } from '~/components/ShopSliders';
-import { buyNewGame, getGamesUser } from '~/models/games.server';
+import { buyNewGame, getAllGames, getGamesUser } from '~/models/games.server';
 import { getCurrentUser } from '~/utils/auth.server';
-import prisma from '~/utils/prismaClient';
 
 export interface Game {
   id: string;
@@ -52,7 +51,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const games = await prisma.game.findMany();
+  const games = await getAllGames();
   const user = await getCurrentUser(request);
   const userId = user?.id as string;
 

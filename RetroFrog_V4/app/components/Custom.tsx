@@ -13,6 +13,7 @@ export interface ActionData {
     fontFamily?: string;
   };
 }
+
 const bgdir = '/assets/background/';
 const backgrounds = [
   '1-bg',

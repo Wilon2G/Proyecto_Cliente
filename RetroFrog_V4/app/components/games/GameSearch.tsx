@@ -23,6 +23,7 @@ const tagsList = [
   'Fighting',
 ];
 
+//No se usaaaaaaaaaa
 type SearchParams = {
   searchTerm?: string;
   selectedConsole?: string;
@@ -31,15 +32,20 @@ type SearchParams = {
 
 export default function GameSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [searchTerm, setSearchTerm] = useState(
     searchParams.get('search') || '',
   );
+
   const [selectedConsole, setSelectedConsole] = useState(
     searchParams.get('console') || '',
   );
+
   const [selectedTags, setSelectedTags] = useState<string[]>(
     searchParams.get('tags')?.split(',') || [],
   );
+
+  //No se usaaaaaaaaaa
   const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {

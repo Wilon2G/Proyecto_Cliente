@@ -9,9 +9,6 @@ import {
 } from './IconsSVG';
 import { InputRange } from './Inputs';
 
-// La interfaz MusicPlayerProps define las propiedades que el componente MusicPlayer puede recibir.
-// - `style` permite aplicar estilos en línea opcionalmente.
-// - `className` permite añadir clases CSS adicionales opcionalmente.
 interface MusicPlayerProps {
   style?: React.CSSProperties;
   className?: string;
@@ -154,7 +151,6 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
               )}
               onClick={() => changeSong(song.src)}
               onKeyDown={(e) => e.key === 'Enter' && changeSong(song.src)}
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
               role="button"
               tabIndex={0}
             >

@@ -6,12 +6,8 @@ import Button from '~/components/Buttons';
 import { ErrorMessage } from '~/components/ErrorMessage';
 import { CloseEye, OpenEye } from '~/components/IconsSVG';
 import { InputForm } from '~/components/Inputs';
-import {
-  checkUser,
-  createUser,
-  getThemes,
-  userExists,
-} from '~/models/user.server';
+import { getThemes } from '~/models/themes.server';
+import { checkUser, createUser, userExists } from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
 import validateForm from '~/utils/validation';

@@ -9,25 +9,6 @@ type ButtonProps = {
   value?: string;
 };
 
-type ButtonActionProps = {
-  textBtn: React.ReactNode; //Para permitir (Modal de boton like juegos)
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  className?: string;
-  applyDefaultStyles?: boolean; // Nueva prop para controlar los estilos
-};
-
-type ButtonSimpleProps = {
-  textBtn: string;
-  className?: string;
-};
-type TitleWrapperProps = {
-  children: React.ReactNode;
-  title: string;
-  dir?: string;
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-};
-
 export default function Button({
   textBtn,
   typeBtn,
@@ -52,6 +33,13 @@ export default function Button({
   );
 }
 
+type ButtonActionProps = {
+  textBtn: React.ReactNode; //Para permitir (Modal de boton like juegos)
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+  applyDefaultStyles?: boolean;
+};
+
 export function ButtonAction({
   textBtn,
   onClick,
@@ -73,6 +61,11 @@ export function ButtonAction({
   );
 }
 
+type ButtonSimpleProps = {
+  textBtn: string;
+  className?: string;
+};
+
 export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
   return (
     <button
@@ -86,6 +79,15 @@ export function ButtonSimple({ textBtn, className }: ButtonSimpleProps) {
     </button>
   );
 }
+
+type TitleWrapperProps = {
+  children: React.ReactNode;
+  title: string;
+  dir?: string;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+};
+
 export function TitleWrapper({
   children,
   title,

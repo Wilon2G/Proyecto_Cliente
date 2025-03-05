@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
   useRouteError,
 } from '@remix-run/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './tailwind.css';
 
@@ -59,9 +59,9 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
   const statusCode = isRouteErrorResponse(error) ? error.status : 500;
-  const statusMessage = isRouteErrorResponse(error)
+  /*  const statusMessage = isRouteErrorResponse(error)
     ? error.statusText
-    : 'Something went wrong!';
+    : 'Something went wrong!'; */
 
   return (
     <html lang="en" style={{ height: '100%' }}>

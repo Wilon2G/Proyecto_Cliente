@@ -36,7 +36,7 @@ export function InputForm({
         autoComplete="off"
         className={classNames(
           'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-          'border-color-reverse bg-primary text-color', //Cambios
+          'border-color-reverse bg-primary text-color',
           classname,
         )}
         placeholder={`Your ${inputText || inputType}`}
@@ -45,6 +45,8 @@ export function InputForm({
     </>
   );
 }
+
+//===================
 
 export type InputChangeFxProps = {
   placeholder: string;
@@ -72,7 +74,7 @@ export function InputChangeFx({
         autoComplete="off"
         className={classNames(
           'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-          'border-color-reverse bg-primary text-color', //Cambios
+          'border-color-reverse bg-primary text-color',
           classname,
         )}
         placeholder={`${placeholder}`}
@@ -83,6 +85,8 @@ export function InputChangeFx({
   );
 }
 
+//===================
+
 type InputRangeProps = {
   classname?: string;
   value: number;
@@ -90,8 +94,6 @@ type InputRangeProps = {
   step?: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-
-//=======================
 
 export function InputRange({
   classname,
@@ -124,11 +126,11 @@ export function InputTextarea({
   inputName,
   labelStyle,
 }: InputProps) {
-  function capitalizeFirstLetter(val: string) {
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  function capitalizeFirstLetter(labelText: string) {
+    return (
+      String(labelText).charAt(0).toUpperCase() + String(labelText).slice(1)
+    );
   }
-
-  /**Aunque lo que pongas no sea text en el type, lo trata como text. username=text */
 
   return (
     <>
@@ -144,7 +146,7 @@ export function InputTextarea({
         autoComplete="off"
         className={classNames(
           'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-          'border-color-reverse bg-primary-reverse text-color-reverse', //Cambios
+          'border-color-reverse bg-primary-reverse text-color-reverse',
           classname,
         )}
         required

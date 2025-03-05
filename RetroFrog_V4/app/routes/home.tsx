@@ -44,17 +44,20 @@ export default function HomePage() {
   function toggleMusic() {
     setMusicState((prev) => !prev);
   }
+
   function toggleMenu() {
     setMenuOpen((prev) => !prev);
   }
+
   function toggleProfileDropdown() {
     setProfileDropdown((prev) => !prev);
   }
+
   function toggleSearch() {
     setSearch((prev) => !prev);
   }
-  const navigation = useNavigation();
 
+  const navigation = useNavigation();
   const isLoading = navigation.state === 'loading';
 
   const primaryLinks = [
@@ -80,6 +83,7 @@ export default function HomePage() {
       iconName: 'Favorites',
     },
   ];
+
   const location = useLocation();
   const isSearchable =
     location.pathname === '/home/library' || location.pathname === '/home/shop';

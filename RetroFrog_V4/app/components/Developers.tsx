@@ -6,44 +6,6 @@ import { EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function Developers() {
-  const slides = [
-    {
-      tag: 'Web Developer',
-      title: 'Favio-Cesar',
-      description: 'Graphic design enthusiast and web application developer.',
-      gitlink: 'https://github.com/Favio-Cesar',
-      route: '/assets/icon/pfp/favio138.avif',
-    },
-    {
-      tag: 'Web Developer',
-      title: 'Wilon2G',
-      description: 'Sound technician and skilled programmer.',
-      gitlink: 'https://github.com/Wilon2G',
-      route: '/assets/icon/pfp/wilon2g.avif',
-    },
-    {
-      tag: 'Get to know our first class developers',
-      title: 'RetroFrog',
-      description: 'The first online-arcade experience.',
-      gitlink: 'https://github.com/Wilon2G/Proyecto_Cliente.git',
-      route: '/assets/icon/frog-logo3.avif',
-    },
-    {
-      tag: 'Web Developer',
-      title: 'GonS11',
-      description: 'Web application developer and nurse.',
-      gitlink: 'https://github.com/GonS11',
-      route: 'https://avatars.githubusercontent.com/u/148366975?v=4',
-    },
-    {
-      tag: 'Web Developer',
-      title: 'GitSaulo',
-      description: 'Professional RPG game developer.',
-      gitlink: 'https://github.com/gitsaulo',
-      route: '/assets/icon/pfp/gitsaulo.avif',
-    },
-  ];
-
   return (
     <>
       <div className="w-full mx-auto ">
@@ -84,7 +46,7 @@ export default function Developers() {
                   rel="noopener noreferrer"
                   className="mt-4 inline-block text-blue-500 hover:text-blue-700"
                 >
-                  Ver más info
+                  More info
                 </a>
               </div>
             </SwiperSlide>
@@ -94,3 +56,41 @@ export default function Developers() {
     </>
   );
 }
+
+export const slides = [
+  {
+    tag: 'Web Developer',
+    title: 'Favio-Cesar',
+    description: 'Graphic design enthusiast and web application developer.',
+    gitlink: 'https://github.com/Favio-Cesar',
+    route: '/assets/icon/pfp/favio138.avif',
+  },
+  {
+    tag: 'Web Developer',
+    title: 'Wilon2G',
+    description: 'Sound technician and skilled programmer.',
+    gitlink: 'https://github.com/Wilon2G',
+    route: '/assets/icon/pfp/wilon2g.avif',
+  },
+  {
+    tag: 'Get to know our first class developers',
+    title: 'RetroFrog',
+    description: 'The first online-arcade experience.',
+    gitlink: 'https://github.com/Wilon2G/Proyecto_Cliente.git',
+    route: '/assets/icon/frog-logo3.avif',
+  },
+  {
+    tag: 'Web Developer',
+    title: 'GonS11',
+    description: 'Web application developer and nurse.',
+    gitlink: 'https://github.com/GonS11',
+    route: 'https://avatars.githubusercontent.com/u/148366975?v=4',
+  },
+  {
+    tag: 'Web Developer',
+    title: 'GitSaulo',
+    description: 'Professional RPG game developer.',
+    gitlink: 'https://github.com/gitsaulo',
+    route: '/assets/icon/pfp/gitsaulo.avif',
+  },
+];

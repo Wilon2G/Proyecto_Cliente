@@ -1,5 +1,4 @@
 import { Link, useSearchParams } from '@remix-run/react';
-import { TitleWrapper } from './Buttons';
 import {
   DoubleLeftArrow,
   DoubleRightArrow,
@@ -47,55 +46,55 @@ export default function PaginationBar({ total }: { total: number }) {
   } else {
     let startPage = currentPage - halfMaxPages;
     let endPage = currentPage + halfMaxPages;
+
     if (startPage < 1) {
       endPage += Math.abs(startPage) + 1;
       startPage = 1;
     }
+
     if (endPage > totalPages) {
       startPage -= endPage - totalPages;
       endPage = totalPages;
     }
+
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(i);
     }
   }
+
   return (
     <div className="flex mt-4 items-center gap-1">
-      
-        <Link 
-          to={{
-            search: setSearchParamsString(searchParams, {
-              $skip: 0,
-            }),
-          }}
-          preventScrollReset
-          prefetch="intent"
-          className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
-            !canPageBackwards ? 'pointer-events-none opacity-50' : ''
-          }`}
-        >
-          <span className="sr-only"> First page</span>
-          <DoubleLeftArrow />
-        </Link>
-      
+      <Link
+        to={{
+          search: setSearchParamsString(searchParams, {
+            $skip: 0,
+          }),
+        }}
+        preventScrollReset
+        prefetch="intent"
+        className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
+          !canPageBackwards ? 'pointer-events-none opacity-50' : ''
+        }`}
+      >
+        <span className="sr-only"> First page</span>
+        <DoubleLeftArrow />
+      </Link>
 
-      
-        <Link
-          to={{
-            search: setSearchParamsString(searchParams, {
-              $skip: Math.max($skip - $top, 0),
-            }),
-          }}
-          preventScrollReset
-          prefetch="intent"
-          className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
-            !canPageBackwards ? 'pointer-events-none opacity-50' : ''
-          }`}
-        >
-          <span className="sr-only"> Previous page</span>
-          <LeftArrow></LeftArrow>
-        </Link>
-      
+      <Link
+        to={{
+          search: setSearchParamsString(searchParams, {
+            $skip: Math.max($skip - $top, 0),
+          }),
+        }}
+        preventScrollReset
+        prefetch="intent"
+        className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
+          !canPageBackwards ? 'pointer-events-none opacity-50' : ''
+        }`}
+      >
+        <span className="sr-only"> Previous page</span>
+        <LeftArrow></LeftArrow>
+      </Link>
 
       {pageNumbers.map((pageNumber) => {
         const pageSkip = (pageNumber - 1) * $top;
@@ -124,35 +123,37 @@ export default function PaginationBar({ total }: { total: number }) {
         );
       })}
 
-        <Link
-          to={{
-            search: setSearchParamsString(searchParams, {
-              $skip: $skip + $top,
-            }),
-          }}
-          preventScrollReset
-          prefetch="intent"
-          className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
-            !canPageForwards ? 'pointer-events-none opacity-50' : ''
-          }`}
-        >
-          <span className="sr-only"> Next page</span>
-          <RightArrow></RightArrow>
-        </Link>
+      <Link
+        to={{
+          search: setSearchParamsString(searchParams, {
+            $skip: $skip + $top,
+          }),
+        }}
+        preventScrollReset
+        prefetch="intent"
+        className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
+          !canPageForwards ? 'pointer-events-none opacity-50' : ''
+        }`}
+      >
+        <span className="sr-only"> Next page</span>
+        <RightArrow></RightArrow>
+      </Link>
 
-        <Link
-          to={{
-            search: setSearchParamsString(searchParams, {
-              $skip: (totalPages - 1) * $top,
-            }),
-          }}
-          preventScrollReset
-          prefetch="intent"
-          className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${!canPageForwards ? 'pointer-events-none opacity-50' : ''}`}
-        >
-          <span className="sr-only"> Last page</span>
-          <DoubleRightArrow />
-        </Link>
+      <Link
+        to={{
+          search: setSearchParamsString(searchParams, {
+            $skip: (totalPages - 1) * $top,
+          }),
+        }}
+        preventScrollReset
+        prefetch="intent"
+        className={`text-neutral-600 rounded-md p-2 hover:bg-primary ${
+          !canPageForwards ? 'pointer-events-none opacity-50' : ''
+        }`}
+      >
+        <span className="sr-only"> Last page</span>
+        <DoubleRightArrow />
+      </Link>
     </div>
   );
 }

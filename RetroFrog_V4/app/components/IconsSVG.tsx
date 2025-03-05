@@ -12,6 +12,7 @@ export function CollapseArrow() {
     </svg>
   );
 }
+
 export function SearchIcon() {
   return (
     <svg

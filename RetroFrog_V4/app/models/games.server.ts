@@ -2,6 +2,10 @@ import db from '~/db.server';
 import { getCurrentUser } from '~/utils/auth.server';
 import prisma from '~/utils/prismaClient';
 
+export async function getAllGames() {
+  return prisma.game.findMany();
+}
+
 //¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function addGameToUser(userId: string, gameId: string) {
   try {
@@ -43,6 +47,7 @@ export async function getGamesUser(id: string) {
   });
 }
 
+//¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function getFavGamesUser(request: Request, filter: string | null) {
   const user = await getCurrentUser(request);
   const userId = user?.id as string;
@@ -63,6 +68,7 @@ export async function getFavGamesUser(request: Request, filter: string | null) {
   return { user, games };
 }
 
+//¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function getExistingFavGame(id: string, gameId: string) {
   return db.user.findFirst({
     where: {
@@ -72,6 +78,7 @@ export async function getExistingFavGame(id: string, gameId: string) {
   });
 }
 
+//¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function deleteFavGame(id: string, gameId: string) {
   return db.user.update({
     where: { id },
@@ -83,12 +90,27 @@ export async function deleteFavGame(id: string, gameId: string) {
   });
 }
 
+//¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function addFavGame(id: string, gameId: string) {
   return db.user.update({
     where: { id },
     data: {
       FavoriteGames: {
         connect: { id: gameId },
+      },
+    },
+  });
+}
+
+//¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
+export async function getUserFavGames(id: string) {
+  return db.user.findUnique({
+    where: { id },
+    include: {
+      GamesUnlocked: {
+        include: {
+          UsersFavorited: true,
+        },
       },
     },
   });

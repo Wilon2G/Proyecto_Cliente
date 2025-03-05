@@ -1,5 +1,6 @@
 import { LoaderFunction } from '@remix-run/node';
-import { getThemes, getUserId } from '~/models/user.server';
+import { getThemes } from '~/models/themes.server';
+import { getUserId } from '~/models/user.server';
 import { getSession } from '~/sessions';
 
 export const loader: LoaderFunction = async ({ request }) => {

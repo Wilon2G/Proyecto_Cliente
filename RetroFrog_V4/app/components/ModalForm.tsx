@@ -50,7 +50,7 @@ export default function ModalForm({
               type="file"
               id="boxaFile"
               name="boxaFile"
-              accept=".zip,.rar,.exe,.iso" // Puedes ajustar los tipos de archivos permitidos
+              accept=".zip,.rar,.exe,.iso" // Tipos archivos
               className="block w-full mt-1"
             />
           </div>

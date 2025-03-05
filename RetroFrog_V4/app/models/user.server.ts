@@ -8,6 +8,7 @@ export async function checkUser(email: string, password: string) {
       email,
     },
   });
+
   if (!user) {
     return null;
   }
@@ -27,11 +28,14 @@ export async function userExists(email: string) {
       email,
     },
   });
-  if (!user) {
+
+  return !!user; //True or False
+
+  /* if (!user) {
     return false;
   } else {
     return true;
-  }
+  } */
 }
 
 export function getUserById(id: string) {
@@ -40,38 +44,6 @@ export function getUserById(id: string) {
       id,
     },
   });
-}
-
-export async function updateTheme(
-  id: string,
-  theme: string,
-  bg: string,
-  font: string,
-) {
-  const user = await getUserById(id);
-  const userid = user?.id;
-  const updatedTheme = `${theme}:${bg}:${font}`;
-
-  // Actualiza el tema en la base de datos
-  return db.user.update({
-    where: { id: userid },
-    data: {
-      theme: updatedTheme, // Asumiendo que 'theme' es un campo de tipo string en tu modelo
-    },
-  });
-}
-
-export async function getThemes(id: string) {
-  const user = await getUserById(id);
-  const userid = user?.id;
-  const themeData = await db.user.findUnique({
-    where: { id: userid },
-    select: {
-      theme: true,
-    },
-  });
-
-  return themeData?.theme.split(':');
 }
 
 //Función para comprobar si el usuario está logeado que no redirige
@@ -101,19 +73,6 @@ export async function createUser(userData: {
       password: hashedPassword,
       name: userData.name,
       role: 'USER',
-    },
-  });
-}
-
-export async function getUserFavGames(id: string) {
-  return db.user.findUnique({
-    where: { id },
-    include: {
-      GamesUnlocked: {
-        include: {
-          UsersFavorited: true,
-        },
-      },
     },
   });
 }

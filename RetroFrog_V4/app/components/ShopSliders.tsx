@@ -64,6 +64,7 @@ export function ShopSlider({
       >
         {games.map((game) => {
           const isPurchased = purchasedGames.includes(game.id);
+
           return (
             <SwiperSlide
               key={game.id}
@@ -98,9 +99,7 @@ export function ShopSlider({
                 <p className="text-sm mb-4">{game.description}</p>
                 <div className="mt-auto">
                   {isPurchased ? (
-                    <span className="text-green-500 font-bold">
-                      ✅ Comprado
-                    </span>
+                    <span className="text-green-500 font-bold">✅ Bought</span>
                   ) : (
                     <BuyButton gameId={game.id} />
                   )}

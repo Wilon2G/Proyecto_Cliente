@@ -13,6 +13,7 @@ import {
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
 import PaginationBar from '~/components/PaginationBar';
+import { getGamesUser } from '~/models/games.server';
 import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
 
@@ -26,16 +27,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const consoleFilter = url.searchParams.get('console') || 'All consoles';
   const tags = url.searchParams.getAll('tags');
 
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    include: {
-      GamesUnlocked: {
-        include: {
-          UsersFavorited: true,
-        },
-      },
-    },
-  });
+  const user = await getGamesUser(userId);
 
   const top = Number(url.searchParams.get('$top')) || 8;
   const skip = Number(url.searchParams.get('$skip')) || 0;

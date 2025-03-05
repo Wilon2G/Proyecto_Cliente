@@ -6,51 +6,6 @@ import { Navigation } from 'swiper/modules'; // Importa módulos si los necesita
 import BuyButton from './BuyButton';
 
 export default function Spotlight() {
-  const slides = [
-    {
-      tag: 'RPG',
-      title: 'Legend of Zelda, The - A Link to the Past',
-      description: 'Explora mazmorras y salva Hyrule.',
-      buttonText: 'Learn More',
-      route: '/assets/big/Zelda-large.png',
-    },
-    {
-      tag: 'Lucha',
-      title: 'Super Street Fighter II',
-      description: 'Compite en intensos combates.',
-      buttonText: 'Learn More',
-      route: '/assets/big/SF2-large.png',
-    },
-    {
-      tag: 'Carreras',
-      title: 'Super Mario Kart',
-      description: 'Corre y lanza ítems para ganar.',
-      buttonText: 'Learn More',
-      route: '/assets/big/MarioKart-large.png',
-    },
-    {
-      tag: 'Party',
-      title: 'Super Bomberman',
-      description: 'Desafía amigos en explosivas partidas.',
-      buttonText: 'Learn More',
-      route: '/assets/big/SuperBombermanCover.jpg',
-    },
-    {
-      tag: 'Puzzle',
-      title: 'Simon Says Game',
-      description: 'Sigue el ritmo y memoriza patrones.',
-      buttonText: 'Learn More',
-      route: '/assets/big/SimonSays-large.png',
-    },
-    {
-      tag: 'Plataformas',
-      title: 'Super Mario World',
-      description: 'Salta y corre en un mundo colorido.',
-      buttonText: 'Learn More',
-      route: '/assets/big/SuperMario.jpeg',
-    },
-  ];
-
   return (
     <div className="slider-container">
       <Swiper
@@ -74,6 +29,7 @@ export default function Spotlight() {
               <h2 className="slide-title">{slide.title}</h2>
               <p className="slide-description">{slide.description}</p>
               <div className="slide-footer">
+                {/**Aqui se le tiene que pasar algo a gameID que es una Prop */}
                 <BuyButton />
               </div>
             </div>
@@ -83,3 +39,48 @@ export default function Spotlight() {
     </div>
   );
 }
+
+export const slides = [
+  {
+    tag: 'RPG',
+    title: 'Legend of Zelda, The - A Link to the Past',
+    description: 'Explora mazmorras y salva Hyrule.',
+    buttonText: 'Learn More',
+    route: '/assets/big/Zelda-large.png',
+  },
+  {
+    tag: 'Lucha',
+    title: 'Super Street Fighter II',
+    description: 'Compite en intensos combates.',
+    buttonText: 'Learn More',
+    route: '/assets/big/SF2-large.png',
+  },
+  {
+    tag: 'Carreras',
+    title: 'Super Mario Kart',
+    description: 'Corre y lanza ítems para ganar.',
+    buttonText: 'Learn More',
+    route: '/assets/big/MarioKart-large.png',
+  },
+  {
+    tag: 'Party',
+    title: 'Super Bomberman',
+    description: 'Desafía amigos en explosivas partidas.',
+    buttonText: 'Learn More',
+    route: '/assets/big/SuperBombermanCover.jpg',
+  },
+  {
+    tag: 'Puzzle',
+    title: 'Simon Says Game',
+    description: 'Sigue el ritmo y memoriza patrones.',
+    buttonText: 'Learn More',
+    route: '/assets/big/SimonSays-large.png',
+  },
+  {
+    tag: 'Plataformas',
+    title: 'Super Mario World',
+    description: 'Salta y corre en un mundo colorido.',
+    buttonText: 'Learn More',
+    route: '/assets/big/SuperMario.jpeg',
+  },
+];
