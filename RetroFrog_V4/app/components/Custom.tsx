@@ -16,6 +16,7 @@ export interface ActionData {
 
 const bgdir = '/assets/background/';
 const backgrounds = [
+  '0-bg',
   '1-bg',
   '2-bg',
   '3-bg',
@@ -31,7 +32,6 @@ const backgrounds = [
   '13-bg',
   '14-bg',
   '15-bg',
-  '16-bg',
 ];
 const ext = '.avif';
 
@@ -78,23 +78,22 @@ export default function Custom() {
             <h3 className="text-lg font-medium">Select Background Image</h3>
             <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {backgrounds.map((bg, index) => {
-                const realIndex = index + 1;
                 return (
                   <li key={index} className="flex flex-col items-center">
                     <input
                       type="radio"
                       name="background"
-                      id={`bg${realIndex}`}
+                      id={`bg${index}`}
                       value={bgdir + bg + ext}
                       className="hidden peer"
                     />
                     <label
-                      htmlFor={`bg${realIndex}`}
+                      htmlFor={`bg${index}`}
                       className="block w-24 h-24 rounded-md overflow-hidden border-2 border-transparent peer-checked:border-blue-500"
                     >
                       <img
                         src={bgdir + bg + '-sm' + ext}
-                        alt={`Background ${realIndex}`}
+                        alt={`Background ${index}`}
                         className="w-20 h-20 sm:w-28 sm:h-28 object-cover"
                       />
                     </label>

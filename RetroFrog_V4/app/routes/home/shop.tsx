@@ -35,7 +35,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   try {
-    // Actualizar la base de datos usando Prisma
     await buyNewGame(userId, gameId);
 
     return new Response(JSON.stringify({ success: true }), {
