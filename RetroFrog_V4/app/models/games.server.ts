@@ -47,6 +47,36 @@ export async function getGamesUser(id: string) {
   });
 }
 
+/* export async function existingFavoriteGame(userId: string, gameId: string) {
+  return prisma.user.findFirst({
+    where: {
+      id: userId,
+      FavoriteGames: { some: { id: gameId } },
+    },
+  });
+}
+
+export async function disconnectFavGame(userId: string, gameId: string) {
+  prisma.user.update({
+    where: { id: userId },
+    data: {
+      FavoriteGames: {
+        disconnect: { id: gameId },
+      },
+    },
+  });
+}
+
+export async function connectFavGame(userId: string, gameId: string) {
+  prisma.user.update({
+    where: { id: userId },
+    data: {
+      FavoriteGames: {
+        connect: { id: gameId },
+      },
+    },
+  });
+} */
 //¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function getFavGamesUser(request: Request, filter: string | null) {
   const user = await getCurrentUser(request);
