@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction } from '@remix-run/node';
+import { ActionFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { ShopSlider } from '~/components/shop/ShopSliders';
 import { buyNewGame, getAllGames, getGamesUser } from '~/models/games.server';
@@ -48,7 +48,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: { request: Request }) {
   const games = await getAllGames();
   const user = await getCurrentUser(request);
   const userId = user?.id as string;
@@ -62,7 +62,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   return { games, userId, purchasedGames };
-};
+}
 
 type gameShop = { games: Game[]; userId: string; purchasedGames: string[] };
 
@@ -73,8 +73,9 @@ export default function Shop() {
       <ShopSlider
         games={games}
         purchasedGames={purchasedGames}
-        slidesPerView={3}
+        maxslidesPerView={3}
         variant="principal"
+        breakpoints={[1, 2, 3]}
       />
 
       <h2 className="text-2xl font-bold mb-4 text-color-reverse">
@@ -83,9 +84,9 @@ export default function Shop() {
       <ShopSlider
         games={games}
         purchasedGames={purchasedGames}
-        slidesPerView={5}
+        maxslidesPerView={5}
         variant="popular"
-        breakpoints={[1, 4, 5, 6]}
+        breakpoints={[1, 4, 5]}
       />
 
       <h2 className="text-2xl font-bold mb-4 text-color-reverse">
@@ -94,8 +95,9 @@ export default function Shop() {
       <ShopSlider
         games={games}
         purchasedGames={purchasedGames}
-        slidesPerView={4}
+        maxslidesPerView={4}
         variant="hotTopics"
+        breakpoints={[1, 2, 2]}
       />
     </>
   );

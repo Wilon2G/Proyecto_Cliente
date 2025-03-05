@@ -10,15 +10,15 @@ import { BuyButton } from '../general/Buttons';
 type SliderProps = {
   games: Game[];
   purchasedGames: string[];
-  slidesPerView: number;
-  breakpoints?: number[];
+  maxslidesPerView: number;
+  breakpoints?: number[]; // El array de breakpoints tiene la cantidad de slides por vista
   variant?: 'default' | 'principal' | 'popular' | 'hotTopics';
 };
 
 export function ShopSlider({
   games,
   purchasedGames,
-  slidesPerView,
+  maxslidesPerView,
   breakpoints,
   variant = 'default',
 }: SliderProps) {
@@ -52,14 +52,24 @@ export function ShopSlider({
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
-        slidesPerView={slidesPerView}
+        slidesPerView={1} // Inicialmente 1 slide por vista
         breakpoints={
-          breakpoints && {
-            640: { slidesPerView: breakpoints[0] || 1 },
-            768: { slidesPerView: breakpoints[1] || 3 },
-            1024: { slidesPerView: breakpoints[2] || 4 },
-            1280: { slidesPerView: breakpoints[3] || slidesPerView },
-          }
+          breakpoints
+            ? {
+                640: {
+                  slidesPerView: breakpoints[0] || 1, // Para pantallas pequeñas
+                },
+                768: {
+                  slidesPerView: breakpoints[1] || 3, // Para pantallas medianas
+                },
+                1024: {
+                  slidesPerView: breakpoints[2] || 4, // Para pantallas grandes
+                },
+                1280: {
+                  slidesPerView: breakpoints[3] || maxslidesPerView, // Para pantallas extra grandes
+                },
+              }
+            : {}
         }
         navigation
       >

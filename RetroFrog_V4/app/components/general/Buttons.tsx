@@ -90,26 +90,25 @@ type BuyButtonProps = {
 };
 
 export function BuyButton({ gameId, isPurchased = false }: BuyButtonProps) {
-  const fetcher = useFetcher();
-
   const [loading, setLoading] = useState(false);
+  const fetcher = useFetcher<{ error?: string }>();
 
-  const handleClick = async () => {
+  async function handleClick() {
     if (isPurchased) return; // No hacer nada si ya está comprado
 
     setLoading(true);
     try {
-      const response = await fetcher.submit({ gameId }, { method: 'post' });
-      if (response.success) {
-        isPurchased = true; // Si la compra es exitosa, marca como comprado
+      await fetcher.submit({ gameId }, { method: 'post' });
+
+      if (!fetcher.data?.error) {
+        isPurchased = true;
       }
     } catch (error) {
-      // Manejar error en la compra
       console.error('Error adding game to user', error);
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <button

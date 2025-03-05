@@ -92,6 +92,7 @@ export default function Library() {
     fetcher.submit({ gameId }, { method: 'post' });
   };
   const handleOpenGameModal = (game: Game) => {
+    stopMusic();
     setSelectedGame(game);
   };
 
@@ -107,22 +108,33 @@ export default function Library() {
     setIsModalOpen(false);
   };
 
-  const playMusic = (game: Game) => {
-    if (audioRef.current && audioRef.current.paused) {
-      audioRef.current.src =
-        '/assets/games/bgm/' + game.title.replace(/\s/g, '') + '.mp3';
-      audioRef.current
-        .play()
-        .catch((error) => console.error('Play failed: ', error));
-    }
-  };
+  function playMusic(game: Game) {
+    if (!audioRef.current) return;
+    // Si el audio ya está reproduciéndose, lo detiene antes de cambiar la fuente
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
 
-  const stopMusic = () => {
-    if (audioRef.current && audioRef.current.played) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+    // Asigna la nueva fuente de audio
+    const newSrc = `/assets/games/bgm/${game.title.replace(/\s/g, '')}.mp3`;
+
+    if (audioRef.current.src !== newSrc) {
+      audioRef.current.src = newSrc;
+      audioRef.current.load(); // Carga el nuevo audio
+      audioRef.current.oncanplay = () => audioRef.current!.play(); // Reproduce cuando esté listo
     }
-  };
+  }
+
+  function stopMusic() {
+    if (audioRef.current) {
+      // Check if the audio is currently playing
+      if (!audioRef.current.paused) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        // Clear any oncanplay listeners to avoid play being triggered later
+        audioRef.current.oncanplay = null;
+      }
+    }
+  }
 
   const handleSubmitNewGame = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -137,7 +149,7 @@ export default function Library() {
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   return (
     <>
-      <div className="gallery grid sm:grid-cols-3 md:grid-cols-4 gap-6  relative  rounded-2xl">
+      <div className="gallery grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-6  relative  rounded-2xl">
         {/**Juegos */}
         {gamesToReturn.map((game) => {
           const isFavorite = game.UsersFavorited.some(
