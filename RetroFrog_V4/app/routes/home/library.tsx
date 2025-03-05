@@ -13,7 +13,11 @@ import {
 } from '~/components/IconsSVG';
 import ModalForm from '~/components/ModalForm';
 import PaginationBar from '~/components/PaginationBar';
-import { getGamesUser } from '~/models/games.server';
+import {
+  allFavGames,
+  existingFavoriteGame,
+  getGamesUser,
+} from '~/models/games.server';
 import { getSession } from '~/sessions';
 import prisma from '~/utils/prismaClient';
 
@@ -32,21 +36,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const top = Number(url.searchParams.get('$top')) || 8;
   const skip = Number(url.searchParams.get('$skip')) || 0;
 
-  const allUnlockedGames = await prisma.game.findMany({
-    where: {
-      Users: {
-        some: { id: userId },
-      },
-      ...(filter === 'favorites' && {
-        UsersFavorited: {
-          some: { id: userId },
-        },
-      }),
-    },
-    include: {
-      UsersFavorited: true,
-    },
-  });
+  const allUnlockedGames = await allFavGames(userId, filter);
 
   const filteredGames = filterGames(
     allUnlockedGames,
@@ -75,12 +65,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   //METER EN USER.SERVER.TS O EN EL MODELO CORRESPONDIENTE -- pendiente
-  const existingFavorite = await prisma.user.findFirst({
-    where: {
-      id: userId,
-      FavoriteGames: { some: { id: gameId } },
-    },
-  });
+  const existingFavorite = await existingFavoriteGame(userId, gameId);
 
   if (existingFavorite) {
     await prisma.user.update({
@@ -105,12 +90,11 @@ export const action: ActionFunction = async ({ request }) => {
   return new Response(null, { status: 200 });
 };
 export default function Library() {
-  const { gamesToReturn, userRole, userId, top, totalGamesUnlocked } =
+  const { gamesToReturn, userRole, userId, totalGamesUnlocked } =
     useLoaderData<{
       gamesToReturn: (Game & { UsersFavorited: User[] })[];
       userRole: string | null;
       userId: string;
-      top: number;
       totalGamesUnlocked: number;
     }>();
   const fetcher = useFetcher();
@@ -136,6 +120,7 @@ export default function Library() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const playMusic = (game: Game) => {
     if (audioRef.current && audioRef.current.paused) {
       audioRef.current.src =

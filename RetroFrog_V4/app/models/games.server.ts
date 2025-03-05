@@ -15,13 +15,13 @@ export async function addGameToUser(userId: string, gameId: string) {
     });
 
     if (!user) {
-      throw new Error('Usuario no encontrado');
+      throw new Error('User not found');
     }
 
     // Verificar si el usuario ya tiene el juego
     const hasGame = user.GamesUnlocked.some((game) => game.id === gameId);
     if (hasGame) {
-      throw new Error('El usuario ya tiene este juego');
+      throw new Error('This user already have this game');
     }
 
     // Agregar el juego a la lista de GamesUnlocked
@@ -34,7 +34,7 @@ export async function addGameToUser(userId: string, gameId: string) {
       },
     });
 
-    return { success: true, message: 'Juego añadido correctamente' };
+    return { success: true, message: 'Game added succesfully' };
   } catch (error) {
     return { success: false, message: error.message };
   }
@@ -47,7 +47,7 @@ export async function getGamesUser(id: string) {
   });
 }
 
-/* export async function existingFavoriteGame(userId: string, gameId: string) {
+export async function existingFavoriteGame(userId: string, gameId: string) {
   return prisma.user.findFirst({
     where: {
       id: userId,
@@ -56,7 +56,7 @@ export async function getGamesUser(id: string) {
   });
 }
 
-export async function disconnectFavGame(userId: string, gameId: string) {
+/* export async function disconnectFavGame(userId: string, gameId: string) {
   prisma.user.update({
     where: { id: userId },
     data: {
@@ -77,6 +77,24 @@ export async function connectFavGame(userId: string, gameId: string) {
     },
   });
 } */
+
+export async function allFavGames(userId: string, filter: string | null) {
+  return prisma.game.findMany({
+    where: {
+      Users: {
+        some: { id: userId },
+      },
+      ...(filter === 'favorites' && {
+        UsersFavorited: {
+          some: { id: userId },
+        },
+      }),
+    },
+    include: {
+      UsersFavorited: true,
+    },
+  });
+}
 //¿SE USAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?
 export async function getFavGamesUser(request: Request, filter: string | null) {
   const user = await getCurrentUser(request);
