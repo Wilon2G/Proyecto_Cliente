@@ -113,10 +113,10 @@ export async function setUser(
       },
     });
 
-    console.log('Updated User:', updatedUser);
+    //console.log('Updated User:', updatedUser);
     return updatedUser;
   } catch (error) {
-    console.error('Error updating user:', error);
+    //console.error('Error updating user:', error);
     throw new Error('Could not update user');
   }
 }

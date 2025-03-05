@@ -20,7 +20,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
     if (userId) {
       const themeData = await getThemes(userId);
-      console.log(themeData);
+      //console.log(themeData);
       if (themeData) {
         themeChoice = themeData[0];
         bgChoice = themeData[1];
