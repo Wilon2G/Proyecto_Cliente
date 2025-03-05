@@ -1,4 +1,4 @@
-import { NyTitle } from './IconsSVG';
+import { NyTitle } from './general/IconsSVG';
 
 export default function News() {
   const resolution = { width: 600, height: 400 };

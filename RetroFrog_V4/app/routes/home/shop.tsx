@@ -86,7 +86,7 @@ export default function Shop() {
         purchasedGames={purchasedGames}
         slidesPerView={5}
         variant="popular"
-        breakpoints={[2, 4, 5, 6]}
+        breakpoints={[1, 4, 5, 6]}
       />
 
       <h2 className="text-2xl font-bold mb-4 text-color-reverse">

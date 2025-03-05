@@ -8,8 +8,8 @@ import {
 } from '@remix-run/react';
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { TitleWrapper } from '~/components/Buttons';
 import GameSearch from '~/components/games/GameSearch';
+import { TitleWrapper } from '~/components/general/Buttons';
 import {
   FavGamesIcon,
   GamesIcon,
@@ -21,8 +21,8 @@ import {
   SettingsIcon,
   ShopIcon,
   UserIcon,
-} from '~/components/IconsSVG';
-import LoadingFrog from '~/components/LoadingFrog';
+} from '~/components/general/IconsSVG';
+import LoadingFrog from '~/components/general/LoadingFrog';
 import MusicPlayer from '~/components/MusicPlayer';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 

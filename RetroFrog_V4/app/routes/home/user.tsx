@@ -1,8 +1,8 @@
 import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
 import classNames from 'classnames';
-import Button from '~/components/Buttons';
-import { InputForm } from '~/components/Inputs';
+import Button from '~/components/general/Buttons';
+import { InputForm } from '~/components/general/Inputs';
 import { requiredLoggedInUser, setUser } from '~/utils/auth.server';
 
 export const loader: LoaderFunction = async ({ request }) => {

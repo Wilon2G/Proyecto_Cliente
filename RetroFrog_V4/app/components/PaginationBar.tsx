@@ -4,18 +4,18 @@ import {
   DoubleRightArrow,
   LeftArrow,
   RightArrow,
-} from './IconsSVG';
+} from './general/IconsSVG';
 
 export default function PaginationBar({ total }: { total: number }) {
   const [searchParams] = useSearchParams();
-  const $skip = Number(searchParams.get('$skip')) || 0;
-  const $top = Number(searchParams.get('$top')) || 10;
-  const totalPages = Math.ceil(total / $top);
-  const currentPage = Math.floor($skip / $top) + 1;
+  const skip = Number(searchParams.get('$skip')) || 0;
+  const top = Number(searchParams.get('$top')) || 10;
+  const totalPages = Math.ceil(total / top);
+  const currentPage = Math.floor(skip / top) + 1;
   const maxPages = 7;
   const halfMaxPages = Math.floor(maxPages / 2);
-  const canPageBackwards = $skip > 0;
-  const canPageForwards = $skip + $top < total;
+  const canPageBackwards = skip > 0;
+  const canPageForwards = skip + top < total;
   const pageNumbers = [] as Array<number>;
 
   function setSearchParamsString(
@@ -67,7 +67,7 @@ export default function PaginationBar({ total }: { total: number }) {
       <Link
         to={{
           search: setSearchParamsString(searchParams, {
-            $skip: 0,
+            skip: 0,
           }),
         }}
         preventScrollReset
@@ -83,7 +83,7 @@ export default function PaginationBar({ total }: { total: number }) {
       <Link
         to={{
           search: setSearchParamsString(searchParams, {
-            $skip: Math.max($skip - $top, 0),
+            skip: Math.max(skip - top, 0),
           }),
         }}
         preventScrollReset
@@ -97,7 +97,7 @@ export default function PaginationBar({ total }: { total: number }) {
       </Link>
 
       {pageNumbers.map((pageNumber) => {
-        const pageSkip = (pageNumber - 1) * $top;
+        const pageSkip = (pageNumber - 1) * top;
         const isCurrentPage = pageNumber === currentPage;
 
         return (
@@ -105,7 +105,7 @@ export default function PaginationBar({ total }: { total: number }) {
             key={pageNumber}
             to={{
               search: setSearchParamsString(searchParams, {
-                $skip: pageSkip,
+                skip: pageSkip,
               }),
             }}
             preventScrollReset
@@ -126,7 +126,7 @@ export default function PaginationBar({ total }: { total: number }) {
       <Link
         to={{
           search: setSearchParamsString(searchParams, {
-            $skip: $skip + $top,
+            skip: skip + top,
           }),
         }}
         preventScrollReset
@@ -142,7 +142,7 @@ export default function PaginationBar({ total }: { total: number }) {
       <Link
         to={{
           search: setSearchParamsString(searchParams, {
-            $skip: (totalPages - 1) * $top,
+            skip: (totalPages - 1) * top,
           }),
         }}
         preventScrollReset

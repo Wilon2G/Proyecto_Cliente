@@ -1,6 +1,6 @@
 import { Form, useActionData } from '@remix-run/react';
-import Button from './Buttons';
-import { ErrorMessage } from './ErrorMessage';
+import Button from '../general/Buttons';
+import { ErrorMessage } from '../general/ErrorMessage';
 
 //Para los errors
 export interface ActionData {

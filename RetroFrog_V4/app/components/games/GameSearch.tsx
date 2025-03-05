@@ -1,6 +1,6 @@
 import { useSearchParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
-import { InputChangeFx } from '../Inputs';
+import { InputChangeFx } from '../general/Inputs';
 
 const consoles = [
   'NES:nes:nestopia',

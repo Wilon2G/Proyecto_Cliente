@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { ButtonAction } from './Buttons';
+import { ButtonAction } from '../general/Buttons';
 
 function PrivacyPolices() {
   const [isOpen, setIsOpen] = useState(false);

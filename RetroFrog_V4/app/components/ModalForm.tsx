@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './Buttons';
-import { InputForm, InputTextarea } from './Inputs';
+import Button from './general/Buttons';
+import { InputForm, InputTextarea } from './general/Inputs';
 
 interface ModalFormProps {
   handleCloseModal: () => void;

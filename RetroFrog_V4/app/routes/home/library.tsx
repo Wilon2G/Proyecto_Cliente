@@ -3,14 +3,14 @@ import { ActionFunction, LoaderFunction } from '@remix-run/node';
 import { useFetcher, useLoaderData } from '@remix-run/react';
 import classNames from 'classnames';
 import React, { useRef, useState } from 'react';
-import { ButtonAction } from '~/components/Buttons';
 import GameComponent from '~/components/games/GameComponent';
+import { ButtonAction } from '~/components/general/Buttons';
 import {
   ExitIcon,
   FavoriteFillIcon,
   FavoriteNotFillIcon,
   PlusGameIcon,
-} from '~/components/IconsSVG';
+} from '~/components/general/IconsSVG';
 import ModalForm from '~/components/ModalForm';
 import PaginationBar from '~/components/PaginationBar';
 import {
@@ -203,6 +203,7 @@ export default function Library() {
                   e.stopPropagation(); // Evita que el evento se propague
                 }}
                 className="absolute top-2 right-2 bg-white bg-opacity-30 rounded-full p-1 shadow-xl"
+                id={game.id}
                 textBtn={
                   isFavorite ? <FavoriteFillIcon /> : <FavoriteNotFillIcon />
                 }

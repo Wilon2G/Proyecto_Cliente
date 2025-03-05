@@ -1,6 +1,6 @@
 import { LoaderFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
-import { ShopNowIcon } from '~/components/IconsSVG';
+import { ShopNowIcon } from '~/components/general/IconsSVG';
 import { requiredLoggedInUser } from '~/utils/auth.server';
 import News from '../../components/News';
 

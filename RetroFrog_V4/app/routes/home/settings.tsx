@@ -1,7 +1,7 @@
 import { ActionFunction, LoaderFunction } from '@remix-run/node';
-import Custom from '~/components/Custom';
-import Developers from '~/components/Developers';
-import PrivacyPolices from '~/components/PrivacyPolices';
+import Custom from '~/components/settings/Custom';
+import Developers from '~/components/settings/Developers';
+import PrivacyPolices from '~/components/settings/PrivacyPolices';
 import { updateTheme } from '~/models/themes.server';
 
 import { commitSession, getSession } from '~/sessions';

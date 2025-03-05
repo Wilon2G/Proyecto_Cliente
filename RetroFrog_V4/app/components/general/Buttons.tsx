@@ -38,6 +38,7 @@ type ButtonActionProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   applyDefaultStyles?: boolean;
+  id?: string;
 };
 
 export function ButtonAction({
@@ -45,10 +46,12 @@ export function ButtonAction({
   onClick,
   className,
   applyDefaultStyles = true,
+  id,
 }: ButtonActionProps) {
   return (
     <button
       onClick={onClick}
+      id={id}
       className={
         applyDefaultStyles
           ? `w-full py-2 px-2 rounded-md font-bold transition duration-300 

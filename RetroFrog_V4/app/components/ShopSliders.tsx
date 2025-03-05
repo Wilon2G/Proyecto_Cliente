@@ -54,10 +54,10 @@ export function ShopSlider({
         slidesPerView={slidesPerView}
         breakpoints={
           breakpoints && {
-            640: { slidesPerView: breakpoints[0] || slidesPerView },
+            640: { slidesPerView: breakpoints[0] || 1 },
             768: { slidesPerView: breakpoints[1] || 3 },
             1024: { slidesPerView: breakpoints[2] || 4 },
-            1280: { slidesPerView: breakpoints[3] || 5 },
+            1280: { slidesPerView: breakpoints[3] || slidesPerView },
           }
         }
         navigation
@@ -89,14 +89,20 @@ export function ShopSlider({
                       '',
                     )}-boxa.avif`}
                     alt={game.title}
-                    className="h-40 w-40 mx-auto mb-4 rounded"
+                    className="h-40 w-40 mx-auto mb-4 rounded "
                     width={160}
                     height={160}
                   />
                 )}
-                <h3 className="text-sm font-medium opacity-80">{game.tags}</h3>
-                <h2 className="text-lg font-semibold mb-2">{game.title}</h2>
-                <p className="text-sm mb-4">{game.description}</p>
+                <h3 className="text-sm font-medium opacity-80 break-all">
+                  {game.tags}
+                </h3>
+                <h2 className="text-sm font-semibold mb-2 md:text-lg ">
+                  {game.title}
+                </h2>
+                <p className="text-sm mb-4 hidden md:block">
+                  {game.description}
+                </p>
                 <div className="mt-auto">
                   {isPurchased ? (
                     <span className="text-green-500 font-bold">✅ Bought</span>
