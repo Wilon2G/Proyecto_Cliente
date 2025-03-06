@@ -24,26 +24,6 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const songs = [
-    {
-      src: '/assets/music/AmazingBombermanMenuRetro.ogg',
-      title: 'Amazing Bomberman Menu Retro',
-    },
-    {
-      src: '/assets/music/AmazingBombermanBubbleAddiction.ogg',
-      title: 'Amazing Bomberman Bubble Addiction Instrumental',
-    },
-    {
-      src: '/assets/music/SaturnBombermanMasterMode.mp3',
-      title: 'Saturn Bomberman Master Mode Stage',
-    },
-    { src: '/assets/music/SBR2_camp.wav', title: 'Super Bomberman R 2 Camp' },
-    {
-      src: '/assets/music/SBR2_camp_en.wav',
-      title: 'Super Bomberman R 2 Camp Enemy',
-    },
-  ];
-
   const playPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -198,3 +178,23 @@ export default function MusicPlayer({ className }: MusicPlayerProps) {
     </div>
   );
 }
+
+export const songs = [
+  {
+    src: '/assets/music/AmazingBombermanMenuRetro.ogg',
+    title: 'Amazing Bomberman Menu Retro',
+  },
+  {
+    src: '/assets/music/AmazingBombermanBubbleAddiction.ogg',
+    title: 'Amazing Bomberman Bubble Addiction Instrumental',
+  },
+  {
+    src: '/assets/music/SaturnBombermanMasterMode.mp3',
+    title: 'Saturn Bomberman Master Mode Stage',
+  },
+  { src: '/assets/music/SBR2_camp.wav', title: 'Super Bomberman R 2 Camp' },
+  {
+    src: '/assets/music/SBR2_camp_en.wav',
+    title: 'Super Bomberman R 2 Camp Enemy',
+  },
+];

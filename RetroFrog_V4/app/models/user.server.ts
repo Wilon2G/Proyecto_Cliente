@@ -37,6 +37,15 @@ export async function userExists(email: string) {
   } */
 }
 
+/* Esto es solo para el backdoor */
+export async function getDefaultUserId() {
+  const user = await db.user.findUnique({
+    where: { email: 'admin@example.com' },
+    select: { id: true },
+  });
+  return user?.id ?? null; // Devuelve solo el ID o null si no se encuentra
+}
+
 export function getUserById(id: string) {
   return db.user.findUnique({
     where: {

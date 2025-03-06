@@ -7,7 +7,12 @@ import { ErrorMessage } from '~/components/general/ErrorMessage';
 import { CloseEye, OpenEye } from '~/components/general/IconsSVG';
 import { InputForm } from '~/components/general/Inputs';
 import { getThemes } from '~/models/themes.server';
-import { checkUser, createUser, userExists } from '~/models/user.server';
+import {
+  checkUser,
+  createUser,
+  getDefaultUserId,
+  userExists,
+} from '~/models/user.server';
 import { commitSession, getSession } from '~/sessions';
 import { requiredLoggedOutUser } from '~/utils/auth.server';
 import validateForm from '~/utils/validation';
@@ -30,7 +35,8 @@ export async function action({ request }: { request: Request }) {
     console.log(
       'Se está accediendo a la página con el usuario prueba, este usuario se salta las validaciones y solo debe utilizarse durante las pruebas.',
     );
-    session.set('userId', 'cm6l3cgta0002m9x86p766ilf');
+    const userBackId = await getDefaultUserId();
+    session.set('userId', userBackId);
     const cookie = await commitSession(session);
     return redirect('/home/main', {
       headers: {
