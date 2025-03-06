@@ -2,27 +2,6 @@ import { useSearchParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { InputChangeFx } from '../general/Inputs';
 
-const consoles = [
-  'NES:nes:nestopia',
-  'SNES:sfc:snes9x',
-  'Nintendo 64:n64:mupen64plus_next',
-  'Game Boy:gb:mgba',
-  'Nintendo DS:nds:melonds',
-  'Sega Genesis:md:genesis_plus_gx',
-  'Game Boy Advance:gba:mgba',
-];
-const tagsList = [
-  'Shooter',
-  'Adventure',
-  'RPG',
-  'Action',
-  'Platformer',
-  'Puzzle',
-  'Party',
-  'Racing',
-  'Fighting',
-];
-
 export default function GameSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -106,3 +85,24 @@ export default function GameSearch() {
     </div>
   );
 }
+
+export const consoles = [
+  'NES:nes:nestopia',
+  'SNES:sfc:snes9x',
+  'Nintendo 64:n64:mupen64plus_next',
+  'Game Boy:gb:mgba',
+  'Nintendo DS:nds:melonds',
+  'Sega Genesis:md:genesis_plus_gx',
+  'Game Boy Advance:gba:mgba',
+];
+export const tagsList = [
+  'Shooter',
+  'Adventure',
+  'RPG',
+  'Action',
+  'Platformer',
+  'Puzzle',
+  'Party',
+  'Racing',
+  'Fighting',
+];
