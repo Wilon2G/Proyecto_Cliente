@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../general/Buttons';
-import { InputForm, InputTextarea } from '../general/Inputs';
+import Button from './general/Buttons';
+import { InputForm, InputTextarea } from './general/Inputs';
 
 interface ModalFormProps {
   handleCloseModal: () => void;
@@ -50,7 +50,7 @@ export default function ModalForm({
               type="file"
               id="boxaFile"
               name="boxaFile"
-              accept=".zip,.rar,.exe,.iso"
+              accept=".zip,.rar,.exe,.iso" // Tipos archivos
               className="block w-full mt-1"
             />
           </div>

@@ -9,9 +9,7 @@ import {
   ExitIcon,
   FavoriteFillIcon,
   FavoriteNotFillIcon,
-  PlusGameIcon,
 } from '~/components/general/IconsSVG';
-import ModalForm from '~/components/shop/ModalForm';
 import PaginationBar from '~/components/shop/PaginationBar';
 import {
   allFavGames,
@@ -85,7 +83,7 @@ export default function Library() {
     }>();
   const fetcher = useFetcher();
   const [selectedGame, setSelectedGame] = React.useState<Game | null>(null);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const audioRef = useRef<HTMLAudioElement | null>(null); // Ref para manejar el audio
 
   const toggleFavorite = (gameId: string) => {
@@ -98,14 +96,6 @@ export default function Library() {
 
   const handleCloseGameModal = () => {
     setSelectedGame(null);
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
   };
 
   function playMusic(game: Game) {
@@ -136,15 +126,6 @@ export default function Library() {
     }
   }
 
-  const handleSubmitNewGame = async (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-
-    fetcher.submit(formData, { method: 'post', action: '/upload-game' });
-    handleCloseModal();
-  };
   const noGamesFound = gamesToReturn.length === 0;
 
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
@@ -220,15 +201,7 @@ export default function Library() {
               );
             })}
           </div>
-          {/**Opcion añadir juego */}
-          {userRole === 'ADMIN' && (
-            <div
-              onClick={handleOpenModal}
-              className="flex items-center justify-center border-2 border-dashed border-gray-400 rounded-md cursor-pointer hover:bg-gray-100 transition-colors"
-            >
-              <PlusGameIcon />
-            </div>
-          )}
+
           {/** Modal para ver juego */}
 
           <div
@@ -265,13 +238,6 @@ export default function Library() {
             </div>
           </div>
 
-          {/**Form para añadir juego */}
-          {isModalOpen && (
-            <ModalForm
-              handleCloseModal={handleCloseModal}
-              handleSubmitNewGame={handleSubmitNewGame}
-            />
-          )}
           <audio ref={audioRef} />
           <PaginationBar total={totalGamesUnlocked}></PaginationBar>
         </>
