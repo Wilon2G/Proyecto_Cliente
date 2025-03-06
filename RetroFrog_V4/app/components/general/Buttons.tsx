@@ -8,6 +8,7 @@ type ButtonProps = {
   className: string;
   name?: string;
   value?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function Button({
@@ -16,12 +17,14 @@ export default function Button({
   className,
   name,
   value,
+  onClick,
 }: ButtonProps) {
   return (
     <button
       name={name}
       value={value}
       type={typeBtn}
+      onClick={onClick}
       className={classNames(
         'w-full py-2 px-4 rounded-md font-bold transition duration-300',
         'bg-green-600 hover:bg-green-700',

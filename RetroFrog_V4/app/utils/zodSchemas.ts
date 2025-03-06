@@ -22,22 +22,27 @@ export const customSchema = z.object({
   fontFamily: z.string().optional(),
 });
 
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const MAX_FILE_SIZE = 1024 * 1024 * 5; // 5MB
 const ACCEPTED_IMAGE_MIME_TYPES = [
   'image/jpeg',
   'image/jpg',
   'image/png',
   'image/webp',
+  'image/avif',
 ];
 
-export const formSchema = z.object({
-  adImage: z
-    .any()
-    .refine((files) => {
-      return files?.[0]?.size <= MAX_FILE_SIZE;
-    }, `Max image size is 5MB.`)
-    .refine(
-      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
-      'Only .jpg, .jpeg, .png and .webp formats are supported.',
-    ),
+export const updateUserSchema = z.object({
+  userId: z.string().min(1, 'User ID is required'),
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().min(1, 'Email is required').email('Invalid email address'),
+  pfp: z
+    .instanceof(File)
+    .optional()
+    .refine((file) => !file || file.size <= MAX_FILE_SIZE, {
+      message: 'Max image size is 5MB.',
+    })
+    .refine((file) => !file || ACCEPTED_IMAGE_MIME_TYPES.includes(file.type), {
+      message:
+        'Only .jpg, .jpeg, .png, .webp, and .avif formats are supported.',
+    }),
 });

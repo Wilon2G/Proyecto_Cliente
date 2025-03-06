@@ -7,6 +7,8 @@ export type InputProps = {
   classname?: string;
   labelStyle?: string;
   defaultValue?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function InputForm({
@@ -16,6 +18,8 @@ export function InputForm({
   inputName,
   labelStyle,
   defaultValue,
+  value,
+  onChange,
 }: InputProps) {
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -39,8 +43,10 @@ export function InputForm({
           'border-color-reverse bg-primary text-color',
           classname,
         )}
+        onChange={onChange}
         placeholder={`Your ${inputText || inputType}`}
         defaultValue={`${defaultValue || ''}`}
+        value={value}
       />
     </>
   );

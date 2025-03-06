@@ -1,41 +1,108 @@
-import { ActionFunction, LoaderFunction, redirect } from '@remix-run/node';
+import { redirect } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
-import classNames from 'classnames';
+import fs from 'fs';
+import path from 'path';
+import { useState } from 'react';
 import Button from '~/components/general/Buttons';
 import { InputForm } from '~/components/general/Inputs';
-import { requiredLoggedInUser, setUser } from '~/utils/auth.server';
+import { setUser } from '~/models/user.server';
+import { requiredLoggedInUser } from '~/utils/auth.server';
 
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: { request: Request }) {
   const user = await requiredLoggedInUser(request);
 
-  return new Response(JSON.stringify({ user }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
+  return { user };
+}
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = new URLSearchParams(await request.text());
+export async function action({ request }: { request: Request }) {
+  const formData = await request.formData();
+  const userId = formData.get('userId') as string;
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  const pfpFile = formData.get('pfp') as File | null;
 
-  const userId = formData.get('userId');
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const pfp = formData.get('pfp');
-  const theme = formData.get('theme');
+  // Aseguramos que pfp tiene el valor por defecto si no hay archivo
+  let pfp = '/assets/icon/pfp/default.avif';
 
-  if (userId && name && email && pfp && theme) {
-    await setUser(userId, { name, email, pfp, theme });
-    return redirect(`/home/user`);
+  // Si se selecciona un archivo, se procesa y guarda
+  if (pfpFile && pfpFile.size > 0) {
+    const uploadDir = path.join(
+      process.cwd(),
+      'public',
+      'assets',
+      'icon',
+      'pfp',
+    );
+    const filePath = path.join(uploadDir, `${userId}.avif`);
+
+    // Crear directorio si no existe
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    // Leer el archivo y guardarlo en el directorio
+    const buffer = await pfpFile.arrayBuffer();
+    const uint8Array = new Uint8Array(buffer);
+    // Eliminar la imagen anterior si existe (sobreescribir)
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
+    // Guardar el nuevo archivo
+    fs.writeFileSync(filePath, uint8Array);
+    // Actualizar la ruta de la imagen de perfil
+    pfp = `/assets/icon/pfp/${userId}.avif`;
   }
 
-  return new Response(JSON.stringify({ error: 'Error updating user' }), {
-    status: 400,
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
+  try {
+    setUser(userId, name, email, pfp);
+    return redirect(`/home/user`);
+  } catch (error) {
+    return new Response(JSON.stringify({ error: 'Error updating user' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
 
 export default function UserProfile() {
   const { user } = useLoaderData<typeof loader>();
+
+  // Estado inicial con los valores originales
+  const [formData, setFormData] = useState({
+    name: user.name,
+    email: user.email,
+    pfp: user.pfp || '/assets/icon/pfp/default.avif',
+  });
+
+  const [imagePreview, setImagePreview] = useState(formData.pfp);
+
+  // Manejo del cambio en los inputs
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Manejo del cambio de imagen
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Restaurar valores originales
+  const handleReset = () => {
+    setFormData({
+      name: user.name,
+      email: user.email,
+      pfp: user.pfp || '/assets/icon/pfp/default.avif',
+    });
+    setImagePreview(user.pfp || '/assets/icon/pfp/default.avif');
+  };
 
   return (
     <div className="p-4 bg-primary bg-opacity-60 rounded-md shadow-lg w-full max-w-2xl mx-auto">
@@ -45,7 +112,7 @@ export default function UserProfile() {
         <input type="hidden" name="userId" value={user.id} />
         <div className="flex flex-col items-center">
           <img
-            src={user.pfp}
+            src={imagePreview}
             alt="Profile Picture"
             className="w-32 h-32 rounded-full mb-2 border-4 border-primary-reverse shadow-md"
           />
@@ -55,7 +122,9 @@ export default function UserProfile() {
               <InputForm
                 inputType="text"
                 inputName="name"
-                defaultValue={user.name}
+                inputText="Name"
+                value={formData.name}
+                onChange={handleChange}
                 classname="bg-primary-reverse text-color-reverse"
               />
             </div>
@@ -64,43 +133,28 @@ export default function UserProfile() {
               <InputForm
                 inputType="email"
                 inputName="email"
-                defaultValue={user.email}
+                value={formData.email}
+                onChange={handleChange}
                 classname="bg-primary-reverse text-color-reverse"
               />
-            </div>
-
-            <div>
-              <label className="block text-lg font-medium mb-2 ">
-                Sex:
-                <select
-                  name="sex"
-                  defaultValue={user.sex}
-                  className={classNames(
-                    'w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none ',
-                    'border-color-reverse bg-primary-reverse text-color-reverse',
-                  )}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
             </div>
 
             <div>
               <InputForm
                 inputType="file"
                 inputName="pfp"
-                inputText="Profile Picture URL:"
+                inputText="Profile Picture URL"
                 classname="bg-primary-reverse text-color-reverse"
+                onChange={handleImageChange}
               />
             </div>
 
             <div className="flex justify-end gap-4 mt-4">
               <Button
-                textBtn="Cancel"
+                textBtn="Reset"
                 typeBtn="button"
-                className="w-1/2 px-6 py-2 bg-red-500 hover:bg-red-700 text-white"
+                onClick={handleReset}
+                className="w-1/2 px-6 py-2 bg-gray-600 hover:bg-gray-600 text-white"
               />
               <Button
                 textBtn="Save"
