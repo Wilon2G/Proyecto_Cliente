@@ -3,6 +3,7 @@ import { useLoaderData } from '@remix-run/react';
 import { ShopSlider } from '~/components/shop/ShopSliders';
 import { buyNewGame, getAllGames, getGamesUser } from '~/models/games.server';
 import { getCurrentUser } from '~/utils/auth.server';
+import { filterGames } from './library';
 
 export interface Game {
   id: string;
@@ -53,52 +54,73 @@ export async function loader({ request }: { request: Request }) {
   const user = await getCurrentUser(request);
   const userId = user?.id as string;
 
+  const url = new URL(request.url);
+  const search = url.searchParams.get('search') || '';
+  const consoleFilter = url.searchParams.get('console') || 'All consoles';
+  const tags = url.searchParams.getAll('tags');
+
   let purchasedGames: string[] = [];
 
   if (userId) {
     const user = await getGamesUser(userId);
-
     purchasedGames = user?.GamesUnlocked.map((game) => game.id) || [];
   }
 
-  return { games, userId, purchasedGames };
+  // Solo aplica el filtro si hay algún parámetro de búsqueda
+  let filteredGames = games;
+
+  if (search || consoleFilter !== 'All consoles' || tags.length > 0) {
+    filteredGames = filterGames(games, search, consoleFilter, tags);
+  }
+
+  return { games: filteredGames, userId, purchasedGames };
 }
 
 type gameShop = { games: Game[]; userId: string; purchasedGames: string[] };
 
 export default function Shop() {
   const { games, purchasedGames } = useLoaderData<gameShop>();
+
+  // Verificar si hay juegos filtrados
+  const noGamesFound = games.length === 0;
+
   return (
     <>
-      <ShopSlider
-        games={games}
-        purchasedGames={purchasedGames}
-        maxslidesPerView={3}
-        variant="principal"
-        breakpoints={[1, 2, 3]}
-      />
+      {noGamesFound ? (
+        <p className="text-xl text-center text-gray-800">No games found</p>
+      ) : (
+        <>
+          <ShopSlider
+            games={games}
+            purchasedGames={purchasedGames}
+            maxslidesPerView={3}
+            variant="principal"
+            breakpoints={[1, 2, 3]}
+          />
 
-      <h2 className="text-2xl font-bold mb-4 text-color-reverse">
-        Popular Games
-      </h2>
-      <ShopSlider
-        games={games}
-        purchasedGames={purchasedGames}
-        maxslidesPerView={5}
-        variant="popular"
-        breakpoints={[1, 4, 5]}
-      />
+          <h2 className="text-2xl font-bold mb-4 text-color-reverse">
+            Popular Games
+          </h2>
+          <ShopSlider
+            games={games}
+            purchasedGames={purchasedGames}
+            maxslidesPerView={5}
+            variant="popular"
+            breakpoints={[1, 4, 5]}
+          />
 
-      <h2 className="text-2xl font-bold mb-4 text-color-reverse">
-        More Hot Topics
-      </h2>
-      <ShopSlider
-        games={games}
-        purchasedGames={purchasedGames}
-        maxslidesPerView={4}
-        variant="hotTopics"
-        breakpoints={[1, 2, 2]}
-      />
+          <h2 className="text-2xl font-bold mb-4 text-color-reverse">
+            More Hot Topics
+          </h2>
+          <ShopSlider
+            games={games}
+            purchasedGames={purchasedGames}
+            maxslidesPerView={4}
+            variant="hotTopics"
+            breakpoints={[1, 2, 2]}
+          />
+        </>
+      )}
     </>
   );
 }
