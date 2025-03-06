@@ -147,7 +147,7 @@ export default function UserProfile() {
                 textBtn="Reset"
                 typeBtn="button"
                 onClick={handleReset}
-                className="w-1/2 px-6 py-2 bg-gray-600 hover:bg-gray-600 text-white"
+                className="w-1/2 px-6 py-2 bg-red-500 hover:bg-red-700 text-white"
               />
               <Button
                 textBtn="Save"
