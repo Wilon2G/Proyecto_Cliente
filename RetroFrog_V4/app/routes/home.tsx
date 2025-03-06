@@ -90,7 +90,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="topbar flex flex-col  bg-primary bg-opacity-10 p-4 w-full  ">
+      <header className="topbar flex flex-col  bg-primary bg-opacity-10 p-2 w-full  ">
         <div className="flex gap-4 items-center justify-between  flex-wrap select-none">
           <a href="/home/main" className="flex items-center flex-row gap-3">
             <img
@@ -235,7 +235,7 @@ export default function HomePage() {
         )}
       </header>
 
-      <main className="container mx-auto p-2 select-none shadow-lg bg-gray-100 bg-opacity-30 rounded-md flex flex-col items-center py-5 w-full  px-4 self-center m-2 -z-30">
+      <main className="container mx-auto p-2 select-none shadow-lg bg-gray-100 bg-opacity-30 rounded-md flex flex-col items-center py-5 w-full px-4 self-center m-2 flex-grow min-h-[calc(100vh-8rem)]">
         {isLoading ? <LoadingFrog /> : <Outlet />}
       </main>
     </>

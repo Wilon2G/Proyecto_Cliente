@@ -45,7 +45,7 @@ export function InputForm({
         )}
         onChange={onChange}
         placeholder={`Your ${inputText || inputType}`}
-        defaultValue={`${defaultValue || ''}`}
+        defaultValue={defaultValue}
         value={value}
       />
     </>

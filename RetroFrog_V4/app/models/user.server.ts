@@ -84,7 +84,7 @@ export async function setUser(
     data: {
       name,
       email,
-      pfp, // Guardar la ruta de la nueva imagen o la predeterminada
+      pfp,
     },
   });
 }

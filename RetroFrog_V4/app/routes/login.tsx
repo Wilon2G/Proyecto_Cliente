@@ -190,7 +190,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="flex w-full h-4/5">
+        <div className=" flex w-full h-4/5">
           {/**LOGIN */}
 
           <SlidePannel

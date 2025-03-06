@@ -32,8 +32,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const user = await getGamesUser(userId);
 
-  const top = Number(url.searchParams.get('$top')) || 8;
-  const skip = Number(url.searchParams.get('$skip')) || 0;
+  const top = Number(url.searchParams.get('top')) || 8;
+  const skip = Number(url.searchParams.get('skip')) || 0;
 
   const allUnlockedGames = await allFavGames(userId, filter);
 

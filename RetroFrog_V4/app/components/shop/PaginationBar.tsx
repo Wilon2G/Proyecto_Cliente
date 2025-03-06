@@ -9,7 +9,7 @@ import {
 export default function PaginationBar({ total }: { total: number }) {
   const [searchParams] = useSearchParams();
   const skip = Number(searchParams.get('skip')) || 0;
-  const top = Number(searchParams.get('top')) || 10;
+  const top = Number(searchParams.get('top')) || 8;
   const totalPages = Math.ceil(total / top);
   const currentPage = Math.floor(skip / top) + 1;
   const maxPages = 7;
@@ -62,7 +62,7 @@ export default function PaginationBar({ total }: { total: number }) {
   }
 
   return (
-    <div className="flex mt-4 items-center gap-1">
+    <div className="flex mt-2 items-center gap-2">
       <Link
         to={{
           search: setSearchParamsString(searchParams, {

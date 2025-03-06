@@ -8,6 +8,7 @@ type ButtonProps = {
   className: string;
   name?: string;
   value?: string;
+  disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -17,6 +18,7 @@ export default function Button({
   className,
   name,
   value,
+  disabled,
   onClick,
 }: ButtonProps) {
   return (
@@ -24,6 +26,7 @@ export default function Button({
       name={name}
       value={value}
       type={typeBtn}
+      disabled={disabled}
       onClick={onClick}
       className={classNames(
         'w-full py-2 px-4 rounded-md font-bold transition duration-300',

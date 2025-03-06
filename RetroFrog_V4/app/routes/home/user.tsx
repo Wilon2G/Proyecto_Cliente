@@ -21,10 +21,8 @@ export async function action({ request }: { request: Request }) {
   const email = formData.get('email') as string;
   const pfpFile = formData.get('pfp') as File | null;
 
-  // Aseguramos que pfp tiene el valor por defecto si no hay archivo
   let pfp = '/assets/icon/pfp/default.avif';
 
-  // Si se selecciona un archivo, se procesa y guarda
   if (pfpFile && pfpFile.size > 0) {
     const uploadDir = path.join(
       process.cwd(),
@@ -39,21 +37,18 @@ export async function action({ request }: { request: Request }) {
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
-
-    // Leer el archivo y guardarlo en el directorio
+    // Leer el archivo y guardar el pfp
     const buffer = await pfpFile.arrayBuffer();
     const uint8Array = new Uint8Array(buffer);
-    // Eliminar la imagen anterior si existe (sobreescribir)
+    // Eliminar la imagen anterior si existe
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
-
     // Guardar el nuevo archivo
     fs.writeFileSync(filePath, uint8Array);
     // Actualizar la ruta de la imagen de perfil
     pfp = `/assets/icon/pfp/${userId}.avif`;
   }
-
   try {
     setUser(userId, name, email, pfp);
     return redirect(`/home/user`);
@@ -68,7 +63,6 @@ export async function action({ request }: { request: Request }) {
 export default function UserProfile() {
   const { user } = useLoaderData<typeof loader>();
 
-  // Estado inicial con los valores originales
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -77,7 +71,6 @@ export default function UserProfile() {
 
   const [imagePreview, setImagePreview] = useState(formData.pfp);
 
-  // Manejo del cambio en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
